@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="local_remote" table="x_58056_md_docs_code_documentation" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>local_remote</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Remote</label>
+            <language>en</language>
+            <name>x_58056_md_docs_code_documentation</name>
+            <sequence>0</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-21 23:34:32</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1d21e5b7db023300d0cb5385ca9619c7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-21 23:34:32</sys_updated_on>
+            <value>Remote</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>local_remote</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Local</label>
+            <language>en</language>
+            <name>x_58056_md_docs_code_documentation</name>
+            <sequence>1</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-21 23:34:32</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1121e5b7db023300d0cb5385ca9619c9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-21 23:34:32</sys_updated_on>
+            <value>Local</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>local_remote</element>
+            <name>x_58056_md_docs_code_documentation</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-21 23:34:32</sys_created_on>
+            <sys_id>d521e5b7db023300d0cb5385ca9619c8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>local_remote</sys_name>
+            <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+            <sys_update_name>sys_choice_x_58056_md_docs_code_documentation_local_remote</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-21 23:34:32</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

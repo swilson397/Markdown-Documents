@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="pc_hardware_cat_item">
+    <pc_hardware_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <auto_created>true</auto_created>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Office">109cdff8c6112276003b17991a09ad65</category>
+        <cost>599.99</cost>
+        <custom_cart/>
+        <delivery_plan display_value="DEFAULT">523da512c611228900811a37c97c2014</delivery_plan>
+        <delivery_plan_script/>
+        <delivery_time>1970-01-03 00:00:00</delivery_time>
+        <description><![CDATA[
+<p>Samsung 3D LED Monitor SA950 delivers unbelievably smooth visuals through its 3D HyperReal Engine and the Real 120Hz speed, while also producing brighter 3D images. Other features include the Mega Dynamic Contrast Ratio and Photo Accuracy 100%, which really bring pictures to life. While the built-in 3D Converter and various inputs ensure that your monitor experience is truly expansive. Then factor in the eco saving modes with the new Energy Tree feature, and you have a next-generation monitor ready to go.</p>
+<ul class="bullet"><li>Product Model: S27A950D</li><li>Product Name: SyncMaster S27A950D Widescreen LCD Monitor</li><li>Product Type: LCD Monitor</li><li>Number of Screens: 1</li><li>Screen Size: 27&#34;</li><li>Screen Mode: Full HD</li><li>Response Time: 2 ms</li><li>Aspect Ratio: 16:9</li><li>Horizontal Viewing Angle: 170?</li><li>Vertical Viewing Angle: 160?</li><li>Adjustable Display Angle: Yes</li><li>Backlight Technology: LED</li><li>3D Type: 3D</li><li>3D Conversion: Yes</li><li>Features: Off Timer</li><li>Maximum Resolution: 1920 x 1080</li><li>Standard Refresh Rate: 120 Hz</li><li>Color Supported: 16.7 Million Colors</li><li>Contrast Ratio: 1,000:1</li><li>Brightness: 300 Nit</li><li>DVI: Yes</li><li>HDMI: Yes</li><li>VGA: Yes</li><li>DisplayPort: Yes</li></ul>
+<p></p>
+]]></description>
+        <entitlement_script/>
+        <features/>
+        <group/>
+        <hide_sp>false</hide_sp>
+        <icon/>
+        <ignore_price>false</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model display_value="Samsung SyncMaster 27&quot; 3D LED LCD Monitor">0e03cdcb1b1310002502fbcd2c0713b1</model>
+        <name>SyncMaster 27" 3D LED LCD Monitor</name>
+        <no_cart>false</no_cart>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>0</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: popupOpenStandard("com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=bfb201434ff3a300ecf18c318110c7c0&amp;sysparm_preview=true", "summary");</preview>
+        <price>599.99</price>
+        <product_id>S27A750D</product_id>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <roles/>
+        <sc_catalogs>e0d08b13c3330100c8b837659bba8fb4</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <short_description>Samsung - SyncMaster S27A750D 27" 3D LED LCD Monitor - 16:9 - 2 ms - Black</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
+        <specs/>
+        <start_closed>false</start_closed>
+        <sys_class_name>pc_hardware_cat_item</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-27 17:05:00</sys_created_on>
+        <sys_id>bfb201434ff3a300ecf18c318110c7c0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SyncMaster 27" 3D LED LCD Monitor</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>pc_hardware_cat_item_bfb201434ff3a300ecf18c318110c7c0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-27 17:05:00</sys_updated_on>
+        <template/>
+        <type>item</type>
+        <upc/>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor display_value="Samsung">43febe921b5310002502fbcd2c0713bc</vendor>
+        <vendor_catalog_item/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </pc_hardware_cat_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=bfb201434ff3a300ecf18c318110c7c0"/>
+    <fx_price action="delete_multiple" query="id=bfb201434ff3a300ecf18c318110c7c0"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>599.99</amount>
+        <currency display_value="USD">USD</currency>
+        <field>price</field>
+        <id>bfb201434ff3a300ecf18c318110c7c0</id>
+        <parent/>
+        <reference_amount>599.99</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-27 17:05:00</sys_created_on>
+        <sys_id>bbb201434ff3a300ecf18c318110c7c1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-27 17:05:00</sys_updated_on>
+        <table>pc_hardware_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>recurring_price</field>
+        <id>bfb201434ff3a300ecf18c318110c7c0</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-27 17:05:00</sys_created_on>
+        <sys_id>3fb201434ff3a300ecf18c318110c7c2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-27 17:05:00</sys_updated_on>
+        <table>pc_hardware_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
+</record_update>

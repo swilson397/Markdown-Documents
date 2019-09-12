@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>create_pdf</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2/>
+        <comments/>
+        <condition>new MarkdownVersioning().canChange(current);</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>true</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Generate PDF</name>
+        <onclick>generatePDF()</onclick>
+        <order>170</order>
+        <script><![CDATA[function generatePDF() {
+	var pdf = new jsPDF('p', 'pt', 'letter');
+	var mdText = markdownDocument.getSimpleMDE().value();
+	var sourceHTML = markdownDocument.getSimpleMDE().options.previewRender(mdText);
+	var source = jQuery('div.editor-preview-side')[0];
+	var html = '<html><head>' +
+	'<link rel="stylesheet" type="text/css" href="847a69954f23e700ecf18c318110c783.cssdbx">' +
+	'</link></head><body>' + sourceHTML + '</body></html>';
+
+	var specialElementHandlers = {
+		// element with id of "bypass" - jQuery style selector
+		'#bypassme': function (element, renderer) {
+			// true = "handled elsewhere, bypass text extraction"
+			return true;
+		}
+	};
+	var margins = {
+		top: 80,
+		bottom: 60,
+		left: 40,
+		width: 522
+	};
+	pdf.fromHTML(
+	html, // HTML string or DOM elem ref.
+	margins.left, // x coord
+	margins.top, { // y coord
+		'width': margins.width, // max width of content on PDF
+		'elementHandlers': specialElementHandlers
+	},
+	
+	function (dispose) {
+       var version = "";
+       if (g_scratchpad.version && g_scratchpad.version != "") {
+           version = " v" + g_scratchpad.version;
+       }
+       var fileName = g_form.getValue("short_description") + version + " .pdf";
+	   pdf.save(fileName);
+	}, margins);
+}
+/*
+function createAttachment(datauristring) {
+	alert(datauristring);
+	updatePDFContent(datauristring);
+	var ga = new GlideAjax('x_58056_md_docs.MarkdownAJAX'); //Call script include to escape text
+	ga.addParam('sysparm_name', 'createPDFAttachment');
+	ga.addParam('sysparm_table', g_form.getTableName());
+	ga.addParam('sysparm_sys_id', g_form.getUniqueValue());
+	ga.addParam('sysparm_datauristring', datauristring);
+	ga.getXMLAnswer(checkAttachmentResults);
+}
+
+function checkAttachmentResults(answer) {
+	alert(answer);
+	if (answer != "ok") {
+		alert(answer);
+	}
+}
+*/]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-09 00:56:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7d6834814f67a700ecf18c318110c7fc</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>Generate PDF</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_action_7d6834814f67a700ecf18c318110c7fc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-10 00:40:38</sys_updated_on>
+        <table>x_58056_md_docs_markdown_document</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

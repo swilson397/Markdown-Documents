@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_related sys_domain="global" table="x_58056_md_docs_project_code_document" version="2" view="">
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Project Code Document - Default view" name="x_58056_md_docs_project_code_document" related_list="NULL" sys_domain="global" view="Default view">38af7246db21b300d0cb5385ca961940</list_id>
+            <order_by/>
+            <position>0</position>
+            <related_list>x_58056_md_docs_code_documentation.project_code_document</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-05-22 23:26:36</sys_created_on>
+            <sys_id>38af7246db21b300d0cb5385ca961941</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-05-22 23:26:36</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list action="INSERT_OR_UPDATE">
+            <calculated_name>Project Code Document - Default view</calculated_name>
+            <filter/>
+            <name>x_58056_md_docs_project_code_document</name>
+            <order_by/>
+            <position/>
+            <related_list/>
+            <sys_class_name>sys_ui_related_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-05-22 23:26:36</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>38af7246db21b300d0cb5385ca961940</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Project Code Document - Default view</sys_name>
+            <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+            <sys_update_name>sys_ui_related_x_58056_md_docs_project_code_document_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-05-22 23:26:36</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_related_list>
+    </sys_ui_related>
+</record_update>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Comma delimited list of Stylesheet record names to be included in the KB HTML</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_58056_md_docs.kb_html_stylesheets</name>
+        <read_roles/>
+        <suffix>kb_html_stylesheets</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-09 00:16:44</sys_created_on>
+        <sys_id>a2d487eddb11b300d0cb5385ca9619a7</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_58056_md_docs.kb_html_stylesheets</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_properties_a2d487eddb11b300d0cb5385ca9619a7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-09 00:24:36</sys_updated_on>
+        <type>string</type>
+        <value>markdown_document</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=a2d487eddb11b300d0cb5385ca9619a7"/>
+</record_update>

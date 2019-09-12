@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_58056_md_docs.markdown-document</name>
+        <script><![CDATA[(function(global, factory) {
+    global.markdownDocument = factory(global.jQuery);
+})(this, function(jq) {
+
+    MarkdownDocument = function() {
+        var MySimpleMDE = {};
+		var MD = this;
+
+        MD.createSimpleMDE = function(taName, initialText) {
+            taName = taName.replace(/(:|\.|\[|\]|,|=)/g, "\\$1");
+            var jqe = jq("#" + taName)[0];
+            MySimpleMDE[taName] = new SimpleMDE({
+                element: jqe,
+                spellChecker: false,
+                autosave: {
+                    enabled: true,
+                    uniqueId: taName,
+                    delay: 1000,
+                },
+                placeholder : "Type your markdown here...",
+                //forceSync: true,
+                initialValue: initialText
+            });
+            return MySimpleMDE[taName];
+        };
+
+        MD.getSimpleMDE = function(taName) {
+            taName = taName.replace(/(:|\.|\[|\]|,|=)/g, "\\$1");
+            return MySimpleMDE[taName];
+        };
+    };
+
+    return new MarkdownDocument();
+});
+]]></script>
+        <script_name>markdown-document</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-29 23:40:12</sys_created_on>
+        <sys_id>6fedf6864f8a6300ecf18c318110c7a9</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>x_58056_md_docs.markdown-document</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_script_6fedf6864f8a6300ecf18c318110c7a9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-15 00:47:19</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

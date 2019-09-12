@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>create_word_doc</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2/>
+        <comments/>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>true</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Create Word file</name>
+        <onclick>createWordDoc()</onclick>
+        <order>100</order>
+        <script><![CDATA[function createWordDoc() {
+	var html;
+	if (! markdownDocument) {
+		html = g_form.getValue("html");
+	} else {
+		var hdrMDE = markdownDocument.getEasyMDE(g_form.getControl("api_markdown").id);
+		html = hdrMDE.options.previewRender(hdrMDE.value());
+	}
+	
+	var ga = new GlideAjax('x_58056_md_docs.MarkdownAJAX'); //Call script include to escape text
+	ga.addParam('sysparm_name', 'createWordFile');
+	ga.addParam('sysparm_table', g_form.getTableName());
+	ga.addParam('sysparm_sys_id', g_form.getUniqueValue());
+	ga.addParam('sysparm_content', html);
+	ga.getXMLAnswer(checkWordFileResults);
+}
+
+function checkWordFileResults(answer) {
+	if (answer != "ok") {
+		alert(answer);
+	} else {
+		var list = GlideList2.get("x_58056_md_docs_markdown_source.REL:b9edf0ca0a0a0b010035de2d6b579a03");
+		list.refresh();
+	}
+}]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-08 18:47:21</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8cc2a1e3dbb57300d0cb5385ca961983</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Create Word file</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_action_8cc2a1e3dbb57300d0cb5385ca961983</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-08 21:33:23</sys_updated_on>
+        <table>x_58056_md_docs_markdown_source</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

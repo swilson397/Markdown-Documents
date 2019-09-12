@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkdownVersioning</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MarkdownVersioning</name>
+        <script><![CDATA[/**
+ * @class
+ * @name MarkdownVersioning
+ */
+MarkdownVersioning = Class.create();
+
+MarkdownVersioning.DEBUG = true;
+
+MarkdownVersioning.prototype = {
+    MAJOR_STATE: "published",
+    DRAFT_STATE: "draft",
+    WORKFLOW_COMPLETED_STATES: ["published", "outdated"],
+    KB_VERSION: "kb_version",
+    KB_KNOWLEDGE: "kb_knowledge",
+    INTEGRATION_PLUGIN: "com.snc.knowledge.external_integration",
+    VERSIONING_PLUGIN: "com.snc.knowledge_advanced",
+    VERSIONING_ENABLED: "glide.knowman.versioning.enabled",
+    /**
+     * Initialize variables
+     */
+    initialize: function() {
+    },
+
+    isPublishedVersion: function(kbGR) {
+        return this.isVersioningEnabled() && kbGR.workflow_state.toString() == this.MAJOR_STATE;
+    },
+
+    canPublish: function(kbGR) {
+        if (kbGR.workflow_state != this.DRAFT_STATE) {
+            return false;
+        }
+        if (this.isReviser(kbGR)) {
+            return true;
+        }
+        if (this.isOwnerOrAdmin(kbGR)) {
+            return true;
+        }
+        return false;
+    },
+
+    isReviser: function(kbGR) {
+        var reviser = kbGR.revised_by.nil() ? kbGR.author.toString() : kbGR.revised_by.toString();
+        return gs.getUserID() === reviser;
+    },
+
+    isOwnerOrAdmin: function(kbGR) {
+        if (gs.hasRole("knowledge_admin")) {
+            return true;
+        }
+        if (this.isKnowledgeBaseOwner(kbGR.kb_knowledge_base.owner.toString(), gs.getUserID())) {
+            return true;
+        }
+        return false;
+    },
+
+    isKnowledgeBaseOwner: function(owners, user) {
+        return owners.indexOf(user) >= 0;
+    },
+
+    canChange: function(kbGR) {
+        if (this.isExternalArticle(kbGR)) {
+            return false;
+        }
+
+        if (!kbGR) {
+            return false;
+        }
+
+        if (kbGR.workflow_state != this.DRAFT_STATE) {
+            return false;
+        }
+
+        // If versioning enabled, delegate to versioning permissions
+        if (this.isVersioningEnabled()) {
+            return this.canPublish(kbGR);
+        }
+        return false;
+    },
+
+    isVersioningEnabled: function() {
+        return (
+            GlidePluginManager.isActive(this.VERSIONING_PLUGIN) &&
+            gs.getProperty(this.VERSIONING_ENABLED, "true") == "true"
+        );
+    },
+
+    canCheckout: function(kbGR) {
+        if (this.isExternalArticle(kbGR)) {
+            return false;
+        }
+        if (!this.isValidVersion(kbGR)) {
+            return false;
+        }
+        if (kbGR.workflow_state.toString() != this.MAJOR_STATE) {
+            return false;
+        }
+        if (this.hasCheckedoutRecord(kbGR)) {
+            return false;
+        }
+        return true;
+    },
+
+    isExternalIntegrationInstalled: function() {
+        return GlidePluginManager.isActive(this.INTEGRATION_PLUGIN);
+    },
+
+    isExternalArticle: function(kbGR) {
+        return kbGR && this.isExternalIntegrationInstalled() && kbGR.external;
+    },
+
+    isValidVersion: function(kbGR) {
+        var version = kbGR && !kbGR.version.nil() ? kbGR.version.version.toString() : "";
+        if (!version) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+
+    hasCheckedoutRecord: function(current) {
+        var gr = new GlideRecord(this.KB_KNOWLEDGE);
+        gr.addQuery("article_id", current.article_id);
+        gr.addQuery("sys_id", "!=", current.getUniqueValue());
+        gr.addQuery("workflow_state", "NOT IN", this.WORKFLOW_COMPLETED_STATES.join(","));
+        gr.setLimit(1);
+        gr.query();
+        return gr.hasNext();
+    },
+
+    /**
+     * Adds an error message to the system log.
+     *
+     * @param {string} msg Message to add to system log.
+     */
+    _logError: function(msg) {
+        gs.error("[" + this.type + "] " + msg);
+    },
+
+    /**
+     * Adds a warning message to the system log.
+     *
+     * @param {string} msg Message to add to the system log.
+     */
+    _logWarning: function(msg) {
+        gs.warn("[" + this.type + "] " + msg);
+    },
+
+    /**
+     * Adds a message to the system log if MarkdownVersioning.DEBUG is true.
+     *
+     * @param {String} msg Message to add to the system log.
+     */
+    _log: function(msg) {
+        if (MarkdownVersioning.DEBUG) {
+            gs.info("[" + this.type + "] " + msg);
+        }
+    },
+
+    type: "MarkdownVersioning"
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-02 00:39:32</sys_created_on>
+        <sys_id>02e6835fdbc17300d0cb5385ca9619ac</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>MarkdownVersioning</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_02e6835fdbc17300d0cb5385ca9619ac</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-10 00:38:09</sys_updated_on>
+    </sys_script_include>
+</record_update>

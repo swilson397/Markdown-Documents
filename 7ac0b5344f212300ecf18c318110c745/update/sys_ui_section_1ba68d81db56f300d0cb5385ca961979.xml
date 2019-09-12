@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Source Text" section_id="1ba68d81db56f300d0cb5385ca961979" sys_domain="global" table="x_58056_md_docs_markdown_source" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>source_text</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-25 18:52:04</sys_created_on>
+            <sys_id>a2d609c1db56f300d0cb5385ca961911</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Text" display_value="Source Text" name="x_58056_md_docs_markdown_source" sys_domain="global" view="Default view">1ba68d81db56f300d0cb5385ca961979</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-25 18:52:04</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Source Text</caption>
+            <header>false</header>
+            <name>x_58056_md_docs_markdown_source</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-25 18:51:18</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1ba68d81db56f300d0cb5385ca961979</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Source Text</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+            <sys_update_name>sys_ui_section_1ba68d81db56f300d0cb5385ca961979</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-25 18:51:18</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

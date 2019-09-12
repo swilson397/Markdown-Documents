@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.SourceDocumenter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>SourceDocumenter</name>
+        <script><![CDATA[/*
+var gr = new GlideRecord('x_58056_md_docs_markdown_document');
+if (gr.get("31bb13674f322300ecf18c318110c77e")) {
+new SourceDocumenter().parseSources(gr);
+}
+*/
+
+var SourceDocumenter = Class.create();
+SourceDocumenter.prototype = {
+    initialize: function() {
+        this.classRegex = /Class./;
+        this.functionRegex = / function */;
+        this.prototypeRegex = /.prototype/;
+        this.returnRegex = /return/;
+        this.scriptIncludeRegex = /.*Class..*|.* function *\(.*|.*.prototype.*|.*return.*/gm;
+    },
+
+    parseSources: function(docGR) {
+        var md = [];
+        var sources = this.getSources(docGR.getUniqueValue());
+        md.push("# " + docGR.short_description);
+        sources.forEach(function(source) {
+            md.push("## " + source.className);
+            md.push("### Properties");
+            source.properties.forEach(function(prop) {
+                md.push("#### " + prop);
+            }, this);
+            source.functions.forEach(function(func) {
+                md.push("### " + func.name);
+                if (func.parameters.length > 0) {
+                    md.push("#### Parameters");
+                    func.parameters.forEach(function(parm) {
+                        md.push("* " + parm);
+                    });
+                }
+                if (func.returns.length > 0) {
+                    md.push("#### Returns " + func.returns);
+                }
+            }, this);
+        }, this);
+        return md.join("\n");
+    },
+
+    getSources: function(docID) {
+        var sources = [];
+
+        var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+        sourceGR.addQuery("markdown_document", docID);
+        sourceGR.orderBy("order");
+        sourceGR.query();
+        gs.info(sourceGR.getRowCount() + " query=" + sourceGR.getEncodedQuery());
+        while (sourceGR.next()) {
+            sources.push(
+                this.getSourceStatements(
+                    sourceGR.source_table.toString(),
+                    sourceGR.source_id.toString()
+                )
+            );
+        }
+        return sources;
+    },
+
+    getSourceStatements: function(table, sourceID) {
+        var m, m2, result;
+        var sourceLines = {
+            name: "",
+            table: table,
+            sys_id: sourceID,
+            className: "",
+            properties: [],
+            functions: []
+        };
+        var tgtGR = new GlideRecord(table);
+        if (tgtGR.get(sourceID)) {
+            gs.info("table=" + tgtGR.getRecordClassName());
+            if (tgtGR.getRecordClassName() == "sys_script_include") {
+                sourceLines.className = tgtGR.name.toString();
+                var str = tgtGR.script.toString();
+                var currFunction = null;
+                while ((m = this.scriptIncludeRegex.exec(str)) !== null) {
+                    // This is necessary to avoid infinite loops with zero-width matches
+                    if (m.index === this.scriptIncludeRegex.lastIndex) {
+                        regex.lastIndex++;
+                    }
+                    // The result can be accessed through the `m`-variable.
+                    m.forEach(function(sourceLine, groupIndex) {
+                        gs.info("function regex=" + this.functionRegex);
+                        gs.info(
+                            "match=" +
+                                sourceLine +
+                                " is function stmt=" +
+                                sourceLine.search(this.functionRegex)
+                        );
+                        if (sourceLine.search(this.functionRegex) >= 0) {
+                            if (currFunction !== null) {
+                                gs.info(
+                                    "Adding new function due to new function being found=" +
+                                        currFunction.name
+                                );
+                                sourceLines.functions.push(currFunction);
+                            }
+                            currFunction = { name: "", parameters: [], returns: [] };
+                            result = sourceLine.match(/^[^:]+/);
+                            currFunction.name = result[0].trim();
+                            result = sourceLine.match(/\((.*?)\)/);
+                            var parms = result[1].split(",");
+                            parms.forEach(function(parm) {
+                                parm = parm.trim();
+                                if (parm) {
+                                    currFunction.parameters.push(parm);
+                                }
+                            }, this);
+                            gs.info("Setting current function name=" + currFunction.name);
+                        } else if (sourceLine.search(this.returnRegex) >= 0) {
+                            result = sourceLine.match(/return(.*)/);
+                            currFunction.returns.push(result[1].trim());
+                            gs.info(
+                                "Setting return value = " +
+                                    currFunction.returns[currFunction.returns.length - 1]
+                            );
+                        } else if (sourceLine.search(this.prototypeRegex) >= 0) {
+                        }
+                    }, this);
+                }
+                if (currFunction !== null) {
+                    gs.info("Adding new function due to end of script=" + currFunction.name);
+                    sourceLines.functions.push(currFunction);
+                }
+            }
+        }
+        return sourceLines;
+    },
+
+    type: "SourceDocumenter"
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-01-16 03:45:28</sys_created_on>
+        <sys_id>11a875d14f072300ecf18c318110c70e</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>SourceDocumenter</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_11a875d14f072300ecf18c318110c70e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-01-16 20:30:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

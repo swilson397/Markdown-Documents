@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Comma delimited list of Stylesheet record names to be included in the Markdown Editor ui macros</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_58056_md_docs.markdown_editor_stylesheets</name>
+        <read_roles/>
+        <suffix>markdown_editor_stylesheets</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-09 00:16:17</sys_created_on>
+        <sys_id>08c44f6ddb11b300d0cb5385ca961944</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>x_58056_md_docs.markdown_editor_stylesheets</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_properties_08c44f6ddb11b300d0cb5385ca961944</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-01 00:26:27</sys_updated_on>
+        <type>string</type>
+        <value>markdown_document,easymde.min, codemirror.css</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=08c44f6ddb11b300d0cb5385ca961944"/>
+</record_update>

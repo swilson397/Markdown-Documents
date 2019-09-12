@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[renderMDE();
+function renderMDE() {
+	var scripts = ['x_58056_md_docs.easymde.min.jsdbx', 'x_58056_md_docs.codemirror.jsdbx', 'x_58056_md_docs.initialize_easymde.jsdbx', 'x_58056_md_docs.bootstrap.min.jsdbx', 'x_58056_md_docs.jspdf.min.jsdbx'];
+//	var scripts = ['x_58056_md_docs.codemirror.jsdbx', 'x_58056_md_docs.initialize_easymde.jsdbx', 'x_58056_md_docs.bootstrap.min.jsdbx', 'x_58056_md_docs.jspdf.min.jsdbx'];
+	
+	ScriptLoader.getScripts(scripts, afterLoad);
+	function afterLoad() {
+		markdownDocument.createEasyMDE("markdown_text_test", "# A Test Page");
+	}
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_58056_md_docs_markdown_text_test.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<!--
+  <link rel="stylesheet" href="https://unpkg.com/easymde@2.6.0/dist/easymde.min.css" />
+  <script src="https://unpkg.com/easymde@2.6.0/dist/easymde.min.js" />
+-->
+  <div id="start">
+   START
+  <g:macro_invoke macro="x_58056_md_docs_markdown_editor_test" />
+	</div>
+</j:jelly>]]></html>
+        <name>markdown_text_test</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-23 20:58:39</sys_created_on>
+        <sys_id>35ea1f5adba13300d0cb5385ca961964</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>markdown_text_test</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_page_35ea1f5adba13300d0cb5385ca961964</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-23 22:21:29</sys_updated_on>
+    </sys_ui_page>
+</record_update>

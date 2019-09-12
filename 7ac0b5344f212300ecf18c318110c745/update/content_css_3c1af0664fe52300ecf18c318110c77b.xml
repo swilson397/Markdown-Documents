@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="content_css">
+    <content_css action="INSERT_OR_UPDATE">
+        <name>dialog.css</name>
+        <style>.CodeMirror-dialog {&#13;
+  position: absolute;&#13;
+  left: 0; right: 0;&#13;
+  background: inherit;&#13;
+  z-index: 15;&#13;
+  padding: .1em .8em;&#13;
+  overflow: hidden;&#13;
+  color: inherit;&#13;
+}&#13;
+&#13;
+.CodeMirror-dialog-top {&#13;
+  border-bottom: 1px solid #eee;&#13;
+  top: 0;&#13;
+}&#13;
+&#13;
+.CodeMirror-dialog-bottom {&#13;
+  border-top: 1px solid #eee;&#13;
+  bottom: 0;&#13;
+}&#13;
+&#13;
+.CodeMirror-dialog input {&#13;
+  border: none;&#13;
+  outline: none;&#13;
+  background: transparent;&#13;
+  width: 20em;&#13;
+  color: inherit;&#13;
+  font-family: monospace;&#13;
+}&#13;
+&#13;
+.CodeMirror-dialog button {&#13;
+  font-size: 70%;&#13;
+}&#13;
+</style>
+        <sys_class_name>content_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-06 06:49:10</sys_created_on>
+        <sys_id>3c1af0664fe52300ecf18c318110c77b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>dialog.css</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>content_css_3c1af0664fe52300ecf18c318110c77b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-11-06 06:49:10</sys_updated_on>
+        <type>local</type>
+        <url/>
+    </content_css>
+</record_update>

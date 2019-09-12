@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Markdown Editor" section_id="2e94cf524fe12300ecf18c318110c750" sys_domain="global" table="x_58056_md_docs_markdown_document" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>markdown_text</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-05-01 22:59:33</sys_created_on>
+            <sys_id>33003a1fdb817300d0cb5385ca961910</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Markdown Editor" display_value="Markdown Editor" name="x_58056_md_docs_markdown_document" sys_domain="global" view="Default view">2e94cf524fe12300ecf18c318110c750</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-05-01 22:59:33</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>x_58056_md_docs_markdown_editor.xml</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-05-01 22:59:33</sys_created_on>
+            <sys_id>b3003a1fdb817300d0cb5385ca961910</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter display_value="markdown_editor">11177ed64fa12300ecf18c318110c700</sys_ui_formatter>
+            <sys_ui_section caption="Markdown Editor" display_value="Markdown Editor" name="x_58056_md_docs_markdown_document" sys_domain="global" view="Default view">2e94cf524fe12300ecf18c318110c750</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-05-01 22:59:33</sys_updated_on>
+            <sys_user/>
+            <type>formatter</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Markdown Editor</caption>
+            <header>false</header>
+            <name>x_58056_md_docs_markdown_document</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-11-05 22:15:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2e94cf524fe12300ecf18c318110c750</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Markdown Editor</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+            <sys_update_name>sys_ui_section_2e94cf524fe12300ecf18c318110c750</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-11-05 22:15:38</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

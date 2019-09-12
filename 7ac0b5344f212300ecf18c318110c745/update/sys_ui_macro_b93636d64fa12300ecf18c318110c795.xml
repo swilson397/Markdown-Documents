@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>markdown_editor</name>
+        <scoped_name>x_58056_md_docs_markdown_editor</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-05 21:15:30</sys_created_on>
+        <sys_id>b93636d64fa12300ecf18c318110c795</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>markdown_editor</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_macro_b93636d64fa12300ecf18c318110c795</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-23 01:03:25</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <g:evaluate>
+	  var styleSheets = gs.getProperty("x_58056_md_docs.markdown_editor_stylesheets", "");
+	  styleSheets = styleSheets.split(",");
+	  var styleSheetIds = [];
+	  styleSheets.forEach(function(name) {
+	    var css = new GlideRecord('content_css');
+	    if (css.get('name', name)) {
+	      styleSheetIds.push(css.getUniqueValue());
+	    }
+	  });
+  </g:evaluate>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <j:forEach items="${styleSheetIds}" var="jvar_array_item"> 
+    <link href="${jvar_array_item}.cssdbx?" rel="stylesheet" type="text/css"/>
+  </j:forEach>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

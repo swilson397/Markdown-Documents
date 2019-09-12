@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_children">
+    <sc_cat_item_children action="INSERT_OR_UPDATE">
+        <child display_value="Apple MacBook Pro 15&quot;">2ab7077237153000158bbfc8bcbe5da9</child>
+        <order>100</order>
+        <parent display_value="Developer workstation bundle">953041474fb3a300ecf18c318110c73c</parent>
+        <quantity>1</quantity>
+        <sys_class_name>sc_cat_item_children</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-27 16:53:54</sys_created_on>
+        <sys_id>e93001cf4fb3a300ecf18c318110c7c1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Apple MacBook Pro 15".Developer workstation bundle</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sc_cat_item_children_e93001cf4fb3a300ecf18c318110c7c1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-27 16:53:54</sys_updated_on>
+    </sc_cat_item_children>
+</record_update>

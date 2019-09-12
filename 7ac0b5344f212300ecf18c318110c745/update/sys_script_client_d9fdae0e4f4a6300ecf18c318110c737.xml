@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>active</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Save markdown text</name>
+        <order/>
+        <script><![CDATA[function onSubmit() {
+	if (typeof markdownDocument == "undefined") {
+		return;
+	}
+	var mdText = markdownDocument.getSimpleMDE().value();
+	g_form.setValue("markdown_text", mdText);
+	var sourceHTML = markdownDocument.getSimpleMDE().options.previewRender(mdText);
+	g_form.setValue("text", sourceHTML);
+	
+	// Set the PDF content so that an attachment can be created
+	if (g_form.getValue("refresh_pdf_attachment") == "true") {
+		updatePDFContent(sourceHTML);
+	}
+}
+
+function updatePDFContent(sourceHTML) {
+	var pdf = new jsPDF('p', 'pt', 'letter');
+	var source = jQuery('div.editor-preview-side')[0];
+	var html = '<html><head>' +
+	'<link rel="stylesheet" type="text/css" href="847a69954f23e700ecf18c318110c783.cssdbx">' +
+	'</link></head><body>' + sourceHTML + '</body></html>';
+	
+	var specialElementHandlers = {
+		// element with id of "bypass" - jQuery style selector
+		'#bypassme': function (element, renderer) {
+			// true = "handled elsewhere, bypass text extraction"
+			return true;
+		}
+	};
+	var margins = {
+		top: 80,
+		bottom: 60,
+		left: 40,
+		width: 522
+	};
+	pdf.fromHTML(
+	html, // HTML string or DOM elem ref.
+	margins.left, // x coord
+	margins.top, { // y coord
+		'width': margins.width, // max width of content on PDF
+		'elementHandlers': specialElementHandlers
+	},
+	function (dispose) {
+		// dispose: object with X, Y of the last line add to the PDF
+		//          this allow the insertion of new lines after html
+		//        pdf.save('Test.pdf');
+		
+		headerFooterFormatting(pdf, pdf.internal.getNumberOfPages(), margins);
+		setPDFContent(pdf.output("dataurlstring"));
+	}, margins);
+}
+
+function headerFooterFormatting(doc, totalPages, margins) {
+	for (var i = totalPages; i >= 1; i--) {
+		doc.setPage(i);
+		//header
+		header(doc, margins);
+		
+		footer(doc, i, totalPages, margins);
+		doc.page++;
+	}
+}
+
+function header(doc, margins) {
+	doc.setFontSize(30);
+	doc.setTextColor(40);
+	doc.setFontStyle("normal");
+	
+	if (g_scratchpad.headerDataURL) {
+		alert("image url=" + g_scratchpad.headerDataURL);
+		doc.addImage(g_scratchpad.headerDataURL, "JPEG", margins.left, 10, 40, 40);
+	}
+	
+	doc.text(g_form.getValue("header_text"), margins.left + 50, 40);
+	doc.setLineCap(2);
+	doc.line(3, 70, margins.width + 43, 70); // horizontal line
+}
+
+function footer(doc, pageNumber, totalPages,margins) {
+	var str = "Page " + pageNumber + " of " + totalPages;
+	
+	doc.setFontSize(10);
+	doc.text(str, margins.left, doc.internal.pageSize.height - 20);
+}
+
+function setPDFContent(dataURIString) {
+	if (dataURIString.substr(0, 5) !== "data:") {
+		g_form.setValue("pdf_content", "Invalid DataURLString value");
+		return;
+	}
+	dataURIString = dataURIString.substr(5);
+	var parts = dataURIString.split(";");
+	if (parts.length != 2 || parts[1].substr(0, 7) != "base64,") {
+		g_form.setValue("pdf_content", "Invalid DataURLString value");
+		return;
+	}
+	var contentType = parts[0];
+	var content = parts[1].substr(7);
+	
+	// Use Ajax to create the attachment
+	var version = g_form.getDisplayBox("version").value;
+	var fileName = g_form.getValue("short_description");
+	version = version.trim();
+	if (version != '') {
+		fileName += " v" + version + ".pdf";
+	}
+	fileName = fileName.trim();
+	
+	createAttachment(g_form.getTableName(), g_form.getUniqueValue(), fileName, content);
+	//g_form.setValue("pdf_content", content);
+}
+
+function createAttachment(table, docID, fileName, content) {
+	var ga = new GlideAjax('x_58056_md_docs.MarkdownAJAX');
+	ga.addParam('sysparm_name', 'createPDFAttachment');
+	ga.addParam('sysparm_table', table);
+	ga.addParam('sysparm_sys_id', docID);
+	ga.addParam('sysparm_fileName', fileName);
+	ga.addParam('sysparm_content', content);
+	ga.getXMLAnswer(checkAttachmentResults);
+}
+
+function checkAttachmentResults(answer) {
+	if (answer != "ok") {
+		alert(answer);
+	}
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-29 22:31:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d9fdae0e4f4a6300ecf18c318110c737</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Save markdown text</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_client_d9fdae0e4f4a6300ecf18c318110c737</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-01 23:04:32</sys_updated_on>
+        <table>x_58056_md_docs_markdown_document</table>
+        <type>onSubmit</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

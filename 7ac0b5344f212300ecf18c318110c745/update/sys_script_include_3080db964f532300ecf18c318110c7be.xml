@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.JavadocToMarkdown</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>JavadocToMarkdown</name>
+        <script><![CDATA[/**
+ * Generate Markdown from your Javadoc, PHPDoc or JSDoc comments
+ *
+ * Usage: Create a new instance of <code>JavadocToMarkdown</code> and then
+ * call either <code>fromJavadoc()</code>, <code>fromPHPDoc()</code> or <code>fromJSDoc()</code>
+ *
+ * @constructor
+ */
+var JavadocToMarkdown = function() {
+    "use strict";
+
+    var self = this;
+
+    /**
+     * Generates Markdown documentation from code on a more abstract level
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @param {function} fnAddTagsMarkdown the function that processes doc tags and generates the Markdown documentation
+     * @returns {string} the Markdown documentation
+     */
+    function fromDoc(code, headingsLevel, fnAddTagsMarkdown, codeName, description) {
+        var i, out, sections;
+
+        // get all documentation sections from code
+        sections = getSections(code, codeName);
+        // initialize a string buffer
+        out = [];
+
+        if (codeName) {
+            out.push(stringRepeat("#", headingsLevel) + " " + codeName);
+        } else {
+            out.push(stringRepeat("#", headingsLevel) + " Documentation");
+        }
+
+        if (description) {
+            out.push("\n" + description);
+        }
+
+        for (i = 0; i < sections.length; i++) {
+            out.push(fromSection(sections[i], headingsLevel, fnAddTagsMarkdown));
+        }
+
+        // return the contents of the string buffer and add a trailing newline
+        return out.join("") + "\n";
+    }
+
+    /**
+     * Generates Markdown documentation from a statically typed language's doc comments
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @returns {string} the Markdown documentation
+     */
+    this.fromStaticTypesDoc = function(code, headingsLevel) {
+        return fromDoc(code, headingsLevel, function(tag, assocBuffer) {
+            var tokens;
+            switch (tag.key) {
+                case "abstract":
+                    addToBuffer(assocBuffer, "Abstract", tag.value);
+                    break;
+                case "access":
+                    addToBuffer(assocBuffer, "Access", tag.value);
+                    break;
+                case "author":
+                    addToBuffer(assocBuffer, "Author", tag.value);
+                    break;
+                case "class":
+                    addToBuffer(assocBuffer, "Class", tag.value);
+                    break;
+                case "constructor":
+                case "constructs":
+                    addToBuffer(assocBuffer, "Constructor", null);
+                    break;
+                case "copyright":
+                    addToBuffer(assocBuffer, "Copyright", tag.value);
+                    break;
+                case "deprec":
+                case "deprecated":
+                    addToBuffer(assocBuffer, "Deprecated", null);
+                    break;
+                case "example":
+                    addToBuffer(assocBuffer, "Example", tag.value);
+                    break;
+                case "exception":
+                case "throws":
+                    tokens = stringTokenize(tag.value, /\s+/g, 2);
+                    addToBuffer(assocBuffer, "Exceptions", "`" + tokens[0] + "` — " + tokens[1]);
+                    break;
+                case "exports":
+                    addToBuffer(assocBuffer, "Exports", tag.value);
+                    break;
+                case "license":
+                    addToBuffer(assocBuffer, "License", tag.value);
+                    break;
+                case "link":
+                    addToBuffer(assocBuffer, "Link", tag.value);
+                    break;
+                case "name":
+                    addToBuffer(assocBuffer, "Alias", tag.value);
+                    break;
+                case "package":
+                    addToBuffer(assocBuffer, "Package", tag.value);
+                    break;
+                case "param":
+                    tokens = stringTokenize(tag.value, /\s+/g, 2);
+                    addToBuffer(assocBuffer, "Parameters", "`" + tokens[0] + "` — " + tokens[1]);
+                    break;
+                case "private":
+                    addToBuffer(assocBuffer, "Private", null);
+                    break;
+                case "return":
+                case "returns":
+                    addToBuffer(assocBuffer, "Returns", tag.value);
+                    break;
+                case "see":
+                    addToBuffer(assocBuffer, "See also", tag.value);
+                    break;
+                case "since":
+                    addToBuffer(assocBuffer, "Since", tag.value);
+                    break;
+                case "static":
+                    addToBuffer(assocBuffer, "Static", tag.value);
+                    break;
+                case "subpackage":
+                    addToBuffer(assocBuffer, "Sub-package", tag.value);
+                    break;
+                case "this":
+                    addToBuffer(assocBuffer, "This", "`" + tag.value + "`");
+                    break;
+                case "todo":
+                    addToBuffer(assocBuffer, "To-do", tag.value);
+                    break;
+                case "version":
+                    addToBuffer(assocBuffer, "Version", tag.value);
+                    break;
+                default:
+                    break;
+            }
+        });
+    };
+
+    /**
+     * Generates Markdown documentation from a dynamically typed language's doc comments
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @param {function} fnFormatType the function that formats a type information (single argument)
+     * @param {function} fnFormatTypeAndName the function that formats type and name information (two arguments)
+     * @returns {string} the Markdown documentation
+     */
+    this.fromDynamicTypesDoc = function(
+        code,
+        headingsLevel,
+        fnFormatType,
+        fnFormatTypeAndName,
+        codeName,
+        description
+    ) {
+        return fromDoc(
+            code,
+            headingsLevel,
+            function(tag, assocBuffer) {
+                var tokens;
+                switch (tag.key) {
+                    case "abstract":
+                        addToBuffer(assocBuffer, "Abstract", tag.value);
+                        break;
+                    case "access":
+                        addToBuffer(assocBuffer, "Access", tag.value);
+                        break;
+                    case "author":
+                        addToBuffer(assocBuffer, "Author", tag.value);
+                        break;
+                    case "class":
+                        addToBuffer(assocBuffer, "Class", tag.value);
+                        break;
+                    case "constant":
+                        addToBuffer(assocBuffer, "Constant", tag.value);
+                        break;
+                    case "constructor":
+                    case "constructs":
+                        addToBuffer(assocBuffer, "Constructor", null);
+                        break;
+                    case "copyright":
+                        addToBuffer(assocBuffer, "Copyright", tag.value);
+                        break;
+                    case "deprec":
+                    case "deprecated":
+                        addToBuffer(assocBuffer, "Deprecated", null);
+                        break;
+                    case "example":
+                        addToBuffer(assocBuffer, "Example", tag.value);
+                        break;
+                    case "exception":
+                    case "throws":
+                        tokens = stringTokenize(tag.value, /\s+/g, 2);
+                        addToBuffer(
+                            assocBuffer,
+                            "Exceptions",
+                            fnFormatType(tokens[0]) + " — " + tokens[1]
+                        );
+                        break;
+                    case "exports":
+                        addToBuffer(assocBuffer, "Exports", tag.value);
+                        break;
+                    case "extends":
+                        addToBuffer(assocBuffer, "Extends", tag.value);
+                        break;
+                    case "function":
+                        addToBuffer(assocBuffer, "Function", tag.value);
+                        break;
+                    case "license":
+                        addToBuffer(assocBuffer, "License", tag.value);
+                        break;
+                    case "link":
+                        addToBuffer(assocBuffer, "Link", tag.value);
+                        break;
+                    case "member":
+                        addToBuffer(assocBuffer, "Member", tag.value);
+                        break;
+                    case "memberof":
+                        addToBuffer(assocBuffer, "MemberOf", tag.value);
+                        break;
+                    case "name":
+                        addToBuffer(assocBuffer, "Alias", tag.value);
+                        break;
+                    case "package":
+                        addToBuffer(assocBuffer, "Package", tag.value);
+                        break;
+                    case "param":
+                        tokens = stringTokenize(tag.value, /\s+/g, 3);
+                        addToBuffer(
+                            assocBuffer,
+                            "Parameters",
+                            fnFormatTypeAndName(tokens[0], tokens[1]) + " — " + tokens[2]
+                        );
+                        break;
+                    case "private":
+                        addToBuffer(assocBuffer, "Private", null);
+                        break;
+                    case "return":
+                    case "returns":
+                        tokens = stringTokenize(tag.value, /\s+/g, 2);
+                        addToBuffer(
+                            assocBuffer,
+                            "Returns",
+                            fnFormatType(tokens[0]) + " — " + tokens[1]
+                        );
+                        break;
+                    case "see":
+                        addToBuffer(assocBuffer, "See also", tag.value);
+                        break;
+                    case "since":
+                        addToBuffer(assocBuffer, "Since", tag.value);
+                        break;
+                    case "static":
+                        addToBuffer(assocBuffer, "Static", tag.value);
+                        break;
+                    case "subpackage":
+                        addToBuffer(assocBuffer, "Sub-package", tag.value);
+                        break;
+                    case "this":
+                        addToBuffer(assocBuffer, "This", "`" + tag.value + "`");
+                        break;
+                    case "todo":
+                        addToBuffer(assocBuffer, "To-do", tag.value);
+                        break;
+                    case "var":
+                        tokens = stringTokenize(tag.value, /\s+/g, 2);
+                        addToBuffer(
+                            assocBuffer,
+                            "Type",
+                            fnFormatType(tokens[0]) + " — " + tokens[1]
+                        );
+                        break;
+                    case "version":
+                        addToBuffer(assocBuffer, "Version", tag.value);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            codeName,
+            description
+        );
+    };
+
+    /**
+     * Generates Markdown documentation from Javadoc comments
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @returns {string} the Markdown documentation
+     */
+    this.fromJavadoc = function(code, headingsLevel) {
+        return self.fromStaticTypesDoc(code, headingsLevel);
+    };
+
+    /**
+     * Generates Markdown documentation from PHPDoc comments
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @returns {string} the Markdown documentation
+     */
+    this.fromPHPDoc = function(code, headingsLevel) {
+        return self.fromDynamicTypesDoc(
+            code,
+            headingsLevel,
+            function(type) {
+                return "`" + type + "`";
+            },
+            function(type, name) {
+                // if we have a valid name (and type)
+                if (/^\$([a-zA-Z0-9_$]+)$/.test(name)) {
+                    return "`" + name + "` — `" + type + "`";
+                }
+                // if it seems we only have a name
+                else {
+                    // return the name that was, wrongly, in the position of the type
+                    return "`" + type + "`";
+                }
+            }
+        );
+    };
+
+    /**
+     * Generates Markdown documentation from JSDoc comments
+     *
+     * @param {string} code the code that contains doc comments
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @returns {string} the Markdown documentation
+     */
+    this.fromJSDoc = function(code, headingsLevel, codeName, description) {
+        return self.fromDynamicTypesDoc(
+            code,
+            headingsLevel,
+            function(type) {
+                return "`" + type.substr(1, type.length - 2) + "`";
+            },
+            function(type, name) {
+                // if we have a valid type (and name    )
+                if (/^\{([^{}]+)\}$/.test(type)) {
+                    return "`" + name + "` — `" + type.substr(1, type.length - 2) + "`";
+                }
+                // if it seems we only have a name
+                else {
+                    // return the name that was, wrongly, in the position of the type
+                    return "`" + type + "`";
+                }
+            },
+            codeName,
+            description
+        );
+    };
+
+    /**
+     * Generates Markdown documentation from a given section
+     *
+     * The function processes units of documentation, a line of code with accompanying doc comment
+     *
+     * @param {object} section the section that consists of code line and doc comment
+     * @param {number} headingsLevel the headings level to use as the base (1-6)
+     * @param {function} fnAddTagsMarkdown the function that processes doc tags and generates the Markdown documentation
+     * @returns {string} the Markdown documentation
+     */
+    function fromSection(section, headingsLevel, fnAddTagsMarkdown) {
+        var assocBuffer, description, field, out, p, t, tags;
+
+        // initialize a string buffer
+        out = [];
+
+        // first get the field that we want to describe
+        field = getFieldDeclaration(section.line);
+        // if there is no field to describe
+        if (!field) {
+            // do not return any documentation
+            return "";
+        }
+
+        out.push("\n\n");
+        out.push(stringRepeat("#", headingsLevel + 1) + " `" + field + "`");
+
+        // split the doc comment into main description and tag section
+        var docCommentParts = section.doc.split(/^(?:\t| )*?\*(?:\t| )*?(?=@)/m);
+        // get the main description (which may be an empty string)
+        var rawMainDescription = docCommentParts.shift();
+        // get the tag section (which may be an empty array)
+        var rawTags = docCommentParts;
+
+        description = getDocDescription(rawMainDescription);
+        if (description.length) {
+            out.push("\n\n");
+            out.push(description);
+        }
+
+        tags = getDocTags(rawTags);
+        if (tags.length) {
+            out.push("\n");
+
+            assocBuffer = {};
+            for (t = 0; t < tags.length; t++) {
+                fnAddTagsMarkdown(tags[t], assocBuffer);
+            }
+
+            for (p in assocBuffer) {
+                if (assocBuffer.hasOwnProperty(p)) {
+                    out.push(fromTagGroup(p, assocBuffer[p]));
+                }
+            }
+        }
+
+        // return the contents of the string buffer
+        return out.join("");
+    }
+
+    function fromTagGroup(name, entries) {
+        var i, j, out;
+
+        // initialize a string buffer
+        out = [];
+
+        out.push("\n");
+
+        if (name == "Parameters") {
+            out.push("**" + name + "**");
+            out.push("\n\n| Name | Type | Description |");
+            out.push("\n| --- | --- | --- |");
+            for (i = 0; i < entries.length; i++) {
+                var parts = entries[i].split("—");
+                var entryLine = "\n| ";
+                for (j = 0; j < 3; j++) {
+                    if (j < parts.length && !gs.nil(parts[j])) {
+                        entryLine += parts[j] + " | ";
+                    } else {
+                        entryLine += "... | ";
+                    }
+                }
+                out.push(entryLine);
+            }
+            out.push("\n");
+        } else if (name == "Returns") {
+            out.push("**" + name + "**");
+            out.push("\n " + entries[0]);
+            out.push("\n");
+        } else {
+            if (entries.length === 1 && entries[0] === null) {
+                out.push(" * **" + name + "**");
+            } else {
+                out.push(" * **" + name + ":**");
+                if (entries.length > 1) {
+                    for (i = 0; i < entries.length; i++) {
+                        out.push("\n");
+                        out.push("   * " + entries[i]);
+                    }
+                } else if (entries.length === 1) {
+                    out.push(" " + entries[0]);
+                }
+            }
+        }
+
+        // return the contents of the string buffer
+        return out.join("");
+    }
+
+    function getSections(code, codeName) {
+        var docLine, fieldDeclaration, m, out, regex, fullRegex;
+
+        var protoTypeFound = false;
+
+        //regex = /\/\*\*([^]*?)\*\/([^{;/]+)/gm;
+
+        var regexList = [];
+        // Capturing groups 1 and 2
+        regexList.push("\\/\\*\\*([^]*?)\\*\\/([^{;/]+)"); // JSDoc comments
+
+        // Capturing group 3
+        regexList.push("([^\\s{;/]+)\\s*=\\s*Class.create"); // Class create
+
+        // Capturing group 4, 5 and 6
+        var codeNameRegex = new RegExp(": (.*)", "gm");
+        var objectName = codeName;
+        var codeNames = null;
+        if ((codeNames = codeNameRegex.exec(codeName)) !== null) {
+            objectName = codeNames[1].trim();
+        }
+        if (!gs.nil(objectName)) {
+            regexList.push(
+                objectName +
+                    "\\.([^{;/]+)[\\s]*=[\\s]*([^{;/]+)|" +
+                    objectName +
+                    "\\.([^{;,/]+)\\s*;"
+            ); // Object members
+        }
+        // Capturing group 7, 8
+        regexList.push("(.*\\s*):\\s*(function[^{;/]+)"); // Prototype Function property
+        // Capturing group 9
+        regexList.push(
+            "\\((function\\s*[^{;/]*\\s*\\([^{;/]*\\))\\s*{[\\s\\S]*}\\s*\\)\\s*\\([^{;/]*\\)"
+        ); // Self invoking function
+        // Capturing group 10
+        regexList.push(".*\\s*(function\\s+[^{;/]+)"); // Function statements
+        // Capturing groups 7 and 8
+        //regexList.push("\\s*(.*)\\s*=\\s*(function[^{;/]+)"); // Same as 4, 5
+
+        gs.info("Regex = " + regexList.join("|"));
+
+        regex = new RegExp(regexList.join("|"), "gm");
+
+        out = [];
+        var functionStatement, functionDetails;
+
+        while ((m = regex.exec(code)) !== null) {
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+
+            var jsDocs = _setCaptureGroupValues(m, [1, 2]);
+            var classCreate = _setCaptureGroupValues(m, [3]);
+            var objectMembers = _setCaptureGroupValues(m, [4, 5]);
+            var objectMembersNoValue = _setCaptureGroupValues(m, [6]);
+            var prototypeFunctions = _setCaptureGroupValues(m, [7, 8]);
+            var selfInvokingFunctions = _setCaptureGroupValues(m, [9]);
+            var functionStatements = _setCaptureGroupValues(m, [10]);
+
+            if (jsDocs.found) {
+                fieldDeclaration = jsDocs.captureGroups[1].trim();
+                docLine = jsDocs.captureGroups[0];
+
+                // if the source code line is an import statement
+                if (/^import\s+/.test(fieldDeclaration)) {
+                    // ignore this piece
+                    continue;
+                }
+
+                // if this is a single line comment
+                if (docLine.indexOf("*") === -1) {
+                    // prepend an asterisk to achieve the normal line structure
+                    docLine = "*" + docLine;
+                }
+
+                // interpret empty lines as if they contained a p-tag
+                docLine = docLine.replace(/\*[ ]*$/gm, "* <p>");
+
+                gs.info("jsDocs: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (classCreate.found) {
+                fieldDeclaration = classCreate.captureGroups[0].trim();
+                docLine = "\n     * @class";
+                gs.info("classCreate: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (objectMembers.found) {
+                fieldDeclaration = objectMembers.captureGroups[0].trim();
+                functionStatement = objectMembers.captureGroups[1].trim();
+                if (fieldDeclaration.indexOf("prototype") >= 0) {
+                    protoTypeFound = true;
+                    continue;
+                }
+                if (functionStatement.toLowerCase().indexOf("function") >= 0) {
+                    functionDetails = parseFunctionDeclaration(functionStatement);
+                    if (!functionDetails.valid) {
+                        continue;
+                    }
+                    docLine = "\n     * @function";
+                    functionDetails.parameters.forEach(function(parm) {
+                        docLine += "\n     * @param {*} " + parm;
+                    }, this);
+                    if (findReturn(code, m.index)) {
+                        docLine += "\n     * @returns {*}";
+                    }
+                } else {
+                    docLine = "\n     * @constant {*}\n     * @default";
+                }
+                gs.info("objectMembers: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (objectMembersNoValue.found) {
+                fieldDeclaration = objectMembersNoValue.captureGroups[0].trim();
+                docLine = "\n     * @constant {*}";
+                gs.info("objectMembersNoValue: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (prototypeFunctions.found) {
+                fieldDeclaration = prototypeFunctions.captureGroups[0].trim();
+                functionStatement = prototypeFunctions.captureGroups[1].trim();
+                functionDetails = parseFunctionDeclaration(functionStatement);
+                if (!functionDetails.valid) {
+                    continue;
+                }
+                docLine = "\n     * @function";
+                docLine += "\n    * @memberof " + objectName + ".prototype";
+                if (fieldDeclaration == "initialize") {
+                    docLine += "\n     * @constructs";
+                }
+                functionDetails.parameters.forEach(function(parm) {
+                    docLine += "\n     * @param {*} " + parm;
+                }, this);
+                if (findReturn(code, m.index)) {
+                    docLine += "\n     * @returns {*}";
+                }
+                gs.info("prototypeFunctions: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (selfInvokingFunctions.found) {
+                functionStatement = selfInvokingFunctions.captureGroups[0].trim();
+                var functionDetails = parseFunctionDeclaration(functionStatement);
+                if (!functionDetails.valid) {
+                    continue;
+                }
+                fieldDeclaration = functionDetails.functionName;
+                if (fieldDeclaration == "no name found") {
+                    fieldDeclaration = "Self Invoking";
+                }
+                docLine = "\n     * @function";
+                functionDetails.parameters.forEach(function(parm) {
+                    docLine += "\n     * @param {string} " + parm;
+                }, this);
+                if (findReturn(code, m.index)) {
+                    docLine += "\n     * @returns {string}";
+                }
+                gs.info("selfInvokingFunctions: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+            if (functionStatements.found) {
+                functionStatement = functionStatements.captureGroups[0].trim();
+                functionDetails = parseFunctionDeclaration(functionStatement);
+                if (!functionDetails.valid) {
+                    continue;
+                }
+                fieldDeclaration = functionDetails.functionName;
+                docLine = "\n     * @function";
+                functionDetails.parameters.forEach(function(parm) {
+                    docLine += "\n     * @param {string} " + parm;
+                }, this);
+                if (findReturn(code, m.index)) {
+                    docLine += "\n     * @returns {string}";
+                }
+                gs.info("functionStatements: line=" + fieldDeclaration + " docLine=" + docLine);
+                out.push({ line: fieldDeclaration, doc: docLine });
+            }
+        }
+
+        return out;
+    }
+
+    function _setCaptureGroupValues(regexResult, indexes) {
+        var result = { found: true, captureGroups: [] };
+        indexes.forEach(function(idx) {
+            if (typeof regexResult[idx] === "string" && regexResult[idx] !== null) {
+                result.captureGroups.push(regexResult[idx].trim());
+            } else {
+                result.found = false;
+            }
+        }, this);
+        return result;
+    }
+
+    function findReturn(code, index) {
+        var returnFound = false;
+        var m;
+
+        var codeSnippet = code.substr(index);
+        var endIndex = codeSnippet.length;
+        var level = 0;
+
+        var regex = /({)|(})/gm;
+        while ((m = regex.exec(codeSnippet)) !== null) {
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+            if (typeof m[1] === "string" && m[1] !== null) {
+                level++;
+            }
+            if (typeof m[2] === "string" && m[2] !== null) {
+                // Some matching text has a close curly from a previous function
+                if (level > 0) {
+                    level--;
+                } else {
+                    continue;
+                }
+            }
+            if (level <= 0) {
+                endIndex = m.index;
+                break;
+            }
+        }
+
+        gs.info("Function curly level = " + level);
+
+        var codeSnippet = codeSnippet.substr(0, endIndex + 1);
+        var regex2 = /\s+return\s+/gm;
+        return codeSnippet.search(regex2) >= 0;
+    }
+
+    function parseFunctionDeclaration(functionStatement) {
+        var result = { valid: true, functionName: "", parameters: [] };
+        var str = functionStatement.match(/function\s*(.*)\s*\(/);
+        if (!str || str.length < 2) {
+            result.valid = false;
+            return result;
+        }
+        result.functionName = str[1].trim();
+        if (gs.nil(result.functionName)) {
+            result.functionName = "no name found";
+        }
+        str = functionStatement.match(/\((.*?)\)/);
+        var parms = str[1].split(",");
+        parms.forEach(function(parm) {
+            parm = parm.trim();
+            if (parm) {
+                result.parameters.push(parm);
+            }
+        }, this);
+        return result;
+    }
+
+    function getFieldDeclaration(line) {
+        var regex = /^([^\{;]+)(.*?)$/gm;
+        var m;
+
+        while ((m = regex.exec(line)) !== null) {
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+
+            if (typeof m[1] === "string" && m[1] !== null) {
+                return cleanSingleLine(m[1]);
+            }
+        }
+
+        return "";
+    }
+
+    function replaceHTMLWithMarkdown(html) {
+        return html.replace(/<\s*?code\s*?>(.*?)<\s*?\/\s*?code\s*?>/g, "`$1`");
+    }
+
+    function getDocDescription(docLines) {
+        var regex = /^(\t| )*?\*(\t| )+(.*?)$/gm;
+        var m;
+        var out = [];
+
+        while ((m = regex.exec(docLines)) !== null) {
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+
+            if (typeof m[3] === "string" && m[3] !== null) {
+                m[3] = cleanLine(m[3]);
+                m[3] = replaceHTMLWithMarkdown(m[3]);
+                out.push(m[3]);
+            }
+        }
+
+        return cleanLine(out.join(" ").replace(/<(\/)?p>/gi, "\n\n"));
+    }
+
+    function getDocTags(docLines) {
+        var regex = /^(?:\t| )*?@([a-zA-Z]+)([\s\S]*)/;
+        var m;
+        var out = [];
+
+        for (var i = 0; i < docLines.length; i++) {
+            m = regex.exec(docLines[i]);
+
+            if (m !== null) {
+                if (typeof m[1] === "string" && m[1] !== null) {
+                    if (typeof m[2] === "string" && m[2] !== null) {
+                        // trim leading and trailing space in the tag value
+                        m[2] = m[2].trim();
+                        // format multi-line tag values correctly
+                        m[2] = m[2].split(/[\r\n]{1,2}(?:\t| )*?\*(?:\t| )*/).join("\n\n     ");
+
+                        // add the key and value for this tag to the output
+                        out.push({ key: cleanSingleLine(m[1]), value: m[2] });
+                    }
+                }
+            }
+        }
+
+        return out;
+    }
+
+    function cleanLine(line) {
+        // trim leading and trailing spaces
+        line = line.trim();
+
+        // clear spaces before and after line breaks and tabs
+        line = line.replace(/ *([\n\r\t]) */gm, "$1");
+
+        // make consecutive spaces one
+        line = line.replace(/[ ]{2,}/g, " ");
+
+        return line;
+    }
+
+    function cleanSingleLine(line) {
+        // perform normal line cleaning
+        line = cleanLine(line);
+
+        // replace line breaks and tabs with spaces
+        line = line.replace(/(\n|\r|\t)/g, " ");
+
+        return line;
+    }
+
+    function addToBuffer(buffer, key, value) {
+        if (typeof buffer[key] === "undefined" || buffer[key] === null) {
+            buffer[key] = [];
+        }
+        buffer[key].push(value);
+    }
+    /*
+    String.prototype.tokenize = function(splitByRegex, limit) {
+        var counter, i, m, start, tokens;
+
+        tokens = [];
+        counter = 1;
+        start = 0;
+
+        while ((m = splitByRegex.exec(this)) !== null) {
+            if (m.index === splitByRegex.lastIndex) {
+                splitByRegex.lastIndex++;
+            }
+
+            if (counter < limit) {
+                tokens.push(this.substring(start, m.index));
+                start = m.index + m[0].length;
+            }
+
+            counter++;
+        }
+
+        // add the remainder as a single part
+        tokens.push(this.substring(start));
+
+        // fill the array to match the limit if necessary
+        for (i = tokens.length; i < limit; i++) {
+            tokens.push("");
+        }
+
+        return tokens;
+    };
+*/
+    function stringTokenize(str, splitByRegex, limit) {
+        var counter, i, m, start, tokens;
+
+        tokens = [];
+        counter = 1;
+        start = 0;
+
+        while ((m = splitByRegex.exec(str)) !== null) {
+            if (m.index === splitByRegex.lastIndex) {
+                splitByRegex.lastIndex++;
+            }
+
+            if (counter < limit) {
+                tokens.push(str.substring(start, m.index));
+                start = m.index + m[0].length;
+            }
+
+            counter++;
+        }
+
+        // add the remainder as a single part
+        tokens.push(str.substring(start));
+
+        // fill the array to match the limit if necessary
+        for (i = tokens.length; i < limit; i++) {
+            tokens.push("");
+        }
+
+        return tokens;
+    }
+    /*
+    String.prototype.repeat = function(count) {
+        return new Array(count + 1).join(this);
+    };
+*/
+    function stringRepeat(str, count) {
+        return new Array(count + 1).join(str);
+    }
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-01-31 22:58:04</sys_created_on>
+        <sys_id>3080db964f532300ecf18c318110c7be</sys_id>
+        <sys_mod_count>38</sys_mod_count>
+        <sys_name>JavadocToMarkdown</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_3080db964f532300ecf18c318110c7be</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-03-07 18:49:05</sys_updated_on>
+    </sys_script_include>
+</record_update>

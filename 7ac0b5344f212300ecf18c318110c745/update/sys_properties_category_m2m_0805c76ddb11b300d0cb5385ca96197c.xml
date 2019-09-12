@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Markdown Documents">3c00ba8f4ff7a300ecf18c318110c7e1</category>
+        <order>300</order>
+        <property display_value="x_58056_md_docs.markdown_editor_stylesheets" name="x_58056_md_docs.markdown_editor_stylesheets">08c44f6ddb11b300d0cb5385ca961944</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-09 00:17:23</sys_created_on>
+        <sys_id>0805c76ddb11b300d0cb5385ca96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_58056_md_docs.markdown_editor_stylesheets.Markdown Documents</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_0805c76ddb11b300d0cb5385ca96197c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-09 00:17:23</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>
