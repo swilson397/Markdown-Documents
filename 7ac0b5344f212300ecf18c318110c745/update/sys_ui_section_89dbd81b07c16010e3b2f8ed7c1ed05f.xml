@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Source Details" section_id="89dbd81b07c16010e3b2f8ed7c1ed05f" sys_domain="global" table="x_58056_md_docs_code_documentation" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>455e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>custom_application</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>c55e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>update_sets</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>495e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>remote_connection</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>c95e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>remote_password</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>4d5e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>remote_source</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>cd5e9c9b07c16010e3b2f8ed7c1ed0a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>remote_sources</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>415e9c9b07c16010e3b2f8ed7c1ed0a7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>c15e9c9b07c16010e3b2f8ed7c1ed0a7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:56:18</sys_created_on>
+            <sys_id>455e9c9b07c16010e3b2f8ed7c1ed0a7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Source Details" display_value="Source Details" name="x_58056_md_docs_code_documentation" sys_domain="global" view="Default view">89dbd81b07c16010e3b2f8ed7c1ed05f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:56:18</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Source Details</caption>
+            <header>false</header>
+            <name>x_58056_md_docs_code_documentation</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-12-18 00:45:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>89dbd81b07c16010e3b2f8ed7c1ed05f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_58056_md_docs_code_documentation</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+            <sys_update_name>sys_ui_section_89dbd81b07c16010e3b2f8ed7c1ed05f</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-12-18 00:45:23</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

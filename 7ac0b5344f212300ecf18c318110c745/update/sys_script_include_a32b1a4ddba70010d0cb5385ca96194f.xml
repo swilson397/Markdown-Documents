@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.Logger</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Logger</name>
+        <script><![CDATA[var Logger = Class.create();
+Logger.LEVEL = "x_snc_gnp.debug.level";
+Logger.prototype = {
+  /*
+   * @param "String" prefix
+   *                       Prepended to the log messages to help understand context
+   * @param Integer level
+   *                       Activates the debugger and sets the verbosity
+   */
+  initialize: function(prefix) {
+    this.prefix = this.type;
+    if (!gs.nil(prefix)) {
+      this.prefix = prefix;
+    }
+
+    this.loggingLevel = gs.getProperty("x_58056_md_docs.logging_level", "info");
+    this.logDebug = this.loggingLevel == "debug";
+    this.logInfo = this.loggingLevel == "info" || this.logDebug;
+    this.logWarnings = this.loggingLevel == "warn" || this.logInfo;
+    this.logErrors = this.loggingLevel == "error" || this.logWarnings;
+  },
+
+  getPrefix: function() {
+    return this.prefix;
+  },
+
+  setPrefix: function(prefix) {
+    this.prefix = prefix;
+  },
+
+  /**
+   * Adds an error message to the system log
+   * if the logging level is at least "error".
+   *
+   * @param {string} msg Message to add to system log.
+   */
+  error: function(msg) {
+    if (this.logErrors) {
+      gs.error(this._formatMsg(msg));
+    }
+  },
+
+  /**
+   * Adds a warning message to the system log.
+   *
+   * @param {string} msg Message to add to the system log.
+   */
+  warning: function(msg) {
+    if (this.logWarnings) {
+      gs.warn(this._formatMsg(msg));
+    }
+  },
+
+  /**
+   * Adds a message to the system log if MarkdownSource.DEBUG is true.
+   *
+   * @param {String} msg Message to add to the system log.
+   */
+  info: function(msg) {
+    if (this.logInfo) {
+      gs.info(this._formatMsg(msg));
+    }
+  },
+
+  /**
+   * Adds a message to the system log if MarkdownSource.DEBUG is true.
+   *
+   * @param {String} msg Message to add to the system log.
+   */
+  debug: function(msg) {
+    if (this.logDebug) {
+      gs.info(this._formatMsg(msg));
+    }
+  },
+
+  _formatMsg: function(msg) {
+    var now = new GlideDateTime().getNumericValue();
+    var message = now + " " + this.getPrefix();
+    if (!gs.nil(msg)) {
+      message += ": " + msg;
+    }
+    return message;
+  },
+
+  getLogger: function() {
+    return this;
+  },
+
+  type: "Logger"
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-13 00:30:16</sys_created_on>
+        <sys_id>a32b1a4ddba70010d0cb5385ca96194f</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Logger</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_a32b1a4ddba70010d0cb5385ca96194f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-13 01:11:24</sys_updated_on>
+    </sys_script_include>
+</record_update>

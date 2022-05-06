@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkdownVersion</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MarkdownVersion</name>
+        <script><![CDATA[var MarkdownVersion = Class.create();
+
+MarkdownVersion.MANUAL = "Manual";
+MarkdownVersion.CUSTOM_APPLICATION = "Custom application";
+MarkdownVersion.UPDATE_SETS = "Update sets";
+MarkdownVersion.REMOTE = "Remote";
+MarkdownVersion.LOCAL = "Local";
+MarkdownVersion.UPDATE = "update";
+MarkdownVersion.INSERT = "insert";
+MarkdownVersion.DELETE = "delete";
+MarkdownVersion.BUILD_SOURCE_LIST = "build_source_list";
+
+/**
+ * @param  {string} versionID
+ * @param  {string} projectType
+ * @param  {string} customAppID
+ * @param  {string} updateSets
+ */
+MarkdownVersion.buildSourceList = function (current) {
+  gs.eventQueue(Markdown.ACTION_EVENT, current, MarkdownVersion.BUILD_SOURCE_LIST, current.operation());
+};
+
+MarkdownVersion.prototype = {
+  initialize: function () {},
+
+  /**
+   *
+   * @param {*} versionID
+   * @returns {GlideRecord}
+   */
+  getVersion: function (versionID) {
+    var pcdvGR = new GlideRecord("x_58056_md_docs_code_documentation");
+    if (!gs.nil(versionID) && pcdvGR.get(versionID)) {
+      return pcdvGR;
+    }
+    return null;
+  },
+
+  getVersionRemoteCredentials: function (verID) {
+    var creds = { instanceURL: null, userName: null, clearPW: null };
+    var verGR = new GlideRecord("x_58056_md_docs_code_documentation");
+    if (verGR.get(verID)) {
+      creds.instanceURL = verGR.remote_instance_url.toString();
+      creds.userName = verGR.remote_username.toString();
+      creds.clearPW = verGR.remote_password.getDecryptedValue();
+    } else {
+      this._logError("Version record not found. SysID=" + verID);
+    }
+    return creds;
+  },
+
+  /**
+   * Adds or removes Source records based on changes made.
+   * Previous source keys passed in as parameter so that this
+   * function can be called asynchronously (via script action)
+   *
+   * @param {GlideRecord} currVerGR
+   * @param {string} operation
+   */
+  buildSourceList: function (currVerGR, operation) {
+    var sourceUtils = new MarkdownSource();
+    var currentSourceDetails = [];
+
+    // If this is not a new record then get the list of source currently out there
+    if (operation != "insert") {
+      var sourceGR = sourceUtils.getSource(currVerGR.getUniqueValue(), "added_manually=false");
+      // If this is not manually entered then capture the details
+      if (currVerGR.project_type.toString() != "Manual") {
+        while (sourceGR.next()) {
+          currentSourceDetails.push({
+            sys_id: sourceGR.getUniqueValue(),
+            remote: sourceGR.remote,
+            source_id: sourceGR.remote ? sourceGR.remote_source_id.toString() : sourceGR.source_id.toString(),
+          });
+        }
+      } else {
+        // Manually entered source so remove any that are out there
+        sourceGR.deleteMultiple();
+      }
+    }
+
+    // If source is to be entered manually then nothing else to do
+    if (currVerGR.project_type.toString() == "Manual") {
+      return;
+    }
+
+    var newSourceDetails = this.addSource(currVerGR);
+
+    var deleteSourceKeys = [];
+    for (var i = 0; i < currentSourceDetails.length; i++) {
+      var currentSource = currentSourceDetails[i];
+      var inNewSourceDetails = false;
+      if (newSourceDetails.length > 0) {
+        inNewSourceDetails = newSourceDetails.some(function (newSource) {
+          return newSource.sys_id == currentSource.sys_id;
+        }, this);
+      }
+      if (!inNewSourceDetails) {
+        deleteSourceKeys.push(currentSource.sys_id);
+        this._log("Sys ID=" + currentSource.sys_id + " not needed any longer");
+      }
+    }
+    this._log("deleteSourceKeys=" + deleteSourceKeys.length);
+    if (deleteSourceKeys.length > 0) {
+      sourceUtils.removeNonManualMarkdownSource(currVerGR.getUniqueValue(), "sys_idIN" + deleteSourceKeys.join(","));
+    }
+  },
+
+  /**
+   *
+   *
+   * @param {GlideRecord} currVerGR
+   */
+  addSource: function (currVerGR) {
+    var tables = new MarkdownSourceTables().process();
+    if (!tables) {
+      return;
+    }
+    var fields = new MarkdownSourceFields().getScriptFields(tables);
+
+    var sourceUtils = new MarkdownSource();
+    var sourceDetails = [];
+
+    if (currVerGR.project_type.toString() == MarkdownVersion.CUSTOM_APPLICATION) {
+      if (currVerGR.local_remote.toString() == MarkdownVersion.LOCAL) {
+        sourceDetails = sourceUtils.loadLocalApplicationSource(
+          currVerGR.getUniqueValue(),
+          currVerGR.custom_application.toString(),
+          tables,
+          fields
+        );
+      } else {
+        sourceDetails = sourceUtils.loadRemoteApplicationSource(
+          currVerGR.getUniqueValue(),
+          currVerGR.remote_sources,
+          currVerGR.remote_connection,
+          currVerGR.remote_password.getDecryptedValue(),
+          tables,
+          fields
+        );
+      }
+    } else if (currVerGR.project_type.toString() == MarkdownVersion.UPDATE_SETS) {
+      if (currVerGR.local_remote.toString() == MarkdownVersion.LOCAL) {
+        sourceDetails = sourceUtils.loadLocalUpdateSetSource(
+          currVerGR.getUniqueValue(),
+          currVerGR.update_sets.toString().split(","),
+          tables,
+          fields
+        );
+      } else {
+        sourceDetails = sourceUtils.loadRemoteUpdateSetSource(
+          currVerGR.getUniqueValue(),
+          currVerGR.remote_sources,
+          currVerGR.remote_connection,
+          currVerGR.remote_password.getDecryptedValue(),
+          tables,
+          fields
+        );
+      }
+    }
+    return sourceDetails;
+  },
+
+  getSourceKeys: function (versionGR) {
+    var sourceKeys = [];
+
+    var projectType = versionGR.project_type.nil() ? MarkdownVersion.MANUAL : versionGR.project_type.toString();
+    var localRemote = versionGR.local_remote.nil() ? MarkdownVersion.LOCAL : versionGR.local_remote.toString();
+
+    if (projectType == MarkdownVersion.MANUAL) {
+      return sourceKeys;
+    }
+    if (localRemote == MarkdownVersion.REMOTE) {
+      var remoteValues = JSON.parse(versionGR.remote_json.toString());
+      remoteValues.forEach(function (remoteValue) {
+        sourceKeys.push(remoteValue.sys_id);
+      }, this);
+    } else if (projectType == MarkdownVersion.CUSTOM_APPLICATION) {
+      sourceKeys.push(versionGR.custom_application.toString());
+    } else if (projectType == MarkdownVersion.UPDATE_SETS) {
+      sourceKeys = versionGR.update_sets.toString().split(",");
+    }
+    return sourceKeys;
+  },
+
+  /**
+   * Adds an error message to the system log.
+   *
+   * @param {string} msg Message to add to system log.
+   */
+  _logError: function (msg) {
+    gs.error("[" + this.type + "] " + msg);
+  },
+
+  /**
+   * Adds a warning message to the system log.
+   *
+   * @param {string} msg Message to add to the system log.
+   */
+  _logWarning: function (msg) {
+    gs.warn("[" + this.type + "] " + msg);
+  },
+
+  /**
+   * Adds a message to the system log if MarkdownSource.DEBUG is true.
+   *
+   * @param {String} msg Message to add to the system log.
+   */
+  _log: function (msg) {
+    if (Markdown.DEBUG) {
+      gs.info("[" + this.type + "] " + msg);
+    }
+  },
+
+  type: "MarkdownVersion",
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-03 22:14:11</sys_created_on>
+        <sys_id>0ac10f23db163300d0cb5385ca9619ed</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>MarkdownVersion</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_0ac10f23db163300d0cb5385ca9619ed</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-03 01:05:06</sys_updated_on>
+    </sys_script_include>
+</record_update>

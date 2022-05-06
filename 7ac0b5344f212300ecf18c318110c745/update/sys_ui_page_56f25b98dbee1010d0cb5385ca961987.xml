@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var localRemote = $("local_remote").value;
+if (localRemote != "Local") {
+  $("remote_parameters").setStyle({ display: "block" });
+  $("remote_url").writeAttribute("placeholder", "https://yourinstance.service-now.com");
+  var origUserName = $("orig_user_name").value;
+  if (origUserName != "") {
+    $("remote_username").value = origUserName;
+  }
+  var origURL = $("orig_remote_url").value;
+  if (origURL != "") {
+    $("remote_url").value = origURL;
+  }
+}
+
+$("status.sys_script.filter_condition").next().innerHTML = "Filter results";
+$("element.sys_script.collection").setStyle({ display: "none" });
+
+var table = "sys_app";
+var projectType = $("project_type").value;
+if (projectType != "Custom application") {
+  table = "sys_update_set";
+}
+$("sys_script.collection").value = table;
+onChange("sys_script.collection");
+
+var filter = $("orig_filter").value;
+if (filter != "") {
+  setTimeout(function () {
+    getFilterForCondition("sys_script.filter_condition").setValue(filter);
+  }, 1000);
+}
+
+function buildList() {
+  var localRemote = $("local_remote").getValue();
+  if (localRemote != "Local") {
+    var result = _checkParameters();
+    if (result.error) {
+      return;
+    }
+  }
+
+  var versionID = $("version_id").getValue();
+  var projectType = $("project_type").getValue();
+  var filter = getFilterForCondition("sys_script.filter_condition").getValue();
+
+  var ga = new GlideAjax("MarkdownAJAX");
+  ga.addParam("sysparm_name", "getSourceList");
+  ga.addParam("sysparm_version_id", versionID);
+  ga.addParam("sysparm_project_type", projectType);
+  ga.addParam("sysparm_local_remote", localRemote);
+  ga.addParam("sysparm_instance_url", result.url);
+  ga.addParam("sysparm_user_name", result.user);
+  ga.addParam("sysparm_password", result.pw);
+  ga.addParam("sysparm_filter", filter);
+  ga.getXMLAnswer(checkResult);
+}
+
+function refreshList() {
+  var localRemote = $("local_remote").getValue();
+  if (localRemote != "Local") {
+    var result = _checkParameters();
+    if (result.error) {
+      return;
+    }
+  }
+  var select = $("application_select");
+  if (select) {
+    select.options.length = 0;
+  }
+  var table = $("update_sets_table");
+  if (table) {
+    while (table.rows.length > 0) {
+      table.deleteRow(0);
+    }
+  }
+  buildList();
+}
+
+function _checkParameters() {
+  var result = { url: "", user: "", pw: "", error: false };
+  result.url = $("remote_url").value;
+  result.user = $("remote_username").value;
+  result.pw = $("remote_password").value;
+  if (result.url == "" || result.user == "" || result.pw == "") {
+    alert("Please ensure that a url, user name and password are provided before connecting to the instance");
+    result.error = true;
+  }
+  return result;
+}
+
+function checkResult(answer) {
+  var f;
+  var rc = JSON.parse(answer);
+  if (rc.status != "success") {
+    alert(rc.msg);
+    return;
+  }
+  var projectType = $("project_type").value;
+  if (projectType == "Custom application") {
+    addAppOptions(rc.sources);
+  } else if (projectType == "Update sets") {
+    addUpdateSets(rc.sources);
+  }
+  $("sources_div").setStyle({ display: "block" });
+  $("button_div").setStyle({ display: "block" });
+  $("refresh_list_btn").setStyle({ display: "inline" });
+  $("build_list_btn").setStyle({ display: "none" });
+}
+
+function addAppOptions(sources) {
+  sources.forEach(function (app) {
+    $("application_select").insert(new Element("option", { value: app.sys_id }).update(app.display));
+  }, this);
+}
+
+function addUpdateSets(sources) {
+  var template = new Template(
+    '<tr class="list_row #{list_class}" style="" sys_id="#{sys_id}" display="#{display}">' +
+      '  <td class="list_decoration_cell col-control col-small col-center " style="white-space:nowrap;" rowspan="1">' +
+      '    <span class="input-group-checkbox">' +
+      '      <input id="select_#{sys_id}" type="checkbox" title="Select this update set" class="checkbox " />' +
+      '      <label for="select_#{sys_id}" style="" class="checkbox-label">' +
+      '        <span class="sr-only"></span>' +
+      "      </label>" +
+      "    </span>" +
+      "  </td>" +
+      '  <td class="vt" style="padding-left: 0px;">#{display}</td>' +
+      "</tr>"
+  );
+
+  sources.forEach(function (updateSet, usIndex) {
+    var className = "list_odd";
+    if (usIndex % 2 == 0) {
+      className = "list_even";
+    }
+    $("update_sets_table").insert(template.evaluate({ sys_id: updateSet.sys_id, display: updateSet.display, list_class: className }));
+  }, this);
+}
+
+// getFilterForCondition("sys_script.filter_condition").getValue()
+//getFilterForCondition("sys_script.filter_condition").setValue("nameSTARTSWITHwilson")
+
+function submit() {
+  var sources = [];
+  var result = { url: "", user: "", pw: "", filter: "", sources: sources };
+  var projectType = $("project_type").getValue();
+  var appID = null;
+  var appDisplay = null;
+
+  if (projectType == "Custom application") {
+    app = $("application_select");
+    appID = app.getValue();
+    if (app.selectedIndex < 0 || appID == "") {
+      alert("Please select an application");
+      return false;
+    }
+    var appDisplay = app.options[app.selectedIndex].innerHTML;
+    sources.push({ sys_id: appID, display: appDisplay });
+  } else {
+    var table = $("update_sets_table");
+    for (var i = 0; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      var cb = row.cells[0];
+      var usID = row.readAttribute("sys_id");
+      if (usID) {
+        var checked = $("select_" + usID).checked;
+        if (checked) {
+          sources.push({ sys_id: usID, display: row.readAttribute("display") });
+        }
+      }
+    }
+    result.sources = sources;
+    result.url = $("remote_url").value;
+    result.user = $("remote_username").value;
+    result.pw = $("remote_password").value;
+    result.filter = getFilterForCondition("sys_script.filter_condition").getValue();
+  }
+  var dialog = window.GlideModal ? GlideModal.get() : GlideDialogWindow.get();
+  var onSubmit = dialog.getPreference("onSubmit");
+  if (onSubmit) {
+    onSubmit(result);
+  }
+  dialog.destroy();
+}
+
+function submitCancel() {
+  var dialog = window.GlideModal ? GlideModal.get() : GlideDialogWindow.get();
+  var onCancel = dialog.getPreference("onCancel");
+  if (onCancel) {
+    onCancel();
+  }
+  dialog.destroy();
+}
+]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_58056_md_docs_handle_remote_connection.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="true"
+	xmlns:j="jelly:core"
+	xmlns:g="glide"
+	xmlns:j2="null"
+	xmlns:g2="null">
+	<html>
+		<head>
+			<style>
+				table {
+					margin-left: 0px;
+				}
+				td {
+					padding-right: 0px;
+				}
+				.modal-lg {
+    				width: 1050px;
+				}
+			</style>
+		</head>
+		<body>
+			<g:requires name="doctype/GlideFilter14.js" />
+			<!-- <g:requires name="GlideFilterCurrency.js" /> -->
+			<g:requires name="elements/element_conditions.js" />
+			<g:inline template="dynamic_filter_options.xml"/>
+
+			<g:evaluate jelly="true" var="jvar_is_application">
+				var isApplication = jelly.sysparm_project_type == "Custom application";
+				var buildLabel = "Get Applications";
+				var refreshLabel = "Refresh Applications";
+				if (! isApplication) {
+				    buildLabel = "Get Update Sets";
+				    refreshLabel = "Refresh Update Sets";
+				}
+        		isApplication;
+			</g:evaluate>
+			<input type="hidden" id="version_id" name="version_id" value="${sysparm_version_id}"/>
+			<input type="hidden" id="project_type" name="project_type" value="${sysparm_project_type}"/>
+			<input type="hidden" id="local_remote" name="local_remote" value="${sysparm_local_remote}"/>
+			<input type="hidden" id="custom_application" name="custom_application" value="${sysparm_custom_application}"/>
+			<input type="hidden" id="custom_application_display" name="custom_application_display" value="${sysparm_custom_application_display}"/>
+			<input type="hidden" id="update_sets" name="update_sets" value="${sysparm_update_sets}"/>
+			<input type="hidden" id="orig_remote_url" name="orig_remote_url" value="${sysparm_remote_url}"/>
+			<input type="hidden" id="orig_user_name" name="orig_user_name" value="${sysparm_user_name}"/>
+			<input type="hidden" id="orig_filter" name="orig_filter" value="${sysparm_filter}"/>
+
+			<div id="remote_div" style="">
+				<div id="connection_div" class="center" style="margin-top: 20px; padding-bottom: 20px; border-bottom-style: double;">
+					<div class="form-horizontal section-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="remote_parameters" style="display:none">
+									<div class="form-group">
+										<div choice="0" data-type="label" type="string" nowrap="true">
+											<label class="col-xs-12 col-md-2 control-label" for="remote_url">
+												<span class="label-text" title="${gs.getMessage('Remote URL')}">${gs.getMessage('Remote URL')}</span>
+											</label>
+										</div>
+										<div class="col-xs-10 col-md-8 form-field input_controls">
+											<input class="form-control" required="required" type="text" size="100" maxlength="100" id="remote_url" value="${sysparm_remote_url}"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<div choice="0" data-type="label" type="string" nowrap="true">
+											<label class="col-xs-12 col-md-2 control-label" for="remote_username">
+												<span class="label-text" title="${gs.getMessage('Remote user name')}">${gs.getMessage('Remote user name')}</span>
+											</label>
+										</div>
+										<div class="col-xs-10 col-md-8 form-field input_controls">
+											<input class="form-control" required="required" type="text" size="40" maxlength="40" id="remote_username" value="${sysparm_user_name}"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<div choice="0" data-type="label" type="string" nowrap="true">
+											<label class="col-xs-12 col-md-2 control-label" for="remote_password">
+												<span class="label-text" title="${gs.getMessage('Remote password')}">${gs.getMessage('Remote password')}</span>
+											</label>
+										</div>
+										<div class="col-xs-10 col-md-8 form-field input_controls">
+											<input class="form-control" required="required" type="password" size="40" maxlength="40" id="remote_password" value=""/>
+										</div>
+									</div>
+								</div>
+								<g:ui_element table="sys_script" field="collection" id="0e66a301dd2003003399d83d70be0205"></g:ui_element>
+								<g:ui_element table="sys_script" label-text="Filter results" field="filter_condition" id="8a66a301dd2003003399d83d70be0211"></g:ui_element>
+							</div>
+						</div>
+					</div>
+
+					<div style="margin-top: 20px;">
+						<button class="btn btn-default" id="build_list_btn" onClick="buildList()" style="margin-left: 4px; margin-right: 4px;">${gs.getMessage(buildLabel)}</button>
+						<button class="btn btn-default" id="refresh_list_btn" onClick="refreshList()" style="display: none; margin-left: 4px; margin-right: 4px;">${gs.getMessage(refreshLabel)}</button>
+					</div>
+				</div>
+				<div id="sources_div" style="margin-top: 20px; margin-left: 5px; padding-bottom: 20px">
+					<div class="row">
+						<j:if test="${jvar_is_application}">
+							<div class="vsplit col-sm-6">
+								<div class="form-group">
+									<div choice="0" data-type="label" type="string" nowrap="true">
+										<label class="col-xs-12 col-md-2 control-label" for="application_select">
+											<span class="label-text" title="${gs.getMessage('Select application')}">${gs.getMessage('Select application')}</span>
+										</label>
+									</div>
+									<div class="col-xs-10 col-md-8 form-field input_controls">
+										<select class="form-control" required="required" type="text" maxlength="100" id="application_select" value="">
+										</select>
+									</div>
+								</div>
+							</div>
+						</j:if>
+						<j:if test="${! jvar_is_application}">
+							<div class="vsplit col-sm-12">
+								<div class="form-group">
+									<div choice="0" data-type="label" type="string" nowrap="true">
+										<label class="col-xs-12 col-md-2 control-label" for="update_sets_table">
+											<span class="label-text" title="${gs.getMessage('Select update sets')}">${gs.getMessage('Select update sets')}</span>
+										</label>
+									</div>
+									<div class="col-xs-10 col-md-8 form-field input_controls">
+										<table class="data_list_table list_table table table-hover " id="update_sets_table" name="update_sets_table" style="width: 100%; margin-bottom: 0px;outline: none;">
+											<thead>
+												<tr>
+													<th class="col-control" style="vertical-align: middle; white-space: nowrap;"></th>
+													<th class="text-align-left list_header_cell list_hdr" style="">
+														<span class="label-text" title="${gs.getMessage('Update Set Name')}">${gs.getMessage('Update Set Name')}</span>
+													</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+						</j:if>
+					</div>
+				</div>
+			</div>
+			<div id="button_div" style="margin-top: 20px;display: none">
+				<button class="btn btn-default" id="submit_btn" onclick="submit()" style="margin-left: 4px; margin-right: 4px;">${gs.getMessage("Submit")}</button>
+				<button class="btn btn-default" id="cancel_btn" onclick="submitCancel()" style="margin-left: 4px; margin-right: 4px;">${gs.getMessage("Cancel")}</button>
+			</div>
+		</body>
+	</html>
+</j:jelly>
+]]></html>
+        <name>handle_remote_connection</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-06 23:46:49</sys_created_on>
+        <sys_id>56f25b98dbee1010d0cb5385ca961987</sys_id>
+        <sys_mod_count>143</sys_mod_count>
+        <sys_name>handle_remote_connection</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_page_56f25b98dbee1010d0cb5385ca961987</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-19 02:04:34</sys_updated_on>
+    </sys_ui_page>
+</record_update>

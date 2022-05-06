@@ -8,914 +8,889 @@
         <description/>
         <name>MarkDownCodeParser</name>
         <script><![CDATA[/**
- * @class
+* @class
  * @name MarkDownCodeParser
  */
 MarkDownCodeParser = Class.create();
 
-MarkDownCodeParser.DEBUG = true;
-
 MarkDownCodeParser.prototype = {
-    /**
-     * Initialize variables
-     *
-     */
-    initialize: function() {
-        this.codeName = null;
-        this.sourceCode = null;
-        this.objectName = null;
-        this.JSDocTags = null;
-        this.section = null;
+  /**
+   * Initialize variables
+   *
+   */
+  initialize: function() {
+    this.codeName = null;
+    this.sourceCode = null;
+    this.objectName = null;
+    this.JSDocTags = null;
+    this.section = null;
 
-        this.JSDOC_REGEX = /(\/\*\*)([^]*?)(\*\/)([^{;]+)/gm; // JSDoc comments
-        this.CLASS_CREATE_REGEX = /([^\s{;/]+)\s*=\s*Class.create/gm; // Class create
-        this.METHODS_REGEX = /\s*([^\s{;]+)\s*:\s*(function[^{;]+)/gm; // Prototype Function property
-        this.FUNCTIONS_IIFE_REGEX = /(\(\s*function\s*[^{;/]*\s*\([^{;]*\))\s*{[\s\S]*}\s*\)\s*\([^{;/]*\)|(\(\s*function\s*[^{;/]*\s*\([^{;]*\))\s*{[\s\S]*}\s*\([^{;/]*\)\)/gm;
-        this.FUNCTIONS_BR_REGEX = /^\s*(function\s+[^{;]+)/gm; // Function statements
-        this.EXTENDS_REGEX = /\s*Object.extendsObject\s*\(([^{;/]*)\s*,/;
+    this.JSDOC_REGEX = /(\/\*\*)([^]*?)(\*\/)([^{;]+)/gm; // JSDoc comments
+    this.CLASS_CREATE_REGEX = /([^\s{;/]+)\s*=\s*Class.create/gm; // Class create
+    this.METHODS_REGEX = /\s*([^\s{;]+)\s*:\s*(function[^{;]+)/gm; // Prototype Function property
+    this.FUNCTIONS_IIFE_REGEX = /(\(\s*function\s*[^{;/]*\s*\([^{;]*\))\s*{[\s\S]*}\s*\)\s*\([^{;/]*\)|(\(\s*function\s*[^{;/]*\s*\([^{;]*\))\s*{[\s\S]*}\s*\([^{;/]*\)\)/gm;
+    this.FUNCTIONS_BR_REGEX = /^\s*(function\s+[^{;]+)/gm; // Function statements
+    this.EXTENDS_REGEX = /\s*Object.extendsObject\s*\(([^{;/]*)\s*,/;
 
-        // Dynamic regex
-        this.STATIC_MEMBERS_REGEX_STR = "(${source_code_name}\\s*\\.\\s*[^{;/]+)[\\s]*=[\\s]*([^{;]+)";
-        this.STATIC_VARIABLES_REGEX_STR = "(${source_code_name}\\s*\\.\\s*[^{;,/=})]+)\\s*;";
-    },
+    // Dynamic regex
+    this.STATIC_MEMBERS_REGEX_STR = "(${source_code_name}\\s*\\.\\s*[^{;/]+)[\\s]*=[\\s]*([^{;]+)";
+    this.STATIC_VARIABLES_REGEX_STR = "(${source_code_name}\\s*\\.\\s*[^{;,/=})]+)\\s*;";
 
-    /**
-     * Generates a collection of markdown tags from source code
-     *
-     * @param {String} name Name of the source code
-     * @param {String} code The Javascript code to parse
-     * @returns {object} the collection of markdown tags broken down by type
-     */
-    parse: function(name, code) {
-        this.JSDocTags = {};
-        this.section = null;
+    this.logger = new Logger(this.type);
+  },
 
-        if (gs.nil(code)) {
-            return this.JSDocTags;
-        }
-        this.sourceCode = code;
+  /**
+   * Generates a collection of markdown tags from source code
+   *
+   * @param {String} name Name of the source code
+   * @param {String} code The Javascript code to parse
+   * @returns {object} the collection of markdown tags broken down by type
+   */
+  parse: function(name, code) {
+    this.JSDocTags = {};
+    this.section = null;
 
-        this.objectName = "$$$_UNKNOWN_$$$";
+    if (gs.nil(code)) {
+      return this.JSDocTags;
+    }
+    this.sourceCode = code;
 
-        if (!gs.nil(name)) {
-            this.objectName = name.trim();
-        }
+    this.objectName = "$$$_UNKNOWN_$$$";
 
-        this.STATIC_MEMBERS_REGEX = new RegExp("(" + this.objectName + "\\s*\\.\\s*[^{;/]+)[\\s]*=[\\s]*([^{;]+)", "gm");
-        this.STATIC_VARIABLES_REGEX = new RegExp("(" + this.objectName + "\\s*\\.\\s*[^{;,/=})]+)\\s*;", "gm");
+    if (!gs.nil(name)) {
+      this.objectName = name.trim();
+    }
 
-        this._log("STATIC_MEMBERS_REGEX=" + this.STATIC_MEMBERS_REGEX.toString());
-        this._log("STATIC_VARIABLES_REGEX=" + this.STATIC_VARIABLES_REGEX.toString());
+    this.STATIC_MEMBERS_REGEX = new RegExp("(" + this.objectName + "\\s*\\.\\s*[^{;/]+)[\\s]*=[\\s]*([^{;]+)", "gm");
+    this.STATIC_VARIABLES_REGEX = new RegExp("(" + this.objectName + "\\s*\\.\\s*[^{;,/=})]+)\\s*;", "gm");
 
-        var t = /(MarkdownAJAX\s*\.\s*[^{;,/=})]+)\s*;/gm;
-        var t2 = /(MarkdownAJAX\s*\.\s*[^{;/]+)[\s]*=[\s]*([^{;]+)/gm;
+    this.logger.debug("STATIC_MEMBERS_REGEX=" + this.STATIC_MEMBERS_REGEX.toString());
+    this.logger.debug("STATIC_VARIABLES_REGEX=" + this.STATIC_VARIABLES_REGEX.toString());
 
-        // Get JSDoc tags
-        this.section = "JSDOC";
-        this._parseJSDOC();
-        // Get Class.create
-        this.section = "CLASS_CREATE";
-        this._parseClassCreate();
-        // Get static functions
-        this.section = "STATIC_MEMBERS";
-        this._parseStaticMembers();
-        // Get static variables
-        this.section = "STATIC_VARIABLES";
-        this._parseStaticVariables();
-        // Get prototype methods
-        this.section = "METHODS";
-        this._parseMethods();
-        // Get self invoking functions
-        this.section = "IIFE_FUNCTIONS";
-        this._parseIIFEFunctions();
-        // Get function statements
-        this.section = "DYNAMIC FUNCTIONS";
-        this._parseDynamicFunctions();
+    var t = /(MarkdownAJAX\s*\.\s*[^{;,/=})]+)\s*;/gm;
+    var t2 = /(MarkdownAJAX\s*\.\s*[^{;/]+)[\s]*=[\s]*([^{;]+)/gm;
 
-        return this.JSDocTags;
-    },
+    // Get JSDoc tags
+    this.section = "JSDOC";
+    this._parseJSDOC();
+    // Get Class.create
+    this.section = "CLASS_CREATE";
+    this._parseClassCreate();
+    // Get static functions
+    this.section = "STATIC_MEMBERS";
+    this._parseStaticMembers();
+    // Get static variables
+    this.section = "STATIC_VARIABLES";
+    this._parseStaticVariables();
+    // Get prototype methods
+    this.section = "METHODS";
+    this._parseMethods();
+    // Get self invoking functions
+    this.section = "IIFE_FUNCTIONS";
+    this._parseIIFEFunctions();
+    // Get function statements
+    this.section = "DYNAMIC FUNCTIONS";
+    this._parseDynamicFunctions();
 
-    _parseJSDOC: function() {
-        this.JSDOC_REGEX.lastIndex = 0;
-        var ctr = 0;
+    return this.JSDocTags;
+  },
 
-        while ((m = this.JSDOC_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.JSDOC_REGEX.lastIndex) {
-                this.JSDOC_REGEX.lastIndex++;
-            }
-            ctr++;
-            var jsDocs = this._setCaptureGroupValues(m, 4, 1);
-            if (jsDocs.found) {
-                var jsStatement = jsDocs.captureGroups[3];
-                var jsDocLine = jsDocs.captureGroups[1];
-                // Get the offset to the 4th capture group which is the function statement
-                // One offs - IIFE not completely pulled in so we need to check further
+  _parseJSDOC: function() {
+    this.JSDOC_REGEX.lastIndex = 0;
+    var ctr = 0;
 
-                // if the source code line is an import statement
-                if (/^import\s+/.test(jsStatement)) {
-                    // ignore this piece
-                    continue;
-                }
+    while ((m = this.JSDOC_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.JSDOC_REGEX.lastIndex) {
+        this.JSDOC_REGEX.lastIndex++;
+      }
+      ctr++;
+      var jsDocs = this._setCaptureGroupValues(m, 4, 1);
+      if (jsDocs.found) {
+        var jsStatement = jsDocs.captureGroups[3];
+        var jsDocLine = jsDocs.captureGroups[1];
+        // Get the offset to the 4th capture group which is the function statement
+        // One offs - IIFE not completely pulled in so we need to check further
 
-                // if this is a single line comment
-                if (jsDocLine.indexOf("*") === -1) {
-                    // prepend an asterisk to achieve the normal line structure
-                    jsDocLine = "*" + jsDocLine;
-                }
-
-                // interpret empty lines as if they contained a p-tag
-                jsDocLine = jsDocLine.replace(/\*[ ]*$/gm, "* <p>");
-
-                // split the doc comment into main description and tag section
-                var jsDocParts = jsDocLine.split(/^(?:\t| )*?\*(?:\t| )*?(?=@)/m);
-                var mainDescription = jsDocParts.shift();
-                var description = this._parseJSDocDescription(mainDescription);
-
-                var details;
-                var statementOffset = this._getCaptureGroupOffset(m, 4);
-                var iifeDetails = this._getIIFEDetails(this.sourceCode, statementOffset);
-                var isIIFE = iifeDetails.type == "iife_functions";
-
-                if (!isIIFE) {
-                    details = this._parseStatement(jsStatement, isIIFE);
-                } else {
-                    details = iifeDetails;
-                }
-                var jsdocTags = this._getJSDocTagsItem(details.name);
-                jsdocTags.type = details.type;
-                jsdocTags.description = description;
-                this._addCapGroup(jsdocTags, details.type, m.index, m[0], [details.name, details.value]);
-
-                var tags = this._getDocTags(jsDocParts);
-                this._log(
-                    "name=" +
-                        details.name +
-                        " jsStatement=" +
-                        jsStatement +
-                        " description=" +
-                        description +
-                        " tags=" +
-                        tags.length
-                );
-                tags.forEach(function(tag) {
-                    this._addTagsMarkdown(tag, jsdocTags.tags);
-                }, this);
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseClassCreate: function() {
-        this.CLASS_CREATE_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.CLASS_CREATE_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.CLASS_CREATE_REGEX.lastIndex) {
-                this.CLASS_CREATE_REGEX.lastIndex++;
-            }
-            ctr++;
-            var classCreate = this._setCaptureGroupValues(m, 1, 1);
-            if (classCreate.found) {
-                var name = classCreate.captureGroups[0];
-                var jsdocTags = this._getJSDocTagsItem(name);
-                jsdocTags.type = "class_create";
-                this._addCapGroup(jsdocTags, "class_create", m.index, m[0], [name]);
-                this._addTagsMarkdown({ key: "class", value: name }, jsdocTags.tags);
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseStaticMembers: function() {
-        this.STATIC_MEMBERS_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.STATIC_MEMBERS_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.STATIC_MEMBERS_REGEX.lastIndex) {
-                this.STATIC_MEMBERS_REGEX.lastIndex++;
-            }
-            ctr++;
-            var staticMembers = this._setCaptureGroupValues(m, 2, 1);
-            if (staticMembers.found) {
-                var name = staticMembers.captureGroups[0];
-                var functionStatement = staticMembers.captureGroups[1];
-                if (name.indexOf("prototype") >= 0) {
-                    this._parsePrototype(name, functionStatement);
-                    continue;
-                }
-                var jsdocTags = this._getJSDocTagsItem(name);
-                jsdocTags.type = "static_members";
-                this._addCapGroup(jsdocTags, "static_members", m.index, m[0], [name, functionStatement]);
-
-                if (functionStatement.toLowerCase().indexOf("function") >= 0) {
-                    var functionDetails = this._parseFunctionDeclaration(functionStatement, false);
-                    if (!functionDetails.valid) {
-                        continue;
-                    }
-                    functionDetails.functionName = name;
-                    this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
-                    this._log("STATIC: function=" + name + " parms=" + functionDetails.parameters);
-                } else {
-                    this._addTagsMarkdown({ key: "constant", value: functionStatement }, jsdocTags.tags);
-                    this._addTagsMarkdown({ key: "static", value: functionStatement }, jsdocTags.tags);
-                    this._log("STATIC: constant=" + name + " value=" + functionStatement);
-                }
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseStaticVariables: function() {
-        this.STATIC_VARIABLES_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.STATIC_VARIABLES_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.STATIC_VARIABLES_REGEX.lastIndex) {
-                this.STATIC_VARIABLES_REGEX.lastIndex++;
-            }
-            ctr++;
-            var staticVariables = this._setCaptureGroupValues(m, 1, 1);
-            if (staticVariables.found) {
-                var name = staticVariables.captureGroups[0];
-                var jsdocTags = this._getJSDocTagsItem(name);
-                jsdocTags.type = "static_variables";
-                this._addCapGroup(jsdocTags, "static_variables", m.index, m[0], [name]);
-                this._addTagsMarkdown({ key: "constant", value: "" }, jsdocTags.tags);
-                this._log("STATIC VARIABLE: constant=" + name + " No value");
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseMethods: function() {
-        this.METHODS_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.METHODS_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.METHODS_REGEX.lastIndex) {
-                this.METHODS_REGEX.lastIndex++;
-            }
-            ctr++;
-            var methods = this._setCaptureGroupValues(m, 2, 1);
-            if (methods.found) {
-                var name = methods.captureGroups[0];
-                var functionStatement = methods.captureGroups[1];
-                functionDetails = this._parseFunctionDeclaration(functionStatement, false);
-                if (!functionDetails.valid) {
-                    continue;
-                }
-                functionDetails.functionName = name;
-
-                var jsdocTags = this._getJSDocTagsItem(name);
-                jsdocTags.type = "methods";
-                this._addCapGroup(jsdocTags, "methods", m.index, m[0], [name, functionStatement]);
-                this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
-
-                this._addTagsMarkdown({ key: "memberof", value: this.objectName + ".prototype" }, jsdocTags.tags);
-                if (name == "initialize") {
-                    this._addTagsMarkdown({ key: "constructs", value: "" }, jsdocTags.tags);
-                }
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseIIFEFunctions: function() {
-        this.FUNCTIONS_IIFE_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.FUNCTIONS_IIFE_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.FUNCTIONS_IIFE_REGEX.lastIndex) {
-                this.FUNCTIONS_IIFE_REGEX.lastIndex++;
-            }
-            ctr++;
-            var functions = this._setCaptureGroupValues(m, 2, 1);
-            if (functions.found) {
-                // Two capture groups but only one should have a value
-                // on any given match
-                var functionStatement = functions.captureGroups[0];
-                this._log("IIFE statement=" + functionStatement);
-
-                //     ******FIND last ")". It may be before final () or after it
-
-                var functionDetails = this._parseFunctionDeclaration(functionStatement, true);
-                if (!functionDetails.valid) {
-                    continue;
-                }
-
-                var name = functionDetails.functionName;
-                if (name == "no name found") {
-                    name = "Anonymous self-invoked function";
-                }
-
-                var jsdocTags = this._getJSDocTagsItem(name);
-                jsdocTags.type = "iife_functions";
-                this._addCapGroup(jsdocTags, "iife_functions", m.index, m[0], [functionStatement]);
-                this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
-                this._log("IIFE: name=" + name);
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parseDynamicFunctions: function() {
-        this.FUNCTIONS_BR_REGEX.lastIndex = 0;
-        var ctr = 0;
-        while ((m = this.FUNCTIONS_BR_REGEX.exec(this.sourceCode)) !== null) {
-            if (m.index === this.FUNCTIONS_BR_REGEX.lastIndex) {
-                this.FUNCTIONS_BR_REGEX.lastIndex++;
-            }
-            ctr++;
-            var functions = this._setCaptureGroupValues(m, 1, 1);
-            if (functions.found) {
-                var functionStatement = functions.captureGroups[0].trim();
-                var functionDetails = this._parseFunctionDeclaration(functionStatement, true);
-                if (!functionDetails.valid) {
-                    continue;
-                }
-                var jsdocTags = this._getJSDocTagsItem(functionDetails.functionName);
-                jsdocTags.type = "dynamic_functions";
-                this._addCapGroup(jsdocTags, "dynamic_functions", m.index, m[0], [functionStatement]);
-                this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
-            }
-        }
-        if (ctr == 0) {
-            this._log("No matches found.");
-        }
-    },
-
-    _parsePrototype: function(name, functionStatement) {
-        var prototypeDetails = this._parsePrototypeStatement(functionStatement);
-        if (prototypeDetails.valid) {
-            var parts = name.split(".");
-            var className = parts[0].trim();
-            var jsdocTags = this._getJSDocTagsItem(className);
-            if (gs.nil(jsdocTags.type)) {
-                jsdocTags.type = "class_create";
-            }
-            this._addTagsMarkdown({ key: "augments", value: prototypeDetails.extendsName }, jsdocTags.tags);
-        }
-    },
-
-    _addFunctionTags: function(functionDetails, tags, code, index) {
-        this._addTagsMarkdown({ key: "function", value: "" }, tags);
-        functionDetails.parameters.forEach(function(parm) {
-            this._addTagsMarkdown({ key: "param", value: parm }, tags);
-            this._log("FUNCTION " + functionDetails.functionName + " parameter=" + parm);
-        }, this);
-        if (this._findReturn(code, index)) {
-            this._addTagsMarkdown({ key: "return", value: "{*}" }, tags);
-        }
-    },
-
-    _getCaptureGroupOffset: function(m, groupIndex) {
-        var offset = m.reduce(function(totalLength, group, index, array) {
-            if (index > 0 && index < groupIndex) {
-                totalLength += group.length;
-            }
-            return totalLength;
-        }, 0);
-        return m.index + offset;
-    },
-
-    _getJSDocTagsItem: function(name) {
-        if (!this.JSDocTags.hasOwnProperty(name)) {
-            this.JSDocTags[name] = this._getJSDOCEntry();
-        }
-        return this.JSDocTags[name];
-    },
-
-    _addCapGroup: function(JSDocTags, type, index, match, groups) {
-        this._log("Adding Cap Group type: " + type);
-        JSDocTags.capGroups.push({
-            type: type,
-            index: index,
-            match: match,
-            groups: groups
-        });
-    },
-
-    _getJSDOCEntry: function() {
-        return {
-            type: "",
-            capGroups: [],
-            tags: {},
-            description: ""
-        };
-    },
-
-    _parseStatement: function(statement) {
-        var details = { type: "", name: "", value: "" };
-
-        var parseDetails = this._parseStatementType(this.CLASS_CREATE_REGEX, statement, 1);
-        if (parseDetails.found) {
-            details.type = "class_create";
-            details.name = parseDetails.capGroups[0];
-            return details;
-        }
-        parseDetails = this._parseStatementType(this.STATIC_MEMBERS_REGEX, statement, 2);
-        if (parseDetails.found) {
-            details.type = "static_members";
-            details.name = parseDetails.capGroups[0];
-            details.value = parseDetails.capGroups[1];
-            return details;
+        // if the source code line is an import statement
+        if (/^import\s+/.test(jsStatement)) {
+          // ignore this piece
+          continue;
         }
 
-        parseDetails = this._parseStatementType(this.STATIC_VARIABLES_REGEX, statement, 1);
-        if (parseDetails.found) {
-            details.type = "static_variables";
-            details.name = parseDetails.capGroups[0];
-            return details;
+        // if this is a single line comment
+        if (jsDocLine.indexOf("*") === -1) {
+          // prepend an asterisk to achieve the normal line structure
+          jsDocLine = "*" + jsDocLine;
         }
 
-        parseDetails = this._parseStatementType(this.METHODS_REGEX, statement, 2);
-        if (parseDetails.found) {
-            details.type = "methods";
-            details.name = parseDetails.capGroups[0];
-            details.value = parseDetails.capGroups[1];
-            return details;
-        }
+        // interpret empty lines as if they contained a p-tag
+        jsDocLine = jsDocLine.replace(/\*[ ]*$/gm, "* ");
 
-        parseDetails = this._parseStatementType(this.FUNCTIONS_BR_REGEX, statement, 2);
-        if (parseDetails.found) {
-            details.type = "dynamic_functions";
-            details.name = "Standalone";
-            details.value = parseDetails.capGroups[0];
-            var functionDetails = this._parseFunctionDeclaration(details.value, true);
-            if (functionDetails.valid) {
-                details.name = functionDetails.functionName;
-            }
-            return details;
-        }
+        // split the doc comment into main description and tag section
+        var jsDocParts = jsDocLine.split(/^(?:\t| )*?\*(?:\t| )*?(?=@)/m);
+        var mainDescription = jsDocParts.shift();
+        var description = this._parseJSDocDescription(mainDescription);
 
-        details.type = "other";
-        details.name = "Unknown";
-        details.value = statement;
-        return details;
-    },
+        var details;
+        var statementOffset = this._getCaptureGroupOffset(m, 4);
+        var iifeDetails = this._getIIFEDetails(this.sourceCode, statementOffset);
+        var isIIFE = iifeDetails.type == "iife_functions";
 
-    _parseStatementType: function(regex, statement, capGroups) {
-        var details = { found: false, capGroups: [], index: -1 };
-        regex.lastIndex = 0;
-
-        var m = regex.exec(statement);
-        if (m !== null) {
-            details.index = m.index;
-            var groups = this._setCaptureGroupValues(m, capGroups, 1);
-            details.found = groups.found;
-            if (details.found) {
-                details.capGroups = groups.captureGroups;
-            }
-        }
-        return details;
-    },
-
-    _setCaptureGroupValues: function(regexResult, capGroups, startIdx) {
-        var result = { found: false, captureGroups: [] };
-        var lastIdx = startIdx + capGroups;
-        for (var i = startIdx; i < lastIdx; i++) {
-            if (typeof regexResult[i] === "string" && regexResult[i] !== null) {
-                result.captureGroups.push(regexResult[i].trim());
-                result.found = true;
-            }
-        }
-        this._log("_setCaptureGroupValues found=" + result.found + " captureGroups=" + result.captureGroups);
-        return result;
-    },
-
-    _findReturn: function(code, index) {
-        var returnFound = false;
-        var m;
-
-        var codeSnippet = code.substr(index);
-        var endIndex = codeSnippet.length;
-        var level = 0;
-
-        var regex = /({)|(})/gm;
-        while ((m = regex.exec(codeSnippet)) !== null) {
-            if (m.index === regex.lastIndex) {
-                regex.lastIndex++;
-            }
-            if (typeof m[1] === "string" && m[1] !== null) {
-                level++;
-            }
-            if (typeof m[2] === "string" && m[2] !== null) {
-                // Some matching text has a close curly from a previous function
-                if (level > 0) {
-                    level--;
-                } else {
-                    continue;
-                }
-            }
-            if (level <= 0) {
-                endIndex = m.index;
-                break;
-            }
-        }
-
-        var codeSnippet = codeSnippet.substr(0, endIndex + 1);
-        var regex2 = /[:;{\s]*return\s+/gm;
-        return codeSnippet.search(regex2) >= 0;
-    },
-
-    _getIIFEDetails: function(code, index) {
-        var details = { type: "unknown", name: "Anonymous self-invoked function", value: "" };
-        var m;
-
-        var codeSnippet = code.substr(index).trim();
-
-        // An IIFE should always start with a grouping parenthesis
-        if (codeSnippet.substr(0, 1) != "(") {
-            return details;
-        }
-        var iifeDetails = this._parseStatementType(this.FUNCTIONS_IIFE_REGEX, codeSnippet, 2);
-        if (iifeDetails.found && iifeDetails.index == 0) {
-            details.value = iifeDetails.capGroups[0];
-            var functionDetails = this._parseFunctionDeclaration(details.value, true);
-            if (functionDetails.valid) {
-                var name = functionDetails.functionName;
-                if (name == "no name found") {
-                    name = "Anonymous self-invoked function";
-                }
-                details.name = name;
-            }
-            details.type = "iife_functions";
-            this._log("IS an IIFE. Name=" + details.name);
-            return details;
-        }
-        return details;
-    },
-
-    _parseFunctionDeclaration: function(functionStatement, findName) {
-        var result = { valid: true, functionName: "", parameters: [] };
-        var functionDeclRegex = /function\s*(.*)\s*\((.*?)\)/;
-
-        var parsed = functionStatement.match(functionDeclRegex);
-        if (!parsed || parsed.length < 3) {
-            result.valid = false;
-            this._logError("Invalid function statement: " + functionStatement);
-            return result;
-        }
-
-        if (findName) {
-            result.functionName = parsed[1].trim();
-            if (gs.nil(result.functionName)) {
-                result.functionName = "no name found";
-            }
-        }
-        var parms = parsed[2].split(",");
-        parms.forEach(function(parm) {
-            parm = parm.trim();
-            if (parm) {
-                result.parameters.push(parm);
-            }
-        }, this);
-        this._log(
-            "Parsing function statement=" +
-                functionStatement +
-                " Name=" +
-                result.functionName +
-                " Total parameter count=" +
-                result.parameters.length
-        );
-        return result;
-    },
-
-    _parsePrototypeStatement: function(prototypeStatement) {
-        var result = { valid: true, extendsName: "" };
-        this.EXTENDS_REGEX.lastIndex = 0;
-
-        var str = prototypeStatement.match(this.EXTENDS_REGEX);
-        if (!str || str.length < 2) {
-            this._log("Prototype extendsObject not found.");
-            result.valid = false;
-            return result;
-        }
-        result.extendsName = str[1].trim();
-        if (gs.nil(result.extendsName)) {
-            result.extendsName = "no name found";
-        }
-        this._log(
-            "check prototype: prototypeStatement=" +
-                prototypeStatement +
-                " str=" +
-                str.length +
-                " extends=" +
-                result.extendsName
-        );
-        return result;
-    },
-
-    _parseJSDocDescription: function(docLines) {
-        var regex = /^(\t| )*?\*(\t| )+(.*?)$/gm;
-        var m;
-        var out = [];
-
-        while ((m = regex.exec(docLines)) !== null) {
-            if (m.index === regex.lastIndex) {
-                regex.lastIndex++;
-            }
-
-            if (typeof m[3] === "string" && m[3] !== null) {
-                m[3] = this._cleanLine(m[3]);
-                m[3] = m[3].replace(/(\r\n|\n|\r)/gm, " ");
-                m[3] = m[3].trim();
-                m[3] = this._replaceHTMLWithMarkdown(m[3]);
-                out.push(m[3]);
-            }
-        }
-
-        return this._cleanLine(out.join(" ").replace(/<(\/)?p>/gi, "\n\n"));
-    },
-
-    _replaceHTMLWithMarkdown: function(html) {
-        return html.replace(/<\s*?code\s*?>(.*?)<\s*?\/\s*?code\s*?>/g, "`$1`");
-    },
-
-    _getDocTags: function(docLines) {
-        var regex = /^(?:\t| )*?@([a-zA-Z]+)([\s\S]*)/;
-        var m;
-        var out = [];
-
-        for (var i = 0; i < docLines.length; i++) {
-            m = regex.exec(docLines[i]);
-
-            if (m !== null) {
-                if (typeof m[1] === "string" && m[1] !== null) {
-                    if (typeof m[2] === "string" && m[2] !== null) {
-                        // trim leading and trailing space in the tag value
-                        m[2] = m[2].trim();
-                        // format multi-line tag values correctly
-                        m[2] = m[2].split(/[\r\n]{1,2}(?:\t| )*?\*(?:\t| )*/).join("\n\n     ");
-
-                        // add the key and value for this tag to the output
-                        out.push({ key: this._cleanSingleLine(m[1]), value: m[2] });
-                    }
-                }
-            }
-        }
-
-        return out;
-    },
-
-    _cleanLine: function(line) {
-        // trim leading and trailing spaces
-        line = line.trim();
-
-        // clear spaces before and after line breaks and tabs
-        line = line.replace(/ *([\n\r\t]) */gm, "$1");
-
-        // make consecutive spaces one
-        line = line.replace(/[ ]{2,}/g, " ");
-
-        return line;
-    },
-
-    _cleanSingleLine: function(line) {
-        // perform normal line cleaning
-        line = this._cleanLine(line);
-
-        // replace line breaks and tabs with spaces
-        line = line.replace(/(\n|\r|\t)/g, " ");
-
-        return line;
-    },
-
-    _addToTags: function(tags, key, value) {
-        if (typeof tags[key] === "undefined" || tags[key] === null) {
-            tags[key] = [];
-        }
-        tags[key].push(value);
-    },
-
-    _addTagsMarkdown: function(tag, tags) {
-        var tokens;
-        switch (tag.key) {
-            case "abstract":
-                this._addToTags(tags, "Abstract", tag.value);
-                break;
-            case "access":
-                this._addToTags(tags, "Access", tag.value);
-                break;
-            case "extends":
-            case "augments":
-                this._addToTags(tags, "Augments", tag.value);
-                break;
-            case "author":
-                this._addToTags(tags, "Author", tag.value);
-                break;
-            case "class":
-                this._addToTags(tags, "Class", tag.value);
-                break;
-            case "constant":
-                this._addToTags(tags, "Constant", tag.value);
-                break;
-            case "constructor":
-            case "constructs":
-                this._addToTags(tags, "Constructor", null);
-                this._log("Adding Constructor to doc tags");
-                break;
-            case "copyright":
-                this._addToTags(tags, "Copyright", tag.value);
-                break;
-            case "deprec":
-            case "deprecated":
-                this._addToTags(tags, "Deprecated", null);
-                break;
-            case "example":
-                this._addToTags(tags, "Example", tag.value);
-                break;
-            case "exception":
-            case "throws":
-                tokens = this._stringTokenize(tag.value, /\s+/g, 2);
-                this._addToTags(tags, "Exceptions", this._formatType(tokens[0], tokens[1]));
-                break;
-            case "exports":
-                this._addToTags(tags, "Exports", tag.value);
-                break;
-            case "function":
-                this._addToTags(tags, "Function", tag.value);
-                break;
-            case "license":
-                this._addToTags(tags, "License", tag.value);
-                break;
-            case "link":
-                this._addToTags(tags, "Link", tag.value);
-                break;
-            case "member":
-                this._addToTags(tags, "Member", tag.value);
-                break;
-            case "memberof":
-                this._addToTags(tags, "MemberOf", tag.value);
-                break;
-            case "name":
-                this._addToTags(tags, "Alias", tag.value);
-                break;
-            case "package":
-                this._addToTags(tags, "Package", tag.value);
-                break;
-            case "param":
-                tokens = this._stringTokenize(tag.value, /\s+/g, 3);
-                this._addToTags(tags, "Parameters", this._formatParameter(tokens[0], tokens[1], tokens[2]));
-                break;
-            case "private":
-                this._addToTags(tags, "Private", null);
-                break;
-            case "return":
-            case "returns":
-                tokens = this._stringTokenize(tag.value, /\s+/g, 2);
-                this._addToTags(tags, "Returns", this._formatType(tokens[0], tokens[1]));
-                break;
-            case "see":
-                this._addToTags(tags, "See also", tag.value);
-                break;
-            case "since":
-                this._addToTags(tags, "Since", tag.value);
-                break;
-            case "static":
-                this._addToTags(tags, "Static", tag.value);
-                break;
-            case "subpackage":
-                this._addToTags(tags, "Sub-package", tag.value);
-                break;
-            case "this":
-                this._addToTags(tags, "This", "`" + tag.value + "`");
-                break;
-            case "todo":
-                this._addToTags(tags, "To-do", tag.value);
-                break;
-            case "var":
-                tokens = this._stringTokenize(tag.value, /\s+/g, 2);
-                this._addToTags(tags, "Type", this._formatType(tokens[0], tokens[1]));
-                break;
-            case "version":
-                this._addToTags(tags, "Version", tag.value);
-                break;
-            default:
-                break;
-        }
-    },
-
-    _stringTokenize: function(str, splitByRegex, limit) {
-        var counter, i, m, start, tokens, typePart1;
-
-        tokens = [];
-        counter = 1;
-        start = 0;
-        typePart1 = "";
-
-        while ((m = splitByRegex.exec(str)) !== null) {
-            if (m.index === splitByRegex.lastIndex) {
-                splitByRegex.lastIndex++;
-            }
-
-            var matchText = str.substring(start, m.index);
-            // If the type has a space in it then we need to deal with that
-            if (matchText.indexOf("{") >= 0 && matchText.indexOf("}") < 0) {
-                typePart1 = matchText;
-                continue;
-            }
-            if (matchText.indexOf("{") < 0 && matchText.indexOf("}") >= 0 && typePart1 != "") {
-                matchText = typePart1 + " " + matchText;
-                typePart1 = "";
-            }
-
-            if (counter < limit) {
-                tokens.push(matchText);
-                start = m.index + m[0].length;
-            }
-
-            counter++;
-        }
-
-        // add the remainder as a single part
-        tokens.push(str.substring(start));
-
-        // fill the array to match the limit if necessary
-        for (i = tokens.length; i < limit; i++) {
-            tokens.push("");
-        }
-
-        return tokens;
-    },
-
-    _formatType: function(type, description) {
-        if (gs.nil(description)) {
-            description = "";
-        }
-
-        return type.substr(1, type.length - 2) + "^" + description;
-    },
-
-    _formatParameter: function(type, name, description) {
-        // if we have a valid type (and name    )
-        if (/^\{([^{}]+)\}$/.test(type)) {
-            type = type.substr(1, type.length - 2);
+        if (!isIIFE) {
+          details = this._parseStatement(jsStatement, isIIFE);
         } else {
-            name = type;
-            type = "*";
+          details = iifeDetails;
+        }
+        var jsdocTags = this._getJSDocTagsItem(details.name);
+        jsdocTags.type = details.type;
+        jsdocTags.description = description;
+        this._addCapGroup(jsdocTags, details.type, m.index, m[0], [details.name, details.value]);
+
+        var tags = this._getDocTags(jsDocParts);
+        this.logger.debug("name=" + details.name + " jsStatement=" + jsStatement + " description=" + description + " tags=" + tags.length);
+        tags.forEach(function(tag) {
+          this._addTagsMarkdown(tag, jsdocTags.tags);
+        }, this);
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
+
+  _parseClassCreate: function() {
+    this.CLASS_CREATE_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.CLASS_CREATE_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.CLASS_CREATE_REGEX.lastIndex) {
+        this.CLASS_CREATE_REGEX.lastIndex++;
+      }
+      ctr++;
+      var classCreate = this._setCaptureGroupValues(m, 1, 1);
+      if (classCreate.found) {
+        var name = classCreate.captureGroups[0];
+        var jsdocTags = this._getJSDocTagsItem(name);
+        jsdocTags.type = "class_create";
+        this._addCapGroup(jsdocTags, "class_create", m.index, m[0], [name]);
+        this._addTagsMarkdown({ key: "class", value: name }, jsdocTags.tags);
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
+
+  _parseStaticMembers: function() {
+    this.STATIC_MEMBERS_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.STATIC_MEMBERS_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.STATIC_MEMBERS_REGEX.lastIndex) {
+        this.STATIC_MEMBERS_REGEX.lastIndex++;
+      }
+      ctr++;
+      var staticMembers = this._setCaptureGroupValues(m, 2, 1);
+      if (staticMembers.found) {
+        var name = staticMembers.captureGroups[0];
+        var functionStatement = staticMembers.captureGroups[1];
+        if (name.indexOf("prototype") >= 0) {
+          this._parsePrototype(name, functionStatement);
+          continue;
+        }
+        var jsdocTags = this._getJSDocTagsItem(name);
+        jsdocTags.type = "static_members";
+        this._addCapGroup(jsdocTags, "static_members", m.index, m[0], [name, functionStatement]);
+
+        if (functionStatement.toLowerCase().indexOf("function") >= 0) {
+          var functionDetails = this._parseFunctionDeclaration(functionStatement, false);
+          if (!functionDetails.valid) {
+            continue;
+          }
+          functionDetails.functionName = name;
+          this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
+          this.logger.debug("STATIC: function=" + name + " parms=" + functionDetails.parameters);
+        } else {
+          this._addTagsMarkdown({ key: "constant", value: functionStatement }, jsdocTags.tags);
+          this._addTagsMarkdown({ key: "static", value: functionStatement }, jsdocTags.tags);
+          this.logger.debug("STATIC: constant=" + name + " value=" + functionStatement);
+        }
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
+
+  _parseStaticVariables: function() {
+    this.STATIC_VARIABLES_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.STATIC_VARIABLES_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.STATIC_VARIABLES_REGEX.lastIndex) {
+        this.STATIC_VARIABLES_REGEX.lastIndex++;
+      }
+      ctr++;
+      var staticVariables = this._setCaptureGroupValues(m, 1, 1);
+      if (staticVariables.found) {
+        var name = staticVariables.captureGroups[0];
+        var jsdocTags = this._getJSDocTagsItem(name);
+        jsdocTags.type = "static_variables";
+        this._addCapGroup(jsdocTags, "static_variables", m.index, m[0], [name]);
+        this._addTagsMarkdown({ key: "constant", value: "" }, jsdocTags.tags);
+        this.logger.debug("STATIC VARIABLE: constant=" + name + " No value");
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
+
+  _parseMethods: function() {
+    this.METHODS_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.METHODS_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.METHODS_REGEX.lastIndex) {
+        this.METHODS_REGEX.lastIndex++;
+      }
+      ctr++;
+      var methods = this._setCaptureGroupValues(m, 2, 1);
+      if (methods.found) {
+        var name = methods.captureGroups[0];
+        var functionStatement = methods.captureGroups[1];
+        functionDetails = this._parseFunctionDeclaration(functionStatement, false);
+        if (!functionDetails.valid) {
+          continue;
+        }
+        functionDetails.functionName = name;
+
+        var jsdocTags = this._getJSDocTagsItem(name);
+        jsdocTags.type = "methods";
+        this._addCapGroup(jsdocTags, "methods", m.index, m[0], [name, functionStatement]);
+        this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
+
+        this._addTagsMarkdown({ key: "memberof", value: this.objectName + ".prototype" }, jsdocTags.tags);
+        if (name == "initialize") {
+          this._addTagsMarkdown({ key: "constructs", value: "" }, jsdocTags.tags);
+        }
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
+
+  _parseIIFEFunctions: function() {
+    this.FUNCTIONS_IIFE_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.FUNCTIONS_IIFE_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.FUNCTIONS_IIFE_REGEX.lastIndex) {
+        this.FUNCTIONS_IIFE_REGEX.lastIndex++;
+      }
+      ctr++;
+      var functions = this._setCaptureGroupValues(m, 2, 1);
+      if (functions.found) {
+        // Two capture groups but only one should have a value
+        // on any given match
+        var functionStatement = functions.captureGroups[0];
+        this.logger.debug("IIFE statement=" + functionStatement);
+
+        //     ******FIND last ")". It may be before final () or after it
+
+        var functionDetails = this._parseFunctionDeclaration(functionStatement, true);
+        if (!functionDetails.valid) {
+          continue;
         }
 
-        if (gs.nil(description)) {
-            description = "";
+        var name = functionDetails.functionName;
+        if (name == "no name found") {
+          name = "Anonymous self-invoked function";
         }
-        return name + "^" + type + "^" + description;
-    },
 
-    /**
-     * Adds an error message to the system log.
-     *
-     * @param {string} msg Message to add to system log.
-     */
-    _logError: function(msg) {
-        gs.error("[" + this.type + "] " + msg);
-    },
+        var jsdocTags = this._getJSDocTagsItem(name);
+        jsdocTags.type = "iife_functions";
+        this._addCapGroup(jsdocTags, "iife_functions", m.index, m[0], [functionStatement]);
+        this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
+        this.logger.debug("IIFE: name=" + name);
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
 
-    /**
-     * Adds a warning message to the system log.
-     *
-     * @param {string} msg Message to add to the system log.
-     */
-    _logWarning: function(msg) {
-        gs.warn("[" + this.type + "] " + msg);
-    },
+  _parseDynamicFunctions: function() {
+    this.FUNCTIONS_BR_REGEX.lastIndex = 0;
+    var ctr = 0;
+    while ((m = this.FUNCTIONS_BR_REGEX.exec(this.sourceCode)) !== null) {
+      if (m.index === this.FUNCTIONS_BR_REGEX.lastIndex) {
+        this.FUNCTIONS_BR_REGEX.lastIndex++;
+      }
+      ctr++;
+      var functions = this._setCaptureGroupValues(m, 1, 1);
+      if (functions.found) {
+        var functionStatement = functions.captureGroups[0].trim();
+        var functionDetails = this._parseFunctionDeclaration(functionStatement, true);
+        if (!functionDetails.valid) {
+          continue;
+        }
+        var jsdocTags = this._getJSDocTagsItem(functionDetails.functionName);
+        jsdocTags.type = "dynamic_functions";
+        this._addCapGroup(jsdocTags, "dynamic_functions", m.index, m[0], [functionStatement]);
+        this._addFunctionTags(functionDetails, jsdocTags.tags, this.sourceCode, m.index);
+      }
+    }
+    if (ctr == 0) {
+      this.logger.debug("No matches found.");
+    }
+  },
 
-    /**
-     * Adds a message to the system log if MarkDownCodeParser.DEBUG is true.
-     *
-     * @param {String} msg Message to add to the system log.
-     */
-    _log: function(msg) {
-        if (MarkDownCodeParser.DEBUG) {
-            if (this.section) {
-                gs.info("[" + this.type + "] " + this.section + ": " + msg);
-            } else {
-                gs.info("[" + this.type + "] " + msg);
+  _parsePrototype: function(name, functionStatement) {
+    var prototypeDetails = this._parsePrototypeStatement(functionStatement);
+    if (prototypeDetails.valid) {
+      var parts = name.split(".");
+      var className = parts[0].trim();
+      var jsdocTags = this._getJSDocTagsItem(className);
+      if (gs.nil(jsdocTags.type)) {
+        jsdocTags.type = "class_create";
+      }
+      this._addTagsMarkdown({ key: "augments", value: prototypeDetails.extendsName }, jsdocTags.tags);
+    }
+  },
+
+  _addFunctionTags: function(functionDetails, tags, code, index) {
+    this._addTagsMarkdown({ key: "function", value: "" }, tags);
+    functionDetails.parameters.forEach(function(parm) {
+      this._addTagsMarkdown({ key: "param", value: parm }, tags);
+      this.logger.debug("FUNCTION " + functionDetails.functionName + " parameter=" + parm);
+    }, this);
+    if (this._findReturn(code, index)) {
+      this._addTagsMarkdown({ key: "return", value: "{*}" }, tags);
+    }
+  },
+
+  _getCaptureGroupOffset: function(m, groupIndex) {
+    var offset = m.reduce(function(totalLength, group, index, array) {
+      if (index > 0 && index < groupIndex) {
+        totalLength += group.length;
+      }
+      return totalLength;
+    }, 0);
+    return m.index + offset;
+  },
+
+  _getJSDocTagsItem: function(name) {
+    if (!this.JSDocTags.hasOwnProperty(name)) {
+      this.JSDocTags[name] = this._getJSDOCEntry();
+    }
+    return this.JSDocTags[name];
+  },
+
+  _addCapGroup: function(JSDocTags, type, index, match, groups) {
+    this.logger.debug("Adding Cap Group type: " + type);
+    JSDocTags.capGroups.push({
+      type: type,
+      index: index,
+      match: match,
+      groups: groups
+    });
+  },
+
+  _getJSDOCEntry: function() {
+    return {
+      type: "",
+      capGroups: [],
+      tags: {},
+      description: ""
+    };
+  },
+
+  _parseStatement: function(statement) {
+    var details = { type: "", name: "", value: "" };
+
+    var parseDetails = this._parseStatementType(this.CLASS_CREATE_REGEX, statement, 1);
+    if (parseDetails.found) {
+      details.type = "class_create";
+      details.name = parseDetails.capGroups[0];
+      return details;
+    }
+    parseDetails = this._parseStatementType(this.STATIC_MEMBERS_REGEX, statement, 2);
+    if (parseDetails.found) {
+      details.type = "static_members";
+      details.name = parseDetails.capGroups[0];
+      details.value = parseDetails.capGroups[1];
+      return details;
+    }
+
+    parseDetails = this._parseStatementType(this.STATIC_VARIABLES_REGEX, statement, 1);
+    if (parseDetails.found) {
+      details.type = "static_variables";
+      details.name = parseDetails.capGroups[0];
+      return details;
+    }
+
+    parseDetails = this._parseStatementType(this.METHODS_REGEX, statement, 2);
+    if (parseDetails.found) {
+      details.type = "methods";
+      details.name = parseDetails.capGroups[0];
+      details.value = parseDetails.capGroups[1];
+      return details;
+    }
+
+    parseDetails = this._parseStatementType(this.FUNCTIONS_BR_REGEX, statement, 2);
+    if (parseDetails.found) {
+      details.type = "dynamic_functions";
+      details.name = "Standalone";
+      details.value = parseDetails.capGroups[0];
+      var functionDetails = this._parseFunctionDeclaration(details.value, true);
+      if (functionDetails.valid) {
+        details.name = functionDetails.functionName;
+      }
+      return details;
+    }
+
+    details.type = "other";
+    details.name = "Unknown";
+    details.value = statement;
+    return details;
+  },
+
+  _parseStatementType: function(regex, statement, capGroups) {
+    var details = { found: false, capGroups: [], index: -1 };
+    regex.lastIndex = 0;
+
+    var m = regex.exec(statement);
+    if (m !== null) {
+      details.index = m.index;
+      var groups = this._setCaptureGroupValues(m, capGroups, 1);
+      details.found = groups.found;
+      if (details.found) {
+        details.capGroups = groups.captureGroups;
+      }
+    }
+    return details;
+  },
+
+  _setCaptureGroupValues: function(regexResult, capGroups, startIdx) {
+    var result = { found: false, captureGroups: [] };
+    var lastIdx = startIdx + capGroups;
+    for (var i = startIdx; i < lastIdx; i++) {
+      if (typeof regexResult[i] === "string" && regexResult[i] !== null) {
+        result.captureGroups.push(regexResult[i].trim());
+        result.found = true;
+      }
+    }
+    this.logger.debug("_setCaptureGroupValues found=" + result.found + " captureGroups=" + result.captureGroups);
+    return result;
+  },
+
+  _findReturn: function(code, index) {
+    var returnFound = false;
+    var m;
+
+    var codeSnippet = code.substr(index);
+    var endIndex = codeSnippet.length;
+    var level = 0;
+
+    var regex = /({)|(})/gm;
+    while ((m = regex.exec(codeSnippet)) !== null) {
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
+      if (typeof m[1] === "string" && m[1] !== null) {
+        level++;
+      }
+      if (typeof m[2] === "string" && m[2] !== null) {
+        // Some matching text has a close curly from a previous function
+        if (level > 0) {
+          level--;
+        } else {
+          continue;
+        }
+      }
+      if (level <= 0) {
+        endIndex = m.index;
+        break;
+      }
+    }
+
+    var codeSnippet = codeSnippet.substr(0, endIndex + 1);
+    var regex2 = /[:;{\s]*return\s+/gm;
+    return codeSnippet.search(regex2) >= 0;
+  },
+
+  _getIIFEDetails: function(code, index) {
+    var details = { type: "unknown", name: "Anonymous self-invoked function", value: "" };
+    var m;
+
+    var codeSnippet = code.substr(index).trim();
+
+    // An IIFE should always start with a grouping parenthesis
+    if (codeSnippet.substr(0, 1) != "(") {
+      return details;
+    }
+    var iifeDetails = this._parseStatementType(this.FUNCTIONS_IIFE_REGEX, codeSnippet, 2);
+    if (iifeDetails.found && iifeDetails.index == 0) {
+      details.value = iifeDetails.capGroups[0];
+      var functionDetails = this._parseFunctionDeclaration(details.value, true);
+      if (functionDetails.valid) {
+        var name = functionDetails.functionName;
+        if (name == "no name found") {
+          name = "Anonymous self-invoked function";
+        }
+        details.name = name;
+      }
+      details.type = "iife_functions";
+      this.logger.debug("IS an IIFE. Name=" + details.name);
+      return details;
+    }
+    return details;
+  },
+
+  _parseFunctionDeclaration: function(functionStatement, findName) {
+    var result = { valid: true, functionName: "", parameters: [] };
+    var functionDeclRegex = /function\s*(.*)\s*\((.*?)\)/;
+
+    var parsed = functionStatement.match(functionDeclRegex);
+    if (!parsed || parsed.length < 3) {
+      result.valid = false;
+      this.logger.error("Invalid function statement: " + functionStatement);
+      return result;
+    }
+
+    if (findName) {
+      result.functionName = parsed[1].trim();
+      if (gs.nil(result.functionName)) {
+        result.functionName = "no name found";
+      }
+    }
+    var parms = parsed[2].split(",");
+    parms.forEach(function(parm) {
+      parm = parm.trim();
+      if (parm) {
+        result.parameters.push(parm);
+      }
+    }, this);
+    this.logger.debug(
+      "Parsing function statement=" +
+        functionStatement +
+        " Name=" +
+        result.functionName +
+        " Total parameter count=" +
+        result.parameters.length
+    );
+    return result;
+  },
+
+  _parsePrototypeStatement: function(prototypeStatement) {
+    var result = { valid: true, extendsName: "" };
+    this.EXTENDS_REGEX.lastIndex = 0;
+
+    var str = prototypeStatement.match(this.EXTENDS_REGEX);
+    if (!str || str.length < 2) {
+      this.logger.debug("Prototype extendsObject not found.");
+      result.valid = false;
+      return result;
+    }
+    result.extendsName = str[1].trim();
+    if (gs.nil(result.extendsName)) {
+      result.extendsName = "no name found";
+    }
+    this.logger.debug(
+      "check prototype: prototypeStatement=" + prototypeStatement + " str=" + str.length + " extends=" + result.extendsName
+    );
+    return result;
+  },
+
+  _parseJSDocDescription: function(docLines) {
+    var nowStr = new GlideDateTime().getNumericValue();
+    this.logger.debug(nowStr + " START docLines=" + docLines);
+    var regex = /^(\t| )*?\*(\t| )+(.*?)$/gm;
+    var m;
+
+    var lines = [];
+    var line = [];
+
+    while ((m = regex.exec(docLines)) !== null) {
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
+
+      if (typeof m[3] === "string" && m[3] !== null) {
+        m[3] = this._cleanLine(m[3]);
+        // Change line feeds to HTML breaks
+        m[3] = m[3].replace(/(\r\n|\n|\r)/gm, " ");
+        m[3] = m[3].trim();
+        m[3] = this._replaceHTMLWithMarkdown(m[3]);
+        // If an empty line then add a non-breaking space character
+        if (gs.nil(m[3])) {
+            if (line.length > 0) {
+                lines.push("_" + line.join(" ") + "_");
+                lines.push("&nbsp;");
             }
+            line = [];  
+        } else {
+            line.push(m[3]);
         }
-    },
+      }
+    }
 
-    type: "MarkDownCodeParser"
+    if (line.length > 0) {
+        lines.push("_" + line.join(" ") + "_");
+    }
+
+    this.logger.debug(nowStr + " END=" + this._cleanLine(lines.join("\n")));
+    return this._cleanLine(lines.join("\n"));
+  },
+
+  _replaceHTMLWithMarkdown: function(html) {
+    return html.replace(/<\s*?code\s*?>(.*?)<\s*?\/\s*?code\s*?>/g, "`$1`");
+  },
+
+  _getDocTags: function(docLines) {
+    var regex = /^(?:\t| )*?@([a-zA-Z]+)([\s\S]*)/;
+    var m;
+    var out = [];
+
+    for (var i = 0; i < docLines.length; i++) {
+      m = regex.exec(docLines[i]);
+
+      if (m !== null) {
+        if (typeof m[1] === "string" && m[1] !== null) {
+          if (typeof m[2] === "string" && m[2] !== null) {
+            // trim leading and trailing space in the tag value
+            m[2] = m[2].trim();
+            // format multi-line tag values correctly
+            m[2] = m[2].split(/[\r\n]{1,2}(?:\t| )*?\*(?:\t| )*/).join("\n\n     ");
+
+            // add the key and value for this tag to the output
+            out.push({ key: this._cleanSingleLine(m[1]), value: m[2] });
+          }
+        }
+      }
+    }
+
+    return out;
+  },
+
+  _cleanLine: function(line) {
+    // trim leading and trailing spaces
+    line = line.trim();
+
+    // clear spaces before and after line breaks and tabs
+    line = line.replace(/ *([\n\r\t]) */gm, "$1");
+
+    // make consecutive spaces one
+    line = line.replace(/[ ]{2,}/g, " ");
+
+    return line;
+  },
+
+  _cleanSingleLine: function(line) {
+    // perform normal line cleaning
+    line = this._cleanLine(line);
+
+    // replace line breaks and tabs with spaces
+    line = line.replace(/(\n|\r|\t)/g, " ");
+
+    return line;
+  },
+
+  _addToTags: function(tags, key, value) {
+    if (typeof tags[key] === "undefined" || tags[key] === null) {
+      tags[key] = [];
+    }
+    tags[key].push(value);
+  },
+
+  _addTagsMarkdown: function(tag, tags) {
+    var tokens;
+    switch (tag.key) {
+      case "abstract":
+        this._addToTags(tags, "Abstract", tag.value);
+        break;
+      case "access":
+        this._addToTags(tags, "Access", tag.value);
+        break;
+      case "extends":
+      case "augments":
+        this._addToTags(tags, "Augments", tag.value);
+        break;
+      case "author":
+        this._addToTags(tags, "Author", tag.value);
+        break;
+      case "class":
+        this._addToTags(tags, "Class", tag.value);
+        break;
+      case "constant":
+        this._addToTags(tags, "Constant", tag.value);
+        break;
+      case "constructor":
+      case "constructs":
+        this._addToTags(tags, "Constructor", null);
+        this.logger.debug("Adding Constructor to doc tags");
+        break;
+      case "copyright":
+        this._addToTags(tags, "Copyright", tag.value);
+        break;
+      case "deprec":
+      case "deprecated":
+        this._addToTags(tags, "Deprecated", null);
+        break;
+      case "example":
+        this._addToTags(tags, "Example", tag.value);
+        break;
+      case "exception":
+      case "throws":
+        tokens = this._stringTokenize(tag.value, /\s+/g, 2);
+        this._addToTags(tags, "Exceptions", this._formatType(tokens[0], tokens[1]));
+        break;
+      case "exports":
+        this._addToTags(tags, "Exports", tag.value);
+        break;
+      case "function":
+        this._addToTags(tags, "Function", tag.value);
+        break;
+      case "license":
+        this._addToTags(tags, "License", tag.value);
+        break;
+      case "link":
+        this._addToTags(tags, "Link", tag.value);
+        break;
+      case "member":
+        this._addToTags(tags, "Member", tag.value);
+        break;
+      case "memberof":
+        this._addToTags(tags, "MemberOf", tag.value);
+        break;
+      case "name":
+        this._addToTags(tags, "Alias", tag.value);
+        break;
+      case "package":
+        this._addToTags(tags, "Package", tag.value);
+        break;
+      case "param":
+        tokens = this._stringTokenize(tag.value, /\s+/g, 3);
+        this._addToTags(tags, "Parameters", this._formatParameter(tokens[0], tokens[1], tokens[2]));
+        break;
+      case "private":
+        this._addToTags(tags, "Private", null);
+        break;
+      case "return":
+      case "returns":
+        tokens = this._stringTokenize(tag.value, /\s+/g, 2);
+        this._addToTags(tags, "Returns", this._formatType(tokens[0], tokens[1]));
+        break;
+      case "see":
+        this._addToTags(tags, "See also", tag.value);
+        break;
+      case "since":
+        this._addToTags(tags, "Since", tag.value);
+        break;
+      case "static":
+        this._addToTags(tags, "Static", tag.value);
+        break;
+      case "subpackage":
+        this._addToTags(tags, "Sub-package", tag.value);
+        break;
+      case "this":
+        this._addToTags(tags, "This", "`" + tag.value + "`");
+        break;
+      case "todo":
+        this._addToTags(tags, "To-do", tag.value);
+        break;
+      case "var":
+        tokens = this._stringTokenize(tag.value, /\s+/g, 2);
+        this._addToTags(tags, "Type", this._formatType(tokens[0], tokens[1]));
+        break;
+      case "version":
+        this._addToTags(tags, "Version", tag.value);
+        break;
+      default:
+        break;
+    }
+  },
+
+  _stringTokenize: function(str, splitByRegex, limit) {
+    var counter, i, m, start, tokens, typePart1;
+
+    tokens = [];
+    counter = 1;
+    start = 0;
+    typePart1 = "";
+    str = str.trim();
+
+    while ((m = splitByRegex.exec(str)) !== null) {
+      if (m.index === splitByRegex.lastIndex) {
+        splitByRegex.lastIndex++;
+      }
+
+      var matchText = str.substring(start, m.index);
+      // If the type has a space in it then we need to deal with that
+      if (matchText.indexOf("{") >= 0 && matchText.indexOf("}") < 0) {
+        typePart1 = matchText;
+        continue;
+      }
+      if (matchText.indexOf("{") < 0 && matchText.indexOf("}") >= 0 && typePart1 != "") {
+        matchText = typePart1 + " " + matchText;
+        typePart1 = "";
+      }
+
+      if (counter < limit) {
+        tokens.push(matchText);
+        start = m.index + m[0].length;
+      }
+
+      counter++;
+    }
+
+    // add the remainder as a single part
+    tokens.push(str.substring(start));
+
+    // fill the array to match the limit if necessary
+    for (i = tokens.length; i < limit; i++) {
+      tokens.push("");
+    }
+
+    return tokens;
+  },
+
+  _formatType: function(type, description) {
+    if (gs.nil(description)) {
+      description = "";
+    }
+
+    return type.substr(1, type.length - 2) + "^" + description;
+  },
+
+  _formatParameter: function(type, name, description) {
+    this.logger.debug("IN type=" + type + " name=" + name + " description=" + description);  
+    // if we have a valid type (and name    )
+    if (/^\{([^{}]+)\}$/.test(type)) {
+      type = type.substr(1, type.length - 2);
+    } else {
+      name = type;
+      type = "*";
+    }
+
+    if (gs.nil(description)) {
+      description = "";
+    }
+    this.logger.debug("OUT type=" + type + " name=" + name + " description=" + description);  
+    return name + "^" + type + "^" + description;
+  },
+
+  type: "MarkDownCodeParser"
 };
 ]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-06-07 20:00:13</sys_created_on>
         <sys_id>e5d92c9bdb793300d0cb5385ca96191c</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>MarkDownCodeParser</sys_name>
         <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
         <sys_update_name>sys_script_include_e5d92c9bdb793300d0cb5385ca96191c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-06-07 21:57:10</sys_updated_on>
+        <sys_updated_on>2020-04-11 00:27:36</sys_updated_on>
     </sys_script_include>
 </record_update>

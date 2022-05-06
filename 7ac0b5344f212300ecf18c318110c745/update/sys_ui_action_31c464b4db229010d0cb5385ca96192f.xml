@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name/>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments/>
+        <condition>current.project_type != "Manual"</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Select Source</name>
+        <onclick>getRemoteSources()</onclick>
+        <order>100</order>
+        <script><![CDATA[function getRemoteSources() {
+  var remoteConnection = {};
+  if (g_form.getValue("remote_connection") != "") {
+    remoteConnection = JSON.parse(g_form.getValue("remote_connection"));
+  }
+  var dialogClass = window.GlideModal ? GlideModal : GlideDialogWindow;
+  var remoteSources = new dialogClass("x_58056_md_docs_handle_remote_connection");
+  remoteSources.setPreference("sysparm_version_id", g_form.getUniqueValue());
+  remoteSources.setPreference("sysparm_project_type", g_form.getValue("project_type"));
+  remoteSources.setPreference("sysparm_local_remote", g_form.getValue("local_remote"));
+  remoteSources.setPreference("sysparm_custom_application", g_form.getValue("custom_application"));
+  remoteSources.setPreference("sysparm_custom_application_display", g_form.getDisplayBox("custom_application").value);
+  remoteSources.setPreference("sysparm_update_sets", g_form.getValue("update_sets"));
+
+  if ("url" in remoteConnection && remoteConnection.url != "") {
+    remoteSources.setPreference("sysparm_remote_url", remoteConnection.url);
+  }
+  if ("user_name" in remoteConnection && remoteConnection.user_name != "") {
+    remoteSources.setPreference("sysparm_user_name", remoteConnection.user_name);
+  }
+  if ("filter" in remoteConnection && remoteConnection.filter != "") {
+    remoteSources.setPreference("sysparm_filter", remoteConnection.filter);
+  }
+  remoteSources.setPreference("onSubmit", onSubmit);
+  remoteSources.setPreference("onCancel", onCancel);
+  remoteSources.setTitle("Retrieve source files from remote instance");
+  remoteSources.setWidth(1000);
+  remoteSources.render();
+}
+
+function onCancel() {
+  return false;
+}
+
+function onSubmit(result) {
+  var remoteConnection = {};
+  if (g_form.getValue("remote_connection") != "") {
+    remoteConnection = JSON.parse(g_form.getValue("remote_connection"));
+  }
+  if ("filter" in result && result.filter != "") {
+    remoteConnection.filter = result.filter;
+  }
+
+  if (g_form.getValue("local_remote") == "Local") {
+    if ("sources" in result && result.sources.length > 0) {
+      if (g_form.getValue("project_type") == "Custom application") {
+        var app = result.sources[0];
+        g_form.setValue("custom_application", app.sys_id, app.display);
+      } else {
+        var idList = [];
+        var displayList = [];
+        result.sources.forEach(function (source) {
+          idList.push(source.sys_id);
+          displayList.push(source.display);
+        }, this);
+        g_form.setValue("update_sets", idList.join(","), displayList.join("."));
+      }
+    }
+  } else {
+    if ("url" in result && result.url != "") {
+      remoteConnection.url = result.url;
+    }
+    if ("user" in result && result.user != "") {
+      remoteConnection.user_name = result.user;
+    }
+    if ("pw" in result && result.pw != "") {
+      g_form.setValue("remote_password", result.pw);
+    }
+
+    if ("sources" in result && result.sources.length > 0) {
+      var remoteSources = {};
+      var remoteSourcesDisplay = [];
+      result.sources.forEach(function (source) {
+        remoteSources[source.display] = source.sys_id;
+        remoteSourcesDisplay.push(source.display);
+      }, this);
+      g_form.setValue("remote_sources", JSON.stringify(remoteSources));
+      var prefix = "Application: ";
+      if (g_form.getValue("project_type") != "Custom application") {
+        prefix = "Update sets: ";
+      }
+      g_form.setValue("remote_source", prefix + remoteSourcesDisplay.join(","));
+    }
+  }
+  g_form.setValue("remote_connection", JSON.stringify(remoteConnection));
+}
+]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-08 00:26:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>31c464b4db229010d0cb5385ca96192f</sys_id>
+        <sys_mod_count>44</sys_mod_count>
+        <sys_name>Select Source</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_action_31c464b4db229010d0cb5385ca96192f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-19 01:48:31</sys_updated_on>
+        <table>x_58056_md_docs_code_documentation</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

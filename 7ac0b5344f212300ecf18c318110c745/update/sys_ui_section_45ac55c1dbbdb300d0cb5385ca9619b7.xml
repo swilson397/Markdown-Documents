@@ -4,13 +4,13 @@
             <element>html</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2019-05-31 23:56:13</sys_created_on>
-            <sys_id>12bc95c1dbbdb300d0cb5385ca961977</sys_id>
+            <sys_created_on>2020-03-13 21:40:43</sys_created_on>
+            <sys_id>67fdfe1ddbab4010d0cb5385ca96198b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="HTML" display_value="HTML" name="x_58056_md_docs_markdown_source" sys_domain="global" view="Default view">45ac55c1dbbdb300d0cb5385ca9619b7</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2019-05-31 23:56:13</sys_updated_on>
+            <sys_updated_on>2020-03-13 21:40:43</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -26,7 +26,7 @@
             <sys_domain_path>/</sys_domain_path>
             <sys_id>45ac55c1dbbdb300d0cb5385ca9619b7</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>HTML</sys_name>
+            <sys_name>x_58056_md_docs_markdown_source</sys_name>
             <sys_overrides/>
             <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
             <sys_policy/>

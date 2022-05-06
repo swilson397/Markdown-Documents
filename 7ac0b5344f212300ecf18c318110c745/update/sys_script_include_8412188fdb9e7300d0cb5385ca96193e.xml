@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkdownREST</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MarkdownREST</name>
+        <script><![CDATA[/*
+var creds = new MarkdownVersion().getVersionRemoteCredentials("52f74641db1af300d0cb5385ca9619ca"); 
+if (!gs.nil(creds.clearPW)) { 
+var result = new MarkdownREST(creds.instanceURL, creds.userName, creds.clearPW).getTableRecordList( 
+"sys_script_include", [{ name: "sysparm_display_value", value: "true"}, { name: "sysparm_query", value: "sys_scope=9274dc8e4f9ea200840242fd0210c7df"}, { name: "sysparm_fields", value: "sys_id,sys_name,script,sys_class_name"}]); 
+gs.info(result.responseBody); 
+} else { 
+gs.info("bad"); 
+}
+
+*/
+var MarkdownREST = Class.create();
+MarkdownREST.prototype = {
+  initialize: function (instanceURL, userName, password) {
+    this.instanceURL = instanceURL;
+    this.userName = userName;
+    this.password = password;
+  },
+
+  testRemoteConnection: function () {
+    var rc = { status: "", msg: "" };
+    if (gs.nil(this.instanceURL) || gs.nil(this.userName) || gs.nil(this.password)) {
+      rc.status = "fail";
+      rc.msg = "Instance URL, user name or password missing";
+      this.logError(rc.msg);
+      return rc;
+    }
+
+    var result = this.getTableRecordList("sys_user", [
+      { name: "sysparm_query", value: "user_name=" + this.userName },
+      { name: "sysparm_limit", value: "1" },
+    ]);
+
+    if (result.status != 200) {
+      var responseObj = JSON.parse(result.responseBody);
+      rc.status = "fail";
+      rc.msg = "Test connection failed with message: " + responseObj.error.message;
+      this.logError(rc.msg);
+    } else {
+      rc.status = "success";
+    }
+    return rc;
+  },
+
+  getTableRecordList: function (tableName, queryParameters) {
+    var result = { status: "", responseBody: "", response: null, msg: "" };
+    try {
+      var r = new sn_ws.RESTMessageV2("x_58056_md_docs.Project Code Doc Remote REST", "Get Table Record List");
+      r.setStringParameterNoEscape("tablename", tableName);
+
+      if (!gs.nil(queryParameters)) {
+        queryParameters.forEach(function (queryParameter) {
+          r.setQueryParameter(queryParameter.name, queryParameter.value);
+        }, this);
+      }
+
+      var instanceURL = this._buildURL(this.instanceURL);
+      this.log("instanceURL=" + instanceURL);
+      r.setStringParameterNoEscape("instanceurl", instanceURL);
+
+      r.setBasicAuth(this.userName, this.password);
+
+      result.response = r.execute();
+      result.responseBody = result.response.getBody();
+      result.status = result.response.getStatusCode();
+      this.log("HTTP status=" + result.status);
+    } catch (ex) {
+      result.status = 999;
+      result.msg = ex;
+      this.logError("ERROR: " + result.msg);
+    }
+    return result;
+  },
+
+  _buildURL: function (instanceURL) {
+    var protocol = "";
+
+    if (instanceURL.indexOf("http") != 0) {
+      protocol = "https://";
+    }
+
+    return protocol + instanceURL;
+  },
+
+  /**
+   * Adds an error message to the system log.
+   *
+   * @param {string} msg Message to add to system log.
+   */
+  logError: function (msg) {
+    gs.error(msg);
+  },
+
+  /**
+   * Adds a warning message to the system log.
+   *
+   * @param {string} msg Message to add to the system log.
+   */
+  logWarning: function (msg) {
+    gs.warn(msg);
+  },
+
+  /**
+   * Adds a message to the system log
+   *
+   * @param {String} msg Message to add to the system log.
+   */
+  log: function (msg) {
+    gs.info(msg);
+  },
+
+  type: "MarkdownREST",
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-01 20:09:31</sys_created_on>
+        <sys_id>8412188fdb9e7300d0cb5385ca96193e</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>MarkdownREST</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_8412188fdb9e7300d0cb5385ca96193e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-15 17:01:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

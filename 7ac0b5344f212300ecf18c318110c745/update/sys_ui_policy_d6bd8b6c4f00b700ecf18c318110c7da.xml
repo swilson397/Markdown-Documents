@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_58056_md_docs_markdown_document">project_type=Custom application^ORproject_type=Update sets^EQ<item endquery="false" field="project_type" goto="false" newquery="false" operator="=" or="false" value="Custom application"/>
-            <item endquery="false" field="project_type" goto="false" newquery="false" operator="=" or="true" value="Update sets"/>
+        <conditions table="x_58056_md_docs_markdown_document">project_type=Custom application^ORproject_type=Update sets^EQ<item display_value="Custom application" endquery="false" field="project_type" goto="false" newquery="false" operator="=" or="false" value="Custom application"/>
+            <item display_value="Update sets" endquery="false" field="project_type" goto="false" newquery="false" operator="=" or="true" value="Update sets"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>

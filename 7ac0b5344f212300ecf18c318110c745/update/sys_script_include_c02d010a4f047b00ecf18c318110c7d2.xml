@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkDownBuilder</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MarkDownBuilder</name>
+        <script><![CDATA[/*
+var gr = new GlideRecord('sys_script_include');
+if (gr.get("d0ee98f64f5f2300ecf18c318110c75e")) {
+  new MarkDownBuilder("Markdown", "This is a large test of a markdown\ngeneration. See if it works", 2).buildMarkdown(gr.script.toString());
+}
+*/
+/**
+ * Helper functions for building markdown text from source code
+ * 
+ * @class
+ * @name MarkDownBuilder
+ */
+MarkDownBuilder = Class.create();
+
+MarkDownBuilder.useTableHTMLTags = false;
+
+MarkDownBuilder.prototype = {
+  /**
+   * Initialize variables
+   */
+  initialize: function (name, type, link, description, headingsLevel) {
+    this.codeName = name;
+    this.codeType = type;
+    this.codeLink = link;
+    this.description = description;
+    this.headingsLevel = headingsLevel;
+    this.markDown = {
+      className: null,
+      constructor: null,
+      staticProperties: [],
+      methods: [],
+      functions: [],
+      iief_functions: [],
+      other: []
+    };
+
+    this.JSDocTags = {};
+    this.indent2 = "&nbsp;&nbsp;";
+    this.indent4 = "&nbsp;&nbsp;&nbsp;&nbsp;";
+
+    this.logger = new Logger(this.type);
+  },
+
+  /**
+   * Generates Markdown documentation from JSDoc comments
+   *
+   * @param {string} code the code that contains doc comments
+   * @returns {string} the Markdown documentation
+   */
+  buildMarkdown: function (code) {
+    var i, out, sections;
+
+    // get all JSDoc tags from source code
+    this.JSDocTags = new MarkDownCodeParser().parse(this.codeName, code);
+    this.logger.debug("After parsing code");
+
+    // merge and format parsed data into proper sections
+    this.buildMarkdownSections();
+    this.logger.debug("After building sections");
+
+    // initialize a string buffer
+    out = [];
+
+    out.push(this._stringRepeat("#", this.headingsLevel) + ' <a name="' + this.codeLink + '"></a>' + this.codeName);
+
+    if (this.description) {
+      var descr = this._cleanLine(this.description);
+      descr = descr.replace(/(\r\n|\n|\r)/gm, " ");
+      descr = descr.trim();
+      descr = this._replaceHTMLWithMarkdown(descr);
+      out.push(this.indent2 + descr);
+    }
+
+    out.push(" ");
+    out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Type: `" + this.codeType + "`");
+
+    // Separate static and iief functions
+    this.markDown.iief_functions = this.markDown.functions.filter(function (item) {
+      return item.name == "Anonymous self-invoked function";
+    });
+    this.markDown.functions = this.markDown.functions.filter(function (item) {
+      return item.name != "Anonymous self-invoked function";
+    });
+    this.logger.debug("Before processing each type");
+
+    // Add the markdown for each type being documented
+    for (type in this.markDown) {
+      var sectionMarkdown = this.getMarkdownFromType(type, this.markDown[type]);
+      if (!gs.nil(sectionMarkdown)) {
+        out.push(sectionMarkdown);
+      }
+    }
+    this.logger.debug("After processing each type");
+    // return the contents of the string buffer and add a trailing newline
+    return out.join("\n") + "\n";
+  },
+
+  buildMarkdownSections: function () {
+    // Get class and constructor info
+    var classMDEntry = this._getNewMarkDownEntry();
+    var constructorMDEntry = this._getNewMarkDownEntry();
+    var itemName;
+    for (itemName in this.JSDocTags) {
+      if (this.JSDocTags.hasOwnProperty(itemName)) {
+        var jsDoc = this.JSDocTags[itemName];
+        var jsDocTags = jsDoc.tags;
+        var jsDocCapGroups = jsDoc.capGroups;
+        var description = jsDoc.description;
+
+        var jsDocType = jsDoc.type;
+        if (!jsDocType) {
+          this.logger.debug("No type value found in capture groups for item " + itemName);
+          continue;
+        }
+        if (jsDocType == "class_create") {
+          if ("Class" in jsDocTags) {
+            classMDEntry.name = itemName;
+            classMDEntry.signature = classMDEntry.name + classMDEntry.signature;
+            classMDEntry.description += description;
+            constructorMDEntry.signature = classMDEntry.name + constructorMDEntry.description;
+          }
+          if ("Augments" in jsDocTags) {
+            classMDEntry.extendsClass = jsDocTags.Augments[0];
+          }
+        } else if (jsDocType == "methods") {
+          if ("Constructor" in jsDocTags) {
+            constructorMDEntry.name = "Constructor";
+            constructorMDEntry.description = description;
+            var sig = this._getFunctionSignature(jsDocCapGroups, 1);
+            if (sig) {
+              classMDEntry.signature += sig;
+              constructorMDEntry.signature += sig;
+            }
+            this._setFunctionAttributes(jsDocTags, constructorMDEntry);
+            this.logger.debug("CONSTRUCTOR doc tag found: " + constructorMDEntry.name);
+          } else {
+            this.logger.debug("No CONSTRUCTOR in doc tags");
+          }
+        }
+      }
+    }
+    // If we found a class then keep it
+    if (!gs.nil(classMDEntry.name)) {
+      this.markDown.className = classMDEntry;
+      if (!gs.nil(constructorMDEntry.name)) {
+        this.markDown.constructor = constructorMDEntry;
+      }
+    }
+    //
+    // Get static members
+    for (itemName in this.JSDocTags) {
+      if (this.JSDocTags.hasOwnProperty(itemName)) {
+        var jsDoc = this.JSDocTags[itemName];
+        var jsDocTags = jsDoc.tags;
+        var jsDocCapGroups = jsDoc.capGroups;
+        var description = jsDoc.description;
+
+        var jsDocType = jsDoc.type;
+        if (!jsDocType) {
+          this.logger.debug("No type value found in capture groups for item " + itemName);
+          continue;
+        }
+
+        if (jsDocType == "static_members") {
+          var staticMDEntry = this._getNewMarkDownEntry();
+          staticMDEntry.name = itemName;
+          staticMDEntry.description = description;
+          if ("Function" in jsDocTags) {
+            staticMDEntry.signature = staticMDEntry.name;
+            var sig = this._getFunctionSignature(jsDocCapGroups, 1);
+            if (sig) {
+              staticMDEntry.signature += sig;
+            }
+            this._setFunctionAttributes(jsDocTags, staticMDEntry);
+          } else if ("Static" in jsDocTags) {
+            staticMDEntry.value = jsDocTags.Static[0];
+          }
+          this.markDown.staticProperties.push(staticMDEntry);
+        } else if (jsDocType == "static_variables") {
+          var staticMDEntry = this._getNewMarkDownEntry();
+          staticMDEntry.name = itemName;
+          staticMDEntry.description = description;
+          if ("Constant" in jsDocTags) {
+            staticMDEntry.value = jsDocTags.Constant[0];
+          }
+          this.markDown.staticProperties.push(staticMDEntry);
+        } else if (jsDocType == "methods") {
+          var methodMDEntry = this._getNewMarkDownEntry();
+          methodMDEntry.name = itemName;
+          methodMDEntry.description = description;
+          methodMDEntry.signature = methodMDEntry.name;
+          var sig = this._getFunctionSignature(jsDocCapGroups, 1);
+          if (sig) {
+            methodMDEntry.signature += sig;
+          }
+          this._setFunctionAttributes(jsDocTags, methodMDEntry);
+          this.markDown.methods.push(methodMDEntry);
+        } else if (jsDocType == "iife_functions" || jsDocType == "dynamic_functions") {
+          var functionsMDEntry = this._getNewMarkDownEntry();
+          functionsMDEntry.name = itemName;
+          functionsMDEntry.description = description;
+          functionsMDEntry.signature = functionsMDEntry.name;
+          if (functionsMDEntry.signature == "Anonymous self-invoked function") {
+            functionsMDEntry.signature = "";
+          }
+          var sig = this._getFunctionSignature(jsDocCapGroups, 0);
+          if (sig) {
+            functionsMDEntry.signature += sig;
+          }
+          this.logger.debug("Formatting IIEF. Name=" + functionsMDEntry.name + " sig=" + functionsMDEntry.signature);
+          this._setFunctionAttributes(jsDocTags, functionsMDEntry);
+          this.markDown.functions.push(functionsMDEntry);
+        }
+      } else if (jsDocType == "other") {
+        var otherMDEntry = this._getNewMarkDownEntry();
+        otherMDEntry.name = itemName;
+        otherMDEntry.description = description;
+        this.markDown.other.push(otherMDEntry);
+      }
+    }
+  },
+
+  _setFunctionAttributes: function (jsDocTags, mdEntry) {
+    if ("Parameters" in jsDocTags) {
+      mdEntry.parameters = jsDocTags.Parameters;
+    }
+    if ("Returns" in jsDocTags) {
+      mdEntry.returns = jsDocTags.Returns;
+    }
+    if ("Throws" in jsDocTags) {
+      mdEntry.throwsErrors = jsDocTags.Throws;
+    }
+  },
+
+  _getFunctionSignature: function (capGroups, index) {
+    var signature = null;
+    capGroups.some(function (capGroup) {
+      var functionStatement = capGroup.groups[index];
+      var functionDetails = this._parseFunctionDeclaration(functionStatement);
+      if (functionDetails.valid) {
+        signature = "(" + functionDetails.parameters.join(", ") + ")";
+        return true;
+      }
+      return false;
+    }, this);
+    return signature;
+  },
+
+  _getNewMarkDownEntry: function () {
+    return {
+      name: "",
+      signature: "",
+      extendsClass: "",
+      description: "",
+      parameters: [],
+      returns: [],
+      throwsErrors: [],
+      value: ""
+    };
+  },
+
+  /**
+   * Generates Markdown documentation from a given section
+   *
+   * The function processes units of documentation, a line of code with accompanying doc comment
+   *
+   * @param {object} section the section that consists of code line and doc comment
+   * @returns {string} the Markdown documentation
+   */
+  getMarkdownFromType: function (type, section) {
+    if (gs.nil(section)) {
+      return "";
+    }
+
+    var out = [];
+    var itemCount = 0;
+
+    switch (type) {
+      case "className":
+        out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Class: `" + section.name + "`");
+        if (!gs.nil(section.description)) {
+          out.push(section.description);
+        }
+        if (!gs.nil(section.extendsClass)) {
+          out.push(this._stringRepeat("#", this.headingsLevel + 3) + " Extends: _" + section.extendsClass + "_");
+        }
+        break;
+      case "constructor":
+        if (!gs.nil(section.name)) {
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Constructor");
+          out.push(this._generateItemHeader(section.signature, section.description));
+          out.push(this._generateFunctionAttributes(section, false));
+        }
+        break;
+      case "staticProperties":
+        if (section.length > 0) {
+          section.sort(this._compare);
+          out.push(" ");
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Static Properties");
+          section.forEach(function (item) {
+            // Show non-function static variables first
+            if (gs.nil(item.signature)) {
+              if (!gs.nil(item.value)) {
+                out.push(this._stringRepeat("#", this.headingsLevel + 2) + " `" + item.name + "` _= " + item.value + "_");
+                if (!gs.nil(item.description)) {
+                  var description = item.description.replace(/(\r\n|\n|\r)/gm, " ");
+                  out.push(description);
+                }
+              } else {
+                out.push(this._generateItemHeader(item.name, item.description));
+              }
+              out.push("");
+              out.push("---");
+            }
+          }, this);
+          // Now show function static variables
+          section.forEach(function (item) {
+            if (!gs.nil(item.signature)) {
+              out.push(this._generateItemHeader(item.signature, item.description));
+              out.push(this._generateFunctionAttributes(item, true));
+            }
+          }, this);
+        }
+        break;
+      case "methods":
+        if (section.length > 0) {
+          section.sort(this._compare);
+          out.push("");
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Methods");
+          section.forEach(function (item) {
+            out.push(this._generateItemHeader(item.signature, item.description));
+            out.push(this._generateFunctionAttributes(item, true));
+          }, this);
+        }
+        break;
+      case "functions":
+        if (section.length > 0) {
+          section.sort(this._compare);
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Functions");
+          section.forEach(function (item) {
+            out.push(this._generateItemHeader(item.signature, item.description));
+            out.push(this._generateFunctionAttributes(item, true));
+          }, this);
+        }
+        break;
+      case "iief_functions":
+        if (section.length > 0) {
+          section.sort(this._compare);
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Anonymous Functions");
+          section.forEach(function (item) {
+            out.push(this._generateItemHeader(item.signature, item.description));
+            out.push(this._generateFunctionAttributes(item, true));
+          }, this);
+        }
+        break;
+      case "other":
+        if (section.length > 0) {
+          section.sort(this._compare);
+          out.push(this._stringRepeat("#", this.headingsLevel + 1) + " Other");
+          section.forEach(function (item) {
+            out.push(this._generateItemHeader(item.name, item.description));
+          }, this);
+        }
+        break;
+      default:
+        break;
+    }
+    // return the contents of the string buffer
+    return out.join("\n");
+  },
+
+  _compare: function (a, b) {
+    // Use toUpperCase() to ignore character casing
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+
+    var comparison = 0;
+    if (nameA > nameB) {
+      comparison = 1;
+    } else if (nameA < nameB) {
+      comparison = -1;
+    }
+    return comparison;
+  },
+
+  _generateItemHeader: function (name, description) {
+    var out = [];
+    out.push(this._stringRepeat("#", this.headingsLevel + 2) + " `" + name + "`");
+    if (!gs.nil(description)) {
+      out.push(description);
+    }
+    return out.join("\n");
+  },
+
+  _generateFunctionAttributes: function (item, addLineSeparator) {
+    var out = [];
+
+    var tableMD = this._buildTable(["Name", "Type", "Description"], item.parameters);
+    if (tableMD.length > 0) {
+      out.push("");
+      out.push("**Parameters**");
+      out.push("");
+      out = out.concat(tableMD);
+    }
+    tableMD = this._buildTable(["Returns", ""], item.returns);
+    if (tableMD.length > 0) {
+      out.push("");
+      if (!MarkDownBuilder.useTableHTMLTags) {
+        out.push("**Returns**");
+        out.push("");
+      }
+      out = out.concat(tableMD);
+    }
+    tableMD = this._buildTable(["Throws", ""], item.throwsErrors);
+    if (tableMD.length > 0) {
+      out.push("");
+      if (!MarkDownBuilder.useTableHTMLTags) {
+        out.push("**Throws**");
+        out.push("");
+      }
+      out = out.concat(tableMD);
+    }
+
+    if (addLineSeparator) {
+      out.push("");
+      out.push("---");
+    }
+    return out.join("\n");
+  },
+
+  _buildTable: function (hdrRow, inputRows) {
+    if (MarkDownBuilder.useTableHTMLTags) {
+      return this._buildLayoutWithTableTags(hdrRow, inputRows);
+    }
+    return this._buildLayoutWithoutTableTags(hdrRow.length, inputRows);
+  },
+
+  _buildLayoutWithoutTableTags: function (columns, inputRows) {
+    var tableMD = [];
+    var mergedInputRows = this._mergeNameTypeItems(inputRows, columns);
+    if (mergedInputRows.length == 0) {
+      return tableMD;
+    }
+
+    var rows = [];
+
+    this.logger.debug("Before merge");
+
+    mergedInputRows.forEach(function (mergedInputRow) {
+      var i;
+      var row = [];
+      for (var i = 0; i < columns; i++) {
+        if (mergedInputRow.length > i && !gs.nil(mergedInputRow[i])) {
+          this.logger.debug("Inbound cell " + i + "=" + mergedInputRow[i]);
+          if (i == 0) {
+            row.push(mergedInputRow[i]);
+          } else {
+            var text = mergedInputRow[i].replace(/(\r\n|\n|\r)/gm, " ");
+            row.push(text.trim());
+          }
+        }
+      }
+      rows.push(row);
+    }, this);
+    this.logger.debug("After merge");
+
+    if (rows.length == 0) {
+      return tableMD;
+    }
+    rows.forEach(function (row, index) {
+      if (index > 0) {
+        tableMD.push(" ");
+      }
+
+      var lineOne = "";
+      row.forEach(function (cell, cellIndex) {
+        this.logger.debug("Merged cell " + cellIndex + "=" + cell + " -- Columns=" + columns);
+        if (cellIndex == 0) {
+          lineOne += "*   `" + cell.trim() + "`";
+        } else if (cellIndex == columns - 1) {
+          tableMD.push(lineOne);
+          tableMD.push("    _" + cell.trim() + "_");
+          lineOne = "";
+        } else {
+          lineOne += " _" + cell.trim() + "_";
+        }
+      }, this);
+
+      if (!gs.nil(lineOne)) {
+        tableMD.push(lineOne);
+      }
+    }, this);
+
+    return tableMD;
+  },
+
+  _buildLayoutWithTableTags: function (hdrRow, inputRows) {
+    var tableMD = [];
+    var columns = hdrRow.length;
+    var mergedInputRows = this._mergeNameTypeItems(inputRows, columns);
+    if (mergedInputRows.length == 0) {
+      return tableMD;
+    }
+
+    var rows = [hdrRow];
+
+    mergedInputRows.forEach(function (mergedInputRow) {
+      if (!gs.nil(mergedInputRow[0])) {
+        var row = ["`" + mergedInputRow[0] + "`"];
+        for (var i = 1; i < columns; i++) {
+          if (mergedInputRow.length > i && mergedInputRow[i] != "") {
+            var text = mergedInputRow[i].replace(/(\r\n|\n|\r)/gm, " ");
+            row.push(" _" + text.trim() + "_");
+          }
+        }
+        rows.push(row);
+      }
+    }, this);
+
+    if (rows.length == 0) {
+      return tableMD;
+    }
+    rows.forEach(function (row, index) {
+      tableMD.push(row.join("|") + "|");
+      if (index == 0) {
+        var tblLine = "";
+        for (var i = 0; i < row.length; i++) {
+          tblLine += "---|";
+        }
+        tableMD.push(tblLine);
+      }
+    }, this);
+
+    return tableMD;
+  },
+
+  _mergeNameTypeItems: function (items, columns) {
+    items.forEach(function (item) {
+      var itemParts = item.split("^");
+      this.logger.debug("parts=" + itemParts.length + " 0=" + itemParts[0] + " 1=" + itemParts[1] + " 2=" + itemParts[2]);
+    }, this);
+
+    var itemNames = items.reduce(function (itemAccum, item) {
+      var itemParts = item.split("^");
+
+      // Should be either 3 columns (Parameters) or 2 columns (Returns or Throws)
+      if (columns == 3) {
+        if (itemParts.length < 3) {
+          itemParts.push("");
+        }
+      } else if (itemParts.length < 2) {
+        itemParts.push("");
+      }
+
+      var key = itemParts[0];
+      if (columns == 2) {
+        key = "no_key";
+      }
+      var name = "";
+      var type = "";
+      var description = "";
+      if (columns == 3) {
+        name = itemParts[0];
+        type = itemParts[1];
+        description = itemParts[2];
+      } else {
+        type = itemParts[0];
+        description = itemParts[1];
+      }
+
+      description = description.replace("/*", "");
+      description = description.replace("*/", "");
+      description = description.replace(/(\r\n|\n|\r)/gm, " ");
+      description = description.trim();
+
+      if (!(key in itemAccum)) {
+        itemAccum[key] = { name: name, type: "", description: "" };
+      }
+      var itemType = itemAccum[key];
+
+      if (!gs.nil(type) && (gs.nil(itemType.type) || itemType.type == "*")) {
+        itemType.type = type;
+      }
+
+      if (! gs.nil(description)) {
+        if (! gs.nil(itemType.description)) {
+          itemType.description += " ; ";
+        }
+        itemType.description += description;
+      }
+      return itemAccum;
+    }, {});
+
+    var mergedItems = [];
+    for (key in itemNames) {
+      var row = itemNames[key];
+      if (columns == 3) { 
+        mergedItems.push([row.name, row.type, row.description]);
+      } else {
+        mergedItems.push([row.type, row.description]);
+      }
+    }
+    return mergedItems;
+  },
+
+  _parseFunctionDeclaration: function (functionStatement) {
+    var result = { valid: true, functionName: "", parameters: [] };
+    var functionDeclRegex = /function\s*(.*)\s*\((.*?)\)/;
+
+    var parsed = functionStatement.match(functionDeclRegex);
+    if (!parsed || parsed.length < 3) {
+      result.valid = false;
+      this.logger.error("Invalid function statement: " + functionStatement);
+      return result;
+    }
+    result.functionName = parsed[1].trim();
+    if (gs.nil(result.functionName)) {
+      result.functionName = "no name found";
+    }
+    var parms = parsed[2].split(",");
+    parms.forEach(function (parm) {
+      parm = parm.trim();
+      if (parm) {
+        result.parameters.push(parm);
+      }
+    }, this);
+    this.logger.debug(
+      "Parsing function statement=" +
+        functionStatement +
+        " Name=" +
+        result.functionName +
+        " Total parameter count=" +
+        result.parameters.length
+    );
+    return result;
+  },
+
+  _replaceHTMLWithMarkdown: function (html) {
+    return html.replace(/<\s*?code\s*?>(.*?)<\s*?\/\s*?code\s*?>/g, "`$1`");
+  },
+
+  _cleanLine: function (line) {
+    // trim leading and trailing spaces
+    line = line.trim();
+
+    // clear spaces before and after line breaks and tabs
+    line = line.replace(/ *([\n\r\t]) */gm, "$1");
+
+    // make consecutive spaces one
+    line = line.replace(/[ ]{2,}/g, " ");
+
+    return line;
+  },
+
+  _stringRepeat: function (str, count) {
+    return new Array(count + 1).join(str);
+  },
+
+  type: "MarkDownBuilder"
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-03-09 01:39:39</sys_created_on>
+        <sys_id>c02d010a4f047b00ecf18c318110c7d2</sys_id>
+        <sys_mod_count>177</sys_mod_count>
+        <sys_name>MarkDownBuilder</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_c02d010a4f047b00ecf18c318110c7d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-25 00:21:28</sys_updated_on>
+    </sys_script_include>
+</record_update>

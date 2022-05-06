@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>show_hide_markdown</name>
+        <scoped_name>x_58056_md_docs_show_hide_markdown</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-13 23:29:59</sys_created_on>
+        <sys_id>10079799db2f4010d0cb5385ca961975</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>show_hide_markdown</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_macro_10079799db2f4010d0cb5385ca961975</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-16 17:47:34</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+   	<div id="show_markdown_div" class=" col-xs-12 col-md-1_5 col-lg-2 control-label" style="display: block">                
+		<a style="font-size: larger" onclick="toggleMarkdown()">Show Markdown/HTML tabs</a>
+    </div>
+   	<div id="hide_markdown_div" class=" col-xs-12 col-md-1_5 col-lg-2 control-label"  style="display: none">                
+		<a style="font-size: larger" onclick="toggleMarkdown()">Hide Markdown/HTML tabs</a>
+    </div>
+	<script>
+		function toggleMarkdown() {
+		  if (g_form.isSectionVisible("markdown")) {
+		     g_form.setSectionDisplay("markdown", false);
+		     g_form.setSectionDisplay("html", false);
+		     jQuery("#show_markdown_div").show();
+		     jQuery("#hide_markdown_div").hide();
+		  } else {
+		     g_form.setSectionDisplay("markdown", true);
+		     g_form.setSectionDisplay("html", true);
+	         g_tabs2Sections.setActive(1);
+             var hdrMDE = markdownDocument.getEasyMDE(g_form.getUniqueValue());
+             if (!hdrMDE) {
+               alert("ERROR Markdown Document controller not found");
+               return;
+             }
+             hdrMDE.codemirror.refresh();
+		     jQuery("#show_markdown_div").hide();
+		     jQuery("#hide_markdown_div").show();
+		  }
+		}
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

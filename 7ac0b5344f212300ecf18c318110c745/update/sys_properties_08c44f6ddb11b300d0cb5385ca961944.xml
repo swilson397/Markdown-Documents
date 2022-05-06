@@ -11,14 +11,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-05-09 00:16:17</sys_created_on>
         <sys_id>08c44f6ddb11b300d0cb5385ca961944</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>x_58056_md_docs.markdown_editor_stylesheets</sys_name>
         <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
         <sys_policy/>
         <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
         <sys_update_name>sys_properties_08c44f6ddb11b300d0cb5385ca961944</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-06-01 00:26:27</sys_updated_on>
+        <sys_updated_on>2020-03-24 22:52:33</sys_updated_on>
         <type>string</type>
         <value>markdown_document,easymde.min, codemirror.css</value>
         <write_roles/>

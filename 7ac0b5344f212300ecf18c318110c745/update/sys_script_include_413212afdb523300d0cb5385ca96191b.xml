@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkdownSource</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>MarkdownSource</name>
+        <script><![CDATA[/**
+ * @class MarkdownSource
+ */
+
+MarkdownSource = Class.create();
+MarkdownSource.prototype = {
+  /**
+   * Initialize variables
+   */
+  initialize: function () {
+    this.logger = new Logger();
+  },
+
+  /**
+    /**
+     *
+     */
+  buildSourceMarkdownText: function (sourceGR) {
+    var md = "";
+    var sourceDetails = this.getSourceCode(sourceGR);
+    if (!gs.nil(sourceDetails.code)) {
+      md = this.getMarkdownText(
+        sourceDetails.name,
+        sourceDetails.type,
+        sourceDetails.link,
+        sourceDetails.description,
+        2,
+        sourceDetails.code
+      );
+    }
+    return md;
+  },
+
+  /**
+   *
+   * @param {*} name
+   * @param {*} type
+   * @param {*} link
+   * @param {*} description
+   * @param {*} code
+   * @param {*} headingsLevel
+   * @returns {string}
+   */
+  getMarkdownText: function (name, type, link, description, headingsLevel, code) {
+    var md = "";
+    try {
+      md = new MarkDownBuilder(name, type, link, description, headingsLevel).buildMarkdown(code);
+    } catch (err) {
+      this.logger.error("An error occurred while generating Markdown Text. Message: " + err);
+    }
+    return md;
+  },
+
+  /**
+   *
+   * @param {*} sourceGR
+   * @returns {string}
+   */
+  generateAbstractSyntaxTree: function (sourceGR) {
+    var ast = "";
+
+    var sourceDetails = this.getSourceCode(sourceGR);
+    if (!gs.nil(sourceDetails.code)) {
+      ast = this.geAbstractSyntaxTree(sourceDetails.code);
+    } else {
+      this.logger.warning("No source code found.");
+    }
+    var jsonStr = JSON.stringify(ast, null, "\t");
+    return jsonStr;
+  },
+
+  /**
+   *
+   * @param {*} code
+   * @returns {string}
+   */
+  geAbstractSyntaxTree: function (code) {
+    var ast = "";
+    try {
+      ast = esprima.parseScript(code);
+    } catch (err) {
+      this.logger.error("An error occurred while generating the Abstract Syntax Tree. Message: " + err);
+    }
+    return ast;
+  },
+
+  /**
+   *
+   * @param {*} sourceGR
+   * @returns {object}
+   */
+  getSourceCode: function (sourceGR) {
+    var sourceDetails = { name: "", type: "", link: "", description: "", code: null };
+
+    if (sourceGR.source_type == "Document") {
+      return this.getSourceCodeDetails(
+        sourceGR.source_type.toString(),
+        sourceGR.remote,
+        sourceGR.source_id.toString(),
+        sourceGR.source_table.toString(),
+        sourceGR.source_script_field.toString(),
+        null,
+        null,
+        null,
+        null
+      );
+    }
+    return this.getSourceCodeDetails(
+      sourceGR.source_type.toString(),
+      null,
+      null,
+      null,
+      null,
+      sourceGR.source_name.toString(),
+      sourceGR.source_description.toString(),
+      sourceGR.source_text.toString(),
+      null
+    );
+  },
+
+  getSourceCodeDetails: function (type, remote, sourceID, remoteSourceID, table, scriptField, name, description, text) {
+    var sourceDetails = { name: "", type: "", link: "", description: "", code: null };
+    if (type == "Document") {
+      remote = remote == "true" ? true : false;
+      if (!remote) {
+        if (gs.nil(sourceID)) {
+          return sourceDetails;
+        }
+        var gr = new GlideRecord(table);
+        if (gr.get(sourceID) && gr.isValidField(scriptField)) {
+          sourceDetails.name = gr.getDisplayValue();
+          sourceDetails.type = gr.getLabel();
+          sourceDetails.description = gr.description.toString();
+          sourceDetails.code = gr.getValue(scriptField).toString();
+        }
+      } else {
+        // Get Remote code using remoteJSON;
+      }
+    } else {
+      sourceDetails.name = name;
+      sourceDetails.type = type;
+      sourceDetails.description = description;
+      sourceDetails.code = text;
+    }
+
+    var link = sourceDetails.name.toLowerCase();
+    link = link.replace(/[^\w\- ]/g, "");
+    sourceDetails.link = link.replace(/ /g, "-");
+    return sourceDetails;
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   */
+  removeAllNonManualMarkdownSource: function (versionID) {
+    this.removeNonManualMarkdownSource(versionID, null);
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {string} query
+   */
+  removeNonManualMarkdownSource: function (versionID, query) {
+    if (!gs.nil(query)) {
+      query += "^added_manually=false";
+    } else {
+      query = "added_manually=false";
+    }
+    this.removeSource(versionID, query);
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {string} customAppIDs
+   * @return {boolean}
+   */
+  loadLocalApplicationSource: function (versionID, customAppID, tables, fields) {
+    if (gs.nil(customAppID)) {
+      this.logger.error("Application missing");
+      return;
+    }
+
+    var sourceDetails = [];
+
+    var metaGR = new GlideRecord("sys_metadata");
+    metaGR.addQuery("sys_scope", customAppID);
+    metaGR.addQuery("sys_class_name", tables);
+    metaGR.query();
+    var order = 100;
+    while (metaGR.next()) {
+      var table = metaGR.sys_class_name.toString();
+      var sysID = metaGR.sys_id.toString();
+      if (table in fields) {
+        var targetGR = new GlideRecord(table);
+        if (!targetGR.get(sysID)) {
+          this.logger.error("Cannot find record " + table + "." + sysID);
+          continue;
+        }
+        fields[table].forEach(function (field) {
+          if (targetGR.isValidField(field) && !targetGR[field].nil()) {
+            var code = targetGR[field].toString();
+            var description = targetGR.isValidField("description") ? targetGR.description.toString() : "";
+            var link = targetGR
+              .getDisplayValue()
+              .toLowerCase()
+              .replace(/[^\w\- ]/g, "")
+              .replace(/ /g, "-");
+            var md = this.getMarkdownText(targetGR.getDisplayValue(), targetGR.getLabel(), link, description, 2, code);
+            var ast = this.geAbstractSyntaxTree(code);
+
+            var sourceID = this.createSource(versionID, sysID, {
+              source_name: targetGR.getDisplayValue(),
+              source_type: "Document",
+              source_table: table,
+              source_id: sysID,
+              source_script_field: field,
+              remote: false,
+              added_manually: false,
+              order: order,
+              source_key: customAppID,
+              markdown_link: link,
+              api_markdown: md,
+              abstract_syntax_tree: ast,
+            });
+            order += 100;
+            sourceDetails.push({
+              sys_id: sourceID,
+              remote: false,
+              source_id: sysID,
+            });
+          }
+        }, this);
+      }
+    }
+
+    return sourceDetails;
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {array} updateSets
+   * @return {boolean}
+   */
+  loadLocalUpdateSetSource: function (versionID, updateSets, tables, fields) {
+    if (gs.nil(updateSets) || updateSets.length == 0) {
+      this.logger.error("Update sets missing");
+      return;
+    }
+
+    var sourceDetails = [];
+
+    var suxGR = new GlideRecord("sys_update_xml");
+    suxGR.addQuery("update_set", updateSets);
+    suxGR.addQuery("action", "INSERT_OR_UPDATE");
+    var qc = null;
+    tables.forEach(function (table, idx) {
+      if (idx == 0) {
+        qc = suxGR.addQuery("name", "STARTSWITH", table);
+      } else {
+        qc.addOrCondition("name", "STARTSWITH", table);
+      }
+    }, this);
+    suxGR.query();
+    var sources = {};
+    var sourcesEntry;
+    while (suxGR.next()) {
+      var table = suxGR.name.toString().substr(0, suxGR.name.toString().lastIndexOf("_"));
+      var sysID = suxGR.name.toString().substr(suxGR.name.toString().lastIndexOf("_") + 1);
+      if (table in fields) {
+        var targetGR = new GlideRecord(table);
+        if (!targetGR.get(sysID)) {
+          this.logger.error("Cannot find record " + table + "." + sysID);
+          continue;
+        }
+        if (!(suxGR.name.toString() in sources)) {
+          sources[suxGR.name.toString()] = {
+            table: table,
+            sys_id: sysID,
+            sourceKey: suxGR.update_set.toString(),
+            display: targetGR.getDisplayValue(),
+            tableLabel: targetGR.getLabel(),
+            description: targetGR.isValidField("description") ? targetGR.description.toString() : "",
+            fields: [],
+          };
+        }
+        sourcesEntry = sources[suxGR.name.toString()];
+        fields[table].forEach(function (field) {
+          if (sourcesEntry.fields.indexOf(field) < 0 && targetGR.isValidField(field) && !targetGR[field].nil()) {
+            sourcesEntry.fields.push({ field: field, code: targetGR[field].toString() });
+          }
+        }, this);
+      }
+    }
+    var order = 100;
+    for (updName in sources) {
+      sourcesEntry = sources[updName];
+      sourcesEntry.fields.forEach(function (field) {
+        var link = sourcesEntry.display
+          .toLowerCase()
+          .replace(/[^\w\- ]/g, "")
+          .replace(/ /g, "-");
+        var md = this.getMarkdownText(sourcesEntry.display, sourcesEntry.tableLabel, link, sourcesEntry.description, 2, field.code);
+        var ast = this.geAbstractSyntaxTree(field.code);
+
+        var sourceID = this.createSource(versionID, sourcesEntry.sys_id, {
+          source_name: sourcesEntry.display,
+          source_type: "Document",
+          source_table: sourcesEntry.table,
+          source_id: sourcesEntry.sys_id,
+          source_script_field: field.field,
+          remote: false,
+          added_manually: false,
+          order: order,
+          source_key: sourcesEntry.sourceKey,
+          markdown_link: link,
+          api_markdown: md,
+          abstract_syntax_tree: ast,
+        });
+        order += 100;
+        sourceDetails.push({
+          sys_id: sourceID,
+          remote: false,
+          source_id: sourcesEntry.sys_id,
+        });
+      }, this);
+    }
+
+    return sourceDetails;
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {string} customAppIDs
+   * @return {boolean}
+   */
+  loadRemoteApplicationSource: function (versionID, remoteAppDetails, remoteConnectionDetails, remotePW, tables, fields) {
+    if (gs.nil(remoteAppDetails)) {
+      this.logger.error("Application missing");
+      return;
+    }
+
+    if (gs.nil(remoteConnectionDetails)) {
+      this.logger.error("Connections details missing");
+      return;
+    }
+
+    var creds = {};
+
+    if (!("url" in remoteConnectionDetails) || gs.nil(remoteConnectionDetails.url)) {
+      this.logger.error("Connections url missing");
+      return;
+    }
+    creds.instanceURL = remoteConnectionDetails.url;
+
+    if (!("user_name" in remoteConnectionDetails) || gs.nil(remoteConnectionDetails.user_name)) {
+      this.logger.error("Connections user id missing");
+      return;
+    }
+    creds.userName = remoteConnectionDetails.user_name;
+
+    if (gs.nil(remotePW)) {
+      this.logger.error("Connection password missing");
+      return;
+    }
+    creds.clearPW = remotePW;
+
+    var sourceDetails = [];
+
+    var order = 100;
+
+    for (appName in remoteAppDetails) {
+      var appSourceDetails = this.getRemoteApplicationSource(versionID, remoteAppDetails[appName], tables, fields, creds, order);
+      order += appSourceDetails.length * 100;
+      if (appSourceDetails.length > 0) {
+        sourceDetails = sourceDetails.concat(appSourceDetails);
+      }
+    }
+
+    this.logger.debug(sourceDetails.length + " remote application source records added.");
+
+    return sourceDetails;
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {string} updateSets
+   * @return {boolean}
+   */
+  loadRemoteUpdateSetSource: function (versionID, remoteUpdateSets, remoteConnectionDetails, remotePW, tables, fields) {
+    if (gs.nil(remoteUpdateSets)) {
+      this.logger.error("Update sets missing");
+      return;
+    }
+
+    if (gs.nil(remoteConnectionDetails)) {
+      this.logger.error("Connections details missing");
+      return;
+    }
+
+    var creds = {};
+
+    if (!("url" in remoteConnectionDetails) || gs.nil(remoteConnectionDetails.url)) {
+      this.logger.error("Connections url missing");
+      return;
+    }
+    creds.instanceURL = remoteConnectionDetails.url;
+
+    if (!("user_name" in remoteConnectionDetails) || gs.nil(remoteConnectionDetails.user_name)) {
+      this.logger.error("Connections user id missing");
+      return;
+    }
+    creds.userName = remoteConnectionDetails.user_name;
+
+    if (gs.nil(remotePW)) {
+      this.logger.error("Connection password missing");
+      return;
+    }
+    creds.clearPW = remotePW;
+
+    var sourceDetails = [];
+
+    var order = 100;
+    var count = 0;
+
+    for (updateSet in remoteUpdateSets) {
+      var updateSetResult = this.getRemoteUpdateSetSource(versionID, remoteUpdateSets[updateSet], tables, fields, creds, order);
+      sourceDetails = sourceDetails.concat(updateSetResult.sourceDetails);
+      order = order + updateSetResult.count * 100;
+      count = count + updateSetResult.count;
+    }
+    this.logger.debug(count + " source records added.");
+
+    return sourceDetails;
+  },
+
+  getRemoteApplicationSource: function (versionID, customAppID, tables, fields, creds, startOrder) {
+    var order = startOrder;
+    var sourceDetails = [];
+    tables.forEach(function (table) {
+      if (table in fields) {
+        var tableSourceDetails = this.getRemoteApplicationTableSource(versionID, customAppID, table, fields[table], creds, order);
+        if (tableSourceDetails.length > 0) {
+          sourceDetails = sourceDetails.concat(tableSourceDetails);
+        }
+        order += tableSourceDetails.length * 100;
+      }
+    }, this);
+    return sourceDetails;
+  },
+
+  getRemoteUpdateSetSource: function (versionID, updateSet, tables, fields, creds, startOrder) {
+    var order = startOrder;
+    var result = { count: 0, sourceDetails: [] };
+    tables.forEach(function (table) {
+      if (table in fields) {
+        var tableResult = this.getRemoteUpdateSetTableSource(versionID, updateSet, table, fields[table], creds, order);
+        result.sourceDetails = result.sourceDetails.concat(tableResult.sourceDetails);
+        order = order + tableResult.count * 100;
+        count = count + tableResult.count;
+      }
+    }, this);
+    return result;
+  },
+
+  getRemoteApplicationTableSource: function (versionID, customAppID, table, fields, creds, startOrder) {
+    var order = startOrder;
+    var sourceDetails = [];
+    var query = "sys_scope=" + customAppID;
+    fields = ["sys_id", "sys_name", "sys_class_name", "description"].concat(fields);
+    this.logger.debug("Table: " + table + " fields: " + fields);
+    var wsResult = new MarkdownREST(creds.instanceURL, creds.userName, creds.clearPW).getTableRecordList(table, [
+      { name: "sysparm_query", value: query },
+      { name: "sysparm_fields", value: fields.join(",") },
+      { name: "sysparm_display_value", value: "true" },
+    ]);
+
+    if (wsResult.status == 200) {
+      var responseObj = JSON.parse(wsResult.responseBody);
+      var sources = responseObj.result;
+      var order = 100;
+      this.logger.debug("Table: " + table + " source records found: " + sources.length);
+      this.logger.debug("Table: " + table + " Response: " + wsResult.responseBody);
+      sources.forEach(function (source) {
+        var fieldSourceDetails = this._handleRemoteApplicationTableSourceFields(versionID, customAppID, source, table, fields, order);
+        order += 100 * fieldSourceDetails.length;
+        if (fieldSourceDetails.length > 0) {
+          sourceDetails = sourceDetails.concat(fieldSourceDetails);
+        }
+      }, this);
+    } else {
+      this.logger.error("REST call failed with message: " + responseObj.error.message);
+    }
+    return sourceDetails;
+  },
+
+  _handleRemoteApplicationTableSourceFields: function (versionID, customAppID, source, table, fields, order) {
+    var sourceDetails = [];
+    var description = "description" in source ? source.description : "";
+
+    fields.forEach(function (field) {
+      if (field in source) {
+        sourceDetails.push(
+          this._addRemoteTableSource(
+            versionID,
+            source.sys_name,
+            description,
+            table,
+            source.sys_class_name,
+            field,
+            source.sys_id,
+            customAppID,
+            order,
+            source[field]
+          )
+        );
+      }
+    }, this);
+
+    return sourceDetails;
+  },
+
+  getRemoteUpdateSetTableSource: function (versionID, updateSet, table, fields, creds, startOrder) {
+    var order = startOrder;
+    var result = { count: 0, sourceDetails: [] };
+    var query = "update_set=" + updateSet + "^nameSTARTSWITH" + table;
+
+    var pullFields = "name,type,target_name,action,payload";
+    var result = new MarkdownREST(creds.instanceURL, creds.userName, creds.clearPW).getTableRecordList("sys_update_xml", [
+      { name: "sysparm_query", value: query },
+      { name: "sysparm_fields", value: pullFields },
+      { name: "sysparm_display_value", value: "true" },
+    ]);
+
+    if (result.status == 200) {
+      var responseObj = JSON.parse(result.responseBody);
+      var sources = responseObj.result;
+      var order = 100;
+      sources.forEach(function (source) {
+        if (source.action == "INSERT_OR_UPDATE") {
+          var xmlDoc = new XMLDocument2();
+          xmlDoc.parseXML(source.payload);
+          var description = xmlDoc.getNodeText("//description");
+          var sysID = xmlDoc.getNodeText("//sys_id");
+
+          fields.forEach(function (field) {
+            var code = xmlDoc.getNodeText("//" + field);
+            if (code) {
+              result.sourceDetails.push(
+                this._addRemoteTableSource(
+                  versionID,
+                  source.target_name,
+                  description,
+                  table,
+                  source.type,
+                  field,
+                  sysID,
+                  updateSet,
+                  order,
+                  code
+                )
+              );
+              order += 100;
+              result.count++;
+            }
+          }, this);
+        }
+      }, this);
+    } else {
+      this.logger.error("REST call failed with message: " + responseObj.error.message);
+    }
+    return result;
+  },
+
+  _addRemoteTableSource: function (versionID, display, description, table, tableLabel, field, remoteID, sourceKey, order, code) {
+    var link = display
+      .toLowerCase()
+      .replace(/[^\w\- ]/g, "")
+      .replace(/ /g, "-");
+    var md = this.getMarkdownText(display, tableLabel, link, description, 2, code);
+    var ast = this.geAbstractSyntaxTree(code);
+
+    var sourceID = this.createSource(versionID, remoteID, {
+      source_name: display,
+      source_type: "Document",
+      source_table: table,
+      remote_source_id: remoteID,
+      source_script_field: field,
+      remote: true,
+      added_manually: false,
+      order: order,
+      source_key: sourceKey,
+      markdown_link: link,
+      api_markdown: md,
+      abstract_syntax_tree: ast,
+      html: html,
+    });
+    return {
+      sys_id: sourceID,
+      remote: true,
+      source_id: remoteID,
+    };
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @returns {GlideRecord}
+   */
+  getSource: function (versionID, query) {
+    if (gs.nil(versionID)) {
+      this.logger.error("Version ID missing,");
+      return null;
+    }
+    var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+    sourceGR.addQuery("project_code_document_version", versionID);
+    if (!gs.nil(query)) {
+      sourceGR.addEncodedQuery(query);
+    }
+    sourceGR.query();
+    return sourceGR;
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {string} query
+   */
+  removeSource: function (versionID, query) {
+    if (gs.nil(versionID)) {
+      this.logger.error("Version ID missing,");
+      return;
+    }
+    var sourceGR = this.getSource(versionID, query);
+    if (sourceGR) {
+      sourceGR.deleteMultiple();
+      this.logger.debug(sourceGR.getRowCount() + " MarkdownSource Source records deleted.");
+    }
+  },
+
+  /**
+   *
+   * @param {*} newVersionID
+   * @param {*} oldVersionID
+   */
+  copySource: function (newVersionID, oldVersionID) {
+    var sourceGR = this.getSource(oldVersionID, null);
+    if (sourceGR) {
+      while (sourceGR.next()) {
+        this.createSource(
+          newVersionID,
+          sourceGR.source_id.toString(),
+          sourceGR.source_type.toString(),
+          sourceGR.source_table.toString(),
+          sourceGR.source_id.toString(),
+          sourceGR.source_script_field.toString(),
+          sourceGR.source_name.toString(),
+          sourceGR.source_description.toString(),
+          sourceGR.source_text.toString(),
+          sourceGR.added_manually ? true : false,
+          sourceGR.remote ? true : false,
+          sourceGR.order.toString()
+        );
+      }
+      this.logger.debug(sourceGR.getRowCount() + " MarkdownSource Source records copied.");
+    }
+  },
+
+  /**
+   *
+   * @param {string} versionID
+   * @param {object} attributes
+   */
+  createSource: function (versionID, sourceSysID, attributes) {
+    if (gs.nil(versionID)) {
+      this.logger.error("Version ID is missing");
+      return;
+    }
+    if (gs.nil(sourceSysID)) {
+      this.logger.error("Source Sys ID is missing");
+      return;
+    }
+
+    var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+    sourceGR.addQuery("project_code_document_version", versionID);
+    sourceGR.addQuery("source_id", sourceSysID).addOrCondition("remote_source_id", sourceSysID);
+    sourceGR.query();
+    if (!sourceGR.next()) {
+      sourceGR.initialize();
+      sourceGR.project_code_document_version = versionID;
+    }
+
+    for (fieldName in attributes) {
+      if (sourceGR.isValidField(fieldName)) {
+        sourceGR[fieldName] = attributes[fieldName];
+      }
+    }
+    // Will insert new record or update an existing one
+    return sourceGR.update();
+  },
+
+  /**
+   *
+   */
+  combineMarkdownText: function (docGR) {
+    var sourceMDText = [];
+    sourceMDText.push('# <a name="top_of_doc"></a> ' + docGR.short_description);
+    sourceMDText.push("---");
+    sourceMDText.push("## Contents");
+    sourceMDText.push("[//]:# (CONTENTS_START)");
+    sourceMDText.push("[//]:# (CONTENTS_END)");
+    sourceMDText.push(" ");
+
+    var sources = this.getVersionMarkdownText(docGR.getUniqueValue());
+    var content = [];
+
+    sources.forEach(function (sourceMD, idx) {
+      content.push({ displayName: sourceMD.name, link: sourceMD.link });
+
+      sourceMDText.push("---");
+      sourceMDText.push("[//]:# (" + sourceMD.link + "_START)");
+      sourceMDText.push(sourceMD.md);
+      sourceMDText.push("[//]:# (" + sourceMD.link + "_END)");
+
+      this._addBackToTop(sourceMDText);
+    }, this);
+
+    var contentIdx = sourceMDText.indexOf("[//]:# (CONTENTS_END)");
+    if (contentIdx >= 0) {
+      content.forEach(function (item, index) {
+        sourceMDText.splice(contentIdx + index, 0, "[" + item.displayName + "](#" + item.link + ")");
+      }, this);
+    } else {
+      this.logger.error("Cannot find Contents section");
+    }
+
+    return sourceMDText.join("\n");
+  },
+
+  _addBackToTop: function (sourceArray) {
+    sourceArray.push("<br />");
+    sourceArray.push('<span style="float: right">');
+    sourceArray.push("");
+    sourceArray.push("[Back To Top](#top_of_doc)");
+    sourceArray.push("</span>");
+    sourceArray.push("<span />");
+    sourceArray.push(" ");
+  },
+
+  /**
+   *
+   */
+  getVersionMarkdownText: function (versionID) {
+    var sourceMD = [];
+
+    var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+    sourceGR.addQuery("project_code_document_version", versionID);
+    sourceGR.addNotNullQuery("api_markdown");
+    sourceGR.orderBy("order");
+    sourceGR.query();
+    while (sourceGR.next()) {
+      sourceMD.push({
+        name: sourceGR.source_name.toString(),
+        md: sourceGR.api_markdown.toString(),
+        link: sourceGR.markdown_link.toString(),
+      });
+    }
+    return sourceMD;
+  },
+
+  type: "MarkdownSource",
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-03 18:46:16</sys_created_on>
+        <sys_id>413212afdb523300d0cb5385ca96191b</sys_id>
+        <sys_mod_count>33</sys_mod_count>
+        <sys_name>MarkdownSource</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_413212afdb523300d0cb5385ca96191b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-26 20:33:12</sys_updated_on>
+    </sys_script_include>
+</record_update>

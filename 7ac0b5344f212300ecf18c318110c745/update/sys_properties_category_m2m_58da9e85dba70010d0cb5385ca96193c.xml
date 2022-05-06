@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Markdown Documents">3c00ba8f4ff7a300ecf18c318110c7e1</category>
+        <order>500</order>
+        <property display_value="x_58056_md_docs.logging_level" name="x_58056_md_docs.logging_level">9ebad649dba70010d0cb5385ca9619de</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-13 00:28:33</sys_created_on>
+        <sys_id>58da9e85dba70010d0cb5385ca96193c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_58056_md_docs.logging_level.Markdown Documents</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_58da9e85dba70010d0cb5385ca96193c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-13 00:28:48</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>abstract_syntax_tree</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Add in markdown editor</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+    // Check that this is a version and not the published article
+    if (g_scratchpad.canWrite == "false") {
+        return;
+    }
+    var scripts = [
+        "x_58056_md_docs.easymde.min.jsdbx",
+        "x_58056_md_docs.codemirror.jsdbx",
+        "x_58056_md_docs.initialize_easymde.jsdbx",
+        "x_58056_md_docs.bootstrap.min.jsdbx",
+        "x_58056_md_docs.html2canvas.jsdbx",
+        "x_58056_md_docs.jspdf.debug.jsdbx",
+        //"x_58056_md_docs.jspdf.min.jsdbx",
+        "x_58056_md_docs.codemirror_autorefresh.jsdbx"
+    ];
+
+    g_form.setDisplay("api_markdown", false);
+
+    ScriptLoader.getScripts(scripts, afterLoad);
+
+    function afterLoad() {
+        //markdownDocument.createEasyMDE(g_form.getControl("api_markdown").id, g_form.getValue("api_markdown"));
+        var hdrMDE = markdownDocument.createEasyMDE("markdown-document-textarea", g_form.getValue("api_markdown"), g_form.getUniqueValue());
+        if (!hdrMDE) {
+            alert("ERROR Markdown Document controller not created");
+            return;
+        }
+        hdrMDE.codemirror.refresh();
+        hdrMDE.codemirror.setOption("autoRefresh", true);
+		
+		// Update the HTML if we have markdown text but no html yet
+        if (g_form.getValue("html") == "" && g_form.getValue("api_markdown") != "") {
+            updateHTML(hdrMDE);
+        }
+    }
+}
+
+function updateHTML(mde) {
+    var mdText = mde.value();
+    var sourceHTML = mde.options.previewRender(mdText);
+
+    var styleSheetIds = g_scratchpad.style_sheet_ids.split(",");
+    var cssHdrText = '<header>';
+    styleSheetIds.forEach(function(id) {
+        cssHdrText += '\n<link href="' + id + '.cssdbx" rel="stylesheet" type="text/css"></link>';
+    }, this);
+    cssHdrText += '\n</header>';
+
+    g_form.setValue("html", cssHdrText + "\n<div class='content'>\n" + sourceHTML + "\n</div>");
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-15 17:51:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>0eefed73db117700d0cb5385ca961996</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>Add in markdown editor</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_client_0eefed73db117700d0cb5385ca961996</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-10-07 00:29:02</sys_updated_on>
+        <table>x_58056_md_docs_markdown_source</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

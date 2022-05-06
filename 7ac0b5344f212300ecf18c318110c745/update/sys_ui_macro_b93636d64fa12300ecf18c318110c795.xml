@@ -10,14 +10,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-05 21:15:30</sys_created_on>
         <sys_id>b93636d64fa12300ecf18c318110c795</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>markdown_editor</sys_name>
         <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
         <sys_policy/>
         <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
         <sys_update_name>sys_ui_macro_b93636d64fa12300ecf18c318110c795</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-05-23 01:03:25</sys_updated_on>
+        <sys_updated_on>2019-12-11 01:07:54</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
   <g:evaluate>
@@ -35,6 +35,9 @@
   <j:forEach items="${styleSheetIds}" var="jvar_array_item"> 
     <link href="${jvar_array_item}.cssdbx?" rel="stylesheet" type="text/css"/>
   </j:forEach>
+   	<div id="markdown-document-editormd" style="max-width: 90%;margin: auto;">                
+      <textarea id="markdown-document-textarea" style="display:none;"></textarea>
+    </div>
 </j:jelly>]]></xml>
     </sys_ui_macro>
 </record_update>

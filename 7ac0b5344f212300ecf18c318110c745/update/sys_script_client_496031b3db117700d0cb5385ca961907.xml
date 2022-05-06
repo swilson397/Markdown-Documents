@@ -12,9 +12,14 @@
         <order/>
         <script><![CDATA[function onSubmit() {
 	if (typeof markdownDocument == "undefined") {
+		alert("ERROR Markdown Document controller not found");
 		return;
 	}
-	var hdrMDE = markdownDocument.getEasyMDE(g_form.getControl("api_markdown").id);
+	var hdrMDE = markdownDocument.getEasyMDE(g_form.getUniqueValue());
+	if (! hdrMDE) {
+		alert("ERROR Markdown Document controller not found");
+		return;
+	}
 	var sourceHTML = hdrMDE.options.previewRender(hdrMDE.value());
 	
 	var styleSheetIds = g_scratchpad.style_sheet_ids.split(",");
@@ -25,7 +30,7 @@
 	cssHdrText += '</header>';
 	
 	g_form.setValue("html", cssHdrText + "\n<div class='content'>\n" + sourceHTML + "\n</div>");
-	
+
 	hdrMDE.toTextArea();
 	markdownDocument = null;
 }]]></script>
@@ -35,7 +40,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>496031b3db117700d0cb5385ca961907</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>Save markdown text</sys_name>
         <sys_overrides/>
         <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
@@ -43,7 +48,7 @@
         <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
         <sys_update_name>sys_script_client_496031b3db117700d0cb5385ca961907</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-06-08 18:29:22</sys_updated_on>
+        <sys_updated_on>2020-03-14 00:30:29</sys_updated_on>
         <table>x_58056_md_docs_markdown_source</table>
         <type>onSubmit</type>
         <ui_type>0</ui_type>

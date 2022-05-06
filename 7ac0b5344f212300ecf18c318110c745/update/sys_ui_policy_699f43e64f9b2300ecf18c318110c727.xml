@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_58056_md_docs_markdown_source">source_type=Document^remote=false^EQ<item endquery="false" field="source_type" goto="false" newquery="false" operator="=" or="false" value="Document"/>
+        <conditions table="x_58056_md_docs_markdown_source">source_type=Document^remote=false^EQ<item display_value="Document" endquery="false" field="source_type" goto="false" newquery="false" operator="=" or="false" value="Document"/>
             <item endquery="false" field="remote" goto="false" newquery="false" operator="=" or="false" value="false"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>

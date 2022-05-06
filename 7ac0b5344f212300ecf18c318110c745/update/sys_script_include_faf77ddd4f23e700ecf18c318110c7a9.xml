@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.MarkdownAJAX</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>MarkdownAJAX</name>
+        <script><![CDATA[/**
+ * @class
+ * @name MarkdownAJAX
+ */
+MarkdownAJAX = Class.create();
+MarkdownAJAX.DEBUG = true;
+MarkdownAJAX.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+  rebuildSourceList: function () {
+    var docID = this.getParameter("sysparm_doc_id");
+    var projectType = this.getParameter("sysparm_project_type");
+    var customAppID = this.getParameter("sysparm_custom_app_id");
+    var updateSets = this.getParameter("sysparm_update_sets");
+    var remoteSources = this.getParameter("sysparm_remote_sources");
+    MarkdownVersion.rebuildSourceList(docID, projectType, customAppID, updateSets, remoteSources);
+  },
+
+  getSourceList: function () {
+    var localRemote = this.getParameter("sysparm_local_remote");
+    if (localRemote != "Local") {
+      return getRemoteSourceList();
+    }
+
+    return getLocalSourceList();
+  },
+
+  getLocalSourceList: function () {
+    var rc = { status: "success", msg: "", sources: [] };
+
+    var versionID = this.getParameter("sysparm_version_id");
+    var projectType = this.getParameter("sysparm_project_type");
+    var filter = this.getParameter("sysparm_filter");
+
+    if (!gs.nil(filter)) {
+      filter += "^";
+    } else {
+      filter = "";
+    }
+    var slGR = null;
+    if (projectType == "Custom application") {
+      filter += "active=true^ORDERBYname";
+      slGR = new GlideRecord("sys_app");
+    } else {
+      filter += "state=complete^ORDERBYname";
+      slGR = new GlideRecord("sys_update_set");
+    }
+    slGR.addEncodedQuery(filter);
+    slGR.query();
+    while (slGR.next()) {
+      rc.sources.push({ sys_id: slGR.sys_id.toString(), display: slGR.name.toString() });
+    }
+    return JSON.stringify(rc);
+  },
+
+  getRemoteSourceList: function () {
+    var rc = { status: "", msg: "", sources: [] };
+
+    var versionID = this.getParameter("sysparm_version_id");
+    var projectType = this.getParameter("sysparm_project_type");
+    var url = this.getParameter("sysparm_instance_url");
+    var userName = this.getParameter("sysparm_user_name");
+    var password = this.getParameter("sysparm_password");
+    var filter = this.getParameter("sysparm_filter");
+    var result = null;
+    var mdRest = new MarkdownREST(url, userName, password);
+    this._log("Project type=" + projectType);
+    if (!gs.nil(filter)) {
+      filter += "^";
+    } else {
+      filter = "";
+    }
+    if (projectType == "Custom application") {
+      filter += "active=true^ORDERBYname";
+      result = mdRest.getTableRecordList("sys_app", [
+        { name: "sysparm_query", value: filter },
+        { name: "sysparm_fields", value: "name,sys_id" },
+      ]);
+    } else {
+      filter += "state=complete^ORDERBYname";
+      result = mdRest.getTableRecordList("sys_update_set", [
+        { name: "sysparm_query", value: filter },
+        { name: "sysparm_fields", value: "name,sys_id" },
+      ]);
+    }
+
+    this._log("result=" + result);
+    if (!result) {
+      rc.status = "fail";
+      rc.msg = "Nothing returned from MarkdownREST.";
+      this._logError(rc.msg);
+    } else {
+      this._log("Status=" + result.status);
+      var responseObj = JSON.parse(result.responseBody);
+      if (result.status == 999) {
+        rc.status = "fail";
+        rc.msg = result.msg;
+        this._logError(rc.msg);
+      } else if (result.status != 200) {
+        rc.status = "fail";
+        rc.msg = "Connection failed with message: " + responseObj.error.message;
+        this._logError(rc.msg);
+      } else {
+        rc.status = "success";
+        var sources = responseObj.result;
+        this._log("Sources count=" + sources.length);
+        sources.forEach(function (app) {
+          rc.sources.push({ sys_id: app.sys_id, display: app.name });
+        }, this);
+      }
+    }
+    return JSON.stringify(rc);
+  },
+
+  testRemoteConnection: function () {
+    var rc = { status: "", msg: "" };
+    var sysID = this.getParameter("sysparm_sys_id");
+    var instanceURL = this.getParameter("sysparm_instance_url");
+    var userName = this.getParameter("sysparm_user_name");
+    var password = this.getParameter("sysparm_password");
+
+    // If no password entered on the form then use the one previously saved on the record
+    password = this._getRemoteSourcePassword(password, sysID);
+    if (gs.nil(password)) {
+      rc.status = "fail";
+      rc.msg = "Unable to determine password";
+      this._logError(rc.msg);
+    } else {
+      rc = new MarkdownREST(instanceURL, userName, password).testRemoteConnection();
+    }
+    return JSON.stringify(rc);
+  },
+
+  _getRemoteSourcePassword: function (password, verID) {
+    var clearPW = password;
+    if (password == "********") {
+      clearPW = new MarkdownVersion().getVersionRemoteCredentials(verID).clearPW;
+    }
+    return clearPW;
+  },
+
+  buildSourceAbstractSyntaxTree: function () {
+    var result = { ok: false, msg: "" };
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+    if (!sourceGR.get(sys_id)) {
+      this._logError("Source record not found. id=" + sys_id);
+      result.msg = "Source record not found";
+    } else {
+      sourceGR.abstract_syntax_tree = new Markdown().generateAbstractSyntaxTree(sourceGR);
+      sourceGR.update();
+      result.ok = true;
+      result.msg = "Abstract Syntax Tree updated";
+    }
+    return JSON.stringify(result);
+  },
+
+  buildAllSourceMarkdown: function () {
+    var utils = new Markdown();
+    var mdDocSysID = this.getParameter("sysparm_sys_id");
+    var sourceGR = utils.getMarkdownSource(mdDocSysID, null);
+    while (sourceGR.next()) {
+      sourceGR.api_markdown = utils.buildMarkdownText(sourceGR);
+      sourceGR.update();
+    }
+  },
+
+  getSourceMarkdownText: function () {
+    var result = { ok: false, msg: "", md: "" };
+
+    var sourceType = this.getParameter("sysparm_source_type");
+    var sourceID = this.getParameter("sysparm_source_id");
+    var remoteSourceID = this.getParameter("sysparm_remote_source_id");
+    var sourceTable = this.getParameter("sysparm_source_table");
+    var sourceScriptField = this.getParameter("sysparm_source_script_field");
+    var sourceRemote = this.getParameter("sysparm_remote");
+    var sourceName = this.getParameter("sysparm_source_name");
+    var sourceDescription = this.getParameter("sysparm_source_description");
+    var sourceText = this.getParameter("sysparm_source_text");
+
+    var mdSource = new MarkdownSource();
+
+    var sourceDetails = mdSource.getSourceCodeDetails(
+      sourceType,
+      sourceRemote,
+      sourceID,
+      remoteSourceID,
+      sourceTable,
+      sourceScriptField,
+      sourceName,
+      sourceDescription,
+      sourceText
+    );
+
+    if (!gs.nil(sourceDetails.code)) {
+      result.md = mdSource.getMarkdownText(
+        sourceDetails.name,
+        sourceDetails.type,
+        sourceDetails.link,
+        sourceDetails.description,
+        2,
+        sourceDetails.code
+      );
+      if (gs.nil(result.md)) {
+        result.ok = false;
+        result.msg = "Markdown text not generated. See system logs for more information";
+      } else {
+        result.ok = true;
+      }
+    } else {
+      result.ok = false;
+      result.msg = "Source code missing";
+    }
+
+    return JSON.stringify(result);
+  },
+
+  buildSourceMarkdown: function () {
+    var result = { ok: false, msg: "" };
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var sourceGR = new GlideRecord("x_58056_md_docs_markdown_source");
+    if (!sourceGR.get(sys_id)) {
+      this._logError("Source record not found. id=" + sys_id);
+      result.msg = "Source record not found";
+    } else {
+      sourceGR.api_markdown = new MarkdownSource().buildSourceMarkdownText(sourceGR);
+      sourceGR.update();
+      result.ok = true;
+      result.msg = "Markdown updated";
+    }
+    return JSON.stringify(result);
+  },
+
+  getHTML: function () {
+    var table = this.getParameter("sysparm_table");
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var content = this.getParameter("sysparm_content");
+
+    var gr = new GlideRecord(table);
+    if (!gr.get(sys_id)) {
+      this._logError("Glide record not found. Table=" + table + " id=" + sys_id);
+      return "Glide record not found";
+    }
+
+    var utils = new Markdown();
+
+    var header = '<html><head style="height: 100%;">';
+    var styleSheetNames = gs.getProperty("x_58056_md_docs.kb_html_stylesheets", null);
+    if (styleSheetNames) {
+      header += "<style>";
+      styleSheetNames = styleSheetNames.split(",");
+      styleSheetNames.forEach(function (name) {
+        var cssGR = utils.getContentCSS(name);
+        if (cssGR) {
+          header += cssGR.style.toString() + "\n";
+        }
+      }, this);
+      header += "</style>";
+    }
+    header += "</head>";
+
+    var html = header + '\n<body style="height: 100%;">\n<div class="content">\n' + content + "\n</div></body></html>";
+    this._log("HTML=" + html + ".");
+    return html;
+  },
+
+  createHTMLFile: function () {
+    var table = this.getParameter("sysparm_table");
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var content = this.getParameter("sysparm_content");
+
+    var gr = new GlideRecord(table);
+    if (!gr.get(sys_id)) {
+      this._logError("Glide record not found. Table=" + table + " id=" + sys_id);
+      return "Glide record not found";
+    }
+
+    var utils = new Markdown();
+
+    var header = "<html><head>";
+    var styleSheetNames = gs.getProperty("x_58056_md_docs.kb_html_stylesheets", null);
+    if (styleSheetNames) {
+      header += "<style>";
+      styleSheetNames = styleSheetNames.split(",");
+      styleSheetNames.forEach(function (name) {
+        var cssGR = utils.getContentCSS(name);
+        header += cssGR.style.toString() + "\n";
+      }, this);
+      header += "</style>";
+    }
+    header += "</head>";
+
+    var html = header + "\n<body><div class='content'>\n" + content + "\n</div></body></html>";
+
+    var fileName = gr.getDisplayValue() + ".html";
+
+    var att_id = utils.createAttachment(gr, fileName, "application/html", html);
+    this._log("att_id=" + att_id);
+    return "ok";
+  },
+
+  createWordFile: function () {
+    var table = this.getParameter("sysparm_table");
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var content = this.getParameter("sysparm_content");
+
+    var gr = new GlideRecord(table);
+    if (!gr.get(sys_id)) {
+      this._logError("Glide record not found. Table=" + table + " id=" + sys_id);
+      return "Glide record not found";
+    }
+
+    var utils = new Markdown();
+
+    var header =
+      '<html  xmlns:office="urn:schemas-microsoft-com:office:office" ' +
+      'xmlns:word="urn:schemas-microsoft-com:office:word" ' +
+      'xmlns="http://www.w3.org/TR/REC-html40">\n' +
+      "<head>\n" +
+      "<xml>" +
+      "\n  <word:WordDocument>" +
+      "\n    <word:View>Print</word:View>" +
+      "\n    <word:Zoom>90</word:Zoom>" +
+      "\n    <word:DoNotOptimizeForBrowser/>" +
+      "\n</word:WordDocument>" +
+      "\n</xml>";
+    var styleSheetNames = gs.getProperty("x_58056_md_docs.kb_html_stylesheets", null);
+    if (styleSheetNames) {
+      header += "<style>";
+      styleSheetNames = styleSheetNames.split(",");
+      styleSheetNames.forEach(function (name) {
+        var cssGR = utils.getContentCSS(name);
+        if (cssGR) {
+          header += cssGR.style.toString() + "\n";
+        }
+      }, this);
+      header += "</style>";
+    }
+    header += "</head>";
+
+    var html = header + "\n<body><div class='content'>\n" + content + "\n</div></body></html>";
+
+    var fileName = gr.getDisplayValue() + ".doc";
+
+    var att_id = new Markdown().createAttachment(gr, fileName, "application/msword", html);
+    this._log("att_id=" + att_id);
+    return "ok";
+  },
+
+  createPDFFile: function () {
+    var table = this.getParameter("sysparm_table");
+    var sys_id = this.getParameter("sysparm_sys_id");
+    var content = this.getParameter("sysparm_content");
+
+    var gr = new GlideRecord(table);
+    if (!gr.get(sys_id)) {
+      this._logError("Glide record not found. Table=" + table + " id=" + sys_id);
+      return "Glide record not found";
+    }
+
+    var fileName = gr.getDisplayValue() + ".pdf";
+    //var binData = gs.base64Decode(content);
+
+    var att_id = new Markdown().createAttachment(gr, fileName, "application/pdf", content);
+    this._log("att_id=" + att_id);
+    return "ok";
+  },
+
+  /**
+   * Adds an error message to the system log.
+   *
+   * @param {string} msg Message to add to system log.
+   */
+  _logError: function (msg) {
+    gs.error("[" + this.type + "] " + msg);
+  },
+
+  /**
+   * Adds a warning message to the system log.
+   *
+   * @param {string} msg Message to add to the system log.
+   */
+  _logWarning: function (msg) {
+    gs.warn("[" + this.type + "] " + msg);
+  },
+
+  /**
+   * Adds a message to the system log if MarkdownAJAX.DEBUG is true.
+   *
+   * @param {String} msg Message to add to the system log.
+   */
+  _log: function (msg) {
+    if (MarkdownAJAX.DEBUG) {
+      gs.info("[" + this.type + "] " + msg);
+    }
+  },
+
+  type: "MarkdownAJAX",
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-10 00:13:22</sys_created_on>
+        <sys_id>faf77ddd4f23e700ecf18c318110c7a9</sys_id>
+        <sys_mod_count>62</sys_mod_count>
+        <sys_name>MarkdownAJAX</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_faf77ddd4f23e700ecf18c318110c7a9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-19 01:30:24</sys_updated_on>
+    </sys_script_include>
+</record_update>

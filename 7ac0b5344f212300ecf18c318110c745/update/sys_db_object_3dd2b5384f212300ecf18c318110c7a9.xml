@@ -17,6 +17,7 @@
         <number_ref/>
         <provider_class/>
         <read_access>true</read_access>
+        <scriptable_table>false</scriptable_table>
         <super_class display_value="Knowledge" name="kb_knowledge">5c0234d44fa12300ecf18c318110c704</super_class>
         <sys_class_code/>
         <sys_class_name>sys_db_object</sys_class_name>

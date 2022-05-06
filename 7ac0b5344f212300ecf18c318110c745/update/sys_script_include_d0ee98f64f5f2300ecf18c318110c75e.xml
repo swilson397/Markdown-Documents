@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.Markdown</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Markdown</name>
+        <script><![CDATA[/**
+ * @class Markdown
+ */
+
+Markdown = Class.create();
+
+Markdown.DEBUG = true;
+Markdown.ACTION_EVENT = "x_58056_md_docs.md_docs.action";
+
+/**
+ *
+ *
+ * @param {*} current
+ * @param {*} action
+ * @param {*} operation
+ */
+Markdown.handleMarkdownAction = function(current, action, operation) {
+    if (action == MarkdownVersion.BUILD_SOURCE_LIST) {
+        new MarkdownVersion().buildSourceList(current, operation);
+        return;
+    }
+    gs.error("Unknown action: " + action);
+};
+
+Markdown.prototype = {
+    /**
+     * Initialize variables
+     */
+    initialize: function() {
+        this.maxImageBytes = 1 * 1024 * 1024;
+    },
+
+    getAttachment: function(gr, fileName) {
+        var attGR = new GlideRecord("sys_attachment");
+        attGR.addQuery("table_name", gr.getRecordClassName());
+        attGR.addQuery("table_sys_id", gr.getUniqueValue());
+        attGR.addQuery("file_name", fileName);
+        attGR.query();
+        if (attGR.next()) {
+            return attGR;
+        }
+        return null;
+    },
+
+    getImageUrl: function(attachmentSysId) {
+        if (gs.nil(attachmentSysId)) {
+            return "";
+        }
+        var attGR = new GlideRecord("sys_attachment");
+        if (!attGR.get(attachmentSysId)) {
+            return "";
+        }
+        var base64Image = String(new GlideSysAttachment().getContentBase64(attGR));
+        var imageSize = (base64Image.length * 3) / 4;
+        if (imageSize > this.maxImageBytes) {
+            this._logError("Image size is greater than " + this.maxImageBytes + " for SYSID " + attachmentSysId);
+            return "";
+        }
+        return "data:image/png;base64," + base64Image;
+    },
+
+    removeAttachment: function(gr, fileName) {
+        var attGR = this.getAttachment(gr, fileName);
+        if (attGR) {
+            new GlideSysAttachment().deleteAttachment(attGR.getUniqueValue());
+        }
+    },
+
+    createAttachment: function(markdownGR, fileName, contentType, content) {
+        // Remove existing attachment
+        this.removeAttachment(markdownGR, fileName);
+
+        var att_id = new GlideSysAttachment().write(markdownGR, fileName, contentType, content);
+        return att_id;
+    },
+
+    getContentCSS: function(name) {
+        var cssGR = new GlideRecord("content_css");
+        if (cssGR.get("name", name)) {
+            return cssGR;
+        }
+        return null;
+    },
+
+    /**
+     * Adds an error message to the system log.
+     *
+     * @param {string} msg Message to add to system log.
+     */
+    _logError: function(msg) {
+        gs.error("[" + this.type + "] " + msg);
+    },
+
+    /**
+     * Adds a warning message to the system log.
+     *
+     * @param {string} msg Message to add to the system log.
+     */
+    _logWarning: function(msg) {
+        gs.warn("[" + this.type + "] " + msg);
+    },
+
+    /**
+     * Adds a message to the system log if Markdown.DEBUG is true.
+     *
+     * @param {String} msg Message to add to the system log.
+     */
+    _log: function(msg) {
+        if (Markdown.DEBUG) {
+            gs.info("[" + this.type + "] " + msg);
+        }
+    },
+
+    type: "Markdown"
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-01 23:18:37</sys_created_on>
+        <sys_id>d0ee98f64f5f2300ecf18c318110c75e</sys_id>
+        <sys_mod_count>67</sys_mod_count>
+        <sys_name>Markdown</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_d0ee98f64f5f2300ecf18c318110c75e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-05 00:31:48</sys_updated_on>
+    </sys_script_include>
+</record_update>

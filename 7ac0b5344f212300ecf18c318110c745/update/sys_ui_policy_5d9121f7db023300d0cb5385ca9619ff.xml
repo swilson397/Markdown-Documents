@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_58056_md_docs_code_documentation">local_remote=Remote^EQ<item endquery="false" field="local_remote" goto="false" newquery="false" operator="=" or="false" value="Remote"/>
+        <conditions table="x_58056_md_docs_code_documentation">local_remote=Remote^EQ<item display_value="Remote" endquery="false" field="local_remote" goto="false" newquery="false" operator="=" or="false" value="Remote"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>

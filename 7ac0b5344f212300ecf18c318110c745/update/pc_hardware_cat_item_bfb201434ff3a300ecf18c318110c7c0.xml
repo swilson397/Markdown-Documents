@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="pc_hardware_cat_item">
     <pc_hardware_cat_item action="INSERT_OR_UPDATE">
+        <access_type>restricted</access_type>
         <active>true</active>
         <auto_created>true</auto_created>
         <availability>on_desktop</availability>
         <billable>false</billable>
         <category display_value="Office">109cdff8c6112276003b17991a09ad65</category>
+        <checked_out/>
         <cost>599.99</cost>
         <custom_cart/>
         <delivery_plan display_value="DEFAULT">523da512c611228900811a37c97c2014</delivery_plan>
@@ -15,57 +17,69 @@
 <ul class="bullet"><li>Product Model: S27A950D</li><li>Product Name: SyncMaster S27A950D Widescreen LCD Monitor</li><li>Product Type: LCD Monitor</li><li>Number of Screens: 1</li><li>Screen Size: 27&#34;</li><li>Screen Mode: Full HD</li><li>Response Time: 2 ms</li><li>Aspect Ratio: 16:9</li><li>Horizontal Viewing Angle: 170?</li><li>Vertical Viewing Angle: 160?</li><li>Adjustable Display Angle: Yes</li><li>Backlight Technology: LED</li><li>3D Type: 3D</li><li>3D Conversion: Yes</li><li>Features: Off Timer</li><li>Maximum Resolution: 1920 x 1080</li><li>Standard Refresh Rate: 120 Hz</li><li>Color Supported: 16.7 Million Colors</li><li>Contrast Ratio: 1,000:1</li><li>Brightness: 300 Nit</li><li>DVI: Yes</li><li>HDMI: Yes</li><li>VGA: Yes</li><li>DisplayPort: Yes</li></ul>
 <p></p>
 ]]></description>
+        <display_price_property>non_zero</display_price_property>
         <entitlement_script/>
         <features/>
+        <flow_designer_flow/>
         <group/>
         <hide_sp>false</hide_sp>
         <icon/>
         <ignore_price>false</ignore_price>
         <image/>
-        <list_price>0</list_price>
         <location/>
+        <mandatory_attachment>false</mandatory_attachment>
         <meta/>
         <mobile_hide_price>false</mobile_hide_price>
         <mobile_picture/>
         <mobile_picture_type>use_desktop_picture</mobile_picture_type>
         <model display_value="Samsung SyncMaster 27&quot; 3D LED LCD Monitor">0e03cdcb1b1310002502fbcd2c0713b1</model>
         <name>SyncMaster 27" 3D LED LCD Monitor</name>
+        <no_attachment_v2>false</no_attachment_v2>
         <no_cart>false</no_cart>
+        <no_cart_v2>false</no_cart_v2>
+        <no_delivery_time_v2>false</no_delivery_time_v2>
         <no_order>false</no_order>
         <no_order_now>false</no_order_now>
         <no_proceed_checkout>false</no_proceed_checkout>
         <no_quantity>false</no_quantity>
+        <no_quantity_v2>false</no_quantity_v2>
         <no_search>false</no_search>
+        <no_wishlist_v2>false</no_wishlist_v2>
         <omit_price>false</omit_price>
         <order>0</order>
         <ordered_item_link/>
+        <owner/>
         <picture/>
         <preview>JavaScript: popupOpenStandard("com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=bfb201434ff3a300ecf18c318110c7c0&amp;sysparm_preview=true", "summary");</preview>
         <price>599.99</price>
         <product_id>S27A750D</product_id>
+        <published_ref/>
         <recurring_frequency/>
-        <recurring_price>0</recurring_price>
-        <roles/>
+        <request_method/>
+        <roles>snc_internal</roles>
         <sc_catalogs>e0d08b13c3330100c8b837659bba8fb4</sc_catalogs>
         <sc_ic_item_staging/>
         <sc_ic_version/>
+        <sc_template/>
         <short_description>Samsung - SyncMaster S27A750D 27" 3D LED LCD Monitor - 16:9 - 2 ms - Black</short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <specs/>
         <start_closed>false</start_closed>
+        <state/>
         <sys_class_name>pc_hardware_cat_item</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-02-27 17:05:00</sys_created_on>
         <sys_id>bfb201434ff3a300ecf18c318110c7c0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>SyncMaster 27" 3D LED LCD Monitor</sys_name>
         <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
         <sys_policy/>
         <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
         <sys_update_name>pc_hardware_cat_item_bfb201434ff3a300ecf18c318110c7c0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-02-27 17:05:00</sys_updated_on>
+        <sys_updated_on>2020-11-04 19:00:18</sys_updated_on>
         <template/>
+        <template_manager_roles/>
         <type>item</type>
         <upc/>
         <use_sc_layout>true</use_sc_layout>

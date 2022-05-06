@@ -1,0 +1,1781 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58056_md_docs.CA_Spectrum</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CA_Spectrum</name>
+        <script><![CDATA[var CA_Spectrum = Class.create();
+
+var SUCCESS = Packages.com.service_now.mid.probe.tpcon.OperationStatusType.SUCCESS;
+var FAILURE = Packages.com.service_now.mid.probe.tpcon.OperationStatusType.FAILURE;
+var Event = Packages.com.snc.commons.eventmgmt.Event;
+var SNEventSenderProvider = Packages.com.service_now.mid.probe.event.SNEventSenderProvider;
+var HTTPRequest = Packages.com.glide.communications.HTTPRequest;
+
+CA_Spectrum.prototype = Object.extendsObject(AProbe, {
+
+            CA_SPECTRUM : "CA Spectrum",
+
+            DEBUG : true,
+
+            MAX_EVENTS_TO_FETCH : 3000,
+            MAX_SUBSCRIPTION_LOOPS : 10,
+
+            // Packages
+            StringUtil : Packages.com.glide.util.StringUtil,
+            Properties : Packages.java.util.Properties,
+
+            /**
+             * Complete list of CA Spectrum Alarm attributes codes and names
+             */
+            SPECTRUM_ALARM_ATTRIBUTES : {
+                "0x10000" : "modelTypeName",
+                "0x10001" : "modelTypeOfAlarmedModel",
+                "0x10009" : "securityString",
+                "0x1000a" : "condition",
+                "0x1006e" : "modelName",
+                "0x11ee8" : "modelClass",
+                "0x11f4d" : "acknowledged",
+                "0x11f4e" : "creationDate",
+                "0x11f4f" : "alarmStatus",
+                "0x11f50" : "causeCode",
+                "0x11f52" : "eventIdList",
+                "0x11f53" : "modelHandleOfAlarmedModel",
+                "0x11f54" : "primaryAlarm",
+                "0x11f56" : "severity",
+                "0x11f57" : "troubleshooter",
+                "0x11f9b" : "userClearable",
+                "0x11f9c" : "alarmId",
+                "0x11fc4" : "alarmSource",
+                "0x11fc5" : "occurrences",
+                "0x11fc6" : "troubleshooterModelHandle",
+                "0x12022" : "troubleTicketId",
+                "0x1296e" : "originatingEvent",
+                "0x12a04" : "symptomList",
+                "0x12a05" : "causeList",
+                "0x12a06" : "symptomCount",
+                "0x12a07" : "causeCount",
+                "0x12a56" : "significantModelId",
+                "0x12a63" : "webContextURL",
+                "0x12a6f" : "eventSymptomList",
+                "0x12a70" : "eventSymptomCount",
+                "0x12a82" : "IPtoDomainMap",
+                "0x12b4c" : "alarmTitle",
+                "0x12c05" : "secureDomainDisplay",
+                "0x12d7f" : "networkAddress",
+                "0x12d83" : "secureDomainAddress",
+                "0x1321a" : "lastOccurrenceDate",
+                "0x129aa" : "modelId",
+                "0x129ab" : "modelTypeId",
+                "0x11b47" : "createDate", // *** Custom field
+                "0x11b41" : "createTime",
+                "0x129e7" : "topologyModelName",
+                "0x129fa" : "modelHandle",
+                "0x110df" : "macAddress"
+            },
+
+            /*
+             * Used to add readable date/time values to
+             * the additional info field
+             */
+            SPECTRUM_DATE_TIME_ATTRIBUTES : {
+                "0x11f4e" : true, // creationDate
+                "0x1321a" : true, // lastOccurrenceDate
+                "0x11b47" : true, // Create Date
+                "0x11b41" : true
+                // Create Time
+            },
+
+            // CA Spectrum attributes to request
+            SPECTRUM_EVENT_MAPPING : {
+                "0x12022" : "",
+                "0x11f9c" : "message_key",
+                "0x11f56" : "severity",
+                "0x129e7" : "",
+                "0x11ee8" : "",
+                "0x1000a" : "",
+                "0x11f4f" : "resolution_state",
+                "0x11f4d" : "",
+                "0x12b4c" : "type",
+                "0x1006e" : "node",
+                "0x11f4e" : "",
+                "0x1296e" : "description",
+                "0x11f50" : "",
+                "0x1321a" : "",
+                "0x129fa" : "",
+                "0x12d7f" : "resource_1",
+                "0x11fc5" : "",
+                "0x110df" : "resource_2",
+                "0x11b47" : "",
+                "0x11b41" : ""
+            },
+
+            // ServiceNow alert field to CA Spectrum attribute
+            ALERT_UPDATE_MAPPING : {
+                "incident" : "0x12022" // Trouble Ticket ID
+            },
+
+            // CA Spectrum Constants
+            CA_SPECTRUM_ALARM_RESPONSE_LIST : "ns1.alarm-response-list",
+            CA_SPECTRUM_ALARM_UPDATE_RESPONSE_LIST : "ns1.alarm-update-response-list",
+            CA_SPECTRUM_ALARM_RESPONSES : "ns1.alarm-responses",
+            CA_SPECTRUM_ALARM : "ns1.alarm",
+            CA_SPECTRUM_LINK : "ns1.link",
+            CA_SPECTRUM_ATTRIBUTES : "ns1.attribute",
+            CA_SPECTRUM_SUBSCRIPTION_RESPONSE : "ns1.subscription-response",
+            CA_SPECTRUM_SUBSCRIPTION_ID : "ns1.subscription-id",
+            CA_SPECTRUM_HREF : "@href",
+            CA_SPECTRUM_THROTTLE : "@throttle",
+            CA_SPECTRUM_TOTAL_ALARMS : "@total-alarms",
+            CA_SPECTRUM_ID : "@id",
+            CA_SPECTRUM_VALUE : "$",
+            CA_SPECTRUM_ERROR : "@error",
+            CA_SPECTRUM_ERROR_MESSAGE : "@error-message",
+            CA_SPECTRUM_END_OF_RESULTS : "EndOfResults",
+            CA_SPECTRUM_SUCCESS : "Success",
+            CA_SPECTRUM_CREATION_DATE : "0x11f4e",
+            CA_SPECTRUM_LAST_OCCURRENCE : "0x1321a",
+
+            CA_SPECTRUM_INVALID_SUBSCRIPTION_ID : "Invalid subscription ID.",
+            CA_SPECTRUM_NOTIFICATION_LIST : "ns1.notification-list",
+            CA_SPECTRUM_ADDED_INSTANCE : "ns1.added-instance",
+            CA_SPECTRUM_REMOVED_INSTANCE : "ns1.removed-instance",
+            CA_SPECTRUM_PRE_EXISTING : "@preexisting",
+            CA_SPECTRUM_DELETED : "@deleted",
+
+            // Defaults
+            ALARM_CONTENT_FILTER_DEFAULT : "0x11f4e", // creationDate
+            MAX_NOTIFICATIONS_DEFAULT : 3000,
+            PULL_INTERVAL_DEFAULT : 240000,
+            MAX_QUEUE_SIZE_DEFAULT : 15000,
+
+            // Possible attributes for filtering alarms
+            // Property name is used in Connector Instance Values 'content_filter_attribute' parameter
+            ALARM_CONTENT_FILTERS : {
+                "lastOccurrenceDate" : "0x1321a",
+                "creationDate" : "0x11f4e"
+            },
+
+            contentFilterAttribute : "",
+            timeOfEventAttribute : "",
+
+            // ServiceNow Connector parameters
+            SN_THROTTLE : "throttle",
+            MAX_NOTIFICATIONS : "maxNotifications",
+            PULL_INTERVAL : "pullInterval",
+            MAX_QUEUE_SIZE : "maxQueueSize",
+            LAST_EVENT_SUBSCRIPTION_ID : "subscription_id",
+            LAST_EVENT_LAST_OCCURRENCE_SECONDS : "last_occurrence",
+
+            /* 
+             * CA Spectrum Severity Codes
+             * 
+             * "0" : "Normal"
+             * 
+             * "1" : "Minor"
+             * 
+             * "2" : "Major"
+             * 
+             * "3" : "Critical"
+             * 
+             * "4" : "Maintenance"
+             * 
+             * "5" : "Suppressed"
+             * 
+             * "6" : "Initial"
+             */
+            SPECTRUM_SEVERITY_MAP : {
+                "0" : "5",
+                "1" : "3",
+                "2" : "2",
+                "3" : "1",
+                "4" : "5",
+                "5" : "5",
+                "6" : "5"
+            },
+
+            /*
+             * Example CA Spectrum payload
+             * 
+              	<?xml version="1.0" encoding="UTF-8"?>
+            	<rs:alarm-request throttlesize="${throttle}" 
+            	  xmlns:rs="http://www.ca.com/spectrum/restful/schema/request" 
+            	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            	  xsi:schemaLocation="http://www.ca.com/spectrum/restful/schema/request ../../../xsd/Request.xsd " >
+            		<!-- Attributes of Interest -->
+                	<rs:attribute-filter>
+                		<search-criteria xmlns="http://www.ca.com/spectrum/restful/schema/filter">
+                			<filtered-models>
+            					<greater-than>
+            						<attribute id="${search_filter_attribute}">
+            							<value>${date_seconds}</value>
+                					</attribute>
+                				</greater-than>
+                    		</filtered-models>
+                		</search-criteria>
+                	</rs:attribute-filter>
+            		<rs:requested-attribute id="0x12022" />
+                	<rs:requested-attribute id="0x11f9c" />
+            		<rs:requested-attribute id="0x11f56" />
+                	<rs:requested-attribute id="0x129e7" />
+            		<rs:requested-attribute id="0x11ee8" />
+                	<rs:requested-attribute id="0x1000a" />
+            		<rs:requested-attribute id="0x11f4f" />
+                	<rs:requested-attribute id="0x11f4d" />
+            		<rs:requested-attribute id="0x12b4c" />
+                	<rs:requested-attribute id="0x1006e" />
+            		<rs:requested-attribute id="0x11f4e" />
+                	<rs:requested-attribute id="0x1296e" />
+            	    <rs:requested-attribute id="0x11f50" />
+                    <rs:requested-attribute id="0x1321a" />
+            	    <rs:requested-attribute id="0x129fa" />
+                    <rs:requested-attribute id="0x12d7f" />
+            	    <rs:requested-attribute id="0x11fc5" />
+                    <rs:requested-attribute id="0x110df" /> 
+                    <rs:requested-attribute id="0x11b47" /> 
+                    <rs:requested-attribute id="0x11b41" /> 
+                </rs:alarm-request>
+             *
+             */
+            ALARM_CONTENT_XML : '<?xml version="1.0" encoding="UTF-8"?><rs:alarm-request throttlesize="${throttle}"'
+                    + ' xmlns:rs="http://www.ca.com/spectrum/restful/schema/request" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+                    + ' xsi:schemaLocation="http://www.ca.com/spectrum/restful/schema/request ../../../xsd/Request.xsd "><!-- Attributes of Interest -->'
+                    + '<rs:attribute-filter><search-criteria xmlns="http://www.ca.com/spectrum/restful/schema/filter"><filtered-models><greater-than>'
+                    + '<attribute id="${search_filter_attribute}"><value>${date_seconds}</value></attribute></greater-than></filtered-models></search-criteria>'
+                    + '</rs:attribute-filter>${requested_attributes}</rs:alarm-request>',
+
+            /*
+             * Example CA Spectrum Subscription payload
+             * 
+                <?xml version="1.0" encoding="UTF-8"?>
+                <rs:subscription-request send-preexisting-instances="true"
+                   xmlns:rs="http://www.ca.com/spectrum/restful/schema/request" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.ca.com/spectrum/restful/schema/request ../../../Rest.a/src/xsd/Request.xsd ">
+                    <rs:pull-delivery-mode>  
+            	      <rs:max-notifications>200</rs:max-notifications> 
+            	      <rs:max-queue-size>10000</rs:max-queue-size> 
+            	      <rs:pull-interval>30000</rs:pull-interval>  
+                    </rs:pull-delivery-mode>  	
+                    <rs:alarm-request>
+            	      <rs:requested-attribute id="0x12022" />
+            	      <rs:requested-attribute id="0x129e7" />
+            	      <rs:requested-attribute id="0x11ee8" />
+            	      <rs:requested-attribute id="0x1000a" />
+            	      <rs:requested-attribute id="0x11f4d" />
+            	      <rs:requested-attribute id="0x12b4c" />
+            	      <rs:requested-attribute id="0x1006e" />
+            	      <rs:requested-attribute id="0x11f4e" />
+            	      <rs:requested-attribute id="0x1296e" />
+            	      <rs:requested-attribute id="0x11f50" />
+            	      <rs:requested-attribute id="0x1321a" />
+            	      <rs:requested-attribute id="0x129fa" />
+            	      <rs:requested-attribute id="0x12d7f" />
+            	      <rs:requested-attribute id="0xffff0003" />
+            	      <rs:requested-attribute id="0x11fc5" />
+            	      <rs:requested-attribute id="0x110df" />
+                    </rs:alarm-request>
+                </rs:subscription-request>
+             *
+             */
+            SUBSCRIPTION_CONTENT_XML : '<?xml version="1.0" encoding="UTF-8"?><rs:subscription-request ' + ' send-preexisting-instances="${send_preexisting_instances}"'
+                    + ' xmlns:rs="http://www.ca.com/spectrum/restful/schema/request" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+                    + ' xsi:schemaLocation="http://www.ca.com/spectrum/restful/schema/request ../../../Rest.a/src/xsd/Request.xsd ">'
+                    + '	<rs:pull-delivery-mode><rs:max-notifications>${max_notifications}</rs:max-notifications>' + ' <rs:max-queue-size>${max_queue_size}</rs:max-queue-size>'
+                    + ' <rs:pull-interval>${pull_interval}</rs:pull-interval>' + ' </rs:pull-delivery-mode>'
+                    + ' <rs:alarm-request>${requested_attributes}</rs:alarm-request></rs:subscription-request>',
+
+            errorMessages : [],
+            firstRun : false,
+            subscriptionId : "",
+            lastOccurrenceSecs : "",
+            clearedEvents : [],
+
+            /**
+             * Execute a test of the connection to CA Spectrum
+             * 
+             * Step 1 - register a subscription
+             * 
+             * Step 2 - go a GET on the subscription
+             * 
+             * If either step fails then test fails
+             * 
+             * @return {object}
+             */
+            testConnection : function() {
+
+                this._info("Testing connection");
+
+                this.DEBUG = this.probe.getAdditionalParameter("debug");
+                this.DEBUG = (this.DEBUG == "true" || DEBUG == "1");
+
+                this._info("Debug: " + this.DEBUG);
+
+                var retVal = {
+                    "status" : "",
+                    "error_message" : ""
+                };
+
+                try {
+                    this.subscriptionId = this.startSubscription(false);
+                    if (!this.subscriptionId) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Subscription registration on testConnection failed.");
+                        retVal.error_message = this._setReValErrorMessage();
+                    } else {
+                        var url = this.buildSpectrumPollAlarmsURL();
+                        this._info("Test Connection URL " + url);
+
+                        var response = this.makeSubscriptionGetCall(url);
+                        if (response == null) {
+                            retVal.status = FAILURE.toString();
+                            this._error("Failed to connect to CA Spectrum on testConnection call. Response is null.");
+                        } else if (response == this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID) {
+                            retVal.status = FAILURE.toString();
+                            this._error(this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID);
+                        } else {
+                            var responseObj = this.parseResponse(response);
+                            // If response is not in expected format or if it contained an error then report the
+                            // error and leave
+                            if (responseObj == null) {
+                                retVal.status = FAILURE.toString();
+                                this._error("Response from CA Spectrum is not in expected format: " + response + ".");
+                            } else {
+                                // All good
+                                retVal.status = SUCCESS.toString();
+                            }
+                        }
+                    }
+                } catch (e) {
+                    this._error(e.toString());
+                    retVal.status = FAILURE.toString();
+                }
+
+                this._info("TestConnection " + retVal.status);
+                retVal.error_message = this._setReValErrorMessage();
+                return retVal;
+            },
+
+            /**
+             * Attempt to poll our subscription
+             * 
+             * If we don't have one or if it has expired start a new subscription and fetch alarms directly
+             * 
+             * @return {object}
+             */
+            execute : function() {
+
+                var retVal = {
+                    "status" : "",
+                    "error_message" : ""
+                };
+
+                this._info("Execute connection ...");
+
+                this.DEBUG = this.probe.getAdditionalParameter("debug");
+                this.DEBUG = (this.DEBUG == "true" || DEBUG == "1");
+
+                this._info("Debug: " + this.DEBUG);
+
+                // Parse out last event data
+                this._getLastEventInfo();
+
+                // Since we use a subscription to get alarms generally this filter will only
+                // be used to catch up if a subscription expired so it only makes sense
+                // to get alarms who have been created since the last collector run
+                this.contentFilterAttribute = this.ALARM_CONTENT_FILTER_DEFAULT;
+                // var contentFilter = this.probe.getAdditionalParameter("content_filter_attribute");
+                // if (contentFilter && contentFilter != '' && contentFilter in this.ALARM_CONTENT_FILTERS) {
+                // this.contentFilterAttribute = this.ALARM_CONTENT_FILTERS[contentFilter];
+                // this._debug("Setting content filter based on " + contentFilter);
+                // } else {
+                // this._debug("Setting content filter based on DEFAULT.");
+                // }
+
+                // Use the filtering date attribute as the time of event value
+                this.timeOfEventAttribute = this.contentFilterAttribute;
+
+                /*
+                 * Poll the subscription for new and removed alarms
+                 * If the poll fails (due to expired
+                 */
+                var pollRetVal = this.pollSubscription();
+                // If the subscription has expired we want to get the alarms directly in order to catch up what might
+                // have been missed
+                if (pollRetVal.doDirectPull) {
+                    retVal = this.getAlarmsDirectly();
+                    this._error("Subscription Poll unsucccessful. Alarms fetched directly.");
+                } else {
+                    retVal.status = pollRetVal.status;
+                    if (retVal.status == SUCCESS.toString()) {
+                        this._debug("Subscription Poll succcessful.");
+                        this.errorMessages.push("Subscription Poll succcessful.");
+                    } else {
+                        this._error("Subscription Poll unsucccessful.");
+                    }
+                }
+
+                // *************** Set last event in retval
+                var lastEvent = {};
+                lastEvent[this.LAST_EVENT_LAST_OCCURRENCE_SECONDS] = "0";
+                lastEvent[this.LAST_EVENT_SUBSCRIPTION_ID] = "";
+                if (this.lastOccurrenceSecs > 0) {
+                    lastEvent[this.LAST_EVENT_LAST_OCCURRENCE_SECONDS] = this.lastOccurrenceSecs;
+                }
+                if (this.subscriptionId && this.subscriptionId != "") {
+                    lastEvent[this.LAST_EVENT_SUBSCRIPTION_ID] = this.subscriptionId;
+                }
+                retVal.last_event = JSON.stringify(lastEvent);
+
+                // Send back any messages
+                if (this.errorMessages.length > 0) {
+                    retVal.error_message = this._setReValErrorMessage();
+                }
+
+                return retVal;
+            },
+
+            /**
+             * Poll an existing subscription If it's expired or we don't have one then start one
+             * 
+             * @return {object}
+             */
+            pollSubscription : function() {
+                var events = [];
+                var errorsFound = false;
+                var alarm;
+                var event;
+
+                // Using false for now - may need to also make a subscription with true
+                // var sendPreExistingInstances = "false";
+                var sendPreExistingInstances = "true";
+
+                var retVal = {
+                    "status" : "",
+                    "error_message" : "",
+                    "doDirectPull" : false
+                };
+
+                if (this.firstRun || !this.subscriptionId || this.subscriptionId == "") {
+                    this.subscriptionId = this.startSubscription(sendPreExistingInstances);
+                    retVal.status = FAILURE.toString();
+                    if (!this.firstRun) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Subscription Id missing. New subscription started.");
+                        return retVal;
+                    } else {
+                        this._info("First run for collector. New subscription started.");
+                    }
+                }
+
+                var url = this.buildSpectrumPollAlarmsURL();
+                this._info("POLL URL " + url);
+
+                var newAlarmsAdded = 0;
+                var oldAlarmsAdded = 0;
+                var alarmsRemoved = 0;
+                var done = false;
+                var ctr = 0;
+                while (!done) {
+                    // On subsequent calls we make a GET call using the URL returned
+                    var response = this.makeSubscriptionGetCall(url);
+                    if (response == null) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Failed to connect to CA Spectrum on Subscription Get call. Response is null.");
+                        done = true;
+                        return retVal;
+                    }
+
+                    if (response == this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID) {
+                        this.subscriptionId = this.startSubscription(sendPreExistingInstances);
+                        retVal.status = FAILURE.toString();
+                        // In this situation we want to pull in the new alarms created since the
+                        // last run via a direct fetch of alarms. This is to catch up any missed
+                        // since the subscription expired.
+                        retVal.doDirectPull = true;
+                        this._error(this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID);
+                        done = true;
+                        return retVal;
+                    }
+
+                    var responseObj = this.parseResponse(response);
+
+                    // If response is not in expected format or if it contained an error then report the error and leave
+                    if (responseObj == null) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Response from CA Spectrum is not in expected format: " + response + ".");
+                        done = true;
+                        return retVal;
+                    }
+
+                    var notificationList = responseObj[this.CA_SPECTRUM_NOTIFICATION_LIST];
+
+                    var addedInstances = [];
+                    var removedInstances = [];
+                    if (notificationList !== null && typeof notificationList === 'object') {
+                        if (this.CA_SPECTRUM_ADDED_INSTANCE in notificationList) {
+                            addedInstances = notificationList[this.CA_SPECTRUM_ADDED_INSTANCE];
+                        }
+                        if (this.CA_SPECTRUM_REMOVED_INSTANCE in notificationList) {
+                            removedInstances = notificationList[this.CA_SPECTRUM_REMOVED_INSTANCE];
+                        }
+                    }
+
+                    // Force into an array
+                    if (!Array.isArray(addedInstances)) {
+                        var newAddedArray = [];
+                        newAddedArray.push(addedInstances);
+                        addedInstances = newAddedArray;
+                    }
+                    if (!Array.isArray(removedInstances)) {
+                        var newRemovedArray = [];
+                        newRemovedArray.push(removedInstances);
+                        removedInstances = newRemovedArray;
+                    }
+
+                    // Handle added alarms
+                    var result = this._handleAddedInstances(addedInstances, events);
+                    if (result.status == "error") {
+                        errorsFound = true;
+                    }
+                    newAlarmsAdded += result.total_new;
+                    oldAlarmsAdded += result.total_preexisting;
+
+                    // If this is not the first run then we only make 1 call
+                    // If this is the first run we repeat the call until all pre-existing
+                    // alarms have been fetched
+                    // for a max of 10 calls
+                    ctr++;
+                    if (!this.firstRun || result.total_preexisting == 0 || ctr >= this.MAX_SUBSCRIPTION_LOOPS) {
+                        done = true;
+                    }
+
+                    // Handle cleared alarms
+                    var result = this._handleRemovedInstances(removedInstances, events);
+                    if (result.status == "error") {
+                        errorsFound = true;
+                    }
+                    alarmsRemoved += result.total_alarms;
+
+                    if (errorsFound) {
+                        done = true;
+                    }
+                }
+
+                this._debug("New alarms added: " + newAlarmsAdded + ". Pre-existing alarms added: " + oldAlarmsAdded + " Added instances from response: " + addedInstances.length);
+                this._debug("Alarms cleared: " + alarmsRemoved + ". Removed instances from response: " + removedInstances.length);
+
+                // Update any cleared events if they have a related non-cleared event
+                this._updateClearedEvents(events);
+
+                if (events.length == 0) {
+                    this._info("No events returned.");
+                } else {
+                    this._info("Events returned: " + events.length);
+
+                    // Send back the events
+                    if (!this._sendEvents(events)) {
+                        errorsFound = true;
+                    }
+                }
+
+                // Set final return values
+                retVal.status = errorsFound ? FAILURE.toString() : SUCCESS.toString();
+
+                if (errorsFound) {
+                    this._info("Subscription poll failed.");
+                } else {
+                    this._info("Subscription poll was successful.");
+                }
+                return retVal;
+            },
+
+            /**
+             * Looks for 'clear' events that have a corresponding new event and if found copies the host, type, text and
+             * resource values to the 'clear' event because we are missing that information on 'clear' events
+             * 
+             * @param {array} events
+             */
+            _updateClearedEvents : function(events) {
+                for (var i = 0; i < this.clearedEvents.length; i++) {
+                    clearedEventProps = this.clearedEvents[i];
+                    var alarmId = clearedEventProps.alarmId;
+                    var clearedEvent = clearedEventProps.event;
+                    // Look for a related event that we can copy from
+                    for (var j = 0; j < events.length; j++) {
+                        var event = events[j];
+                        if (event.getMessageKey() == alarmId && event !== clearedEvent) {
+                            // Found a match
+                            clearedEvent.setHostAddress(event.getHostAddress());
+                            clearedEvent.setType(event.getType());
+                            clearedEvent.setText(event.getText());
+                            clearedEvent.setResource(event.getResource());
+                            this._debug("Updating removed alarm with alarm id: " + clearedEvent.getMessageKey());
+                        }
+                    }
+                }
+            },
+
+            /**
+             * Processes added instances in the CA Spectrum Subscription GET response
+             * 
+             * @param {array} addedInstances
+             * @param {array} events
+             * @return {object}
+             */
+            _handleAddedInstances : function(addedInstances, events) {
+                var result = {
+                    "status" : "success",
+                    "msg" : "",
+                    "total_alarms" : 0,
+                    "total_preexisting" : 0,
+                    "total_new" : 0
+                };
+
+                for (var i = 0; i < addedInstances.length; i++) {
+                    var addedInstance = addedInstances[i];
+                    var preExisting = false;
+                    if (this.CA_SPECTRUM_PRE_EXISTING in addedInstance) {
+                        preExisting = addedInstance[this.CA_SPECTRUM_PRE_EXISTING] == "true";
+                    }
+                    // We only want to add in pre-existing alarms if this is the first run
+                    // If this is not the first run then we've been collecting alarms previously
+                    // and don't want to bring in duplicates
+                    if (!this.firstRun && preExisting) {
+                        continue;
+                    }
+                    if (this.CA_SPECTRUM_ALARM in addedInstance) {
+                        alarm = addedInstance[this.CA_SPECTRUM_ALARM];
+                        event = this.processEvent(alarm);
+                        events.push(event);
+
+                        result.total_alarms++;
+                        // Track how many pre-existing alarms returned. This is used to
+                        // determine when the first run GET calls should end
+                        if (preExisting) {
+                            result.total_preexisting++;
+                        } else {
+                            result.total_new++;
+                        }
+
+                        this._trackMostRecentEvent(event);
+                    } else {
+                        this._error("WARNING Alarm element not found in added instance entry. Added instance: " + JSON.stringify(addedInstance));
+                        result.status = "error";
+                        result.msg = "At least one added instance was missing alarm element.";
+                    }
+                }
+                return result;
+            },
+
+            /**
+             * Processes removed instances in the CA Spectrum Subscription GET response
+             * 
+             * @param {array} removedInstances
+             * @param {array} events
+             * @return {object}
+             */
+            _handleRemovedInstances : function(removedInstances, events) {
+                var result = {
+                    "status" : "success",
+                    "msg" : "",
+                    "total_alarms" : 0
+                };
+
+                for (var i = 0; i < removedInstances.length; i++) {
+                    var removedInstance = removedInstances[i];
+                    var deleted = false;
+                    if (this.CA_SPECTRUM_DELETED in removedInstance) {
+                        deleted = !(removedInstance[this.CA_SPECTRUM_DELETED] == "false");
+                    }
+                    if (this.CA_SPECTRUM_ALARM in removedInstance) {
+                        alarm = removedInstance[this.CA_SPECTRUM_ALARM];
+                        var alarmId = alarm[this.CA_SPECTRUM_ID];
+                        result.total_alarms++;
+                        event = this.createClearEvent(alarmId);
+                        events.push(event);
+                        this.clearedEvents.push({
+                                    "alarmId" : alarmId,
+                                    "event" : event
+                                });
+                    } else {
+                        this._error("WARNING Alarm element not found in removed instance entry. Removed instance: " + JSON.stringify(removedInstance));
+                        result.status = "error";
+                        result.msg = "At least one removed instance was missing alarm element.";
+                    }
+                }
+                return result;
+            },
+
+            /**
+             * Checks an event to see if it's create or last occurrence date/time value is more recent that the current
+             * most recent value.
+             * 
+             * @param {array} event
+             */
+            _trackMostRecentEvent : function(event) {
+                // Get the appropriate date/time value and check if it's the most recent value
+                // If it is then save it so we can update the last_event property when we're done
+                var lastRunAttr = this.ALARM_CONTENT_FILTER_DEFAULT;
+                if (this.contentFilterAttribute != '') {
+                    lastRunAttr = this.contentFilterAttribute;
+                }
+
+                var lastRunAttrValue = event.getField(lastRunAttr);
+                if (lastRunAttrValue) {
+                    var alarmLastRun = parseInt(lastRunAttrValue);
+                    this._debug("Alarm last occur: " + alarmLastRun + " overall last occur: " + this.lastOccurrenceSecs);
+                    if (alarmLastRun > this.lastOccurrenceSecs) {
+                        this.lastOccurrenceSecs = alarmLastRun;
+                    }
+                }
+            },
+
+            /**
+             * Execute a pull of CA Spectrum alarms
+             * 
+             * @return {object}
+             */
+            getAlarmsDirectly : function() {
+
+                var retVal = {
+                    "status" : "",
+                    "error_message" : ""
+                };
+
+                var url = this.buildSpectrumGetAlarmsURL();
+                this._info("POST URL " + url);
+
+                var throttleSize = this.probe.getAdditionalParameter(this.SN_THROTTLE);
+
+                var content = this._buildContent(throttleSize, this.lastOccurrenceSecs);
+                this.lastOccurrenceSecs = -1;
+
+                var done = false;
+                var events = [];
+                var totalAlarms = -1;
+                var pages = 0;
+                var maxPages = 0;
+                var errorsFound = false;
+
+                while (!done) {
+                    pages++;
+
+                    var pagesMsg = "Page: " + pages;
+                    if (maxPages > 0) {
+                        pagesMsg += " of " + maxPages;
+                    }
+
+                    var response = null;
+
+                    // On the first call we make a POST Call with an XML payload
+                    // On subsequent calls we make a GET call using the URL returned
+                    if (pages == 1) {
+                        response = this.makePostCall(url, content);
+                    } else {
+                        response = this.makeGetCall(url, content);
+                    }
+                    // If no valid response received then report an error and leave
+                    if (response == null) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Failed to connect to CA Spectrum on execute. Response is null. " + pagesMsg);
+                        done = true;
+                        errorsFound = true;
+                        continue;
+                    }
+
+                    var responseObj = this.parseResponse(response);
+                    // If response is not in expected format or if it contained an error then report the error and leave
+                    if (responseObj == null) {
+                        retVal.status = FAILURE.toString();
+                        this._error("Response from CA Spectrum is not in expected format: " + response + ". " + pagesMsg);
+                        errorsFound = true;
+                        done = true;
+                        continue;
+                    }
+
+                    var alarmResponseList = responseObj[this.CA_SPECTRUM_ALARM_RESPONSE_LIST];
+
+                    // Check the total alarms we need to fetch
+                    if (totalAlarms < 0 && this.CA_SPECTRUM_TOTAL_ALARMS in alarmResponseList) {
+                        totalAlarms = parseInt(alarmResponseList[this.CA_SPECTRUM_TOTAL_ALARMS]);
+                        maxPages = Math.ceil(totalAlarms / throttleSize);
+                        this._debug("Total_alarms: " + totalAlarms + " Calculated max pages: " + maxPages);
+                    } else if (!(this.CA_SPECTRUM_TOTAL_ALARMS in alarmResponseList)) {
+                        this._debug("Total_alarms missing from response list. Iteration: " + pages);
+                    }
+
+                    // Check if this is last go round
+                    if (this.CA_SPECTRUM_ERROR in alarmResponseList && alarmResponseList[this.CA_SPECTRUM_ERROR] == this.CA_SPECTRUM_END_OF_RESULTS) {
+                        this._debug("End of Results marker found.");
+                        done = true;
+                    }
+
+                    if (this.CA_SPECTRUM_LINK in alarmResponseList) {
+                        // Set the url for the next go round
+                        var link = alarmResponseList[this.CA_SPECTRUM_LINK];
+                        if (this.CA_SPECTRUM_HREF in link) {
+                            url = link[this.CA_SPECTRUM_HREF];
+                            url = url.replace(/\\/g, "");
+                            url = this.StringUtil.unEscapeHTML(url);
+                        }
+                    } else {
+                        // No link so we should just stop here
+                        if (!done) {
+                            this._error("WARNING No next link or end of results marker found in response from CA Spectrum. " + pagesMsg);
+                        }
+                        done = true;
+                    }
+
+                    // Check how many alarms returned on this call
+                    var alarmsReturned = 0;
+                    if (this.CA_SPECTRUM_THROTTLE in alarmResponseList) {
+                        alarmsReturned = parseInt(alarmResponseList[this.CA_SPECTRUM_THROTTLE]);
+                    } else {
+                        this._info("Throttle missing from response list. " + pagesMsg);
+                    }
+                    this._info("Found " + alarmsReturned + " records. " + pagesMsg);
+
+                    // If no alarms returned then report it and leave
+                    if (alarmsReturned == 0) {
+                        this._error("WARNING No alarms returned on " + pagesMsg);
+                        done = true;
+                        errorsFound = true;
+                        continue;
+                    }
+
+                    var foundAlarms = false;
+                    var alarmResponses, alarms;
+
+                    if (this.CA_SPECTRUM_ALARM_RESPONSES in alarmResponseList) {
+                        var alarmResponses = alarmResponseList[this.CA_SPECTRUM_ALARM_RESPONSES];
+                        if (this.CA_SPECTRUM_ALARM in alarmResponses) {
+                            var alarms = alarmResponses[this.CA_SPECTRUM_ALARM];
+                            foundAlarms = true;
+                        }
+                    }
+
+                    if (!foundAlarms) {
+                        this._error("WARNING Alarms property not found in response. " + pagesMsg);
+                        done = true;
+                        errorsFound = true;
+                        continue;
+                    }
+
+                    // loop through each returned alarm
+                    for (var i = 0; i < alarms.length; i++) {
+                        var alarm = alarms[i];
+                        var event = this.processEvent(alarm);
+                        events.push(event);
+                        this._trackMostRecentEvent(event);
+                    }
+
+                    // Check for any obvious signs that we've iterated enough times
+                    if (!done) {
+                        if (pages >= maxPages) {
+                            this._error("WARNING Calculated max pages reached: " + pages);
+                            errorsFound = true;
+                            done = true;
+                        } else if (events.length >= totalAlarms) {
+                            this._error("WARNING Total alarms from CA Spectrum call reached. Total alarms: " + totalAlarms + " Events: " + events.length);
+                            errorsFound = true;
+                            done = true;
+                        } else if (events.length >= this.MAX_EVENTS_TO_FETCH) {
+                            this._error("WARNING Maximum events processed. Events: " + events.length + " Maximum: " + this.MAX_EVENTS_TO_FETCH);
+                            errorsFound = true;
+                            done = true;
+                        }
+                    }
+                }
+
+                this._info("Pages: " + pages);
+
+                if (events.length <= 0) {
+                    this._error("No events returned.");
+                    errorsFound = true;
+                } else if (events.length != totalAlarms) {
+                    this._error("WARNING Total alarms expected (" + totalAlarms + ") from CA Spectrum does not match actual alarm count (" + events.length + ")");
+                    errorsFound = true;
+                } else {
+                    this._info("Events returned: " + events.length);
+                }
+
+                // Send back the events
+                if (!this._sendEvents(events)) {
+                    errorsFound = true;
+                }
+
+                // Set final return values
+                retVal.status = errorsFound ? FAILURE.toString() : SUCCESS.toString();
+
+                return retVal;
+            },
+
+            /**
+             * Sends an array of Event objects back to the instance
+             * 
+             * @param {array} events
+             * @return {boolean}
+             */
+            _sendEvents : function(events) {
+                var sendOK = true;
+                // Send back the events
+                var sender = SNEventSenderProvider.getEventSender();
+
+                for (var i = 0; i < events.length; i++) {
+                    if (events[i] && !this.filterEvent(events[i])) {
+                        if (!sender.sendEvent(events[i])) {
+                            sendOK = false;
+                        }
+                    }
+                }
+                if (!sendOK) {
+                    this._error("One or more events failed to send.");
+                }
+                return sendOK;
+            },
+
+            /**
+             * 
+             * @param {integer} throttleSize
+             * @param {integer} lastOccurenceDate
+             * @return {}
+             */
+            _buildContent : function(throttleSize, lastOccurenceDate) {
+                var contentTemplate = this.ALARM_CONTENT_XML;
+                var reqAttr = "";
+                for (var spectrumAttrID in this.SPECTRUM_EVENT_MAPPING) {
+                    reqAttr += '<rs:requested-attribute id="' + spectrumAttrID + '" />';
+                }
+
+                var properties = new this.Properties();
+                properties.setProperty("requested_attributes", reqAttr);
+                properties.setProperty("throttle", throttleSize);
+                properties.setProperty("date_seconds", lastOccurenceDate);
+
+                properties.setProperty("search_filter_attribute", this.contentFilterAttribute);
+                var content = '' + this.StringUtil.substituteVariables(contentTemplate, properties, true);
+                this._debug("Content=" + content);
+                return content;
+            },
+
+            /**
+             * Register a subscription
+             * 
+             * @return {object}
+             */
+            startSubscription : function(sendPreExistingInstances) {
+                var subscriptionId = '';
+
+                var url = this.buildSpectrumSubscriptionBaseURL();
+                this._info("Subscription POST URL " + url);
+
+                var maxNotifications = this.probe.getAdditionalParameter(this.MAX_NOTIFICATIONS);
+                if (typeof maxNotifications === "undefined" || maxNotifications === null || maxNotifications == "" || maxNotifications == "0") {
+                    maxNotifications = this.MAX_NOTIFICATIONS_DEFAULT;
+                }
+
+                var pullInterval = this.probe.getAdditionalParameter(this.PULL_INTERVAL);
+                if (typeof pullInterval === "undefined" || pullInterval === null || pullInterval == "" || pullInterval == "0") {
+                    pullInterval = this.PULL_INTERVAL_DEFAULT;
+                }
+                var maxQueueSize = this.probe.getAdditionalParameter(this.MAX_QUEUE_SIZE);
+                if (typeof maxQueueSize === "undefined" || maxQueueSize === null || maxQueueSize == "" || maxQueueSize == "0") {
+                    maxQueueSize = this.MAX_QUEUE_SIZE_DEFAULT;
+                }
+
+                var content = this._buildSubscriptionContent(maxNotifications, pullInterval, maxQueueSize, sendPreExistingInstances);
+
+                var response = this.makeSubscriptionPostCall(url, content);
+
+                // If no valid response received then report an error and leave
+                if (response == null) {
+                    this._error("Failed to connect to CA Spectrum on startSubscription. Response is null.");
+                    return null;
+                }
+
+                var responseObj = this.parseResponse(response);
+                // {"ns1.subscription-response":{"ns1.subscription-id":"7cc82bd4-2819-4799-8a75-c1938a5e01d3"}}
+                // If response is not in expected format or if it contained an error then report the error and leave
+                if (responseObj == null) {
+                    this._error("Response from CA Spectrum on startSubscription is not in expected format: " + response + ".");
+                    return null;
+                }
+
+                if (this.CA_SPECTRUM_SUBSCRIPTION_RESPONSE in responseObj) {
+                    var subResponse = responseObj[this.CA_SPECTRUM_SUBSCRIPTION_RESPONSE];
+                    if (this.CA_SPECTRUM_SUBSCRIPTION_ID in subResponse) {
+                        subscriptionId = subResponse[this.CA_SPECTRUM_SUBSCRIPTION_ID];
+                    } else {
+                        this._error("Missing '" + this.CA_SPECTRUM_SUBSCRIPTION_ID + "' element in response from CA Spectrum on startSubscription. Response: " + response.getBody()
+                                + ".");
+                        return null;
+                    }
+                } else {
+                    this._error("Missing '" + this.CA_SPECTRUM_SUBSCRIPTION_RESPONSE + "' element in response from CA Spectrum on startSubscription. Response: "
+                            + response.getBody() + ".");
+                    return null;
+                }
+                return subscriptionId;
+            },
+
+            /**
+             * 
+             * @param {integer} maxNotifications
+             * @param {integer} pullInterval
+             * @return {}
+             */
+            _buildSubscriptionContent : function(maxNotifications, pullInterval, maxQueueSize, sendPreExistingInstances) {
+                var contentTemplate = this.SUBSCRIPTION_CONTENT_XML;
+                var reqAttr = "";
+                for (var spectrumAttrID in this.SPECTRUM_EVENT_MAPPING) {
+                    reqAttr += '<rs:requested-attribute id="' + spectrumAttrID + '" />';
+                }
+                var properties = new this.Properties();
+                properties.setProperty("requested_attributes", reqAttr);
+                properties.setProperty("pull_interval", pullInterval);
+                properties.setProperty("max_notifications", maxNotifications);
+                properties.setProperty("max_queue_size", maxQueueSize);
+                properties.setProperty("send_preexisting_instances", sendPreExistingInstances);
+
+                var content = '' + this.StringUtil.substituteVariables(contentTemplate, properties, true);
+                this._debug("Subscription Content=" + content);
+                return content;
+            },
+
+            /**
+             * 
+             * @param {Event} event
+             * @return {Boolean}
+             */
+            filterEvent : function(event) {
+                return false;
+            },
+
+            /**
+             * 
+             * @param {string} response
+             * @return {object}
+             */
+            parseResponse : function(response) {
+                var parser = new JSONParser();
+                var responseList;
+                this._debug("Response: " + response.getBody());
+
+                var responseObj = parser.parse(response.getBody());
+
+                if (this.CA_SPECTRUM_ALARM_RESPONSE_LIST in responseObj) {
+                    responseList = responseObj[this.CA_SPECTRUM_ALARM_RESPONSE_LIST];
+                    if (responseList !== null && typeof responseList === 'object') {
+                        if (this.CA_SPECTRUM_ERROR in responseList && responseList[this.CA_SPECTRUM_ERROR] != "EndOfResults") {
+                            this._error("Failed with error: " + responseList[this.CA_SPECTRUM_ERROR]);
+                            return null;
+                        }
+                    }
+                } else if (this.CA_SPECTRUM_ALARM_UPDATE_RESPONSE_LIST in responseObj) {
+                    responseList = responseObj[this.CA_SPECTRUM_ALARM_UPDATE_RESPONSE_LIST];
+                    if (responseList !== null && typeof responseList === 'object') {
+                        if (this.CA_SPECTRUM_ERROR in responseList) {
+                            this._error("Failed with error: " + responseList[this.CA_SPECTRUM_ERROR]);
+                            return null;
+                        }
+                    }
+                } else if (this.CA_SPECTRUM_NOTIFICATION_LIST in responseObj) {
+                    responseList = responseObj[this.CA_SPECTRUM_NOTIFICATION_LIST];
+                    if (responseList !== null && typeof responseList === 'object') {
+                        if (this.CA_SPECTRUM_ERROR in responseList) {
+                            this._error("Failed with error: " + responseList[this.CA_SPECTRUM_ERROR]);
+                            return null;
+                        }
+                    }
+                }
+
+                return responseObj;
+
+            },
+
+            /**
+             * Transform the alarm attributes into Event fields
+             * 
+             * @param {object} alarm
+             * @return {Event}
+             */
+            processEvent : function(alarm) {
+                var alarmId = alarm[this.CA_SPECTRUM_ID];
+                var alarmAttributes = alarm[this.CA_SPECTRUM_ATTRIBUTES];
+                var entryData = "";
+                var eventAttrs = {};
+
+                var event = new Event();
+
+                for (var i = 0; i < alarmAttributes.length; i++) {
+                    var attribute = alarmAttributes[i];
+                    var attrID = attribute[this.CA_SPECTRUM_ID];
+                    var attrValue = attribute[this.CA_SPECTRUM_VALUE];
+
+                    // Add the attribute id and original value to Additional Information
+                    event.setField(attrID, attrValue);
+
+                    // Convert dates (which are in seconds) to a date
+                    if (attrID in this.SPECTRUM_DATE_TIME_ATTRIBUTES) {
+                        var milliseconds = parseInt(attrValue) * 1000;
+                        var date = new Date();
+                        date.setTime(milliseconds);
+                        var dateStr = date.toISOString();
+                        var snDateStr = dateStr.replace('T', ' ');
+                        attrValue = snDateStr.substring(0, 19);
+                        this._debug("Date/time Conversion: " + attrID + " date string=" + dateStr + " value=" + attrValue);
+                        event.setField(this.SPECTRUM_ALARM_ATTRIBUTES[attrID], attrValue);
+                    }
+
+                    if (attrID in this.SPECTRUM_EVENT_MAPPING && this.SPECTRUM_EVENT_MAPPING[attrID] != "") {
+                        var eventField = this.SPECTRUM_EVENT_MAPPING[attrID];
+                        eventAttrs[eventField] = attrValue;
+                    } else if (attrID == this.timeOfEventAttribute) {
+                        eventAttrs["time_of_event"] = attrValue;
+                    }
+                }
+
+                var emsName = this.probe.getParameter("connector_name");
+
+                event.setSource(this.CA_SPECTRUM);
+                event.setEmsSystem(emsName);
+
+                var mappedSeverity = 5;
+
+                if ("time_of_event" in eventAttrs) {
+                    event.setTimeOfEvent(eventAttrs["time_of_event"]);
+                }
+                if ("severity" in eventAttrs) {
+                    mappedSeverity = this.getMappedSeverity(eventAttrs["severity"]);
+                    event.setSeverity(mappedSeverity);
+                }
+                if ("node" in eventAttrs) {
+                    event.setHostAddress(eventAttrs["node"]);
+                }
+                if ("type" in eventAttrs) {
+                    event.setType(eventAttrs["type"]);
+                }
+                if ("message_key" in eventAttrs) {
+                    event.setMessageKey(eventAttrs["message_key"]);
+                }
+                if ("resolution_state" in eventAttrs) {
+                    event.setResolutionState(eventAttrs["resolution_state"]);
+                } else if (mappedSeverity == 5) {
+                    event.setResolutionState("Closing");
+                }
+                if ("description" in eventAttrs) {
+                    event.setText(eventAttrs["description"]);
+                }
+                if ("resource_1" in eventAttrs) {
+                    event.setResource(eventAttrs["resource_1"]);
+                } else if ("resource_2" in eventAttrs) {
+                    event.setResource(eventAttrs["resource_2"]);
+                }
+
+                return event;
+            },
+
+            /**
+             * Build a 'Clear' event
+             * 
+             * @param {object} alarm
+             * @return {Event}
+             */
+            createClearEvent : function(alarmId) {
+                var event = new Event();
+                var emsName = this.probe.getParameter("connector_name");
+                event.setSource(this.CA_SPECTRUM);
+                event.setEmsSystem(emsName);
+                // Set time of event to now
+                var date = new Date();
+                var dateStr = date.toISOString();
+                var snDateStr = dateStr.replace('T', ' ');
+                attrValue = snDateStr.substring(0, 19);
+                event.setTimeOfEvent(snDateStr.substring(0, 19));
+                // Set Severity to Clear
+                event.setSeverity("0");
+                event.setType("Alarm removed.");
+                event.setText("Alarm removed.");
+                event.setMessageKey(alarmId);
+                event.setResolutionState("Closing");
+
+                this._debug("Alarm " + alarmId + " removed. Event=" + event);
+                return event;
+            },
+
+            /**
+             * Handles the bi-directional update of alarms with relevant information from the instance Generally this is
+             * an incident number.
+             * 
+             * @return {object}
+             */
+            updateSource : function() {
+
+                var command = '';
+                var argument = '';
+                var jsonRes = '';
+                var retVal = {};
+
+                this._debug("Bi-directional: Updating the source");
+                var alertsJSONStr = this.probe.getAdditionalParameter("alerts"); // get all the alerts data from the
+                // Update Queue table
+                this._debug("alerts JSON: " + alertsJSONStr);
+                alertsJSONStr = alertsJSONStr + '';
+                var alerts = JSON.parse(alertsJSONStr);
+
+                if (alerts == null) {
+                    this._error("Received json is empty");
+                    retVal.status = "" + FAILURE.toString();
+                    retVal.error_message = this._setReValErrorMessage();
+                    return retVal;
+                }
+
+                var url = this.buildSpectrumAlarmBaseURL();
+
+                if (url == undefined || url == null || url == '') {
+                    this._error("URL parameter is empty");
+                    retVal.status = "" + FAILURE.toString();
+                    retVal.error_message = this._setReValErrorMessage();
+                    return retVal;
+                }
+
+                var foundErrors = false;
+                for (var alertIndex = 0; alertIndex < alerts.length; ++alertIndex) {
+                    var alert = alerts[alertIndex];
+                    this._debug("Alarm ID: " + alert.key + " values: " + alert.value.length);
+                    var attributeValues = {};
+                    var attributeValuesSet = false;
+                    for (var valueIndex = 0; valueIndex < alert.value.length; ++valueIndex) {
+                        var alertValue = alert.value[valueIndex];
+
+                        if (alertValue.fieldName in this.ALERT_UPDATE_MAPPING) {
+                            var attr = this.ALERT_UPDATE_MAPPING[alertValue.fieldName];
+                            attributeValues[attr] = alertValue.newValue;
+                            attributeValuesSet = true;
+                        }
+
+                        // Handle state updates
+                        /*
+                        if (alertValue.fieldName === 'state' && (alertValue.oldValue === 'Open' || alertValue.oldValue === 'Reopen') && alertValue.newValue === 'Closed') {
+                            attributeValues[""] = 'close';
+                        }
+                        if (alertValue.fieldName === 'state' && alertValue.oldValue === 'Closed' && (alertValue.newValue === 'Open' || alertValue.newValue === 'Reopen')) {
+                            attributeValues[""] = 'open';
+                        }
+                        */
+                    }
+                    if (attributeValuesSet) {
+                        this.probe.setParameter("action_performed", "true");
+                        var response = this.makePutCall(url, alert.key, attributeValues);
+                        // If no valid response received then report an error and leave
+                        if (response == null) {
+                            this._error("Failed to connect to CA Spectrum on updateSource. Response is null.");
+                            foundErrors = true;
+                            break;
+                        }
+
+                        var responseObj = this.parseResponse(response);
+                        // If response is not in expected format or if it contained an error then report the error and
+                        // leave
+                        if (responseObj == null) {
+                            this._error("Response from CA Spectrum is not in expected format: " + response + ".");
+                            foundErrors = true;
+                            break;
+                        }
+
+                        var foundAlarms = false;
+                        var alarms = [];
+                        var alarmUpdateResponseList = responseObj[this.CA_SPECTRUM_ALARM_UPDATE_RESPONSE_LIST];
+
+                        if (this.CA_SPECTRUM_ALARM_RESPONSES in alarmUpdateResponseList) {
+                            var alarmResponses = alarmUpdateResponseList[this.CA_SPECTRUM_ALARM_RESPONSES];
+                            if (alarmResponses != "" && this.CA_SPECTRUM_ALARM in alarmResponses) {
+                                alarms = alarmResponses[this.CA_SPECTRUM_ALARM];
+                                foundAlarms = true;
+                            }
+                        }
+
+                        if (!foundAlarms) {
+                            this._error("Alarm not updated. Not found. Alarm ID: " + alert.key);
+                            foundErrors = true;
+                            continue;
+                        }
+
+                        // Force into an array
+                        if (!Array.isArray(alarms)) {
+                            var newArray = [];
+                            newArray.push(alarms);
+                            alarms = newArray;
+                        }
+
+                        // loop through each returned alarm
+                        for (var i = 0; i < alarms.length; i++) {
+                            var alarm = alarms[i];
+                            var alarmId = alarm[this.CA_SPECTRUM_ID];
+                            var alarmAttributes = alarm[this.CA_SPECTRUM_ATTRIBUTES];
+                            if (this.CA_SPECTRUM_ERROR in alarm && alarm[this.CA_SPECTRUM_ERROR] != this.CA_SPECTRUM_SUCCESS) {
+                                this._error("Failed to update Alarm " + alarmId + " error=" + alarm[this.CA_SPECTRUM_ERROR] + " error message="
+                                        + alarm[this.CA_SPECTRUM_ERROR_MESSAGE]);
+                                foundErrors = true;
+                            }
+                            // Force into an array
+                            if (!Array.isArray(alarmAttributes)) {
+                                var newAttrArray = [];
+                                newAttrArray.push(alarmAttributes);
+                                alarmAttributes = newAttrArray;
+                            }
+
+                            for (var j = 0; j < alarmAttributes.length; j++) {
+                                var attribute = alarmAttributes[j];
+                                var attrID = attribute[this.CA_SPECTRUM_ID];
+                                if (attribute[this.CA_SPECTRUM_ERROR] != this.CA_SPECTRUM_SUCCESS) {
+                                    this._error("Failed to update Alarm " + alarmId + " attribute " + attrID + " error=" + attribute[this.CA_SPECTRUM_ERROR] + " error message="
+                                            + attribute[this.CA_SPECTRUM_ERROR_MESSAGE]);
+                                    foundErrors = true;
+                                }
+                            }
+                        }
+                    } else {
+                        this._debug("Nothing to update on Alarm ID: " + alert.key);
+                    }
+                }
+
+                if (foundErrors) {
+                    retVal.error_message = this._setReValErrorMessage();
+                    retVal.status = "" + FAILURE.toString();
+                } else {
+                    retVal.status = "" + SUCCESS.toString();
+                }
+                return retVal;
+            },
+
+            /**
+             * Makes the initial POST REST api call to fetch CA SPectrum alarms
+             * 
+             * @param {string} url
+             * @param {string} content
+             * @return {HTTPResponse}
+             */
+            makePostCall : function(url, content) {
+                var username = this.probe.getParameter("username");
+                var password = this.probe.getParameter("password");
+
+                this._debug('POST URL: ' + url);
+                var request = new HTTPRequest(url);
+                request.setBasicAuth(username, password);
+                request.addHeader('Accept', 'application/json');
+                request.addHeader('Content-Type', 'application/xml');
+
+                var response = null;
+
+                try {
+                    response = request.post(content);
+                    if (!response) {
+                        this._error("No response on POST call.");
+                        return null;
+                    }
+                    var status = response.getStatusCode();
+                    if (status != 200) {
+                        this._error("Bad POST response. Status: " + status + " Message: " + response.getErrorMessage());
+                        return null;
+                    }
+                    this._debug("POST Status: " + status);
+                } catch (e) {
+                    this._error(e.toString());
+                    return null;
+                }
+                return response;
+            },
+
+            /**
+             * Makes the POST REST api call to register a subscription
+             * 
+             * @param {string} url
+             * @param {string} content
+             * @return {HTTPResponse}
+             */
+            makeSubscriptionPostCall : function(url, content) {
+                var username = this.probe.getParameter("username");
+                var password = this.probe.getParameter("password");
+
+                this._debug('Subscription POST URL: ' + url);
+                var request = new HTTPRequest(url);
+                request.setBasicAuth(username, password);
+                request.addHeader('Accept', 'application/json');
+                request.addHeader('Content-Type', 'application/xml');
+
+                var response = null;
+
+                try {
+                    response = request.post(content);
+                    if (!response) {
+                        this._error("No response on Subscription POST call.");
+                        return null;
+                    }
+                    var status = response.getStatusCode();
+                    if (status != 200) {
+                        this._error("Bad Subscription POST response. Status: " + status + " Message: " + response.getErrorMessage());
+                        return null;
+                    }
+                    this._debug("Subscription POST Status: " + status);
+                } catch (e) {
+                    this._error(e.toString());
+                    return null;
+                }
+                return response;
+            },
+
+            /**
+             * Updates a alarm using a PUT REST call
+             * 
+             * @param {string} url
+             * @param {string} content
+             * @return {HTTPResponse}
+             */
+            makePutCall : function(url, alarmID, attributeValues) {
+                var username = this.probe.getParameter("username");
+                var password = this.probe.getParameter("password");
+
+                url += "/" + alarmID;
+
+                this._debug('PUT URL: ' + url);
+                var request = new HTTPRequest(url);
+                request.setLogLevel("all");
+                request.setBasicAuth(username, password);
+                request.addHeader('Accept', 'application/json');
+                request.addHeader('Content-Type', 'application/xml');
+
+                // Add the attributes to be updated as request parameters
+                for (attr in attributeValues) {
+                    request.addParameter("attr", attr);
+                    request.addParameter("val", attributeValues[attr]);
+                    this._debug("Adding parameter attr=" + attr + " val=" + attributeValues[attr]);
+                }
+
+                var response = null;
+
+                try {
+                    response = request.put("");
+                    if (!response) {
+                        this._error("No response on PUT call.");
+                        return null;
+                    }
+                    var status = response.getStatusCode();
+                    this._debug("PUT Status: " + status);
+                    if (status != 200) {
+                        this._error("Bad PUT response. Status: " + status + " Message: " + response.getErrorMessage());
+                        return null;
+                    }
+                } catch (e) {
+                    this._error(e.toString());
+                    return null;
+                }
+                return response;
+            },
+
+            /**
+             * Makes a GET REST api call to fetch CA Spectrum alarms Used after the initial POST call to fetch
+             * subsequent pages of alarms
+             * 
+             * @param {string} url
+             * @return {HTTPResponse}
+             */
+            makeGetCall : function(url) {
+                var username = this.probe.getParameter("username");
+                var password = this.probe.getParameter("password");
+
+                this._debug('GET URL: ' + url);
+                var request = new HTTPRequest(url);
+                request.setBasicAuth(username, password);
+                request.addHeader('Accept', 'application/json');
+                request.addHeader('Content-Type', 'application/xml');
+
+                var response = null;
+
+                try {
+                    response = request.get();
+                    if (!response) {
+                        this._error("No response on GET call.");
+                        return null;
+                    }
+                    var status = response.getStatusCode();
+                    if (status != 200) {
+                        this._error("Bad GET response. Status: " + status + " Message: " + response.getErrorMessage());
+                        return null;
+                    }
+                    this._debug("GET Status: " + status);
+                } catch (e) {
+                    this._error(e.toString());
+                    return null;
+                }
+                return response;
+            },
+
+            /**
+             * Makes a GET REST api call to fetch CA Spectrum alarms Used after the initial POST call to fetch
+             * subsequent pages of alarms
+             * 
+             * @param {string} url
+             * @return {HTTPResponse}
+             */
+            makeSubscriptionGetCall : function(url) {
+                var username = this.probe.getParameter("username");
+                var password = this.probe.getParameter("password");
+
+                this._debug('Subscriptions GET URL: ' + url);
+                var request = new HTTPRequest(url);
+                request.setBasicAuth(username, password);
+                request.addHeader('Accept', 'application/json');
+                request.addHeader('Content-Type', 'application/xml');
+
+                var response = null;
+
+                try {
+                    response = request.get();
+                    if (!response) {
+                        this._error("No response on Subscriptions GET call.");
+                        return null;
+                    }
+                    var status = response.getStatusCode();
+                    this._debug("Subscriptions GET Status: " + status);
+                    if (status != 200) {
+                        if (status == 400 && response.getBody() == this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID) {
+                            this._error(this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID);
+                            return this.CA_SPECTRUM_INVALID_SUBSCRIPTION_ID;
+                        }
+                        this._error("Bad Subscriptions GET response. Status: " + status + " Message: " + response.getErrorMessage());
+                        return null;
+                    }
+                } catch (e) {
+                    this._error(e.toString());
+                    return null;
+                }
+                return response;
+            },
+
+            /**
+             * 
+             * @param {string} spectrumSeverity
+             * @return {string}
+             */
+            getMappedSeverity : function(spectrumSeverity) {
+                var mappedSeverity = 5; // info
+                if (spectrumSeverity in this.SPECTRUM_SEVERITY_MAP) {
+                    mappedSeverity = this.SPECTRUM_SEVERITY_MAP[spectrumSeverity];
+                }
+                return mappedSeverity;
+            },
+
+            /**
+             * 
+             * @param {integer} daysAgo
+             * @return {integer}
+             */
+            getPriorDateInSeconds : function(daysAgo) {
+                var dt = new Date();
+                var ms = dt.getTime();
+                ms = ms - (daysAgo * 24 * 60 * 60 * 1000);
+                return Math.round(ms / 1000);
+            },
+
+            /**
+             * 
+             * @return {integer}
+             */
+            _getLastEventInfo : function() {
+                var lastEvent = this.probe.getParameter("last_event");
+                this._debug("Last event: " + lastEvent);
+
+                // Check if the first run
+                if (typeof lastEvent === "undefined" || lastEvent === null || lastEvent == "") {
+                    this.firstRun = true;
+                    this.subscriptionId = "";
+                    this.lastOccurrenceSecs = this._getInitialSyncValue();
+                    this._info("First run of collector.");
+                    return;
+                }
+
+                if (lastEvent.substr(0, 1) == "{") {
+                    var lastEventObj = new JSONParser().parse(lastEvent);
+                    this.subscriptionId = lastEventObj[this.LAST_EVENT_SUBSCRIPTION_ID];
+                    this.lastOccurrenceSecs = lastEventObj[this.LAST_EVENT_LAST_OCCURRENCE_SECONDS];
+                } else {
+                    this.subscriptionId = this._getSubscriptionId(lastEvent);
+                    this.lastOccurrenceSecs = this._getLastRunDateTimeInSeconds(lastEvent);
+                }
+            },
+
+            /**
+             * 
+             * @return {integer}
+             */
+            _getSubscriptionId : function(lastEvent) {
+                var subscriptionId = "";
+                if (typeof lastEvent !== "undefined" && lastEvent !== null && lastEvent != "" && lastEvent != "0") {
+                    var dotIdx = lastEvent.indexOf('.')
+                    if (dotIdx >= 0) {
+                        subscriptionId = lastEvent.substr(dotIdx + 1);
+                    }
+                }
+                this._debug("Subscription id: " + subscriptionId);
+                return subscriptionId;
+            },
+
+            /**
+             * 
+             * @return {integer}
+             */
+            _getLastRunDateTimeInSeconds : function(lastEvent) {
+                var lastRun = "";
+                if (typeof lastEvent !== "undefined" && lastEvent !== null && lastEvent != "" && lastEvent != "0") {
+                    var dotIdx = lastEvent.indexOf('.')
+                    if (dotIdx >= 0) {
+                        lastRun = lastEvent.substr(0, dotIdx);
+                    } else {
+                        lastRun = lastEvent;
+                    }
+                }
+                if (lastRun == "") {
+                    lastRun = this._getInitialSyncValue();
+                } else {
+                    lastRun = parseInt(lastRun);
+                }
+
+                var milliseconds = parseInt(lastRun) * 1000;
+                var date = new Date();
+                date.setTime(milliseconds);
+                var dateStr = date.toISOString();
+                this._debug("Last run: " + lastRun + " Readable: " + dateStr);
+                return lastRun;
+            },
+
+            /**
+             * Get the parameter that specifies how many days to look backwards for alarms
+             * 
+             * @return {integer}
+             */
+            _getInitialSyncValue : function() {
+                var daysAgo = this.probe.getAdditionalParameter("initial_sync_in_days");
+                if (daysAgo < 1) {
+                    daysAgo = 7;
+                    this._info("Number of days to sync cant be lower than 1, reverted to 7 days");
+                }
+                return this.getPriorDateInSeconds(daysAgo);
+            },
+
+            /**
+             * Builds a url for fetching CA Spectrum alarms
+             * 
+             * @return {string}
+             */
+            buildSpectrumPollAlarmsURL : function() {
+                var url = this.buildSpectrumSubscriptionBaseURL();
+                url += "/" + this.subscriptionId;
+                return url;
+            },
+
+            /**
+             * Builds a url for fetching CA Spectrum alarms
+             * 
+             * @return {string}
+             */
+            buildSpectrumGetAlarmsURL : function() {
+                var url = this.buildSpectrumAlarmBaseURL();
+
+                var symptoms = this.probe.getAdditionalParameter("include_symptoms");
+                symptoms = symptoms == 'true' ? 'yes' : 'no';
+
+                url += "?symptoms=" + symptoms;
+                return url;
+            },
+
+            /**
+             * Builds the base url for accessing the alarms resource
+             * 
+             * @return {string}
+             */
+            buildSpectrumAlarmBaseURL : function() {
+                var host = this.probe.getParameter("host");
+
+                var port = this.probe.getAdditionalParameter("port");
+                port = port == 80 ? "" : ":" + port;
+
+                var protocol = this.probe.getAdditionalParameter("protocol") || "http";
+
+                var url = protocol + "://" + host + port + "/spectrum/restful/alarms";
+                return url;
+            },
+
+            /**
+             * Builds the base url for accessing the alarms resource
+             * 
+             * @return {string}
+             */
+            buildSpectrumSubscriptionBaseURL : function() {
+                var host = this.probe.getParameter("host");
+
+                var port = this.probe.getAdditionalParameter("port");
+                port = port == 80 ? "" : ":" + port;
+
+                var protocol = this.probe.getAdditionalParameter("protocol") || "http";
+
+                var url = protocol + "://" + host + port + "/spectrum/restful/subscription";
+                return url;
+            },
+
+            /**
+             * Returns a string containing all generated error messages separated by a line feed.
+             * 
+             * @return {string}
+             */
+            _setReValErrorMessage : function() {
+                return this.errorMessages.join("\n");
+            },
+
+            /**
+             * 
+             * @param {string} message
+             */
+            _error : function(message) {
+                this.errorMessages.push(message);
+                ms.log("*** ERROR: " + this.type + " " + message);
+            },
+
+            /**
+             * 
+             * @param {string} message
+             */
+            _info : function(message) {
+                ms.log("*** INFO: " + this.type + " " + message);
+            },
+
+            /**
+             * 
+             * @param {string} message
+             */
+            _debug : function(message) {
+                if (this.DEBUG) {
+                    ms.log("*** DEBUG: " + this.type + " " + message);
+                }
+            },
+
+            type : "CA_Spectrum"
+        });]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-12-06 17:27:25</sys_created_on>
+        <sys_id>12281179dba54010d0cb5385ca961934</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CA_Spectrum</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_include_12281179dba54010d0cb5385ca961934</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-23 20:24:41</sys_updated_on>
+    </sys_script_include>
+</record_update>
