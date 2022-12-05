@@ -1,0 +1,3566 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>00926830db71b300d0cb5385ca96194c</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="x_58056_md_docs_markdown_source"&gt;
+    &lt;x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE"&gt;
+        &lt;abstract_syntax_tree&gt;{
+	"type": "Program",
+	"body": [
+		{
+			"type": "VariableDeclaration",
+			"declarations": [
+				{
+					"type": "VariableDeclarator",
+					"id": {
+						"type": "Identifier",
+						"name": "GSEPSecurityDashboard"
+					},
+					"init": {
+						"type": "CallExpression",
+						"callee": {
+							"type": "MemberExpression",
+							"computed": false,
+							"object": {
+								"type": "Identifier",
+								"name": "Class"
+							},
+							"property": {
+								"type": "Identifier",
+								"name": "create"
+							}
+						},
+						"arguments": []
+					}
+				}
+			],
+			"kind": "var"
+		},
+		{
+			"type": "ExpressionStatement",
+			"expression": {
+				"type": "AssignmentExpression",
+				"operator": "=",
+				"left": {
+					"type": "MemberExpression",
+					"computed": false,
+					"object": {
+						"type": "Identifier",
+						"name": "GSEPSecurityDashboard"
+					},
+					"property": {
+						"type": "Identifier",
+						"name": "prototype"
+					}
+				},
+				"right": {
+					"type": "ObjectExpression",
+					"properties": [
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "initialize"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [],
+								"body": {
+									"type": "BlockStatement",
+									"body": []
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "adminLoginEvent"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "userHasRole"
+													}
+												},
+												"arguments": [
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm1"
+														}
+													},
+													{
+														"type": "Literal",
+														"value": "admin",
+														"raw": "\"admin\""
+													}
+												]
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "ThisExpression"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "_addEvent"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "login_admin",
+																	"raw": "\"login_admin\""
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "sys_created_on"
+																	}
+																},
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "MemberExpression",
+																			"computed": false,
+																			"object": {
+																				"type": "Identifier",
+																				"name": "event"
+																			},
+																			"property": {
+																				"type": "Identifier",
+																				"name": "user_id"
+																			}
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "toString"
+																		}
+																	},
+																	"arguments": []
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "parm2"
+																	}
+																},
+																{
+																	"type": "Literal",
+																	"value": null,
+																	"raw": "null"
+																}
+															]
+														}
+													}
+												]
+											},
+											"alternate": null
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "externalLoginEvent"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "userHasRole"
+													}
+												},
+												"arguments": [
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm1"
+														}
+													},
+													{
+														"type": "Literal",
+														"value": "snc_external",
+														"raw": "\"snc_external\""
+													}
+												]
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "ThisExpression"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "_addEvent"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "login_external",
+																	"raw": "\"login_external\""
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "sys_created_on"
+																	}
+																},
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "MemberExpression",
+																			"computed": false,
+																			"object": {
+																				"type": "Identifier",
+																				"name": "event"
+																			},
+																			"property": {
+																				"type": "Identifier",
+																				"name": "user_id"
+																			}
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "toString"
+																		}
+																	},
+																	"arguments": []
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "parm2"
+																	}
+																},
+																{
+																	"type": "Literal",
+																	"value": null,
+																	"raw": "null"
+																}
+															]
+														}
+													}
+												]
+											},
+											"alternate": null
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "serviceNowLoginEvent"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm1"
+														}
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "contains"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "@snc",
+														"raw": "\"@snc\""
+													}
+												]
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "ThisExpression"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "_addEvent"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "login_snc",
+																	"raw": "\"login_snc\""
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "sys_created_on"
+																	}
+																},
+																{
+																	"type": "Literal",
+																	"value": null,
+																	"raw": "null"
+																},
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "MemberExpression",
+																			"computed": false,
+																			"object": {
+																				"type": "Identifier",
+																				"name": "event"
+																			},
+																			"property": {
+																				"type": "Identifier",
+																				"name": "parm2"
+																			}
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "toString"
+																		}
+																	},
+																	"arguments": []
+																},
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "MemberExpression",
+																			"computed": false,
+																			"object": {
+																				"type": "Identifier",
+																				"name": "event"
+																			},
+																			"property": {
+																				"type": "Identifier",
+																				"name": "parm1"
+																			}
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "toString"
+																		}
+																	},
+																	"arguments": []
+																}
+															]
+														}
+													}
+												]
+											},
+											"alternate": null
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "loginFailed"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "userId"
+													},
+													"init": {
+														"type": "Literal",
+														"value": "",
+														"raw": "\"\""
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "usrGR"
+													},
+													"init": {
+														"type": "NewExpression",
+														"callee": {
+															"type": "Identifier",
+															"name": "GlideRecord"
+														},
+														"arguments": [
+															{
+																"type": "Literal",
+																"value": "sys_user",
+																"raw": "\"sys_user\""
+															}
+														]
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "usrGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "get"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "user_name",
+														"raw": "\"user_name\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm1"
+														}
+													}
+												]
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "Identifier",
+																"name": "userId"
+															},
+															"right": {
+																"type": "CallExpression",
+																"callee": {
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "usrGR"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "getUniqueValue"
+																	}
+																},
+																"arguments": []
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "login_failed",
+														"raw": "\"login_failed\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "sys_created_on"
+														}
+													},
+													{
+														"type": "Identifier",
+														"name": "userId"
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm2"
+														}
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "securityElevation"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "BinaryExpression",
+												"operator": "==",
+												"left": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "event"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "parm2"
+													}
+												},
+												"right": {
+													"type": "Literal",
+													"value": "security_admin",
+													"raw": "\"security_admin\""
+												}
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "ThisExpression"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "_addEvent"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "security_elevation",
+																	"raw": "\"security_elevation\""
+																},
+																{
+																	"type": "MemberExpression",
+																	"computed": false,
+																	"object": {
+																		"type": "Identifier",
+																		"name": "event"
+																	},
+																	"property": {
+																		"type": "Identifier",
+																		"name": "sys_created_on"
+																	}
+																},
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "MemberExpression",
+																			"computed": false,
+																			"object": {
+																				"type": "Identifier",
+																				"name": "event"
+																			},
+																			"property": {
+																				"type": "Identifier",
+																				"name": "user_id"
+																			}
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "toString"
+																		}
+																	},
+																	"arguments": []
+																},
+																{
+																	"type": "Literal",
+																	"value": null,
+																	"raw": "null"
+																},
+																{
+																	"type": "Literal",
+																	"value": null,
+																	"raw": "null"
+																}
+															]
+														}
+													}
+												]
+											},
+											"alternate": null
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "userImpersonation"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "impersonation",
+														"raw": "\"impersonation\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "sys_created_on"
+														}
+													},
+													{
+														"type": "CallExpression",
+														"callee": {
+															"type": "MemberExpression",
+															"computed": false,
+															"object": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "event"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "user_id"
+																}
+															},
+															"property": {
+																"type": "Identifier",
+																"name": "toString"
+															}
+														},
+														"arguments": []
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "idpAdded"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "createdOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "idp_added",
+														"raw": "\"idp_added\""
+													},
+													{
+														"type": "Identifier",
+														"name": "createdOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "sso_properties",
+														"raw": "\"sso_properties\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "idpModified"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "updatedOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "idp_modified",
+														"raw": "\"idp_modified\""
+													},
+													{
+														"type": "Identifier",
+														"name": "updatedOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "sso_properties",
+														"raw": "\"sso_properties\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "offBENSession"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "off_ben_session",
+														"raw": "\"off_ben_session\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "sys_created_on"
+														}
+													},
+													{
+														"type": "CallExpression",
+														"callee": {
+															"type": "MemberExpression",
+															"computed": false,
+															"object": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "event"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "user_id"
+																}
+															},
+															"property": {
+																"type": "Identifier",
+																"name": "toString"
+															}
+														},
+														"arguments": []
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "parm2"
+														}
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "localPasswordChanged"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "updatedOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "local_password_change",
+														"raw": "\"local_password_change\""
+													},
+													{
+														"type": "Identifier",
+														"name": "updatedOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "sys_user",
+														"raw": "\"sys_user\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "systemUpgraded"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "system_upgraded",
+														"raw": "\"system_upgraded\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "sys_created_on"
+														}
+													},
+													{
+														"type": "CallExpression",
+														"callee": {
+															"type": "MemberExpression",
+															"computed": false,
+															"object": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "event"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "user_id"
+																}
+															},
+															"property": {
+																"type": "Identifier",
+																"name": "toString"
+															}
+														},
+														"arguments": []
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "systemUpgradeFailed"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "event"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "system_upgrade_failed",
+														"raw": "\"system_upgrade_failed\""
+													},
+													{
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "event"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "sys_created_on"
+														}
+													},
+													{
+														"type": "CallExpression",
+														"callee": {
+															"type": "MemberExpression",
+															"computed": false,
+															"object": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "event"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "user_id"
+																}
+															},
+															"property": {
+																"type": "Identifier",
+																"name": "toString"
+															}
+														},
+														"arguments": []
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "ipAccessAdded"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "createdOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "ip_access_added",
+														"raw": "\"ip_access_added\""
+													},
+													{
+														"type": "Identifier",
+														"name": "createdOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "x_snc_gnp_ip_access",
+														"raw": "\"x_snc_gnp_ip_access\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "ipAccessModified"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "updatedOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "ip_access_modified",
+														"raw": "\"ip_access_modified\""
+													},
+													{
+														"type": "Identifier",
+														"name": "updatedOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "x_snc_gnp_ip_access",
+														"raw": "\"x_snc_gnp_ip_access\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "elevatedRoleAdded"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "createdOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "elevated_role_added",
+														"raw": "\"elevated_role_added\""
+													},
+													{
+														"type": "Identifier",
+														"name": "createdOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "x_snc_gnp_elevated_role",
+														"raw": "\"x_snc_gnp_elevated_role\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "elevatedRoleModified"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "updatedOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "elevated_role_modified",
+														"raw": "\"elevated_role_modified\""
+													},
+													{
+														"type": "Identifier",
+														"name": "updatedOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "x_snc_gnp_elevated_role",
+														"raw": "\"x_snc_gnp_elevated_role\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "roleElevatedPrivilegeModified"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "updatedOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "ThisExpression"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "_addEvent"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "role_elevated_privilege_modified",
+														"raw": "\"role_elevated_privilege_modified\""
+													},
+													{
+														"type": "Identifier",
+														"name": "updatedOn"
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": null,
+														"raw": "null"
+													},
+													{
+														"type": "Literal",
+														"value": "sys_user_role",
+														"raw": "\"sys_user_role\""
+													},
+													{
+														"type": "Identifier",
+														"name": "sourceID"
+													}
+												]
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "userHasRole"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "userName"
+									},
+									{
+										"type": "Identifier",
+										"name": "roleName"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "usrGR"
+													},
+													"init": {
+														"type": "CallExpression",
+														"callee": {
+															"type": "MemberExpression",
+															"computed": false,
+															"object": {
+																"type": "ThisExpression"
+															},
+															"property": {
+																"type": "Identifier",
+																"name": "_getUser"
+															}
+														},
+														"arguments": [
+															{
+																"type": "Literal",
+																"value": "user_name",
+																"raw": "\"user_name\""
+															},
+															{
+																"type": "Identifier",
+																"name": "userName"
+															}
+														]
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "Identifier",
+												"name": "usrGR"
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ReturnStatement",
+														"argument": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "ThisExpression"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "_userHasRole"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "CallExpression",
+																	"callee": {
+																		"type": "MemberExpression",
+																		"computed": false,
+																		"object": {
+																			"type": "Identifier",
+																			"name": "usrGR"
+																		},
+																		"property": {
+																			"type": "Identifier",
+																			"name": "getUniqueValue"
+																		}
+																	},
+																	"arguments": []
+																},
+																{
+																	"type": "Identifier",
+																	"name": "roleName"
+																}
+															]
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "Literal",
+												"value": false,
+												"raw": "false"
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "_userHasRole"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "userID"
+									},
+									{
+										"type": "Identifier",
+										"name": "roleName"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "roleGR"
+													},
+													"init": {
+														"type": "NewExpression",
+														"callee": {
+															"type": "Identifier",
+															"name": "GlideRecord"
+														},
+														"arguments": [
+															{
+																"type": "Literal",
+																"value": "sys_user_has_role",
+																"raw": "\"sys_user_has_role\""
+															}
+														]
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "roleGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "addQuery"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "user",
+														"raw": "\"user\""
+													},
+													{
+														"type": "Identifier",
+														"name": "userID"
+													}
+												]
+											}
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "roleGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "addQuery"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Literal",
+														"value": "role.name",
+														"raw": "\"role.name\""
+													},
+													{
+														"type": "Identifier",
+														"name": "roleName"
+													}
+												]
+											}
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "roleGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "query"
+													}
+												},
+												"arguments": []
+											}
+										},
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "roleGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "hasNext"
+													}
+												},
+												"arguments": []
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "_getUser"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "fieldName"
+									},
+									{
+										"type": "Identifier",
+										"name": "fieldValue"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "usrGR"
+													},
+													"init": {
+														"type": "NewExpression",
+														"callee": {
+															"type": "Identifier",
+															"name": "GlideRecord"
+														},
+														"arguments": [
+															{
+																"type": "Literal",
+																"value": "sys_user",
+																"raw": "\"sys_user\""
+															}
+														]
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "usrGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "get"
+													}
+												},
+												"arguments": [
+													{
+														"type": "Identifier",
+														"name": "fieldName"
+													},
+													{
+														"type": "Identifier",
+														"name": "fieldValue"
+													}
+												]
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ReturnStatement",
+														"argument": {
+															"type": "Identifier",
+															"name": "usrGR"
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "Literal",
+												"value": null,
+												"raw": "null"
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "_addEvent"
+							},
+							"computed": false,
+							"value": {
+								"type": "FunctionExpression",
+								"id": null,
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "type"
+									},
+									{
+										"type": "Identifier",
+										"name": "createdOn"
+									},
+									{
+										"type": "Identifier",
+										"name": "user"
+									},
+									{
+										"type": "Identifier",
+										"name": "ipAddress"
+									},
+									{
+										"type": "Identifier",
+										"name": "sncUser"
+									},
+									{
+										"type": "Identifier",
+										"name": "table"
+									},
+									{
+										"type": "Identifier",
+										"name": "sourceID"
+									}
+								],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "LogicalExpression",
+												"operator": "||",
+												"left": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "type"
+														}
+													]
+												},
+												"right": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "createdOn"
+														}
+													]
+												}
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "gs"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "error"
+																}
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "Missing event type and/or event created on values",
+																	"raw": "\"Missing event type and/or event created on values\""
+																}
+															]
+														}
+													},
+													{
+														"type": "ReturnStatement",
+														"argument": {
+															"type": "Literal",
+															"value": null,
+															"raw": "null"
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "VariableDeclaration",
+											"declarations": [
+												{
+													"type": "VariableDeclarator",
+													"id": {
+														"type": "Identifier",
+														"name": "logGR"
+													},
+													"init": {
+														"type": "NewExpression",
+														"callee": {
+															"type": "Identifier",
+															"name": "GlideRecord"
+														},
+														"arguments": [
+															{
+																"type": "Literal",
+																"value": "u_security_event_logs",
+																"raw": "\"u_security_event_logs\""
+															}
+														]
+													}
+												}
+											],
+											"kind": "var"
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "logGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "initialize"
+													}
+												},
+												"arguments": []
+											}
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "AssignmentExpression",
+												"operator": "=",
+												"left": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "logGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "u_event_type"
+													}
+												},
+												"right": {
+													"type": "Identifier",
+													"name": "type"
+												}
+											}
+										},
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "AssignmentExpression",
+												"operator": "=",
+												"left": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "logGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "u_event_created"
+													}
+												},
+												"right": {
+													"type": "Identifier",
+													"name": "createdOn"
+												}
+											}
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "UnaryExpression",
+												"operator": "!",
+												"argument": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "user"
+														}
+													]
+												},
+												"prefix": true
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "logGR"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "u_user"
+																}
+															},
+															"right": {
+																"type": "Identifier",
+																"name": "user"
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "UnaryExpression",
+												"operator": "!",
+												"argument": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "ipAddress"
+														}
+													]
+												},
+												"prefix": true
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "logGR"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "u_ip_address"
+																}
+															},
+															"right": {
+																"type": "Identifier",
+																"name": "ipAddress"
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "UnaryExpression",
+												"operator": "!",
+												"argument": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "sncUser"
+														}
+													]
+												},
+												"prefix": true
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "logGR"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "u_servicenow_user"
+																}
+															},
+															"right": {
+																"type": "Identifier",
+																"name": "sncUser"
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "UnaryExpression",
+												"operator": "!",
+												"argument": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "table"
+														}
+													]
+												},
+												"prefix": true
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "logGR"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "u_table"
+																}
+															},
+															"right": {
+																"type": "Identifier",
+																"name": "table"
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "IfStatement",
+											"test": {
+												"type": "UnaryExpression",
+												"operator": "!",
+												"argument": {
+													"type": "CallExpression",
+													"callee": {
+														"type": "MemberExpression",
+														"computed": false,
+														"object": {
+															"type": "Identifier",
+															"name": "gs"
+														},
+														"property": {
+															"type": "Identifier",
+															"name": "nil"
+														}
+													},
+													"arguments": [
+														{
+															"type": "Identifier",
+															"name": "sourceID"
+														}
+													]
+												},
+												"prefix": true
+											},
+											"consequent": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "AssignmentExpression",
+															"operator": "=",
+															"left": {
+																"type": "MemberExpression",
+																"computed": false,
+																"object": {
+																	"type": "Identifier",
+																	"name": "logGR"
+																},
+																"property": {
+																	"type": "Identifier",
+																	"name": "u_source"
+																}
+															},
+															"right": {
+																"type": "Identifier",
+																"name": "sourceID"
+															}
+														}
+													}
+												]
+											},
+											"alternate": null
+										},
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "CallExpression",
+												"callee": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "logGR"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "insert"
+													}
+												},
+												"arguments": []
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"async": false
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						},
+						{
+							"type": "Property",
+							"key": {
+								"type": "Identifier",
+								"name": "type"
+							},
+							"computed": false,
+							"value": {
+								"type": "Literal",
+								"value": "GSEPSecurityDashboard",
+								"raw": "\"GSEPSecurityDashboard\""
+							},
+							"kind": "init",
+							"method": false,
+							"shorthand": false
+						}
+					]
+				}
+			}
+		}
+	],
+	"sourceType": "script"
+}&lt;/abstract_syntax_tree&gt;
+        &lt;added_manually&gt;true&lt;/added_manually&gt;
+        &lt;api_markdown&gt;## &amp;lt;a name="gsepsecuritydashboard"&amp;gt;&amp;lt;/a&amp;gt;GSEPSecurityDashboard&amp;#13;
+ &amp;#13;
+### Type: `Javascript`&amp;#13;
+ &amp;#13;
+### Class: `GSEPSecurityDashboard`&amp;#13;
+ &amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;***GSEPSecurityDashboard()***&amp;#13;
+ &amp;#13;
+### Constructor&amp;#13;
+ &amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;***new GSEPSecurityDashboard()***&amp;#13;
+ &amp;#13;
+### Methods&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### adminLoginEvent(event)&amp;#13;
+_Record an admin login_&amp;#13;
+&amp;#13;
+**Parameters**&amp;#13;
+- event   *&amp;#13;
+&amp;#13;
+  description &amp;#13;
+	&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `elevatedRoleAdded(createdOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a GNP Elevated Role being added_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _createdOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `elevatedRoleModified(updatedOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a GNP Elevated Role being modified_&amp;#13;
+&amp;lt;br /&amp;gt;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _updatedOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `externalLoginEvent(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record an external user logging in_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `idpAdded(createdOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a new IdP being created_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _createdOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `idpModified(updatedOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record an IdP being modified_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _updatedOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `initialize()`&amp;#13;
+&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `ipAccessAdded(createdOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a GNP IP Access being added_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _createdOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `ipAccessModified(updatedOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a GNP IP Access being modified_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _updatedOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `localPasswordChanged(updatedOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record an updated local password_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _updatedOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `loginFailed(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a failed login attempt_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `offBENSession(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a session established from outside the BEN_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `roleElevatedPrivilegeModified(updatedOn, userID, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a GNP Elevated Role being modified_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+| _updatedOn_ | _*_ | _..._ | &amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `securityElevation(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a security role elevation_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `serviceNowLoginEvent(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a ServiceNow login_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `systemUpgraded(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a system upgrade_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `systemUpgradeFailed(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record a system upgrade failure_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `userHasRole(userName, roleName)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Check if a user (by user ID) has a role_&amp;#13;
+&amp;lt;br /&amp;gt;**Parameters**&amp;#13;
+ &amp;#13;
+- userName Object&amp;#13;
+ The item to extend &amp;#13;
+- roleName Array&amp;#13;
+The list to merge| &amp;#13;
+ &amp;#13;
+&amp;lt;br /&amp;gt;**Returns**&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;`*`&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `userImpersonation(event)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Record an impersonation_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _event_ | _*_ | _..._ | &amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `_addEvent(type, createdOn, user, ipAddress, sncUser, table, sourceID)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Insert a new Security Event Log record_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _type_ | _*_ | _..._ | &amp;#13;
+| _createdOn_ | _*_ | _..._ | &amp;#13;
+| _user_ | _*_ | _..._ | &amp;#13;
+| _ipAddress_ | _*_ | _..._ | &amp;#13;
+| _sncUser_ | _*_ | _..._ | &amp;#13;
+| _table_ | _*_ | _..._ | &amp;#13;
+| _sourceID_ | _*_ | _..._ | &amp;#13;
+ &amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Returns**&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;`String` _sys_id of new record_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `_getUser(fieldName, fieldValue)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Get a User GlideRecord_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _fieldName_ | _*_ | _..._ | &amp;#13;
+| _fieldValue_ | _*_ | _..._ | &amp;#13;
+ &amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Returns**&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;`*`&amp;#13;
+&amp;lt;br /&amp;gt;&amp;#13;
+&amp;#13;
+#### `_userHasRole(userID, roleName)`&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;_Check if a user has a role_&amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Parameters**&amp;#13;
+ &amp;#13;
+| Name | Type | Description |&amp;#13;
+| --- | --- | --- |&amp;#13;
+| _userID_ | _*_ | _..._ | &amp;#13;
+| _roleName_ | _*_ | _..._ | &amp;#13;
+ &amp;#13;
+&amp;lt;br /&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;**Returns**&amp;#13;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;`*`&amp;#13;
+&lt;/api_markdown&gt;
+        &lt;html&gt;&lt;![CDATA[&lt;p&gt;&lt;link href="7d34f4344feb6700ecf18c318110c729.cssdbx" rel="stylesheet" type="text/css" /&gt;&lt;/p&gt;
+&lt;div class="content"&gt;
+&lt;h2 id="a-namegsepsecuritydashboardagsepsecuritydashboard"&gt;&lt;a name="gsepsecuritydashboard"&gt;&lt;/a&gt;GSEPSecurityDashboard&lt;/h2&gt;
+&lt;h3 id="type-javascript"&gt;Type: &lt;code&gt;Javascript&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id="class-gsepsecuritydashboard"&gt;Class: &lt;code&gt;GSEPSecurityDashboard&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;  &lt;strong&gt;&lt;em&gt;GSEPSecurityDashboard()&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="constructor"&gt;Constructor&lt;/h3&gt;
+&lt;p&gt;  &lt;strong&gt;&lt;em&gt;new GSEPSecurityDashboard()&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="methods"&gt;Methods&lt;/h3&gt;
+&lt;br /&gt;
+&lt;h4 id="adminlogineventevent"&gt;adminLoginEvent(event)&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Record an admin login&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;event *&lt;/p&gt;
+&lt;p&gt;description&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;br /&gt;
+&lt;h4 id="elevatedroleaddedcreatedon-userid-sourceid"&gt;&lt;code&gt;elevatedRoleAdded(createdOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a GNP Elevated Role being added&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;createdOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="elevatedrolemodifiedupdatedon-userid-sourceid"&gt;&lt;code&gt;elevatedRoleModified(updatedOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a GNP Elevated Role being modified&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;updatedOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="externallogineventevent"&gt;&lt;code&gt;externalLoginEvent(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record an external user logging in&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="idpaddedcreatedon-userid-sourceid"&gt;&lt;code&gt;idpAdded(createdOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a new IdP being created&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;createdOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="idpmodifiedupdatedon-userid-sourceid"&gt;&lt;code&gt;idpModified(updatedOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record an IdP being modified&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;updatedOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="initialize"&gt;&lt;code&gt;initialize()&lt;/code&gt;&lt;/h4&gt;
+&lt;br /&gt;
+&lt;h4 id="ipaccessaddedcreatedon-userid-sourceid"&gt;&lt;code&gt;ipAccessAdded(createdOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a GNP IP Access being added&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;createdOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="ipaccessmodifiedupdatedon-userid-sourceid"&gt;&lt;code&gt;ipAccessModified(updatedOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a GNP IP Access being modified&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;updatedOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="localpasswordchangedupdatedon-userid-sourceid"&gt;&lt;code&gt;localPasswordChanged(updatedOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record an updated local password&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;updatedOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="loginfailedevent"&gt;&lt;code&gt;loginFailed(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a failed login attempt&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="offbensessionevent"&gt;&lt;code&gt;offBENSession(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a session established from outside the BEN&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="roleelevatedprivilegemodifiedupdatedon-userid-sourceid"&gt;&lt;code&gt;roleElevatedPrivilegeModified(updatedOn, userID, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a GNP Elevated Role being modified&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;updatedOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="securityelevationevent"&gt;&lt;code&gt;securityElevation(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a security role elevation&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="servicenowlogineventevent"&gt;&lt;code&gt;serviceNowLoginEvent(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a ServiceNow login&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="systemupgradedevent"&gt;&lt;code&gt;systemUpgraded(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a system upgrade&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="systemupgradefailedevent"&gt;&lt;code&gt;systemUpgradeFailed(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record a system upgrade failure&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="userhasroleusername-rolename"&gt;&lt;code&gt;userHasRole(userName, roleName)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Check if a user (by user ID) has a role&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;userName Object&lt;br /&gt;The item to extend&lt;/li&gt;&lt;li&gt;roleName Array&lt;br /&gt;The list to merge|&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;br /&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;br /&gt;      &lt;code&gt;*&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id="userimpersonationevent"&gt;&lt;code&gt;userImpersonation(event)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Record an impersonation&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;event&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 id="_addeventtype-createdon-user-ipaddress-sncuser-table-sourceid"&gt;&lt;code&gt;_addEvent(type, createdOn, user, ipAddress, sncUser, table, sourceID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Insert a new Security Event Log record&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;type&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;createdOn&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;user&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;ipAddress&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sncUser&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;table&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;sourceID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;    &lt;strong&gt;Returns&lt;/strong&gt;&lt;br /&gt;      &lt;code&gt;String&lt;/code&gt; &lt;em&gt;sys_id of new record&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id="_getuserfieldname-fieldvalue"&gt;&lt;code&gt;_getUser(fieldName, fieldValue)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Get a User GlideRecord&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;fieldName&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;fieldValue&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;    &lt;strong&gt;Returns&lt;/strong&gt;&lt;br /&gt;      &lt;code&gt;*&lt;/code&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id="_userhasroleuserid-rolename"&gt;&lt;code&gt;_userHasRole(userID, roleName)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;    &lt;em&gt;Check if a user has a role&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;    &lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;userID&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;em&gt;roleName&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;*&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;...&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;    &lt;strong&gt;Returns&lt;/strong&gt;&lt;br /&gt;      &lt;code&gt;*&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;]]&gt;&lt;/html&gt;
+        &lt;markdown_document/&gt;
+        &lt;markdown_link&gt;gsepsecuritydashboard&lt;/markdown_link&gt;
+        &lt;order/&gt;
+        &lt;project_code_document_version display_value="PCDV0001007"&gt;a2c626dcdb317300d0cb5385ca961967&lt;/project_code_document_version&gt;
+        &lt;remote&gt;false&lt;/remote&gt;
+        &lt;remote_json/&gt;
+        &lt;remote_source_id/&gt;
+        &lt;show_html&gt;false&lt;/show_html&gt;
+        &lt;show_markdown&gt;false&lt;/show_markdown&gt;
+        &lt;source_description/&gt;
+        &lt;source_id/&gt;
+        &lt;source_key/&gt;
+        &lt;source_name&gt;GSEPSecurityDashboard&lt;/source_name&gt;
+        &lt;source_script_field/&gt;
+        &lt;source_table/&gt;
+        &lt;source_text&gt;var GSEPSecurityDashboard = Class.create();&amp;#13;
+GSEPSecurityDashboard.prototype = {&amp;#13;
+    initialize: function() {},&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record an admin login&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    adminLoginEvent: function(event) {&amp;#13;
+        if (this.userHasRole(event.parm1, "admin")) {&amp;#13;
+            this._addEvent("login_admin", event.sys_created_on, event.user_id.toString(), event.parm2, null);&amp;#13;
+        }&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record an external user logging in&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    externalLoginEvent: function(event) {&amp;#13;
+        if (this.userHasRole(event.parm1, "snc_external")) {&amp;#13;
+            this._addEvent("login_external", event.sys_created_on, event.user_id.toString(), event.parm2, null);&amp;#13;
+        }&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a ServiceNow login&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    serviceNowLoginEvent: function(event) {&amp;#13;
+        if (event.parm1.contains("@snc")) {&amp;#13;
+            this._addEvent("login_snc", event.sys_created_on, null, event.parm2.toString(), event.parm1.toString());&amp;#13;
+        }&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a failed login attempt&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    loginFailed: function(event) {&amp;#13;
+        var userId = "";&amp;#13;
+        //Get user sys_id value&amp;#13;
+        var usrGR = new GlideRecord("sys_user");&amp;#13;
+        if (usrGR.get("user_name", event.parm1)) {&amp;#13;
+            userId = usrGR.getUniqueValue();&amp;#13;
+        }&amp;#13;
+&amp;#13;
+        this._addEvent("login_failed", event.sys_created_on, userId, event.parm2, null);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a security role elevation&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    securityElevation: function(event) {&amp;#13;
+        if (event.parm2 == "security_admin") {&amp;#13;
+            this._addEvent("security_elevation", event.sys_created_on, event.user_id.toString(), null, null);&amp;#13;
+        }&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record an impersonation&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    userImpersonation: function(event) {&amp;#13;
+        this._addEvent("impersonation", event.sys_created_on, event.user_id.toString(), null, null);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a new IdP being created&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    idpAdded: function(createdOn, userID, sourceID) {&amp;#13;
+        this._addEvent("idp_added", createdOn, userID, null, null, "sso_properties", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record an IdP being modified&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    idpModified: function(updatedOn, userID, sourceID) {&amp;#13;
+        this._addEvent("idp_modified", updatedOn, userID, null, null, "sso_properties", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a session established from outside the BEN&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    offBENSession: function(event) {&amp;#13;
+        this._addEvent("off_ben_session", event.sys_created_on, event.user_id.toString(), event.parm2, null);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record an updated local password&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    localPasswordChanged: function(updatedOn, userID, sourceID) {&amp;#13;
+        this._addEvent("local_password_change", updatedOn, userID, null, null, "sys_user", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a system upgrade&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    systemUpgraded: function(event) {&amp;#13;
+        this._addEvent("system_upgraded", event.sys_created_on, event.user_id.toString(), null, null);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a system upgrade failure&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    systemUpgradeFailed: function(event) {&amp;#13;
+        this._addEvent("system_upgrade_failed", event.sys_created_on, event.user_id.toString(), null, null);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a GNP IP Access being added&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    ipAccessAdded: function(createdOn, userID, sourceID) {&amp;#13;
+        this._addEvent("ip_access_added", createdOn, userID, null, null, "x_snc_gnp_ip_access", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a GNP IP Access being modified&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    ipAccessModified: function(updatedOn, userID, sourceID) {&amp;#13;
+        this._addEvent("ip_access_modified", updatedOn, userID, null, null, "x_snc_gnp_ip_access", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a GNP Elevated Role being added&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    elevatedRoleAdded: function(createdOn, userID, sourceID) {&amp;#13;
+        this._addEvent("elevated_role_added", createdOn, userID, null, null, "x_snc_gnp_elevated_role", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a GNP Elevated Role being modified&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    elevatedRoleModified: function(updatedOn, userID, sourceID) {&amp;#13;
+        this._addEvent("elevated_role_modified", updatedOn, userID, null, null, "x_snc_gnp_elevated_role", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Record a GNP Elevated Role being modified&amp;#13;
+     *&amp;#13;
+     * @param {*} event&amp;#13;
+     */&amp;#13;
+    roleElevatedPrivilegeModified: function(updatedOn, userID, sourceID) {&amp;#13;
+        this._addEvent("role_elevated_privilege_modified", updatedOn, userID, null, null, "sys_user_role", sourceID);&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Check if a user (by user ID) has a role&amp;#13;
+     *&amp;#13;
+     * @param {*} userName&amp;#13;
+     * @param {*} roleName&amp;#13;
+     */&amp;#13;
+    userHasRole: function(userName, roleName) {&amp;#13;
+        var usrGR = this._getUser("user_name", userName);&amp;#13;
+        if (usrGR) {&amp;#13;
+            return this._userHasRole(usrGR.getUniqueValue(), roleName);&amp;#13;
+        }&amp;#13;
+        return false;&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Check if a user has a role&amp;#13;
+     *&amp;#13;
+     * @param {*} userID&amp;#13;
+     * @param {*} roleName&amp;#13;
+     */&amp;#13;
+    _userHasRole: function(userID, roleName) {&amp;#13;
+        var roleGR = new GlideRecord("sys_user_has_role");&amp;#13;
+        roleGR.addQuery("user", userID);&amp;#13;
+        roleGR.addQuery("role.name", roleName);&amp;#13;
+        roleGR.query();&amp;#13;
+        return roleGR.hasNext();&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Get a User GlideRecord&amp;#13;
+     *&amp;#13;
+     * @param {*} fieldName&amp;#13;
+     * @param {*} fieldValue&amp;#13;
+     */&amp;#13;
+    _getUser: function(fieldName, fieldValue) {&amp;#13;
+        var usrGR = new GlideRecord("sys_user");&amp;#13;
+        if (usrGR.get(fieldName, fieldValue)) {&amp;#13;
+            return usrGR;&amp;#13;
+        }&amp;#13;
+        return null;&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    /**&amp;#13;
+     * Insert a new Security Event Log record&amp;#13;
+     *&amp;#13;
+     * @param {*} type&amp;#13;
+     * @param {*} createdOn&amp;#13;
+     * @param {*} user&amp;#13;
+     * @param {*} ipAddress&amp;#13;
+     * @param {*} sncUser&amp;#13;
+     * @param {*} table&amp;#13;
+     * @returns {String} sys_id of new record&amp;#13;
+     */&amp;#13;
+    _addEvent: function(type, createdOn, user, ipAddress, sncUser, table, sourceID) {&amp;#13;
+        if (gs.nil(type) || gs.nil(createdOn)) {&amp;#13;
+            gs.error("Missing event type and/or event created on values");&amp;#13;
+            return null;&amp;#13;
+        }&amp;#13;
+        var logGR = new GlideRecord("u_security_event_logs");&amp;#13;
+        logGR.initialize();&amp;#13;
+        logGR.u_event_type = type;&amp;#13;
+        logGR.u_event_created = createdOn;&amp;#13;
+        if (!gs.nil(user)) {&amp;#13;
+            logGR.u_user = user;&amp;#13;
+        }&amp;#13;
+        if (!gs.nil(ipAddress)) {&amp;#13;
+            logGR.u_ip_address = ipAddress;&amp;#13;
+        }&amp;#13;
+        if (!gs.nil(sncUser)) {&amp;#13;
+            logGR.u_servicenow_user = sncUser;&amp;#13;
+        }&amp;#13;
+        if (!gs.nil(table)) {&amp;#13;
+            logGR.u_table = table;&amp;#13;
+        }&amp;#13;
+        if (!gs.nil(sourceID)) {&amp;#13;
+            logGR.u_source = sourceID;&amp;#13;
+        }&amp;#13;
+        return logGR.insert();&amp;#13;
+    },&amp;#13;
+&amp;#13;
+    type: "GSEPSecurityDashboard"&amp;#13;
+};&amp;#13;
+&lt;/source_text&gt;
+        &lt;source_type&gt;Javascript&lt;/source_type&gt;
+        &lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2019-05-31 01:04:01&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;00926830db71b300d0cb5385ca96194c&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2019-06-25 18:56:20&lt;/sys_updated_on&gt;
+    &lt;/x_58056_md_docs_markdown_source&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:32:12</sys_created_on>
+        <sys_id>fb1515d22fe7991448dca1fef699b61a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GSEPSecurityDashboard</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_fb1515d22fe7991448dca1fef699b61a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:32:12</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

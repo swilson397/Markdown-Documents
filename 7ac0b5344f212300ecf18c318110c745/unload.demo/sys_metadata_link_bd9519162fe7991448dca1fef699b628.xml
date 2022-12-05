@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>83434cf6dbed3300d0cb5385ca96197f</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree/>
+        <added_manually>false</added_manually>
+        <api_markdown>## &lt;a name="script-include-markdownbuilder"&gt;&lt;/a&gt;MarkDownBuilder
+ 
+### Type: `Script Include`
+### Class: `MarkDownBuilder`
+### Constructor
+#### `MarkDownBuilder(name, type, link, description, headingsLevel)`
+_Initialize variables_
+**Parameters:**
+
+- `name` *
+__
+- `type` *
+__
+- `link` *
+__
+- `description` *
+__
+- `headingsLevel` *
+__
+ 
+### Static Properties
+#### `MarkDownBuilder.DEBUG` _= true_
+
+---
+### Methods
+#### `buildMarkdown(code)`
+_Generates Markdown documentation from JSDoc comments_
+**Parameters:**
+
+- `code` string
+_the code that contains doc comments_
+
+**Returns:** `string:` _the Markdown documentation_
+
+---
+#### `buildMarkdownSections()`
+
+---
+#### `getMarkdownFromType(type, section)`
+_Generates Markdown documentation from a given section  The function processes units of documentation, a line of code with accompanying doc comment_
+**Parameters:**
+
+- `section` object
+_the section that consists of code line and doc comment_
+- `type` *
+__
+
+**Returns:** `string:` _the Markdown documentation_
+
+---
+#### `initialize(name, type, link, description, headingsLevel)`
+_Initialize variables_
+**Parameters:**
+
+- `name` *
+__
+- `type` *
+__
+- `link` *
+__
+- `description` *
+__
+- `headingsLevel` *
+__
+
+---
+#### `_cleanLine(line)`
+**Parameters:**
+
+- `line` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_compare(a, b)`
+**Parameters:**
+
+- `a` *
+__
+- `b` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_generateFunctionAttributes(item, addLineSeparator)`
+**Parameters:**
+
+- `item` *
+__
+- `addLineSeparator` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_generateItemHeader(name, description)`
+**Parameters:**
+
+- `name` *
+__
+- `description` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_getFunctionSignature(capGroups, index)`
+**Parameters:**
+
+- `capGroups` *
+__
+- `index` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_getNewMarkDownEntry()`
+**Returns:** `*:`
+
+---
+#### `_log(msg)`
+_Adds a message to the system log if MarkDownBuilder.DEBUG is true._
+**Parameters:**
+
+- `msg` String
+_Message to add to the system log._
+
+---
+#### `_logError(msg)`
+_Adds an error message to the system log._
+**Parameters:**
+
+- `msg` string
+_Message to add to system log._
+
+---
+#### `_logWarning(msg)`
+_Adds a warning message to the system log._
+**Parameters:**
+
+- `msg` string
+_Message to add to the system log._
+
+---
+#### `_mergeNameTypeDescrItems(items)`
+**Parameters:**
+
+- `items` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_mergeNameTypeItems(items)`
+**Parameters:**
+
+- `items` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_parseFunctionDeclaration(functionStatement)`
+**Parameters:**
+
+- `functionStatement` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_replaceHTMLWithMarkdown(html)`
+**Parameters:**
+
+- `html` *
+__
+
+**Returns:** `*:`
+
+---
+#### `_setFunctionAttributes(jsDocTags, mdEntry)`
+**Parameters:**
+
+- `jsDocTags` *
+__
+- `mdEntry` *
+__
+
+---
+#### `_stringRepeat(str, count)`
+**Parameters:**
+
+- `str` *
+__
+- `count` *
+__
+
+**Returns:** `*:`
+
+---
+</api_markdown>
+        <html/>
+        <markdown_document/>
+        <markdown_link>script-include-markdownbuilder</markdown_link>
+        <order>1700</order>
+        <project_code_document_version display_value="COD0001003">8ad67e0edbed7300d0cb5385ca961955</project_code_document_version>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>c02d010a4f047b00ecf18c318110c7d2</source_id>
+        <source_key/>
+        <source_name>Script Include: MarkDownBuilder</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2019-05-24 17:39:11</sys_created_on>
+        <sys_id>83434cf6dbed3300d0cb5385ca96197f</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-08 00:57:12</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:34:15</sys_created_on>
+        <sys_id>bd9519162fe7991448dca1fef699b628</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Script Include: MarkDownBuilder</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_bd9519162fe7991448dca1fef699b628</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:34:15</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>bfb4a3264fdb2300ecf18c318110c7b3</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree/>
+        <added_manually>false</added_manually>
+        <api_markdown>##CRC Duplicate Users
+This is some test code&#13;
+&#13;
+Line 3
+
+### `function(domainID)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `domainID` | `string` | 
+
+**Returns**
+ `string` — 
+
+
+### `function cleanUpUser(userName)`
+
+cleanUpUser
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `userName` | `string` | 
+
+
+### `function updateTable(tableDetails)`
+
+updateTable
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `tableDetails` | `string` | 
+
+
+### `function updateTableColumn(columnName)`
+
+updateTableColumn
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `columnName` | `string` | 
+
+**Returns**
+ `string` — 
+
+
+### `function(userID)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `userID` | `string` | 
+
+
+### `function(entry)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `entry` | `string` | 
+
+**Returns**
+ `string` — 
+
+
+### `function getUserRecords(userName)`
+
+getUserRecords
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `userName` | `string` | 
+
+**Returns**
+ `string` — 
+
+
+### `function getDuplicateUserNames()`
+
+getDuplicateUserNames
+
+**Returns**
+ `string` — 
+
+</api_markdown>
+        <html/>
+        <markdown_document display_value="KB0010043 v0.01">31bb13674f322300ecf18c318110c77e</markdown_document>
+        <markdown_link/>
+        <order>400</order>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description>This is some test code&#13;
+&#13;
+Line 3</source_description>
+        <source_id/>
+        <source_key/>
+        <source_name>CRC Duplicate Users</source_name>
+        <source_script_field/>
+        <source_table/>
+        <source_text>var domainID = "ff7002960a0a3c810059c36fce436914"; // CRC&#13;
+var noUpdate = true;&#13;
+var maxUsers = 1000;&#13;
+var usersWithUpdates = 0;&#13;
+var maxUserUpdates = 1;&#13;
+var tablesAndColumns = [&#13;
+    {&#13;
+        label: "Task",&#13;
+        table: "task",&#13;
+        columns: [&#13;
+            "assigned_to",&#13;
+            "opened_by",&#13;
+            "closed_by",&#13;
+            "u_resolved_by",&#13;
+            "watch_list",&#13;
+            "u_group_watch_list",&#13;
+            "additional_assignee_list"&#13;
+        ]&#13;
+    },&#13;
+    { label: "Incident", table: "incident", columns: ["caller_id"] },&#13;
+    { label: "Change Request", table: "change_request", columns: ["requested_by"] },&#13;
+    { label: "Facilities Request", table: "facilities", columns: ["caller_id"] },&#13;
+    { label: "KB Submission", table: "kb_submission", columns: ["submitted_by"] },&#13;
+    { label: "Project", table: "pm_project", columns: ["project_manager", "sponsor"] },&#13;
+    { label: "Request", table: "sc_request", columns: ["requested_for"] },&#13;
+    {&#13;
+        label: "Asset",&#13;
+        table: "alm_asset",&#13;
+        columns: ["assigned_to", "managed_by", "owned_by", "reserved_for", "supported_by"]&#13;
+    },&#13;
+    {&#13;
+        label: "Configuration Item",&#13;
+        table: "cmdb_ci",&#13;
+        columns: [&#13;
+            "assigned_to",&#13;
+            "managed_by",&#13;
+            "owned_by",&#13;
+            "supported_by",&#13;
+            "u_business_manager",&#13;
+            "u_technical_manager"&#13;
+        ]&#13;
+    },&#13;
+    { label: "Group Membership", table: "sys_user_grmember", columns: ["user"] }&#13;
+];&#13;
+&#13;
+(function(domainID) {&#13;
+    gs.info("CRC Duplicate Users starting @" + gs.nowDateTime());&#13;
+    var goodRecordId = null;&#13;
+    var duplicateRecordIds = [];&#13;
+    var tableName = null;&#13;
+    var tableLabel = null;&#13;
+    var tableUpdated = false;&#13;
+    var userUpdated = false;&#13;
+&#13;
+    getDuplicateUserNames().forEach(cleanUpUser, this);&#13;
+&#13;
+    gs.info("Users with rows to update = " + usersWithUpdates);&#13;
+&#13;
+    gs.info("CRC Duplicate Users ended @" + gs.nowDateTime());&#13;
+&#13;
+    function cleanUpUser(userName) {&#13;
+        // If we only want to update a limited number of users&#13;
+        // for testing then skip all records once we've hit the limit&#13;
+        if (usersWithUpdates &gt;= maxUserUpdates) {&#13;
+            return;&#13;
+        }&#13;
+&#13;
+        duplicateRecordIds = getUserRecords(userName);&#13;
+        if (duplicateRecordIds.length &lt;= 1) {&#13;
+            gs.warning("No duplicate user records found for user " + userName);&#13;
+            return;&#13;
+        }&#13;
+        goodRecordId = duplicateRecordIds[0];&#13;
+        duplicateRecordIds.splice(0, 1);&#13;
+&#13;
+        gs.info(&#13;
+            "User " +&#13;
+                userName +&#13;
+                " dup records = " +&#13;
+                duplicateRecordIds +&#13;
+                " good id = " +&#13;
+                goodRecordId&#13;
+        );&#13;
+&#13;
+        userUpdated = false;&#13;
+&#13;
+        tablesAndColumns.forEach(updateTable, this);&#13;
+&#13;
+        if (userUpdated) {&#13;
+            usersWithUpdates++;&#13;
+        }&#13;
+&#13;
+        var userGR = new GlideRecord("sys_user");&#13;
+        userGR.addQuery("sys_domain", domainID);&#13;
+        userGR.addQuery("sys_id", duplicateRecordIds);&#13;
+        userGR.query();&#13;
+        userGR.active.setValue(false);&#13;
+        userGR.locked_out.setValue(true);&#13;
+        gs.info("User " + userName + " query " + userGR.getEncodedQuery());&#13;
+        if (!noUpdate) {&#13;
+            userGR.updateMultiple();&#13;
+        }&#13;
+        gs.info(&#13;
+            "User " + userName + " had " + duplicateRecordIds.length + " user records inactivated"&#13;
+        );&#13;
+    }&#13;
+&#13;
+    function updateTable(tableDetails) {&#13;
+        tableName = tableDetails.table;&#13;
+        tableName = tableName.trim();&#13;
+        tableLabel = tableDetails.label;&#13;
+        tableUpdated = false;&#13;
+        tableDetails.columns.forEach(updateTableColumn, this);&#13;
+        userUpdated = userUpdated || tableUpdated;&#13;
+        gs.info("Table " + tableLabel + " [" + tableName + "] updated = " + tableUpdated);&#13;
+    }&#13;
+&#13;
+    function updateTableColumn(columnName) {&#13;
+        columnName = columnName.trim();&#13;
+        var gr = new GlideRecord(tableName);&#13;
+        gr.initialize();&#13;
+        gr.addQuery("sys_domain", domainID);&#13;
+        if (!gr.isValidField(columnName)) {&#13;
+            gs.warning("Invalid column " + columnName + " for table " + tableName);&#13;
+        }&#13;
+        var fieldType = gr&#13;
+            .getElement(columnName)&#13;
+            .getED()&#13;
+            .getInternalType();&#13;
+        if (fieldType == "glide_list") {&#13;
+            var q = null;&#13;
+            duplicateRecordIds.forEach(function(userID) {&#13;
+                if (q) {&#13;
+                    q.addOrCondition(columnName, "CONTAINS", userID);&#13;
+                } else {&#13;
+                    q = gr.addQuery(columnName, "CONTAINS", userID);&#13;
+                }&#13;
+            }, this);&#13;
+        } else if (fieldType == "reference") {&#13;
+            gr.addQuery(columnName, duplicateRecordIds);&#13;
+        } else {&#13;
+            gs.warning(&#13;
+                "Unknown field type " +&#13;
+                    fieldType +&#13;
+                    " for table " +&#13;
+                    tableName +&#13;
+                    " column " +&#13;
+                    columnName&#13;
+            );&#13;
+            return;&#13;
+        }&#13;
+        gr.query();&#13;
+        if (gr.getRowCount() &gt; 0) {&#13;
+            gs.info(&#13;
+                "User sys_ids = " +&#13;
+                    duplicateRecordIds +&#13;
+                    " Rows = " +&#13;
+                    gr.getRowCount() +&#13;
+                    " Query = " +&#13;
+                    gr.getEncodedQuery()&#13;
+            );&#13;
+            tableUpdated = true;&#13;
+        }&#13;
+        if (fieldType == "glide_list") {&#13;
+            while (gr.next()) {&#13;
+                var listValues = gr[columnName].toString().split(",");&#13;
+                listValues = listValues.filter(function(entry) {&#13;
+                    return duplicateRecordIds.indexOf(entry) &lt; 0;&#13;
+                }, this);&#13;
+                listValues.push(goodRecordId);&#13;
+                gr[columnName].setValue(listValues.join(","));&#13;
+                if (!noUpdate) {&#13;
+                    gr.update();&#13;
+                }&#13;
+            }&#13;
+        } else if (fieldType == "reference") {&#13;
+            gr[columnName].setValue(goodRecordId);&#13;
+            if (!noUpdate) {&#13;
+                gr.updateMultiple();&#13;
+            }&#13;
+        }&#13;
+    }&#13;
+&#13;
+    function getUserRecords(userName) {&#13;
+        var userRecords = [];&#13;
+        var gr = new GlideRecord("sys_user");&#13;
+        gr.addQuery("sys_domain", domainID);&#13;
+        gr.addQuery("user_name", userName);&#13;
+        gr.addActiveQuery();&#13;
+        gr.orderBy("sys_created_on");&#13;
+        gr.query();&#13;
+        while (gr.next()) {&#13;
+            userRecords.push(gr.sys_id.toString());&#13;
+        }&#13;
+        return userRecords;&#13;
+    }&#13;
+&#13;
+    function getDuplicateUserNames() {&#13;
+        var userNames = [];&#13;
+        var gr = new GlideAggregate("sys_user");&#13;
+        gr.addQuery("sys_domain", domainID);&#13;
+        gr.addNotNullQuery("user_name");&#13;
+        gr.addActiveQuery();&#13;
+        gr.addAggregate("COUNT", "user_name");&#13;
+        gr.groupBy("user_name");&#13;
+        gr.query();&#13;
+        while (gr.next()) {&#13;
+            var count = gr.getAggregate("COUNT", "user_name");&#13;
+            if (count &gt; 1) {&#13;
+                userNames.push(gr.user_name.toString());&#13;
+                if (maxUsers &gt; 0 &amp;&amp; userNames.length &gt;= maxUsers) {&#13;
+                    break;&#13;
+                }&#13;
+            }&#13;
+        }&#13;
+        gs.info("Total duplicate users = " + userNames.length);&#13;
+        return userNames;&#13;
+    }&#13;
+})(domainID);&#13;
+</source_text>
+        <source_type>Text</source_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-01 19:05:27</sys_created_on>
+        <sys_id>bfb4a3264fdb2300ecf18c318110c7b3</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-27 02:19:58</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:35:47</sys_created_on>
+        <sys_id>94f511562fe7991448dca1fef699b6dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CRC Duplicate Users</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_94f511562fe7991448dca1fef699b6dd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:35:47</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

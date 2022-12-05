@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>da51a544db331010d0cb5385ca9619c8</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="x_58056_md_docs_markdown_source"&gt;
+    &lt;x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE"&gt;
+        &lt;abstract_syntax_tree&gt;[object Object]&lt;/abstract_syntax_tree&gt;
+        &lt;added_manually&gt;false&lt;/added_manually&gt;
+        &lt;api_markdown&gt;## &amp;lt;a name="awssqsutils"&amp;gt;&amp;lt;/a&amp;gt;AWSSQSUtils
+ 
+### Type: `Script Include`
+### Class: `AWSSQSUtils`
+### Constructor
+#### `AWSSQSUtils_Initialize variables_`
+_Initialize variables_
+
+ 
+### Static Properties
+#### `AWSSQSUtils.testReceiveMessage(queueName)`
+
+**Parameters**
+
+*   `queueName` _*_
+
+---
+#### `AWSSQSUtils.testSendMessage(queueName, msg)`
+
+**Parameters**
+
+*   `queueName` _*_
+ 
+*   `msg` _*_
+
+**Returns**
+
+*   `*`
+
+---
+
+### Methods
+#### `deleteMessages(queueURL, receiptHandles, credID, taskID)`
+
+**Parameters**
+
+*   `queueURL` _*_
+ 
+*   `receiptHandles` _*_
+ 
+*   `credID` _*_
+ 
+*   `taskID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `getDefaultQueueAttributes()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getQueueAttributes(queueName)`
+
+**Parameters**
+
+*   `queueName` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `initialize()`
+_Initialize variables_
+
+---
+#### `receiveMessage(queueName, credID, taskID)`
+_Pulls in messages from an AWS SNS queue_
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `queueURL` _*_
+ 
+*   `credID` _*_
+ 
+*   `taskID` _*_
+ 
+*   `queueName` _*_
+
+**Returns**
+
+*   `object`
+    _- contains properties status, responseAttributes, message and httpStatus_
+
+---
+#### `receiveMessages(credID)`
+_Perform a ReceiveMessage action for each active queue_
+
+**Parameters**
+
+*   `credID` _*_
+
+---
+#### `sendMessage(queueName, messageBody, credID, taskID)`
+_Send a message to an AWS SNS queue - one attempt only_
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `queueName` _*_
+ 
+*   `messageBody` _*_
+ 
+*   `credID` _*_
+ 
+*   `taskID` _*_
+
+**Returns**
+
+*   `object`
+    _- contains properties status, responseAttributes, message and httpStatus_
+
+---
+#### `sendMessageWithRetry(queueName, messageBody, credID, taskID)`
+_Send a message to an AWS SNS queue and if it fails will attempts a number of retries (set in a system property)_
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `queueName` _string_
+ 
+*   `messageBody` _string_
+ 
+*   `credID` _sys_id_
+    _- points to a credential record_
+ 
+*   `taskID` _*_
+
+**Returns**
+
+*   `object`
+    _- contains properties status, responseAttributes, message and httpStatus_
+
+---
+#### `triggerSQSAction(targetURL, action, messageBody, credID, taskID)`
+_Send a message to an AWS resource - one attempt only_
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `targetURL` _*_
+ 
+*   `messageBody` _*_
+ 
+*   `credID` _*_
+ 
+*   `taskID` _*_
+ 
+*   `method` _*_
+ 
+*   `contentType` _*_
+ 
+*   `messageType` _*_
+ 
+*   `action` _*_
+
+**Returns**
+
+*   `object`
+    _- contains properties status, responseAttributes, message and httpStatus_
+
+---
+#### `_getQueueAttr(queueGR)`
+
+**Parameters**
+
+*   `queueGR` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_parseResponseXML(responseBody)`
+
+**Parameters**
+
+*   `responseBody` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_processMessage(queueGR, message)`
+
+**Parameters**
+
+*   `queueGR` _*_
+ 
+*   `message` _*_
+
+---
+&lt;/api_markdown&gt;
+        &lt;html&gt;&lt;![CDATA[&lt;p&gt;&lt;link href="7d34f4344feb6700ecf18c318110c729.cssdbx" rel="stylesheet" type="text/css" /&gt;&lt;/p&gt;
+&lt;div class="content"&gt;
+&lt;h2&gt;&lt;a name="awssqsutils"&gt;&lt;/a&gt;AWSSQSUtils&lt;/h2&gt;
+&lt;h3&gt;Type: &lt;code&gt;Script Include&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Class: &lt;code&gt;AWSSQSUtils&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Constructor&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;AWSSQSUtils_Initialize variables_&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Initialize variables&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Static Properties&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;AWSSQSUtils.testReceiveMessage(queueName)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;AWSSQSUtils.testSendMessage(queueName, msg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;msg&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Methods&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;deleteMessages(queueURL, receiptHandles, credID, taskID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;receiptHandles&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;taskID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getDefaultQueueAttributes()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getQueueAttributes(queueName)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;initialize()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Initialize variables&lt;/em&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;receiveMessage(queueName, credID, taskID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Pulls in messages from an AWS SNS queue&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;taskID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;- contains properties status, responseAttributes, message and httpStatus&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;receiveMessages(credID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Perform a ReceiveMessage action for each active queue&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;sendMessage(queueName, messageBody, credID, taskID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Send a message to an AWS SNS queue - one attempt only&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageBody&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;taskID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;- contains properties status, responseAttributes, message and httpStatus&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;sendMessageWithRetry(queueName, messageBody, credID, taskID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Send a message to an AWS SNS queue and if it fails will attempts a number of retries (set in a system property)&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueName&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageBody&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;sys_id&lt;/em&gt;&lt;br /&gt;&lt;em&gt;- points to a credential record&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;taskID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;- contains properties status, responseAttributes, message and httpStatus&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;triggerSQSAction(targetURL, action, messageBody, credID, taskID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Send a message to an AWS resource - one attempt only&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;targetURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageBody&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;credID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;taskID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;method&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;contentType&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageType&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;action&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;- contains properties status, responseAttributes, message and httpStatus&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_getQueueAttr(queueGR)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;queueGR&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_parseResponseXML(responseBody)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;responseBody&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_processMessage(queueGR, message)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;queueGR&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;message&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;&lt;/div&gt;]]&gt;&lt;/html&gt;
+        &lt;markdown_document/&gt;
+        &lt;markdown_link&gt;awssqsutils&lt;/markdown_link&gt;
+        &lt;order&gt;2100&lt;/order&gt;
+        &lt;project_code_document_version display_value="PCDV0001008"&gt;52f74641db1af300d0cb5385ca9619ca&lt;/project_code_document_version&gt;
+        &lt;remote&gt;true&lt;/remote&gt;
+        &lt;remote_json/&gt;
+        &lt;remote_source_id&gt;6d1b7e8007d91010bb16f2508c1ed079&lt;/remote_source_id&gt;
+        &lt;show_html&gt;true&lt;/show_html&gt;
+        &lt;show_markdown&gt;false&lt;/show_markdown&gt;
+        &lt;source_description/&gt;
+        &lt;source_id/&gt;
+        &lt;source_key&gt;d4f473a1dbb0d810768670adbf961970&lt;/source_key&gt;
+        &lt;source_name&gt;AWSSQSUtils&lt;/source_name&gt;
+        &lt;source_script_field&gt;script&lt;/source_script_field&gt;
+        &lt;source_table&gt;sys_script_include&lt;/source_table&gt;
+        &lt;source_text/&gt;
+        &lt;source_type&gt;Document&lt;/source_type&gt;
+        &lt;sys_created_by&gt;system&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2020-10-07 00:10:23&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;da51a544db331010d0cb5385ca9619c8&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2020-10-07 00:30:25&lt;/sys_updated_on&gt;
+    &lt;/x_58056_md_docs_markdown_source&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:36:29</sys_created_on>
+        <sys_id>aa1615562fe7991448dca1fef699b6a7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AWSSQSUtils</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_aa1615562fe7991448dca1fef699b6a7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:36:29</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

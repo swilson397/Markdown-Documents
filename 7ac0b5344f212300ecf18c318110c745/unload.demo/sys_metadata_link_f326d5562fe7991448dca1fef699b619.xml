@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>e6bbcd852fc8991048dca1fef699b6c2</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree>[object Object]</abstract_syntax_tree>
+        <added_manually>false</added_manually>
+        <api_markdown>## &lt;a name="cattblvarstatic"&gt;&lt;/a&gt;CatTblVarStatic
+ 
+### Type: `Script Include`
+### Class: `CatTblVarStatic`
+### Constructor
+#### `CatTblVarStatic()`
+
+ 
+### Static Properties
+#### `CatTblVarStatic.getStaticHTMLforTable(catTblVarID, taskTbl, taskID)`
+
+**Parameters**
+
+*   `catTblVarID` _*_
+ 
+*   `taskTbl` _*_
+ 
+*   `taskID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+
+### Methods
+#### `addFieldElements(tableDoc, tableFieldDiv, tblSeq, tableFields, savedFields)`
+
+**Parameters**
+
+*   `tableDoc` _*_
+ 
+*   `tableFieldDiv` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `tableFields` _*_
+ 
+*   `savedFields` _*_
+
+---
+#### `getStaticHTML(catTblVarID, docTable, docID)`
+
+**Parameters**
+
+*   `catTblVarID` _*_
+ 
+*   `docTable` _*_
+ 
+*   `docID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `initialize()`
+
+---
+#### `_addColumnElement(parentXMLDoc, parentElement, field, tblSeq, rowSeq)`
+
+**Parameters**
+
+*   `parentXMLDoc` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `field` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `rowSeq` _*_
+
+---
+#### `_addFieldElement(parentXMLDoc, parentElement, field, tblSeq)`
+
+**Parameters**
+
+*   `parentXMLDoc` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `field` _*_
+ 
+*   `tblSeq` _*_
+
+---
+#### `_addHeaderCell(parentXMLDoc, parentElement, tblSeq, field)`
+
+**Parameters**
+
+*   `parentXMLDoc` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `field` _*_
+
+---
+#### `_addRow(tableDoc, tblBody, tblSeq, rowSeq, tableFields)`
+
+**Parameters**
+
+*   `tableDoc` _*_
+ 
+*   `tblBody` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `rowSeq` _*_
+ 
+*   `tableFields` _*_
+
+---
+#### `_appendElement(element, parentXMLDoc, parentElement)`
+
+**Parameters**
+
+*   `element` _*_
+ 
+*   `parentXMLDoc` _*_
+ 
+*   `parentElement` _*_
+
+---
+#### `_appendHTMLString(htmlStr, parentXMLDoc, parentElement)`
+
+**Parameters**
+
+*   `htmlStr` _*_
+ 
+*   `parentXMLDoc` _*_
+ 
+*   `parentElement` _*_
+
+---
+#### `_buildTableHeader(tableDoc, table, tableFields, addRowButton, tblSeq)`
+
+**Parameters**
+
+*   `tableDoc` _*_
+ 
+*   `table` _*_
+ 
+*   `tableFields` _*_
+ 
+*   `addRowButton` _*_
+ 
+*   `tblSeq` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_getElement(xPath, xmlDoc)`
+
+**Parameters**
+
+*   `xPath` _*_
+ 
+*   `xmlDoc` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_getElementByID(id, xmlDoc)`
+
+**Parameters**
+
+*   `id` _*_
+ 
+*   `xmlDoc` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_log(msg)`
+
+**Parameters**
+
+*   `msg` _*_
+
+---
+#### `_logError(msg)`
+
+**Parameters**
+
+*   `msg` _*_
+
+---
+#### `_setCellValue(xmlDoc, field, tableSeq, rowSeq)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `field` _*_
+ 
+*   `tableSeq` _*_
+ 
+*   `rowSeq` _*_
+
+---
+#### `_setCurrentFieldValues(tableFields, savedFields)`
+
+**Parameters**
+
+*   `tableFields` _*_
+ 
+*   `savedFields` _*_
+
+---
+#### `_setElementAttribute(xmlDoc, fieldID, attrName, value)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `fieldID` _*_
+ 
+*   `attrName` _*_
+ 
+*   `value` _*_
+
+---
+#### `_setFieldValue(xmlDoc, field, tableSeq)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `field` _*_
+ 
+*   `tableSeq` _*_
+
+---
+#### `_setRowCurrentValues(cells, tableFields)`
+
+**Parameters**
+
+*   `cells` _*_
+ 
+*   `tableFields` _*_
+
+---
+#### `_setText(xmlDoc, fieldID, value)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `fieldID` _*_
+ 
+*   `value` _*_
+
+---
+#### `_setValue(xmlDoc, fieldID, field)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `fieldID` _*_
+ 
+*   `field` _*_
+
+---
+#### `_useField(field, tableIdx)`
+
+**Parameters**
+
+*   `field` _*_
+ 
+*   `tableIdx` _*_
+
+**Returns**
+
+*   `*`
+
+---
+</api_markdown>
+        <html/>
+        <markdown_document/>
+        <markdown_link>cattblvarstatic</markdown_link>
+        <order>100</order>
+        <project_code_document_version display_value="PCDV0001030">0a4bc1852fc8991048dca1fef699b6e4</project_code_document_version>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>138394bbdb230300768670adbf9619b2</source_id>
+        <source_key>e5454dd0db230300768670adbf961970</source_key>
+        <source_name>CatTblVarStatic</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2022-06-10 23:59:01</sys_created_on>
+        <sys_id>e6bbcd852fc8991048dca1fef699b6c2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2022-06-10 23:59:49</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:36:50</sys_created_on>
+        <sys_id>f326d5562fe7991448dca1fef699b619</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CatTblVarStatic</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_f326d5562fe7991448dca1fef699b619</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:36:50</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

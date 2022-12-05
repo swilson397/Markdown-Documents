@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>b52fcbf7db157700d0cb5385ca961980</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree/>
+        <added_manually>false</added_manually>
+        <api_markdown>## &lt;a name="script-include-csdataexport"&gt;&lt;/a&gt;CSDataExport
+&amp;nbsp;&amp;nbsp;_This is a sample script include for testing the markdown generator.  Line 3_
+ 
+### Type: `Script Include`
+ 
+### Class: `CSDataExport`
+&amp;nbsp;&amp;nbsp;_Script include for exporting instances data_
+ 
+&amp;nbsp;&amp;nbsp;***CSDataExport(dataExportGR)***
+ 
+### Constructor
+&amp;nbsp;&amp;nbsp;_Initialize properties_
+ 
+&amp;nbsp;&amp;nbsp;***new CSDataExport(dataExportGR)***
+ 
+### Static Properties
+ 
+#### `CSDataExport.ACTION` = 'put'
+ 
+#### `CSDataExport.ACTION_PUT_CHUNK` = 'chunk'
+ 
+#### `CSDataExport.DEBUG` = true
+ 
+#### `CSDataExport.EXPORT_CHUNK_SIZE` = 10000000
+ 
+#### `CSDataExport.EXPORT_CHUNK_SUFFIX` = '_chunk.'
+ 
+#### `CSDataExport.EXPORT_CSV_LIMIT` = 'glide.csv.export.limit'
+ 
+#### `CSDataExport.EXPORT_EXCEL_LIMIT` = 'glide.excel.export.limit'
+ 
+#### `CSDataExport.EXPORT_FORMAT_CSV` = 'csv'
+ 
+#### `CSDataExport.EXPORT_FORMAT_EXCEL` = 'xls'
+ 
+#### `CSDataExport.EXPORT_FORMAT_XML` = 'xml'
+ 
+#### `CSDataExport.EXPORT_FROM_REPORT` = 'Report'
+ 
+#### `CSDataExport.EXPORT_FROM_TABLE` = 'Table'
+ 
+#### `CSDataExport.EXPORT_MAX_ROWS_TO_EXPORT_NO_LIMIT` = -1
+ 
+#### `CSDataExport.EXPORT_ROWS_PER_FILE` = 10000
+ 
+#### `CSDataExport.EXPORT_ROWS_PER_FILE_NO_LIMIT` = -1
+ 
+#### `CSDataExport.EXPORT_TYPE_FULL` = 'Full'
+ 
+#### `CSDataExport.EXPORT_TYPE_INCREMENTAL` = 'Incremental'
+ 
+#### `CSDataExport.EXPORT_XML_LIMIT` = 'glide.xml.export.limit'
+ 
+#### `CSDataExport.SLEEP_TIME` = 10000
+ 
+#### `CSDataExport.TRANSFER_METHOD_ATTACHMENT` = 'attachment'
+ 
+#### `CSDataExport.TRANSFER_METHOD_FTP` = 'ftp'
+ 
+#### `CSDataExport.TRANSFER_METHOD_FTPS` = 'ftps'
+ 
+#### `CSDataExport.TRANSFER_METHOD_FTPS_AUTH_TLS` = 'ftps_auth_tls'
+ 
+#### `CSDataExport.TRANSFER_METHOD_FTPS_IMPL_SSL` = 'ftps_impl_ssl'
+ 
+#### `CSDataExport.TRANSFER_METHOD_FTPS_IMPL_TLS` = 'ftps_impl_tls'
+ 
+#### `CSDataExport.TRANSFER_METHOD_LOCAL` = 'local'
+ 
+#### `CSDataExport.TRANSFER_METHOD_SFTP` = 'sftp'
+ 
+#### `CSDataExport.USED_MEMORY_THRESHOLD` = "92"
+ 
+&lt;br /&gt;
+#### `CSDataExport.exportFile(dataExportGR)`
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _dataExportGR_ | _*_ | _..._ | 
+ 
+### Methods
+&lt;br /&gt;
+#### `errorFound()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Return the error property value_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`string`
+&lt;br /&gt;
+#### `getErrorMessage()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Returns the errorMessage property value_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`string`
+&lt;br /&gt;
+#### `getListColumns(fieldList)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Converts a list of field names into a GlideChoiceList containing field names and labels_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _fieldList_ | _string_ | _Comma-delimited string of field names_ | 
+ 
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`GlideChioceList`
+&lt;br /&gt;
+#### `initialize(dataExportGR)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Initialize properties_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _dataExportGR_ | _GlideRecord_ | _..._ | 
+&lt;br /&gt;
+#### `process()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Start the data export process_
+
+&lt;br /&gt;
+#### `saveAttachment(bytesArray, contentType, fileName)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Saves a byte array as an attachment_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _bytesArray_ | _byte array_ | _Java byte array_ | 
+| _contentType_ | _string_ | _..._ | 
+| _fileName_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `sendFile(bytesArray, fileName, chunkSize)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Sends file data to a mid server_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _bytesArray_ | _byte array_ | _Java byte array_ | 
+| _fileName_ | _string_ | _..._ | 
+| _chunkSize_ | _integer_ | _Size of data chunks to send separately_ | 
+&lt;br /&gt;
+#### `sendFileChunk(bytesArray, chunkCtr, fileName)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Sends a chunk of data to a mid server_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _bytesArray_ | _byte array_ | _Java byte array_ | 
+| _chunkCtr_ | _integer_ | _..._ | 
+| _fileName_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `sendFileFinal(chunkCtr, fileName)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Sends the final chunk of data to a mid server along with an indicator to trigger the mid server to combine the chunks into a single flie_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _chunkCtr_ | _integer_ | _..._ | 
+| _fileName_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `setRunProperties(runProperties)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Set runProperties property_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _runProperties_ | _object_ | _..._ | 
+&lt;br /&gt;
+#### `_exportFile(exportGroup, query)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Export data for non-XML exports_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _exportGroup_ | _object_ | _..._ | 
+| _query_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `_getExportGroups(exportTableGR)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Break the record collection to be exported into manageable groups_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _exportTableGR_ | _GlideRecord_ | _..._ | 
+ 
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`array` _Collection of objects containing start/end sys_id values_
+&lt;br /&gt;
+#### `_getFileName()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Builds a file name value_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`string`
+&lt;br /&gt;
+#### `_getUsedMemoryPct()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Calculates the percentage of memory currentlu sed by the instance_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`decimal`
+&lt;br /&gt;
+#### `_handleTargetDestinations(bytesArray, contentType, fileName)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Saves as an attachment or sends to a target destination a byte array_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _bytesArray_ | _byte array_ | _Java byte array_ | 
+| _contentType_ | _string_ | _Used to set the content type on attachments_ | 
+| _fileName_ | _string_ | _Name to use when attachment or file is created_ | 
+&lt;br /&gt;
+#### `_logDebug(msg)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Creates an informational message in the system log if debugging is turned on_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _msg_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `_logError(msg)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Creates an error message in the system log_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _msg_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `_logInfo(msg)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Creates an informational message in the system log_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _msg_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `_logProcessEnd()`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Creates a log message showing the date/time the export completed_
+
+&lt;br /&gt;
+#### `_serializeGlideRecord(gr)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Create an XML document from a GlideRecord_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _gr_ | _GlideRecord_ | _..._ | 
+ 
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`XML document`
+&lt;br /&gt;
+#### `_unloadAttachmentsAndImages(gr)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Export attachments for an XML export_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _gr_ | _GlideRecord_ | _..._ | 
+&lt;br /&gt;
+#### `_unloadJournal(gr)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Export journal entries for an XML export_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _gr_ | _GlideRecord_ | _..._ | 
+&lt;br /&gt;
+#### `_unloadTableRecords(query)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Export XML data_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _query_ | _string_ | _..._ | 
+&lt;br /&gt;
+#### `_unloadXML(query, lastIDProcessed)`
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_Export a group of XML records_
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _query_ | _string_ | _..._ | 
+| _lastIDProcessed_ | _string_ | _..._ | 
+ 
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Returns**
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`object`
+</api_markdown>
+        <html/>
+        <markdown_document display_value="KB0010041 v5.01">b92f03f7db157700d0cb5385ca961975</markdown_document>
+        <markdown_link>script-include-csdataexport</markdown_link>
+        <order>100</order>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>e41166e34f836300ecf18c318110c710</source_id>
+        <source_key/>
+        <source_name>Script Include: CSDataExport</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-16 00:48:04</sys_created_on>
+        <sys_id>b52fcbf7db157700d0cb5385ca961980</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-16 00:54:46</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:35:33</sys_created_on>
+        <sys_id>38e55d162fe7991448dca1fef699b69e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Script Include: CSDataExport</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_38e55d162fe7991448dca1fef699b69e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:35:33</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

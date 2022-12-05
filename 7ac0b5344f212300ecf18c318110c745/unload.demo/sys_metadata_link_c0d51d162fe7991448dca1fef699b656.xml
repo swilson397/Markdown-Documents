@@ -1,0 +1,1872 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>aa41a144db331010d0cb5385ca9619fc</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="x_58056_md_docs_markdown_source"&gt;
+    &lt;x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE"&gt;
+        &lt;abstract_syntax_tree&gt;[object Object]&lt;/abstract_syntax_tree&gt;
+        &lt;added_manually&gt;false&lt;/added_manually&gt;
+        &lt;api_markdown&gt;## &amp;lt;a name="cryptojs"&amp;gt;&amp;lt;/a&amp;gt;CryptoJS
+ 
+### Type: `Script Include`
+ 
+### Static Properties
+#### `CryptoJS.lib.WordArray} This word array's data as a 32-bit word array.&amp;#13;
+	         *&amp;#13;
+	         * @example&amp;#13;
+	         *&amp;#13;
+	         *     var x32WordArray` _= x64WordArray.toX32()_
+
+---
+#### `CryptoJS.pad.AnsiX923`
+
+---
+#### `CryptoJS.pad.Iso10126`
+
+---
+#### `CryptoJS.pad.Iso97971`
+
+---
+#### `CryptoJS.pad.NoPadding`
+
+---
+#### `CryptoJS.pad.ZeroPadding`
+
+---
+#### `CryptoJS.mode.CFB()`
+_Cipher Feedback block mode._
+
+**Returns**
+
+*   `*`
+
+---
+#### `CryptoJS.mode.CTR()`
+_Counter block mode._
+
+**Returns**
+
+*   `*`
+
+---
+#### `CryptoJS.mode.CTRGladman()`
+_Counter block mode compatible with Dr Brian Gladman fileenc.c derived from CryptoJS.mode.CTR Jan Hruby jhruby.web@gmail.com_
+
+**Returns**
+
+*   `*`
+
+---
+#### `CryptoJS.mode.ECB()`
+_Electronic Codebook block mode._
+
+**Returns**
+
+*   `*`
+
+---
+#### `CryptoJS.mode.OFB()`
+_Output Feedback block mode._
+
+**Returns**
+
+*   `*`
+
+---
+
+### Methods
+#### `add(word)`
+_Adds this word with the passed word._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `word` _X64Word_
+    _The x64-Word to add with this word._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after adding._
+
+---
+#### `and(word)`
+_Bitwise ANDs this word with the passed word._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `word` _X64Word_
+    _The x64-Word to AND with this word._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after ANDing._
+
+---
+#### `clamp()`
+_Removes insignificant bits._
+&amp;amp;nbsp;
+
+---
+#### `clone()`
+_Creates a copy of this word array._
+&amp;amp;nbsp;
+
+**Returns**
+
+*   `Object`
+    _The clone. ; The clone. ; The clone. ; The clone._
+
+---
+#### `compute(password, salt)`
+_Derives a key from a password._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `password` _WordArray|string_
+    _The password. ; The password._
+ 
+*   `salt` _WordArray|string_
+    _A salt. ; A salt._
+
+**Returns**
+
+*   `WordArray`
+    _The derived key. ; The derived key._
+
+---
+#### `concat(wordArray)`
+_Concatenates a word array to this word array._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `wordArray` _WordArray_
+    _The word array to append._
+
+**Returns**
+
+*   `WordArray`
+    _This word array._
+
+---
+#### `create()`
+_Extends this object and runs the init method. Arguments to create() will be passed to init()._
+&amp;amp;nbsp;
+
+**Returns**
+
+*   `Object`
+    _The new object._
+
+---
+#### `createDecryptor(key, cfg)`
+_Creates this mode for decryption._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `key` _WordArray_
+    _The key._
+ 
+*   `cfg` _Object_
+    _(Optional) The configuration options to use for this operation._
+ 
+*   `cipher` _Cipher_
+    _A block cipher instance._
+ 
+*   `iv` _Array_
+    _The IV words._
+
+**Returns**
+
+*   `Cipher`
+    _A cipher instance._
+
+---
+#### `createEncryptor(cipher, iv)`
+_Creates this mode for encryption._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `cipher` _Cipher_
+    _A block cipher instance._
+ 
+*   `iv` _Array_
+    _The IV words._
+ 
+*   `key` _*_
+ 
+*   `cfg` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `decrypt(cipher, ciphertext, key, cfg)`
+_Decrypts serialized ciphertext using a password._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `cipher` _Cipher_
+    _The cipher algorithm to use. ; The cipher algorithm to use._
+ 
+*   `ciphertext` _CipherParams|string_
+    _The ciphertext to decrypt. ; The ciphertext to decrypt._
+ 
+*   `key` _WordArray_
+    _The key._
+ 
+*   `cfg` _Object_
+    _(Optional) The configuration options to use for this operation. ; (Optional) The configuration options to use for this operation._
+ 
+*   `password` _string_
+    _The password._
+
+**Returns**
+
+*   `WordArray`
+    _The plaintext. ; The plaintext._
+
+---
+#### `decryptBlock(M, offset)`
+
+**Parameters**
+
+*   `M` _*_
+ 
+*   `offset` _*_
+
+---
+#### `encrypt(cipher, message, key, cfg)`
+_Encrypts a message using a password._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `cipher` _Cipher_
+    _The cipher algorithm to use. ; The cipher algorithm to use._
+ 
+*   `message` _WordArray|string_
+    _The message to encrypt. ; The message to encrypt._
+ 
+*   `key` _WordArray_
+    _The key._
+ 
+*   `cfg` _Object_
+    _(Optional) The configuration options to use for this operation. ; (Optional) The configuration options to use for this operation._
+ 
+*   `password` _string_
+    _The password._
+
+**Returns**
+
+*   `CipherParams`
+    _A cipher params object. ; A cipher params object._
+
+---
+#### `encryptBlock(M, offset)`
+
+**Parameters**
+
+*   `M` _*_
+ 
+*   `offset` _*_
+
+---
+#### `execute(password, keySize, ivSize, salt)`
+_Derives a key and IV from a password._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `password` _string_
+    _The password to derive from._
+ 
+*   `keySize` _number_
+    _The size in words of the key to generate._
+ 
+*   `ivSize` _number_
+    _The size in words of the IV to generate._
+ 
+*   `salt` _WordArray|string_
+    _(Optional) A 64-bit salt to use. If omitted, a salt will be generated randomly._
+
+**Returns**
+
+*   `CipherParams`
+    _A cipher params object with the key, IV, and salt._
+
+---
+#### `extend(overrides)`
+_Creates a new object that inherits from this object._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `overrides` _Object_
+    _Properties to copy into the new object._
+
+**Returns**
+
+*   `Object`
+    _The new object._
+
+---
+#### `finalize(messageUpdate)`
+_Finalizes the encryption or decryption process. Note that the finalize operation is effectively a destructive, read-once operation._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `messageUpdate` _WordArray|string_
+    _(Optional) A final message update. ; (Optional) A final message update._
+ 
+*   `dataUpdate` _WordArray|string_
+    _The final data to encrypt or decrypt._
+
+**Returns**
+
+*   `WordArray`
+    _The hash. ; The HMAC. ; The data after final processing._
+
+---
+#### `init()`
+_Initializes a newly created cipher params object._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `words` _Array_
+    _(Optional) An array of 32-bit words. ; (Optional) An array of CryptoJS.x64.Word objects._
+ 
+*   `sigBytes` _number_
+    _(Optional) The number of significant bytes in the words. ; (Optional) The number of significant bytes in the words._
+ 
+*   `hasher` _Hasher_
+    _The hash algorithm to use._
+ 
+*   `key` _WordArray|string_
+    _The secret key. ; The key._
+ 
+*   `cfg` _Object_
+    _(Optional) The configuration options to use for the derivation. ; (Optional) The configuration options to use for the derivation. ; (Optional) The configuration options to use for this operation._
+ 
+*   `high` _number_
+    _The high 32 bits._
+ 
+*   `low` _number_
+    _The low 32 bits._
+ 
+*   `xformMode` _number_
+    _Either the encryption or decryption transormation mode constant._
+ 
+*   `cipher` _Cipher_
+    _A block cipher instance._
+ 
+*   `iv` _Array_
+    _The IV words._
+ 
+*   `cipherParams` _Object_
+    _An object with any of the possible cipher parameters._
+
+---
+#### `method()`
+
+---
+#### `mixIn(properties)`
+_Copies properties into this object._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `properties` _Object_
+    _The properties to mix in._
+
+---
+#### `not()`
+_Bitwise NOTs this word._
+&amp;amp;nbsp;
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after negating._
+
+---
+#### `or(word)`
+_Bitwise ORs this word with the passed word._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `word` _X64Word_
+    _The x64-Word to OR with this word._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after ORing._
+
+---
+#### `pad(data, blockSize)`
+_Pads data using the algorithm defined in PKCS #5/7._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `data` _WordArray_
+    _The data to pad._
+ 
+*   `blockSize` _number_
+    _The multiple that the data should be padded to._
+
+---
+#### `parse(hexStr)`
+_Converts a hexadecimally encoded ciphertext string to a cipher params object._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `hexStr` _string_
+    _The hex string._
+ 
+*   `latin1Str` _string_
+    _The Latin1 string._
+ 
+*   `utf8Str` _string_
+    _The UTF-8 string._
+ 
+*   `base64Str` _string_
+    _The Base64 string._
+ 
+*   `utf16Str` _string_
+    _The UTF-16 BE string. ; The UTF-16 LE string._
+ 
+*   `openSSLStr` _string_
+    _The OpenSSL-compatible string._
+ 
+*   `input` _string_
+    _The hexadecimally encoded string._
+
+**Returns**
+
+*   `WordArray`
+    _The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The cipher params object. ; The cipher params object._
+
+---
+#### `process(dataUpdate)`
+_Adds data to be encrypted or decrypted._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `dataUpdate` _WordArray|string_
+    _The data to encrypt or decrypt._
+
+**Returns**
+
+*   `WordArray`
+    _The data after processing._
+
+---
+#### `processBlock(words, offset)`
+_Processes the data block at offset._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `words` _Array_
+    _The data words to operate on. ; The data words to operate on._
+ 
+*   `offset` _number_
+    _The offset where the block starts. ; The offset where the block starts._
+
+---
+#### `random(nBytes)`
+_Creates a word array filled with random bytes._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `nBytes` _number_
+    _The number of random bytes to generate._
+
+**Returns**
+
+*   `WordArray`
+    _The random word array._
+
+---
+#### `reset()`
+_Resets this cipher to its initial state._
+&amp;amp;nbsp;
+
+---
+#### `rotL(n)`
+_Rotates this word n bits to the left._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `n` _number_
+    _The number of bits to rotate._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after rotating._
+
+---
+#### `rotR(n)`
+_Rotates this word n bits to the right._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `n` _number_
+    _The number of bits to rotate._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after rotating._
+
+---
+#### `shiftL(n)`
+_Shifts this word n bits to the left._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `n` _number_
+    _The number of bits to shift._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after shifting._
+
+---
+#### `shiftR(n)`
+_Shifts this word n bits to the right._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `n` _number_
+    _The number of bits to shift._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after shifting._
+
+---
+#### `stringify(wordArray)`
+_Converts the ciphertext of a cipher params object to a hexadecimally encoded string._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `wordArray` _WordArray_
+    _The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The word array._
+ 
+*   `cipherParams` _CipherParams_
+    _The cipher params object. ; The cipher params object._
+
+**Returns**
+
+*   `string`
+    _The hex string. ; The Latin1 string. ; The UTF-8 string. ; The Base64 string. ; The UTF-16 BE string. ; The UTF-16 LE string. ; The OpenSSL-compatible string. ; The hexadecimally encoded string._
+
+---
+#### `toString(encoder)`
+_Converts this cipher params object to a string._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `encoder` _Encoder_
+    _(Optional) The encoding strategy to use. Default: CryptoJS.enc.Hex_
+ 
+*   `formatter` _Format_
+    _(Optional) The formatting strategy to use._
+
+**Returns**
+
+*   `string`
+    _The stringified word array. ; The stringified cipher params._
+
+---
+#### `toX32()`
+_Converts this 64-bit word array to a 32-bit word array._
+&amp;amp;nbsp;
+
+**Returns**
+
+*   `CryptoJS.lib.WordArray`
+    _This word array's data as a 32-bit word array._
+
+---
+#### `unpad(data)`
+_Unpads data that had been padded using the algorithm defined in PKCS #5/7._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `data` _WordArray_
+    _The data to unpad._
+
+---
+#### `update(messageUpdate)`
+_Updates this HMAC with a message._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `messageUpdate` _WordArray|string_
+    _The message to append. ; The message to append._
+
+**Returns**
+
+*   `Hasher`
+    _This hasher. ; This HMAC instance._
+
+---
+#### `xor(word)`
+_Bitwise XORs this word with the passed word._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `word` _X64Word_
+    _The x64-Word to XOR with this word._
+
+**Returns**
+
+*   `X64Word`
+    _A new x64-Word object after XORing._
+
+---
+#### `_append(data)`
+_Adds new data to this block algorithm's buffer._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `data` _WordArray|string_
+    _The data to append. Strings are converted to a WordArray using UTF-8._
+
+---
+#### `_createHelper(hasher)`
+_Creates a shortcut function to a hasher's object interface._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `hasher` _Hasher_
+    _The hasher to create a helper for._
+
+**Returns**
+
+*   `Function`
+    _The shortcut function._
+
+---
+#### `_createHmacHelper(hasher)`
+_Creates a shortcut function to the HMAC's object interface._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `hasher` _Hasher_
+    _The hasher to use in this HMAC helper._
+
+**Returns**
+
+*   `Function`
+    _The shortcut function._
+
+---
+#### `_doCryptBlock(M, offset, keySchedule, SUB_MIX_0, SUB_MIX_1, SUB_MIX_2, SUB_MIX_3, SBOX)`
+
+**Parameters**
+
+*   `M` _*_
+ 
+*   `offset` _*_
+ 
+*   `keySchedule` _*_
+ 
+*   `SUB_MIX_0` _*_
+ 
+*   `SUB_MIX_1` _*_
+ 
+*   `SUB_MIX_2` _*_
+ 
+*   `SUB_MIX_3` _*_
+ 
+*   `SBOX` _*_
+ 
+*   `subKeys` _*_
+
+---
+#### `_doFinalize()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `_doProcessBlock(M, offset)`
+
+**Parameters**
+
+*   `M` _*_
+ 
+*   `offset` _*_
+ 
+*   `words` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_doReset()`
+
+---
+#### `_parse(ciphertext, format)`
+_Converts serialized ciphertext to CipherParams, else assumed CipherParams already and returns ciphertext unchanged._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `ciphertext` _CipherParams|string_
+    _The ciphertext._
+ 
+*   `format` _Formatter_
+    _The formatting strategy to use to parse serialized ciphertext._
+
+**Returns**
+
+*   `CipherParams`
+    _The unserialized ciphertext._
+
+---
+#### `_process(doFlush)`
+_Processes available data blocks._
+&amp;amp;nbsp;
+_This method invokes _doProcessBlock(offset), which must be implemented by a concrete subtype._
+&amp;amp;nbsp;
+
+**Parameters**
+
+*   `doFlush` _boolean_
+    _Whether all blocks and partial blocks should be processed._
+
+**Returns**
+
+*   `WordArray`
+    _The processed data._
+
+---
+### Functions
+#### `exchangeLR(offset, mask)`
+
+**Parameters**
+
+*   `offset` _*_
+ 
+*   `mask` _*_
+
+---
+#### `exchangeRL(offset, mask)`
+
+**Parameters**
+
+*   `offset` _*_
+ 
+*   `mask` _*_
+
+---
+#### `F()`
+
+---
+#### `f1(x, y, z)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `y` _*_
+ 
+*   `z` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `f2(x, y, z)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `y` _*_
+ 
+*   `z` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `f3(x, y, z)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `y` _*_
+ 
+*   `z` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `f4(x, y, z)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `y` _*_
+ 
+*   `z` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `f5(x, y, z)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `y` _*_
+ 
+*   `z` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `FF(a, b, c, d, x, s, t)`
+
+**Parameters**
+
+*   `a` _*_
+ 
+*   `b` _*_
+ 
+*   `c` _*_
+ 
+*   `d` _*_
+ 
+*   `x` _*_
+ 
+*   `s` _*_
+ 
+*   `t` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `generateKeystreamAndEncrypt(words, offset, blockSize, cipher)`
+
+**Parameters**
+
+*   `words` _*_
+ 
+*   `offset` _*_
+ 
+*   `blockSize` _*_
+ 
+*   `cipher` _*_
+
+---
+#### `generateKeystreamWord()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getFractionalBits(n)`
+
+**Parameters**
+
+*   `n` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `GG(a, b, c, d, x, s, t)`
+
+**Parameters**
+
+*   `a` _*_
+ 
+*   `b` _*_
+ 
+*   `c` _*_
+ 
+*   `d` _*_
+ 
+*   `x` _*_
+ 
+*   `s` _*_
+ 
+*   `t` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `HH(a, b, c, d, x, s, t)`
+
+**Parameters**
+
+*   `a` _*_
+ 
+*   `b` _*_
+ 
+*   `c` _*_
+ 
+*   `d` _*_
+ 
+*   `x` _*_
+ 
+*   `s` _*_
+ 
+*   `t` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `II(a, b, c, d, x, s, t)`
+
+**Parameters**
+
+*   `a` _*_
+ 
+*   `b` _*_
+ 
+*   `c` _*_
+ 
+*   `d` _*_
+ 
+*   `x` _*_
+ 
+*   `s` _*_
+ 
+*   `t` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `incCounter(counter)`
+
+**Parameters**
+
+*   `counter` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `incWord(word)`
+
+**Parameters**
+
+*   `word` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `isPrime(n)`
+
+**Parameters**
+
+*   `n` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `nextState()`
+
+---
+#### `parseLoop(base64Str, base64StrLength, reverseMap)`
+
+**Parameters**
+
+*   `base64Str` _*_
+ 
+*   `base64StrLength` _*_
+ 
+*   `reverseMap` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `rotl(x, n)`
+
+**Parameters**
+
+*   `x` _*_
+ 
+*   `n` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `selectCipherStrategy(key)`
+
+**Parameters**
+
+*   `key` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `swapEndian(word)`
+
+**Parameters**
+
+*   `word` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `X64Word_create()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `xorBlock(words, offset, blockSize)`
+
+**Parameters**
+
+*   `words` _*_
+ 
+*   `offset` _*_
+ 
+*   `blockSize` _*_
+
+---
+### Anonymous Functions
+#### `(root, factory)`
+
+**Parameters**
+
+*   `root` _*_
+ 
+*   `factory` _*_
+
+---
+&lt;/api_markdown&gt;
+        &lt;html&gt;&lt;![CDATA[&lt;p&gt;&lt;link href="7d34f4344feb6700ecf18c318110c729.cssdbx" rel="stylesheet" type="text/css" /&gt;&lt;/p&gt;
+&lt;div class="content"&gt;
+&lt;h2&gt;&lt;a name="cryptojs"&gt;&lt;/a&gt;CryptoJS&lt;/h2&gt;
+&lt;h3&gt;Type: &lt;code&gt;Script Include&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Static Properties&lt;/h3&gt;
+&lt;h4&gt;&amp;#96;CryptoJS.lib.WordArray} This word array&amp;#39;s data as a 32-bit word array.&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;         *
+         * &amp;#64;example
+         *
+         *     var x32WordArray&amp;#96; _&amp;#61; x64WordArray.toX32()_&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.pad.AnsiX923&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.pad.Iso10126&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.pad.Iso97971&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.pad.NoPadding&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.pad.ZeroPadding&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.mode.CFB()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Cipher Feedback block mode.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.mode.CTR()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Counter block mode.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.mode.CTRGladman()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Counter block mode compatible with Dr Brian Gladman fileenc.c derived from CryptoJS.mode.CTR Jan Hruby &lt;a href="mailto:jhruby.web&amp;#64;gmail.com" rel="nofollow"&gt;jhruby.web&amp;#64;gmail.com&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.mode.ECB()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Electronic Codebook block mode.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;CryptoJS.mode.OFB()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Output Feedback block mode.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Methods&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;add(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Adds this word with the passed word.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;X64Word&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The x64-Word to add with this word.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after adding.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;and(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Bitwise ANDs this word with the passed word.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;X64Word&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The x64-Word to AND with this word.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after ANDing.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;clamp()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Removes insignificant bits.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;clone()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates a copy of this word array.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The clone. ; The clone. ; The clone. ; The clone.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;compute(password, salt)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Derives a key from a password.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;password&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The password. ; The password.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;salt&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;A salt. ; A salt.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The derived key. ; The derived key.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;concat(wordArray)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Concatenates a word array to this word array.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;wordArray&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The word array to append.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;This word array.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;create()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Extends this object and runs the init method. Arguments to create() will be passed to init().&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The new object.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createDecryptor(key, cfg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates this mode for decryption.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The key.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cfg&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The configuration options to use for this operation.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;Cipher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;A block cipher instance.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iv&lt;/code&gt; &lt;em&gt;Array&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The IV words.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Cipher&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A cipher instance.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createEncryptor(cipher, iv)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates this mode for encryption.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;Cipher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;A block cipher instance.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iv&lt;/code&gt; &lt;em&gt;Array&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The IV words.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cfg&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;decrypt(cipher, ciphertext, key, cfg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Decrypts serialized ciphertext using a password.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;Cipher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The cipher algorithm to use. ; The cipher algorithm to use.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ciphertext&lt;/code&gt; &lt;em&gt;CipherParams|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The ciphertext to decrypt. ; The ciphertext to decrypt.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The key.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cfg&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The configuration options to use for this operation. ; (Optional) The configuration options to use for this operation.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;password&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The password.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The plaintext. ; The plaintext.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;decryptBlock(M, offset)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;M&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;encrypt(cipher, message, key, cfg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Encrypts a message using a password.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;Cipher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The cipher algorithm to use. ; The cipher algorithm to use.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;message&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The message to encrypt. ; The message to encrypt.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The key.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cfg&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The configuration options to use for this operation. ; (Optional) The configuration options to use for this operation.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;password&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The password.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;CipherParams&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A cipher params object. ; A cipher params object.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;encryptBlock(M, offset)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;M&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;execute(password, keySize, ivSize, salt)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Derives a key and IV from a password.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;password&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The password to derive from.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;keySize&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The size in words of the key to generate.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ivSize&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The size in words of the IV to generate.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;salt&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) A 64-bit salt to use. If omitted, a salt will be generated randomly.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;CipherParams&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A cipher params object with the key, IV, and salt.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;extend(overrides)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates a new object that inherits from this object.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;overrides&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;Properties to copy into the new object.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Object&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The new object.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;finalize(messageUpdate)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Finalizes the encryption or decryption process. Note that the finalize operation is effectively a destructive, read-once operation.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageUpdate&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) A final message update. ; (Optional) A final message update.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;dataUpdate&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The final data to encrypt or decrypt.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The hash. ; The HMAC. ; The data after final processing.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;init()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Initializes a newly created cipher params object.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;words&lt;/code&gt; &lt;em&gt;Array&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) An array of 32-bit words. ; (Optional) An array of CryptoJS.x64.Word objects.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sigBytes&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The number of significant bytes in the words. ; (Optional) The number of significant bytes in the words.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;hasher&lt;/code&gt; &lt;em&gt;Hasher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The hash algorithm to use.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The secret key. ; The key.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cfg&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The configuration options to use for the derivation. ; (Optional) The configuration options to use for the derivation. ; (Optional) The configuration options to use for this operation.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;high&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The high 32 bits.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;low&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The low 32 bits.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xformMode&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;Either the encryption or decryption transormation mode constant.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;Cipher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;A block cipher instance.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iv&lt;/code&gt; &lt;em&gt;Array&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The IV words.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipherParams&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;An object with any of the possible cipher parameters.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;method()&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;mixIn(properties)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Copies properties into this object.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;properties&lt;/code&gt; &lt;em&gt;Object&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The properties to mix in.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;not()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Bitwise NOTs this word.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after negating.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;or(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Bitwise ORs this word with the passed word.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;X64Word&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The x64-Word to OR with this word.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after ORing.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;pad(data, blockSize)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Pads data using the algorithm defined in PKCS #5/7.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;data&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The data to pad.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;blockSize&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The multiple that the data should be padded to.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;parse(hexStr)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Converts a hexadecimally encoded ciphertext string to a cipher params object.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;hexStr&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The hex string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;latin1Str&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The Latin1 string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;utf8Str&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The UTF-8 string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;base64Str&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The Base64 string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;utf16Str&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The UTF-16 BE string. ; The UTF-16 LE string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;openSSLStr&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The OpenSSL-compatible string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt; &lt;em&gt;string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The hexadecimally encoded string.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The cipher params object. ; The cipher params object.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;process(dataUpdate)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Adds data to be encrypted or decrypted.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;dataUpdate&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The data to encrypt or decrypt.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The data after processing.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;processBlock(words, offset)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Processes the data block at offset.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;words&lt;/code&gt; &lt;em&gt;Array&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The data words to operate on. ; The data words to operate on.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The offset where the block starts. ; The offset where the block starts.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;random(nBytes)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates a word array filled with random bytes.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;nBytes&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The number of random bytes to generate.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The random word array.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;reset()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Resets this cipher to its initial state.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;rotL(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Rotates this word n bits to the left.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The number of bits to rotate.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after rotating.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;rotR(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Rotates this word n bits to the right.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The number of bits to rotate.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after rotating.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;shiftL(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Shifts this word n bits to the left.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The number of bits to shift.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after shifting.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;shiftR(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Shifts this word n bits to the right.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;number&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The number of bits to shift.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after shifting.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;stringify(wordArray)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Converts the ciphertext of a cipher params object to a hexadecimally encoded string.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;wordArray&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The word array. ; The word array. ; The word array. ; The word array. ; The word array. ; The word array.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipherParams&lt;/code&gt; &lt;em&gt;CipherParams&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The cipher params object. ; The cipher params object.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;string&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The hex string. ; The Latin1 string. ; The UTF-8 string. ; The Base64 string. ; The UTF-16 BE string. ; The UTF-16 LE string. ; The OpenSSL-compatible string. ; The hexadecimally encoded string.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;toString(encoder)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Converts this cipher params object to a string.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;encoder&lt;/code&gt; &lt;em&gt;Encoder&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The encoding strategy to use. Default: CryptoJS.enc.Hex&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;formatter&lt;/code&gt; &lt;em&gt;Format&lt;/em&gt;&lt;br /&gt;&lt;em&gt;(Optional) The formatting strategy to use.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;string&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The stringified word array. ; The stringified cipher params.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;toX32()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Converts this 64-bit word array to a 32-bit word array.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;CryptoJS.lib.WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;This word array&amp;#39;s data as a 32-bit word array.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;unpad(data)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Unpads data that had been padded using the algorithm defined in PKCS #5/7.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;data&lt;/code&gt; &lt;em&gt;WordArray&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The data to unpad.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;update(messageUpdate)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Updates this HMAC with a message.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;messageUpdate&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The message to append. ; The message to append.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Hasher&lt;/code&gt;&lt;br /&gt;&lt;em&gt;This hasher. ; This HMAC instance.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;xor(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Bitwise XORs this word with the passed word.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;X64Word&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The x64-Word to XOR with this word.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;X64Word&lt;/code&gt;&lt;br /&gt;&lt;em&gt;A new x64-Word object after XORing.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_append(data)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Adds new data to this block algorithm&amp;#39;s buffer.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;data&lt;/code&gt; &lt;em&gt;WordArray|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The data to append. Strings are converted to a WordArray using UTF-8.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_createHelper(hasher)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates a shortcut function to a hasher&amp;#39;s object interface.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;hasher&lt;/code&gt; &lt;em&gt;Hasher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The hasher to create a helper for.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Function&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The shortcut function.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_createHmacHelper(hasher)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Creates a shortcut function to the HMAC&amp;#39;s object interface.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;hasher&lt;/code&gt; &lt;em&gt;Hasher&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The hasher to use in this HMAC helper.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;Function&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The shortcut function.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_doCryptBlock(M, offset, keySchedule, SUB_MIX_0, SUB_MIX_1, SUB_MIX_2, SUB_MIX_3, SBOX)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;M&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;keySchedule&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SUB_MIX_0&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SUB_MIX_1&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SUB_MIX_2&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SUB_MIX_3&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SBOX&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;subKeys&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_doFinalize()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_doProcessBlock(M, offset)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;M&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;words&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_doReset()&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_parse(ciphertext, format)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Converts serialized ciphertext to CipherParams, else assumed CipherParams already and returns ciphertext unchanged.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ciphertext&lt;/code&gt; &lt;em&gt;CipherParams|string&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The ciphertext.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;format&lt;/code&gt; &lt;em&gt;Formatter&lt;/em&gt;&lt;br /&gt;&lt;em&gt;The formatting strategy to use to parse serialized ciphertext.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;CipherParams&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The unserialized ciphertext.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_process(doFlush)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Processes available data blocks.&lt;/em&gt;&lt;br /&gt; &lt;br /&gt;&lt;em&gt;This method invokes _doProcessBlock(offset), which must be implemented by a concrete subtype.&lt;/em&gt;&lt;br /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;doFlush&lt;/code&gt; &lt;em&gt;boolean&lt;/em&gt;&lt;br /&gt;&lt;em&gt;Whether all blocks and partial blocks should be processed.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;WordArray&lt;/code&gt;&lt;br /&gt;&lt;em&gt;The processed data.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Functions&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;exchangeLR(offset, mask)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;mask&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;exchangeRL(offset, mask)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;mask&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;F()&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;f1(x, y, z)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;y&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;z&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;f2(x, y, z)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;y&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;z&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;f3(x, y, z)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;y&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;z&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;f4(x, y, z)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;y&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;z&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;f5(x, y, z)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;y&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;z&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;FF(a, b, c, d, x, s, t)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;a&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;b&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;d&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;s&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;generateKeystreamAndEncrypt(words, offset, blockSize, cipher)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;words&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;blockSize&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cipher&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;generateKeystreamWord()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getFractionalBits(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;GG(a, b, c, d, x, s, t)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;a&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;b&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;d&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;s&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;HH(a, b, c, d, x, s, t)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;a&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;b&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;d&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;s&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;II(a, b, c, d, x, s, t)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;a&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;b&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;d&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;s&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;incCounter(counter)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;counter&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;incWord(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;isPrime(n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;nextState()&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;parseLoop(base64Str, base64StrLength, reverseMap)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;base64Str&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;base64StrLength&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;reverseMap&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;rotl(x, n)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;x&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;n&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;selectCipherStrategy(key)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;key&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;swapEndian(word)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;word&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;X64Word_create()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;xorBlock(words, offset, blockSize)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;words&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;offset&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;blockSize&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Anonymous Functions&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;(root, factory)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;root&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;factory&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;&lt;/div&gt;]]&gt;&lt;/html&gt;
+        &lt;markdown_document/&gt;
+        &lt;markdown_link&gt;cryptojs&lt;/markdown_link&gt;
+        &lt;order&gt;600&lt;/order&gt;
+        &lt;project_code_document_version display_value="PCDV0001008"&gt;52f74641db1af300d0cb5385ca9619ca&lt;/project_code_document_version&gt;
+        &lt;remote&gt;true&lt;/remote&gt;
+        &lt;remote_json/&gt;
+        &lt;remote_source_id&gt;1de3eb6adbbc9050768670adbf961901&lt;/remote_source_id&gt;
+        &lt;show_html&gt;true&lt;/show_html&gt;
+        &lt;show_markdown&gt;false&lt;/show_markdown&gt;
+        &lt;source_description/&gt;
+        &lt;source_id/&gt;
+        &lt;source_key&gt;d4f473a1dbb0d810768670adbf961970&lt;/source_key&gt;
+        &lt;source_name&gt;CryptoJS&lt;/source_name&gt;
+        &lt;source_script_field&gt;script&lt;/source_script_field&gt;
+        &lt;source_table&gt;sys_script_include&lt;/source_table&gt;
+        &lt;source_text/&gt;
+        &lt;source_type&gt;Document&lt;/source_type&gt;
+        &lt;sys_created_by&gt;system&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2020-10-07 00:10:07&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;aa41a144db331010d0cb5385ca9619fc&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2020-10-07 00:30:53&lt;/sys_updated_on&gt;
+    &lt;/x_58056_md_docs_markdown_source&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:35:13</sys_created_on>
+        <sys_id>c0d51d162fe7991448dca1fef699b656</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CryptoJS</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_c0d51d162fe7991448dca1fef699b656</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:35:13</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

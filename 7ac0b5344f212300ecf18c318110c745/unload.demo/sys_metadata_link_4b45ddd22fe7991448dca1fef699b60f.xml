@@ -1,0 +1,4533 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>5262d3e04f40b700ecf18c318110c73a</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree/>
+        <added_manually>false</added_manually>
+        <api_markdown>## esprima
+
+### `function webpackUniversalModuleDefinition(root, factory)`
+
+webpackUniversalModuleDefinition
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `root`  |  `string`  |   | 
+| `factory`  |  `string`  |   | 
+
+
+### `function()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function(modules)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `modules`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `var installedModules =`
+
+### `function __webpack_require__(moduleId)`
+
+### `if(installedModules[moduleId])`
+
+### `return installedModules[moduleId].exports`
+
+### `var module = installedModules[moduleId] =`
+
+### `exports:`
+
+### `id: moduleId,`
+
+### `loaded: false`
+
+### `}`
+
+### `modules[moduleId].call(module.exports, module, module.exports, __webpack_require__)`
+
+### `module.loaded = true`
+
+### `return module.exports`
+
+### `}`
+
+### `__webpack_require__.m = modules`
+
+### `__webpack_require__.c = installedModules`
+
+### `__webpack_require__.p = ""`
+
+### `return __webpack_require__(0)`
+
+### `})`
+
+### `([`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function parse(code, options, delegate)`
+
+parse
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (node, metadata)`
+
+proxyDelegate
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `node`  |  `string`  |   | 
+| `metadata`  |  `string`  |   | 
+
+
+### `function parseModule(code, options, delegate)`
+
+parseModule
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function parseScript(code, options, delegate)`
+
+parseScript
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function tokenize(code, options, delegate)`
+
+tokenize
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function CommentHandler()`
+
+CommentHandler
+
+**Returns**
+ `string` — 
+
+
+### `function (node, metadata)`
+
+CommentHandler.prototype.insertInnerComments
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `node`  |  `string`  |   | 
+| `metadata`  |  `string`  |   | 
+
+
+### `function a()`
+
+a
+
+### `},`
+
+### `function(module, exports)`
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function (d, b)`
+
+extendStatics
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `d`  |  `string`  |   | 
+| `b`  |  `string`  |   | 
+
+
+### `function (d, b)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `d`  |  `string`  |   | 
+| `b`  |  `string`  |   | 
+
+
+### `function (d, b)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `d`  |  `string`  |   | 
+| `b`  |  `string`  |   | 
+
+
+### `function (d, b)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `d`  |  `string`  |   | 
+| `b`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function __()`
+
+__
+
+### `function getQualifiedElementName(elementName)`
+
+getQualifiedElementName
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `elementName`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (_super)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `_super`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function JSXParser(code, options, delegate)`
+
+JSXParser
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parsePrimaryExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.startJSX
+
+### `function ()`
+
+JSXParser.prototype.finishJSX
+
+### `function ()`
+
+JSXParser.prototype.reenterJSX
+
+### `function ()`
+
+JSXParser.prototype.createJSXNode
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.createJSXChildNode
+
+**Returns**
+ `string` — 
+
+
+### `function (quote)`
+
+JSXParser.prototype.scanXHTMLEntity
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `quote`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.lexJSX
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.nextJSXToken
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.nextJSXText
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.peekJSXToken
+
+**Returns**
+ `string` — 
+
+
+### `function (value)`
+
+JSXParser.prototype.expectJSX
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+
+
+### `function (value)`
+
+JSXParser.prototype.matchJSX
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXIdentifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXElementName
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXAttributeName
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXStringLiteralAttribute
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXExpressionAttribute
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXAttributeValue
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXNameValueAttribute
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXSpreadAttribute
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXAttributes
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXOpeningElement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXBoundaryElement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXEmptyExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXExpressionContainer
+
+### `function ()`
+
+JSXParser.prototype.parseJSXChildren
+
+**Returns**
+ `string` — 
+
+
+### `function (el)`
+
+JSXParser.prototype.parseComplexJSXElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `el`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXElement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.parseJSXRoot
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+JSXParser.prototype.isStartOfExpression
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports)`
+
+### `fromCodePoint: function (cp)`
+
+fromCodePoint
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isWhiteSpace: function (cp)`
+
+isWhiteSpace
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isLineTerminator: function (cp)`
+
+isLineTerminator
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isIdentifierStart: function (cp)`
+
+isIdentifierStart
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isIdentifierPart: function (cp)`
+
+isIdentifierPart
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isDecimalDigit: function (cp)`
+
+isDecimalDigit
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isHexDigit: function (cp)`
+
+isHexDigit
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `isOctalDigit: function (cp)`
+
+isOctalDigit
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `cp`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXClosingElement(name)`
+
+JSXClosingElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXElement(openingElement, children, closingElement)`
+
+JSXElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `openingElement`  |  `string`  |   | 
+| `children`  |  `string`  |   | 
+| `closingElement`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXEmptyExpression()`
+
+JSXEmptyExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXExpressionContainer(expression)`
+
+JSXExpressionContainer
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expression`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXIdentifier(name)`
+
+JSXIdentifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXMemberExpression(object, property)`
+
+JSXMemberExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `object`  |  `string`  |   | 
+| `property`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXAttribute(name, value)`
+
+JSXAttribute
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name`  |  `string`  |   | 
+| `value`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXNamespacedName(namespace, name)`
+
+JSXNamespacedName
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `namespace`  |  `string`  |   | 
+| `name`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXOpeningElement(name, selfClosing, attributes)`
+
+JSXOpeningElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name`  |  `string`  |   | 
+| `selfClosing`  |  `string`  |   | 
+| `attributes`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXSpreadAttribute(argument)`
+
+JSXSpreadAttribute
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function JSXText(value, raw)`
+
+JSXText
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+| `raw`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports)`
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ArrayExpression(elements)`
+
+ArrayExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `elements`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ArrayPattern(elements)`
+
+ArrayPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `elements`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ArrowFunctionExpression(params, body, expression)`
+
+ArrowFunctionExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+| `expression`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AssignmentExpression(operator, left, right)`
+
+AssignmentExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `operator`  |  `string`  |   | 
+| `left`  |  `string`  |   | 
+| `right`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AssignmentPattern(left, right)`
+
+AssignmentPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `left`  |  `string`  |   | 
+| `right`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AsyncArrowFunctionExpression(params, body, expression)`
+
+AsyncArrowFunctionExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+| `expression`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AsyncFunctionDeclaration(id, params, body)`
+
+AsyncFunctionDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AsyncFunctionExpression(id, params, body)`
+
+AsyncFunctionExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function AwaitExpression(argument)`
+
+AwaitExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function BinaryExpression(operator, left, right)`
+
+BinaryExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `operator`  |  `string`  |   | 
+| `left`  |  `string`  |   | 
+| `right`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function BlockStatement(body)`
+
+BlockStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function BreakStatement(label)`
+
+BreakStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `label`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function CallExpression(callee, args)`
+
+CallExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `callee`  |  `string`  |   | 
+| `args`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function CatchClause(param, body)`
+
+CatchClause
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `param`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ClassBody(body)`
+
+ClassBody
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ClassDeclaration(id, superClass, body)`
+
+ClassDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `superClass`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ClassExpression(id, superClass, body)`
+
+ClassExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `superClass`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ComputedMemberExpression(object, property)`
+
+ComputedMemberExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `object`  |  `string`  |   | 
+| `property`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ConditionalExpression(test, consequent, alternate)`
+
+ConditionalExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `test`  |  `string`  |   | 
+| `consequent`  |  `string`  |   | 
+| `alternate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ContinueStatement(label)`
+
+ContinueStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `label`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function DebuggerStatement()`
+
+DebuggerStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Directive(expression, directive)`
+
+Directive
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expression`  |  `string`  |   | 
+| `directive`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function DoWhileStatement(body, test)`
+
+DoWhileStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `body`  |  `string`  |   | 
+| `test`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function EmptyStatement()`
+
+EmptyStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ExportAllDeclaration(source)`
+
+ExportAllDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `source`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ExportDefaultDeclaration(declaration)`
+
+ExportDefaultDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `declaration`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ExportNamedDeclaration(declaration, specifiers, source)`
+
+ExportNamedDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `declaration`  |  `string`  |   | 
+| `specifiers`  |  `string`  |   | 
+| `source`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ExportSpecifier(local, exported)`
+
+ExportSpecifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `local`  |  `string`  |   | 
+| `exported`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ExpressionStatement(expression)`
+
+ExpressionStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expression`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ForInStatement(left, right, body)`
+
+ForInStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `left`  |  `string`  |   | 
+| `right`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ForOfStatement(left, right, body)`
+
+ForOfStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `left`  |  `string`  |   | 
+| `right`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ForStatement(init, test, update, body)`
+
+ForStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `init`  |  `string`  |   | 
+| `test`  |  `string`  |   | 
+| `update`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function FunctionDeclaration(id, params, body, generator)`
+
+FunctionDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+| `generator`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function FunctionExpression(id, params, body, generator)`
+
+FunctionExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `params`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+| `generator`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Identifier(name)`
+
+Identifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function IfStatement(test, consequent, alternate)`
+
+IfStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `test`  |  `string`  |   | 
+| `consequent`  |  `string`  |   | 
+| `alternate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ImportDeclaration(specifiers, source)`
+
+ImportDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `specifiers`  |  `string`  |   | 
+| `source`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ImportDefaultSpecifier(local)`
+
+ImportDefaultSpecifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `local`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ImportNamespaceSpecifier(local)`
+
+ImportNamespaceSpecifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `local`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ImportSpecifier(local, imported)`
+
+ImportSpecifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `local`  |  `string`  |   | 
+| `imported`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function LabeledStatement(label, body)`
+
+LabeledStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `label`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Literal(value, raw)`
+
+Literal
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+| `raw`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function MetaProperty(meta, property)`
+
+MetaProperty
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `meta`  |  `string`  |   | 
+| `property`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function MethodDefinition(key, computed, value, kind, isStatic)`
+
+MethodDefinition
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `key`  |  `string`  |   | 
+| `computed`  |  `string`  |   | 
+| `value`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+| `isStatic`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Module(body)`
+
+Module
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function NewExpression(callee, args)`
+
+NewExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `callee`  |  `string`  |   | 
+| `args`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ObjectExpression(properties)`
+
+ObjectExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `properties`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ObjectPattern(properties)`
+
+ObjectPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `properties`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Property(kind, key, computed, value, method, shorthand)`
+
+Property
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `kind`  |  `string`  |   | 
+| `key`  |  `string`  |   | 
+| `computed`  |  `string`  |   | 
+| `value`  |  `string`  |   | 
+| `method`  |  `string`  |   | 
+| `shorthand`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function RegexLiteral(value, raw, pattern, flags)`
+
+RegexLiteral
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+| `raw`  |  `string`  |   | 
+| `pattern`  |  `string`  |   | 
+| `flags`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function RestElement(argument)`
+
+RestElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ReturnStatement(argument)`
+
+ReturnStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Script(body)`
+
+Script
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function SequenceExpression(expressions)`
+
+SequenceExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expressions`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function SpreadElement(argument)`
+
+SpreadElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function StaticMemberExpression(object, property)`
+
+StaticMemberExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `object`  |  `string`  |   | 
+| `property`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Super()`
+
+Super
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function SwitchCase(test, consequent)`
+
+SwitchCase
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `test`  |  `string`  |   | 
+| `consequent`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function SwitchStatement(discriminant, cases)`
+
+SwitchStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `discriminant`  |  `string`  |   | 
+| `cases`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function TaggedTemplateExpression(tag, quasi)`
+
+TaggedTemplateExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `tag`  |  `string`  |   | 
+| `quasi`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function TemplateElement(value, tail)`
+
+TemplateElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+| `tail`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function TemplateLiteral(quasis, expressions)`
+
+TemplateLiteral
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `quasis`  |  `string`  |   | 
+| `expressions`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ThisExpression()`
+
+ThisExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ThrowStatement(argument)`
+
+ThrowStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function TryStatement(block, handler, finalizer)`
+
+TryStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `block`  |  `string`  |   | 
+| `handler`  |  `string`  |   | 
+| `finalizer`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function UnaryExpression(operator, argument)`
+
+UnaryExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `operator`  |  `string`  |   | 
+| `argument`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function UpdateExpression(operator, argument, prefix)`
+
+UpdateExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `operator`  |  `string`  |   | 
+| `argument`  |  `string`  |   | 
+| `prefix`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function VariableDeclaration(declarations, kind)`
+
+VariableDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `declarations`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function VariableDeclarator(id, init)`
+
+VariableDeclarator
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+| `init`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function WhileStatement(test, body)`
+
+WhileStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `test`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function WithStatement(object, body)`
+
+WithStatement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `object`  |  `string`  |   | 
+| `body`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function YieldExpression(argument, delegate)`
+
+YieldExpression
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `argument`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Parser(code, options, delegate)`
+
+Parser
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+| `delegate`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (messageFormat)`
+
+Parser.prototype.throwError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `messageFormat`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (whole, idx)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `whole`  |  `string`  |   | 
+| `idx`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (messageFormat)`
+
+Parser.prototype.tolerateError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `messageFormat`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (whole, idx)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `whole`  |  `string`  |   | 
+| `idx`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (token, message)`
+
+Parser.prototype.unexpectedTokenError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+| `message`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (token, message)`
+
+Parser.prototype.throwUnexpectedToken
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+| `message`  |  `string`  |   | 
+
+
+### `function (token, message)`
+
+Parser.prototype.tolerateUnexpectedToken
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+| `message`  |  `string`  |   | 
+
+
+### `function ()`
+
+Parser.prototype.collectComments
+
+### `function (token)`
+
+Parser.prototype.getTokenRaw
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (token)`
+
+Parser.prototype.convertToken
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.nextToken
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.nextRegexToken
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.createNode
+
+**Returns**
+ `string` — 
+
+
+### `function (token, lastLineStart)`
+
+Parser.prototype.startNode
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+| `lastLineStart`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (marker, node)`
+
+Parser.prototype.finalize
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `marker`  |  `string`  |   | 
+| `node`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (value)`
+
+Parser.prototype.expect
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+
+
+### `function ()`
+
+Parser.prototype.expectCommaSeparator
+
+### `function (keyword)`
+
+Parser.prototype.expectKeyword
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `keyword`  |  `string`  |   | 
+
+
+### `function (value)`
+
+Parser.prototype.match
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (keyword)`
+
+Parser.prototype.matchKeyword
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `keyword`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (keyword)`
+
+Parser.prototype.matchContextualKeyword
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `keyword`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.matchAssign
+
+**Returns**
+ `string` — 
+
+
+### `function (parseFunction)`
+
+Parser.prototype.isolateCoverGrammar
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `parseFunction`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (parseFunction)`
+
+Parser.prototype.inheritCoverGrammar
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `parseFunction`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.consumeSemicolon
+
+### `function ()`
+
+Parser.prototype.parsePrimaryExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseSpreadElement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseArrayInitializer
+
+**Returns**
+ `string` — 
+
+
+### `function (params)`
+
+Parser.prototype.parsePropertyMethod
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parsePropertyMethodFunction
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parsePropertyMethodAsyncFunction
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseObjectPropertyKey
+
+**Returns**
+ `string` — 
+
+
+### `function (key, value)`
+
+Parser.prototype.isPropertyKey
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `key`  |  `string`  |   | 
+| `value`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (hasProto)`
+
+Parser.prototype.parseObjectProperty
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `hasProto`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseObjectInitializer
+
+### `function ()`
+
+Parser.prototype.parseTemplateHead
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseTemplateElement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseTemplateLiteral
+
+**Returns**
+ `string` — 
+
+
+### `function (expr)`
+
+Parser.prototype.reinterpretExpressionAsPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expr`  |  `string`  |   | 
+
+
+### `function ()`
+
+Parser.prototype.parseGroupExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseArguments
+
+**Returns**
+ `string` — 
+
+
+### `function (token)`
+
+Parser.prototype.isIdentifierName
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseIdentifierName
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseNewExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseAsyncArgument
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseAsyncArguments
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseLeftHandSideExpressionAllowCall
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseSuper
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseLeftHandSideExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseUpdateExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseAwaitExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseUnaryExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseExponentiationExpression
+
+**Returns**
+ `string` — 
+
+
+### `function (token)`
+
+Parser.prototype.binaryPrecedence
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseBinaryExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseConditionalExpression
+
+**Returns**
+ `string` — 
+
+
+### `function (options, param)`
+
+Parser.prototype.checkPatternParam
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+| `param`  |  `string`  |   | 
+
+
+### `function (expr)`
+
+Parser.prototype.reinterpretAsCoverFormalsList
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `expr`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseAssignmentExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseStatementListItem
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseBlock
+
+### `function (kind, options)`
+
+Parser.prototype.parseLexicalBinding
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `kind`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (kind, options)`
+
+Parser.prototype.parseBindingList
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `kind`  |  `string`  |   | 
+| `options`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.isLexicalDeclaration
+
+**Returns**
+ `string` — 
+
+
+### `function (options)`
+
+Parser.prototype.parseLexicalDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parseBindingRestElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parseArrayPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parsePropertyPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parseObjectPattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parsePattern
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (params, kind)`
+
+Parser.prototype.parsePatternWithDefault
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (kind)`
+
+Parser.prototype.parseVariableIdentifier
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `kind`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (options)`
+
+Parser.prototype.parseVariableDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (options)`
+
+Parser.prototype.parseVariableDeclarationList
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseVariableStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseEmptyStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseExpressionStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseIfClause
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseIfStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseDoWhileStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseWhileStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseForStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseContinueStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseBreakStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseReturnStatement
+
+### `function ()`
+
+Parser.prototype.parseWithStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseSwitchCase
+
+### `function ()`
+
+Parser.prototype.parseSwitchStatement
+
+### `function ()`
+
+Parser.prototype.parseLabelledStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseThrowStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseCatchClause
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseFinallyClause
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseTryStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseDebuggerStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseStatement
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseFunctionSourceElements
+
+### `function (options, param, name)`
+
+Parser.prototype.validateParam
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+| `param`  |  `string`  |   | 
+| `name`  |  `string`  |   | 
+
+
+### `function (params)`
+
+Parser.prototype.parseRestElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `params`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (options)`
+
+Parser.prototype.parseFormalParameter
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options`  |  `string`  |   | 
+
+
+### `function (firstRestricted)`
+
+Parser.prototype.parseFormalParameters
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `firstRestricted`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.matchAsyncFunction
+
+**Returns**
+ `string` — 
+
+
+### `function (identifierIsOptional)`
+
+Parser.prototype.parseFunctionDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `identifierIsOptional`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseFunctionExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseDirective
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseDirectivePrologues
+
+**Returns**
+ `string` — 
+
+
+### `function (token)`
+
+Parser.prototype.qualifiedPropertyName
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseGetterMethod
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseSetterMethod
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseGeneratorMethod
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.isStartOfExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseYieldExpression
+
+**Returns**
+ `string` — 
+
+
+### `function (hasConstructor)`
+
+Parser.prototype.parseClassElement
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `hasConstructor`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseClassElementList
+
+### `function ()`
+
+Parser.prototype.parseClassBody
+
+**Returns**
+ `string` — 
+
+
+### `function (identifierIsOptional)`
+
+Parser.prototype.parseClassDeclaration
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `identifierIsOptional`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseClassExpression
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseModule
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseScript
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseModuleSpecifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseImportSpecifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseNamedImports
+
+### `function ()`
+
+Parser.prototype.parseImportDefaultSpecifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseImportNamespaceSpecifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseImportDeclaration
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseExportSpecifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Parser.prototype.parseExportDeclaration
+
+### `function foo ()`
+
+foo
+
+### `function ()`
+
+Self invoking
+
+### `function f ()`
+
+f
+
+### `function ()`
+
+Self invoking
+
+### `},`
+
+### `function(module, exports)`
+
+### `function assert(condition, message)`
+
+assert
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `condition`  |  `string`  |   | 
+| `message`  |  `string`  |   | 
+
+
+### `},`
+
+### `function(module, exports)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function ErrorHandler()`
+
+ErrorHandler
+
+**Returns**
+ `string` — 
+
+
+### `function (error)`
+
+ErrorHandler.prototype.recordError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `error`  |  `string`  |   | 
+
+
+### `function (error)`
+
+ErrorHandler.prototype.tolerate
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `error`  |  `string`  |   | 
+
+
+### `function (msg, column)`
+
+ErrorHandler.prototype.constructError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `msg`  |  `string`  |   | 
+| `column`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (index, line, col, description)`
+
+ErrorHandler.prototype.createError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `index`  |  `string`  |   | 
+| `line`  |  `string`  |   | 
+| `col`  |  `string`  |   | 
+| `description`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (index, line, col, description)`
+
+ErrorHandler.prototype.throwError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `index`  |  `string`  |   | 
+| `line`  |  `string`  |   | 
+| `col`  |  `string`  |   | 
+| `description`  |  `string`  |   | 
+
+
+### `function (index, line, col, description)`
+
+ErrorHandler.prototype.tolerateError
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `index`  |  `string`  |   | 
+| `line`  |  `string`  |   | 
+| `col`  |  `string`  |   | 
+| `description`  |  `string`  |   | 
+
+
+### `},`
+
+### `function(module, exports)`
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function hexValue(ch)`
+
+hexValue
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `ch`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function octalValue(ch)`
+
+octalValue
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `ch`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Scanner(code, handler)`
+
+Scanner
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `handler`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.saveState
+
+**Returns**
+ `string` — 
+
+
+### `function (state)`
+
+Scanner.prototype.restoreState
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state`  |  `string`  |   | 
+
+
+### `function ()`
+
+Scanner.prototype.eof
+
+**Returns**
+ `string` — 
+
+
+### `function (message)`
+
+Scanner.prototype.throwUnexpectedToken
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `message`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (message)`
+
+Scanner.prototype.tolerateUnexpectedToken
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `message`  |  `string`  |   | 
+
+
+### `function (offset)`
+
+Scanner.prototype.skipSingleLineComment
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `offset`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.skipMultiLineComment
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanComments
+
+**Returns**
+ `string` — 
+
+
+### `function (id)`
+
+Scanner.prototype.isFutureReservedWord
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (id)`
+
+Scanner.prototype.isStrictModeReservedWord
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (id)`
+
+Scanner.prototype.isRestrictedWord
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (id)`
+
+Scanner.prototype.isKeyword
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `id`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (i)`
+
+Scanner.prototype.codePointAt
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `i`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (prefix)`
+
+Scanner.prototype.scanHexEscape
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `prefix`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanUnicodeCodePointEscape
+
+### `function ()`
+
+Scanner.prototype.getIdentifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.getComplexIdentifier
+
+**Returns**
+ `string` — 
+
+
+### `function (ch)`
+
+Scanner.prototype.octalToDecimal
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `ch`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanIdentifier
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanPunctuator
+
+**Returns**
+ `string` — 
+
+
+### `function (start)`
+
+Scanner.prototype.scanHexLiteral
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `start`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (start)`
+
+Scanner.prototype.scanBinaryLiteral
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `start`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function (prefix, start)`
+
+Scanner.prototype.scanOctalLiteral
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `prefix`  |  `string`  |   | 
+| `start`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.isImplicitOctalLiteral
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanNumericLiteral
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanStringLiteral
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanTemplate
+
+**Returns**
+ `string` — 
+
+
+### `function (pattern, flags)`
+
+Scanner.prototype.testRegExp
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `pattern`  |  `string`  |   | 
+| `flags`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ($0, $1, $2)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `$0`  |  `string`  |   | 
+| `$1`  |  `string`  |   | 
+| `$2`  |  `string`  |   | 
+
+
+### `function ()`
+
+Scanner.prototype.scanRegExpBody
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanRegExpFlags
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.scanRegExp
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Scanner.prototype.lex
+
+**Returns**
+ `string` — 
+
+
+### `},`
+
+### `function(module, exports)`
+
+### `},`
+
+### `function(module, exports)`
+
+### `},`
+
+### `function(module, exports, __webpack_require__)`
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Reader()`
+
+Reader
+
+**Returns**
+ `string` — 
+
+
+### `function following one of those tokens is an expression.   Reader.prototype.beforeFunctionExpression = function (t)`
+
+Self invoking
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `t`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Reader.prototype.isRegexStart
+
+### `function()`
+
+Self invoking
+
+### `function f()`
+
+f
+
+### `function (token)`
+
+Reader.prototype.push
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `token`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Self invoking
+
+**Returns**
+ `string` — 
+
+
+### `function Tokenizer(code, config)`
+
+Tokenizer
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `code`  |  `string`  |   | 
+| `config`  |  `string`  |   | 
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Tokenizer.prototype.errors
+
+**Returns**
+ `string` — 
+
+
+### `function ()`
+
+Tokenizer.prototype.getNextToken
+
+**Returns**
+ `string` — 
+
+
+### `}`
+
+### `])  })`
+</api_markdown>
+        <html/>
+        <markdown_document display_value="KB0010043 v0.01">31bb13674f322300ecf18c318110c77e</markdown_document>
+        <markdown_link/>
+        <order/>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>5dde04564f8f2300ecf18c318110c7cf</source_id>
+        <source_key/>
+        <source_name/>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2019-03-04 19:23:33</sys_created_on>
+        <sys_id>5262d3e04f40b700ecf18c318110c73a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-03-04 19:23:33</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:32:59</sys_created_on>
+        <sys_id>4b45ddd22fe7991448dca1fef699b60f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_4b45ddd22fe7991448dca1fef699b60f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:32:59</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

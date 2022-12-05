@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>7bcb81c52fc8991048dca1fef699b6fb</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="x_58056_md_docs_markdown_source"&gt;
+    &lt;x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE"&gt;
+        &lt;abstract_syntax_tree&gt;[object Object]&lt;/abstract_syntax_tree&gt;
+        &lt;added_manually&gt;false&lt;/added_manually&gt;
+        &lt;api_markdown&gt;## &amp;lt;a name="cattblvarhtml"&amp;gt;&amp;lt;/a&amp;gt;CatTblVarHTML
+ 
+### Type: `Script Include`
+### Class: `CatTblVarHTML`
+### Constructor
+#### `CatTblVarHTML(tableIsDisabled, isSP)`
+
+**Parameters**
+
+*   `tableIsDisabled` _*_
+ 
+*   `isSP` _*_
+
+### Methods
+#### `buildContainerHTML(tableName, title)`
+
+**Parameters**
+
+*   `tableName` _*_
+ 
+*   `title` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `buildLabelElement(xmlDoc, field, tblSeq, parentElement)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `field` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `parentElement` _*_
+
+---
+#### `buildTableHTML(tableName, tblSeq, tblSysID, addTableButton, deleteTableButton, allowMultiple)`
+
+**Parameters**
+
+*   `tableName` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `tblSysID` _*_
+ 
+*   `addTableButton` _*_
+ 
+*   `deleteTableButton` _*_
+ 
+*   `allowMultiple` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createColumnHeaderElement(field, tblSeq)`
+
+**Parameters**
+
+*   `field` _*_
+ 
+*   `tblSeq` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createDocumentElement(xmlDoc, tagName, props, value)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `tagName` _*_
+ 
+*   `props` _*_
+ 
+*   `value` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createElement(xmlDoc, field, fieldSuffix, parentElement, tblSysID)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `field` _*_
+ 
+*   `fieldSuffix` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createFieldElement(tblSeq, field, tblSysID)`
+
+**Parameters**
+
+*   `tblSeq` _*_
+ 
+*   `field` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createPlainElement(field, tblSeq, tblSysID)`
+
+**Parameters**
+
+*   `field` _*_
+ 
+*   `tblSeq` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `createTableElement(tblSeq, rowSeq, field, isHeader, tblSysID)`
+
+**Parameters**
+
+*   `tblSeq` _*_
+ 
+*   `rowSeq` _*_
+ 
+*   `field` _*_
+ 
+*   `isHeader` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `initialize(tableIsDisabled, isSP)`
+
+**Parameters**
+
+*   `tableIsDisabled` _*_
+ 
+*   `isSP` _*_
+
+---
+#### `_createButton(xmlDoc, props, parentElement, fieldLabel)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `props` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `fieldLabel` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_createSelect2Element(xmlDoc, fieldName, id, parentElement, tblSysID)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `fieldName` _*_
+ 
+*   `id` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_createTextElement(xmlDoc, fieldName, id, parentElement, tblSysID)`
+
+**Parameters**
+
+*   `xmlDoc` _*_
+ 
+*   `fieldName` _*_
+ 
+*   `id` _*_
+ 
+*   `parentElement` _*_
+ 
+*   `tblSysID` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_log(msg)`
+
+**Parameters**
+
+*   `msg` _*_
+
+---
+#### `_logError(msg)`
+
+**Parameters**
+
+*   `msg` _*_
+
+---
+&lt;/api_markdown&gt;
+        &lt;html&gt;&lt;![CDATA[&lt;p&gt;&lt;link href="7d34f4344feb6700ecf18c318110c729.cssdbx" rel="stylesheet" type="text/css" /&gt;&lt;/p&gt;
+&lt;div class="content"&gt;
+&lt;h2&gt;&lt;a name="cattblvarhtml"&gt;&lt;/a&gt;CatTblVarHTML&lt;/h2&gt;
+&lt;h3&gt;Type: &lt;code&gt;Script Include&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Class: &lt;code&gt;CatTblVarHTML&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Constructor&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;CatTblVarHTML(tableIsDisabled, isSP)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tableIsDisabled&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;isSP&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;h3&gt;Methods&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;buildContainerHTML(tableName, title)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tableName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;title&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;buildLabelElement(xmlDoc, field, tblSeq, parentElement)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;parentElement&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;buildTableHTML(tableName, tblSeq, tblSysID, addTableButton, deleteTableButton, allowMultiple)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tableName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;addTableButton&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;deleteTableButton&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;allowMultiple&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createColumnHeaderElement(field, tblSeq)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createDocumentElement(xmlDoc, tagName, props, value)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tagName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;props&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;value&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createElement(xmlDoc, field, fieldSuffix, parentElement, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fieldSuffix&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;parentElement&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createFieldElement(tblSeq, field, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createPlainElement(field, tblSeq, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;createTableElement(tblSeq, rowSeq, field, isHeader, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;rowSeq&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;field&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;isHeader&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;initialize(tableIsDisabled, isSP)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tableIsDisabled&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;isSP&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_createButton(xmlDoc, props, parentElement, fieldLabel)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;props&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;parentElement&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fieldLabel&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_createSelect2Element(xmlDoc, fieldName, id, parentElement, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fieldName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;id&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;parentElement&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_createTextElement(xmlDoc, fieldName, id, parentElement, tblSysID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xmlDoc&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fieldName&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;id&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;parentElement&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tblSysID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_log(msg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;msg&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_logError(msg)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;msg&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;&lt;/div&gt;]]&gt;&lt;/html&gt;
+        &lt;markdown_document/&gt;
+        &lt;markdown_link&gt;cattblvarhtml&lt;/markdown_link&gt;
+        &lt;order&gt;1100&lt;/order&gt;
+        &lt;project_code_document_version display_value="PCDV0001030"&gt;0a4bc1852fc8991048dca1fef699b6e4&lt;/project_code_document_version&gt;
+        &lt;remote&gt;false&lt;/remote&gt;
+        &lt;remote_json/&gt;
+        &lt;remote_source_id/&gt;
+        &lt;show_html&gt;false&lt;/show_html&gt;
+        &lt;show_markdown&gt;true&lt;/show_markdown&gt;
+        &lt;source_description/&gt;
+        &lt;source_id&gt;cab394f7db230300768670adbf9619e0&lt;/source_id&gt;
+        &lt;source_key&gt;e5454dd0db230300768670adbf961970&lt;/source_key&gt;
+        &lt;source_name&gt;CatTblVarHTML&lt;/source_name&gt;
+        &lt;source_script_field&gt;script&lt;/source_script_field&gt;
+        &lt;source_table&gt;sys_script_include&lt;/source_table&gt;
+        &lt;source_text/&gt;
+        &lt;source_type&gt;Document&lt;/source_type&gt;
+        &lt;sys_created_by&gt;system&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2022-06-10 23:59:22&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;7bcb81c52fc8991048dca1fef699b6fb&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2022-06-11 00:17:54&lt;/sys_updated_on&gt;
+    &lt;/x_58056_md_docs_markdown_source&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:34:11</sys_created_on>
+        <sys_id>7495d5162fe7991448dca1fef699b635</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CatTblVarHTML</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_7495d5162fe7991448dca1fef699b635</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:34:11</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

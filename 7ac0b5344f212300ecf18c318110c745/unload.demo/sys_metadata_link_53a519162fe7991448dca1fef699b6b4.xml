@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>8e43e21cdb317300d0cb5385ca9619fe</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree>{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"FunctionExpression","id":null,"params":[{"type":"Identifier","name":"global"},{"type":"Identifier","name":"factory"}],"body":{"type":"BlockStatement","body":[{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"global"},"property":{"type":"Identifier","name":"markdownDocument"}},"right":{"type":"CallExpression","callee":{"type":"Identifier","name":"factory"},"arguments":[{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"global"},"property":{"type":"Identifier","name":"jQuery"}}]}}}]},"generator":false,"expression":false,"async":false},"arguments":[{"type":"ThisExpression"},{"type":"FunctionExpression","id":null,"params":[{"type":"Identifier","name":"jq"}],"body":{"type":"BlockStatement","body":[{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"MarkdownDocument"},"right":{"type":"FunctionExpression","id":null,"params":[],"body":{"type":"BlockStatement","body":[{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"MySimpleMDE"},"init":{"type":"ObjectExpression","properties":[]}}],"kind":"var"},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"MD"},"init":{"type":"ThisExpression"}}],"kind":"var"},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"MD"},"property":{"type":"Identifier","name":"createSimpleMDE"}},"right":{"type":"FunctionExpression","id":null,"params":[{"type":"Identifier","name":"taName"},{"type":"Identifier","name":"initialText"}],"body":{"type":"BlockStatement","body":[{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"taName"},"right":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"taName"},"property":{"type":"Identifier","name":"replace"}},"arguments":[{"type":"Literal","raw":"/(:|\\.|\\[|\\]|,|=)/g","regex":{"pattern":"(:|\\.|\\[|\\]|,|=)","flags":"g"}},{"type":"Literal","value":"\\$1","raw":"\"\\\\$1\""}]}}},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"jqe"},"init":{"type":"MemberExpression","computed":true,"object":{"type":"CallExpression","callee":{"type":"Identifier","name":"jq"},"arguments":[{"type":"BinaryExpression","operator":"+","left":{"type":"Literal","value":"#","raw":"\"#\""},"right":{"type":"Identifier","name":"taName"}}]},"property":{"type":"Literal","value":0,"raw":"0"}}}],"kind":"var"},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":true,"object":{"type":"Identifier","name":"MySimpleMDE"},"property":{"type":"Identifier","name":"taName"}},"right":{"type":"NewExpression","callee":{"type":"Identifier","name":"SimpleMDE"},"arguments":[{"type":"ObjectExpression","properties":[{"type":"Property","key":{"type":"Identifier","name":"element"},"computed":false,"value":{"type":"Identifier","name":"jqe"},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"spellChecker"},"computed":false,"value":{"type":"Literal","value":false,"raw":"false"},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"autosave"},"computed":false,"value":{"type":"ObjectExpression","properties":[{"type":"Property","key":{"type":"Identifier","name":"enabled"},"computed":false,"value":{"type":"Literal","value":true,"raw":"true"},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"uniqueId"},"computed":false,"value":{"type":"Identifier","name":"taName"},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"delay"},"computed":false,"value":{"type":"Literal","value":1000,"raw":"1000"},"kind":"init","method":false,"shorthand":false}]},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"placeholder"},"computed":false,"value":{"type":"Literal","value":"Type your markdown here...","raw":"\"Type your markdown here...\""},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"initialValue"},"computed":false,"value":{"type":"Identifier","name":"initialText"},"kind":"init","method":false,"shorthand":false}]}]}}},{"type":"ReturnStatement","argument":{"type":"MemberExpression","computed":true,"object":{"type":"Identifier","name":"MySimpleMDE"},"property":{"type":"Identifier","name":"taName"}}}]},"generator":false,"expression":false,"async":false}}},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"MD"},"property":{"type":"Identifier","name":"getSimpleMDE"}},"right":{"type":"FunctionExpression","id":null,"params":[{"type":"Identifier","name":"taName"}],"body":{"type":"BlockStatement","body":[{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"taName"},"right":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"taName"},"property":{"type":"Identifier","name":"replace"}},"arguments":[{"type":"Literal","raw":"/(:|\\.|\\[|\\]|,|=)/g","regex":{"pattern":"(:|\\.|\\[|\\]|,|=)","flags":"g"}},{"type":"Literal","value":"\\$1","raw":"\"\\\\$1\""}]}}},{"type":"ReturnStatement","argument":{"type":"MemberExpression","computed":true,"object":{"type":"Identifier","name":"MySimpleMDE"},"property":{"type":"Identifier","name":"taName"}}}]},"generator":false,"expression":false,"async":false}}}]},"generator":false,"expression":false,"async":false}}},{"type":"ReturnStatement","argument":{"type":"NewExpression","callee":{"type":"Identifier","name":"MarkdownDocument"},"arguments":[]}}]},"generator":false,"expression":false,"async":false}]}}],"sourceType":"script"}</abstract_syntax_tree>
+        <added_manually>false</added_manually>
+        <api_markdown>## &lt;a name="ui-script-x_58056_md_docsmarkdown-document"&gt;&lt;/a&gt;x_58056_md_docs.markdown-document
+ 
+### Type: `UI Script`
+ 
+### Anonymous Functions
+&lt;br /&gt;
+#### `(global, factory)`
+&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**Parameters**
+ 
+| Name | Type | Description |
+| --- | --- | --- |
+| _global_ | _*_ | _..._ | 
+| _factory_ | _*_ | _..._ | 
+</api_markdown>
+        <html/>
+        <markdown_document/>
+        <markdown_link>ui-script-x_58056_md_docsmarkdown-document</markdown_link>
+        <order>100</order>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>6fedf6864f8a6300ecf18c318110c7a9</source_id>
+        <source_key/>
+        <source_name>UI Script: x_58056_md_docs.markdown-document</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_ui_script</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-29 21:09:03</sys_created_on>
+        <sys_id>8e43e21cdb317300d0cb5385ca9619fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-29 21:09:03</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:34:37</sys_created_on>
+        <sys_id>53a519162fe7991448dca1fef699b6b4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UI Script: x_58056_md_docs.markdown-document</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_53a519162fe7991448dca1fef699b6b4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:34:37</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

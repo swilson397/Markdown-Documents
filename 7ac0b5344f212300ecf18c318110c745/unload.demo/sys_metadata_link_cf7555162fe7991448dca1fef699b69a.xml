@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>6b23621cdb317300d0cb5385ca961956</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree>{"type":"Program","body":[{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"TestUtil"},"init":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"Class"},"property":{"type":"Identifier","name":"create"}},"arguments":[]}}],"kind":"var"},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option1"}},"right":{"type":"Literal","value":"##########","raw":"'##########'"}}},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option2"}},"right":{"type":"Literal","value":"**********","raw":"'**********'"}}},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"prototype"}},"right":{"type":"ObjectExpression","properties":[{"type":"Property","key":{"type":"Identifier","name":"initialize"},"computed":false,"value":{"type":"FunctionExpression","id":null,"params":[],"body":{"type":"BlockStatement","body":[{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"origUser"},"init":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gs"},"property":{"type":"Identifier","name":"getSession"}},"arguments":[]},"property":{"type":"Identifier","name":"impersonate"}},"arguments":[{"type":"Literal","value":"8c92776e0f810200d7ebc09ce1050e5b","raw":"'8c92776e0f810200d7ebc09ce1050e5b'"}]}}],"kind":"var"},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"rdm"},"init":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"Math"},"property":{"type":"Identifier","name":"floor"}},"arguments":[{"type":"BinaryExpression","operator":"+","left":{"type":"BinaryExpression","operator":"*","left":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"Math"},"property":{"type":"Identifier","name":"random"}},"arguments":[]},"right":{"type":"Literal","value":5,"raw":"5"}},"right":{"type":"Literal","value":1,"raw":"1"}}]}}],"kind":"var"},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"gr"},"init":{"type":"NewExpression","callee":{"type":"Identifier","name":"GlideRecord"},"arguments":[{"type":"Literal","value":"sys_script_include","raw":"'sys_script_include'"}]}}],"kind":"var"},{"type":"IfStatement","test":{"type":"LogicalExpression","operator":"&amp;&amp;","left":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gr"},"property":{"type":"Identifier","name":"get"}},"arguments":[{"type":"Literal","value":"215dab2e0f810200d7ebc09ce1050ed0","raw":"'215dab2e0f810200d7ebc09ce1050ed0'"}]},"right":{"type":"BinaryExpression","operator":"&lt;","left":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gr"},"property":{"type":"Identifier","name":"sys_updated_on"}},"right":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gs"},"property":{"type":"Identifier","name":"hoursAgo"}},"arguments":[{"type":"Identifier","name":"rdm"}]}}},"consequent":{"type":"BlockStatement","body":[{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"str"},"init":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gr"},"property":{"type":"Identifier","name":"getValue"}},"arguments":[{"type":"Literal","value":"description","raw":"'description'"}]}}],"kind":"var"},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"srcStr"},"init":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option1"}}}],"kind":"var"},{"type":"VariableDeclaration","declarations":[{"type":"VariableDeclarator","id":{"type":"Identifier","name":"tgtStr"},"init":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option2"}}}],"kind":"var"},{"type":"IfStatement","test":{"type":"BinaryExpression","operator":"&lt;","left":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"str"},"property":{"type":"Identifier","name":"indexOf"}},"arguments":[{"type":"Identifier","name":"srcStr"}]},"right":{"type":"Literal","value":0,"raw":"0"}},"consequent":{"type":"BlockStatement","body":[{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"srcStr"},"right":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option2"}}}},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"tgtStr"},"right":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"TestUtil"},"property":{"type":"Identifier","name":"option1"}}}}]},"alternate":null},{"type":"ExpressionStatement","expression":{"type":"AssignmentExpression","operator":"=","left":{"type":"Identifier","name":"str"},"right":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"str"},"property":{"type":"Identifier","name":"replace"}},"arguments":[{"type":"Identifier","name":"srcStr"},{"type":"Identifier","name":"tgtStr"}]}}},{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gr"},"property":{"type":"Identifier","name":"setValue"}},"arguments":[{"type":"Literal","value":"description","raw":"'description'"},{"type":"Identifier","name":"str"}]}},{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gr"},"property":{"type":"Identifier","name":"update"}},"arguments":[]}}]},"alternate":null},{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"CallExpression","callee":{"type":"MemberExpression","computed":false,"object":{"type":"Identifier","name":"gs"},"property":{"type":"Identifier","name":"getSession"}},"arguments":[]},"property":{"type":"Identifier","name":"impersonate"}},"arguments":[{"type":"Identifier","name":"origUser"}]}}]},"generator":false,"expression":false,"async":false},"kind":"init","method":false,"shorthand":false},{"type":"Property","key":{"type":"Identifier","name":"type"},"computed":false,"value":{"type":"Literal","value":"TestUtil","raw":"'TestUtil'"},"kind":"init","method":false,"shorthand":false}]}}}],"sourceType":"script"}</abstract_syntax_tree>
+        <added_manually>false</added_manually>
+        <api_markdown>## &lt;a name="script-include-testutil"&gt;&lt;/a&gt;TestUtil
+&amp;nbsp;&amp;nbsp;_Test script include. **********_
+ 
+### Type: `Script Include`
+ 
+### Class: `TestUtil`
+ 
+&amp;nbsp;&amp;nbsp;***TestUtil***
+ 
+### Static Properties
+ 
+#### `TestUtil.option1` = '##########'
+ 
+#### `TestUtil.option2` = '**********'
+</api_markdown>
+        <html/>
+        <markdown_document/>
+        <markdown_link>script-include-testutil</markdown_link>
+        <order>100</order>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>215dab2e0f810200d7ebc09ce1050ed0</source_id>
+        <source_key/>
+        <source_name>Script Include: TestUtil</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-29 21:08:36</sys_created_on>
+        <sys_id>6b23621cdb317300d0cb5385ca961956</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-29 21:08:36</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:33:47</sys_created_on>
+        <sys_id>cf7555162fe7991448dca1fef699b69a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Script Include: TestUtil</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_cf7555162fe7991448dca1fef699b69a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:33:47</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

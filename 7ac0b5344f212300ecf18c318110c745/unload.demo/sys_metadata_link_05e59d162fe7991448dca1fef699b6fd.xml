@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>b6434cf6dbed3300d0cb5385ca96197a</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree/>
+        <added_manually>false</added_manually>
+        <api_markdown/>
+        <html/>
+        <markdown_document/>
+        <markdown_link>ui-script-x_58056_md_docsaddons_min</markdown_link>
+        <order>200</order>
+        <project_code_document_version display_value="COD0001003">8ad67e0edbed7300d0cb5385ca961955</project_code_document_version>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>109141aa4fe52300ecf18c318110c72d</source_id>
+        <source_key/>
+        <source_name>UI Script: x_58056_md_docs.addons_min</source_name>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_ui_script</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2019-05-24 17:39:10</sys_created_on>
+        <sys_id>b6434cf6dbed3300d0cb5385ca96197a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-05-24 17:39:10</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:35:34</sys_created_on>
+        <sys_id>05e59d162fe7991448dca1fef699b6fd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UI Script: x_58056_md_docs.addons_min</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_05e59d162fe7991448dca1fef699b6fd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:35:34</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

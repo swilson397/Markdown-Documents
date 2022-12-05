@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>30d25be04f40b700ecf18c318110c707</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_58056_md_docs_markdown_source">
+    <x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE">
+        <abstract_syntax_tree>{
+    "type": "Program",
+    "body": [
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                    "type": "Identifier",
+                    "name": "MarkdownAJAX"
+                },
+                "right": {
+                    "type": "CallExpression",
+                    "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "Class"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "create"
+                        }
+                    },
+                    "arguments": []
+                }
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "MarkdownAJAX"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "DEBUG"
+                    }
+                },
+                "right": {
+                    "type": "Literal",
+                    "value": true,
+                    "raw": "true"
+                }
+            }
+        },
+        {
+            "type": "ExpressionStatement",
+            "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "Identifier",
+                        "name": "MarkdownAJAX"
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "prototype"
+                    }
+                },
+                "right": {
+                    "type": "CallExpression",
+                    "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "Object"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "extendsObject"
+                        }
+                    },
+                    "arguments": [
+                        {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                                "type": "Identifier",
+                                "name": "global"
+                            },
+                            "property": {
+                                "type": "Identifier",
+                                "name": "AbstractAjaxProcessor"
+                            }
+                        },
+                        {
+                            "type": "ObjectExpression",
+                            "properties": [
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "startRefreshSourceAction"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "FunctionExpression",
+                                        "id": null,
+                                        "params": [],
+                                        "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "docID"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_doc_id",
+                                                                        "raw": "\"sysparm_doc_id\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "projectType"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_project_type",
+                                                                        "raw": "\"sysparm_project_type\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "customAppID"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_custom_app_id",
+                                                                        "raw": "\"sysparm_custom_app_id\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "updateSets"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_update_sets",
+                                                                        "raw": "\"sysparm_update_sets\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "ExpressionStatement",
+                                                    "expression": {
+                                                        "type": "CallExpression",
+                                                        "callee": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "Identifier",
+                                                                "name": "Markdown"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "startRefreshSourceAction"
+                                                            }
+                                                        },
+                                                        "arguments": [
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "docID"
+                                                            },
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "projectType"
+                                                            },
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "customAppID"
+                                                            },
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "updateSets"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "generator": false,
+                                        "expression": false,
+                                        "async": false
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                },
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "createPDFAttachment"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "FunctionExpression",
+                                        "id": null,
+                                        "params": [],
+                                        "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "table"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_table",
+                                                                        "raw": "\"sysparm_table\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "sys_id"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_sys_id",
+                                                                        "raw": "\"sysparm_sys_id\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "fileName"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_fileName",
+                                                                        "raw": "\"sysparm_fileName\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "content"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "ThisExpression"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "getParameter"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "sysparm_content",
+                                                                        "raw": "\"sysparm_content\""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "gr"
+                                                            },
+                                                            "init": {
+                                                                "type": "NewExpression",
+                                                                "callee": {
+                                                                    "type": "Identifier",
+                                                                    "name": "GlideRecord"
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Identifier",
+                                                                        "name": "table"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "IfStatement",
+                                                    "test": {
+                                                        "type": "UnaryExpression",
+                                                        "operator": "!",
+                                                        "argument": {
+                                                            "type": "CallExpression",
+                                                            "callee": {
+                                                                "type": "MemberExpression",
+                                                                "computed": false,
+                                                                "object": {
+                                                                    "type": "Identifier",
+                                                                    "name": "gr"
+                                                                },
+                                                                "property": {
+                                                                    "type": "Identifier",
+                                                                    "name": "get"
+                                                                }
+                                                            },
+                                                            "arguments": [
+                                                                {
+                                                                    "type": "Identifier",
+                                                                    "name": "sys_id"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "prefix": true
+                                                    },
+                                                    "consequent": {
+                                                        "type": "BlockStatement",
+                                                        "body": [
+                                                            {
+                                                                "type": "ExpressionStatement",
+                                                                "expression": {
+                                                                    "type": "CallExpression",
+                                                                    "callee": {
+                                                                        "type": "MemberExpression",
+                                                                        "computed": false,
+                                                                        "object": {
+                                                                            "type": "ThisExpression"
+                                                                        },
+                                                                        "property": {
+                                                                            "type": "Identifier",
+                                                                            "name": "_logError"
+                                                                        }
+                                                                    },
+                                                                    "arguments": [
+                                                                        {
+                                                                            "type": "BinaryExpression",
+                                                                            "operator": "+",
+                                                                            "left": {
+                                                                                "type": "BinaryExpression",
+                                                                                "operator": "+",
+                                                                                "left": {
+                                                                                    "type": "BinaryExpression",
+                                                                                    "operator": "+",
+                                                                                    "left": {
+                                                                                        "type": "Literal",
+                                                                                        "value": "Glide record not found. Table=",
+                                                                                        "raw": "\"Glide record not found. Table=\""
+                                                                                    },
+                                                                                    "right": {
+                                                                                        "type": "Identifier",
+                                                                                        "name": "table"
+                                                                                    }
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "Literal",
+                                                                                    "value": " id=",
+                                                                                    "raw": "\" id=\""
+                                                                                }
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "Identifier",
+                                                                                "name": "sys_id"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "ReturnStatement",
+                                                                "argument": {
+                                                                    "type": "Literal",
+                                                                    "value": "Glide record not found",
+                                                                    "raw": "\"Glide record not found\""
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    "alternate": null
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "utils"
+                                                            },
+                                                            "init": {
+                                                                "type": "NewExpression",
+                                                                "callee": {
+                                                                    "type": "Identifier",
+                                                                    "name": "Markdown"
+                                                                },
+                                                                "arguments": []
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "ExpressionStatement",
+                                                    "expression": {
+                                                        "type": "CallExpression",
+                                                        "callee": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "Identifier",
+                                                                "name": "utils"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "removeAttachment"
+                                                            }
+                                                        },
+                                                        "arguments": [
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "gr"
+                                                            },
+                                                            {
+                                                                "type": "Identifier",
+                                                                "name": "fileName"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "VariableDeclaration",
+                                                    "declarations": [
+                                                        {
+                                                            "type": "VariableDeclarator",
+                                                            "id": {
+                                                                "type": "Identifier",
+                                                                "name": "att_id"
+                                                            },
+                                                            "init": {
+                                                                "type": "CallExpression",
+                                                                "callee": {
+                                                                    "type": "MemberExpression",
+                                                                    "computed": false,
+                                                                    "object": {
+                                                                        "type": "Identifier",
+                                                                        "name": "utils"
+                                                                    },
+                                                                    "property": {
+                                                                        "type": "Identifier",
+                                                                        "name": "createPDFAttachment"
+                                                                    }
+                                                                },
+                                                                "arguments": [
+                                                                    {
+                                                                        "type": "Identifier",
+                                                                        "name": "gr"
+                                                                    },
+                                                                    {
+                                                                        "type": "Identifier",
+                                                                        "name": "fileName"
+                                                                    },
+                                                                    {
+                                                                        "type": "Literal",
+                                                                        "value": "application/pdf",
+                                                                        "raw": "\"application/pdf\""
+                                                                    },
+                                                                    {
+                                                                        "type": "Identifier",
+                                                                        "name": "content"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "kind": "var"
+                                                },
+                                                {
+                                                    "type": "ExpressionStatement",
+                                                    "expression": {
+                                                        "type": "CallExpression",
+                                                        "callee": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "ThisExpression"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "_log"
+                                                            }
+                                                        },
+                                                        "arguments": [
+                                                            {
+                                                                "type": "BinaryExpression",
+                                                                "operator": "+",
+                                                                "left": {
+                                                                    "type": "Literal",
+                                                                    "value": "att_id=",
+                                                                    "raw": "\"att_id=\""
+                                                                },
+                                                                "right": {
+                                                                    "type": "Identifier",
+                                                                    "name": "att_id"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "ReturnStatement",
+                                                    "argument": {
+                                                        "type": "Literal",
+                                                        "value": "ok",
+                                                        "raw": "\"ok\""
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "generator": false,
+                                        "expression": false,
+                                        "async": false
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                },
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "_logError"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "FunctionExpression",
+                                        "id": null,
+                                        "params": [
+                                            {
+                                                "type": "Identifier",
+                                                "name": "msg"
+                                            }
+                                        ],
+                                        "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                                {
+                                                    "type": "ExpressionStatement",
+                                                    "expression": {
+                                                        "type": "CallExpression",
+                                                        "callee": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "Identifier",
+                                                                "name": "gs"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "error"
+                                                            }
+                                                        },
+                                                        "arguments": [
+                                                            {
+                                                                "type": "BinaryExpression",
+                                                                "operator": "+",
+                                                                "left": {
+                                                                    "type": "BinaryExpression",
+                                                                    "operator": "+",
+                                                                    "left": {
+                                                                        "type": "BinaryExpression",
+                                                                        "operator": "+",
+                                                                        "left": {
+                                                                            "type": "Literal",
+                                                                            "value": "[",
+                                                                            "raw": "\"[\""
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "MemberExpression",
+                                                                            "computed": false,
+                                                                            "object": {
+                                                                                "type": "ThisExpression"
+                                                                            },
+                                                                            "property": {
+                                                                                "type": "Identifier",
+                                                                                "name": "type"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "Literal",
+                                                                        "value": "] ",
+                                                                        "raw": "\"] \""
+                                                                    }
+                                                                },
+                                                                "right": {
+                                                                    "type": "Identifier",
+                                                                    "name": "msg"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "generator": false,
+                                        "expression": false,
+                                        "async": false
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                },
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "_logWarning"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "FunctionExpression",
+                                        "id": null,
+                                        "params": [
+                                            {
+                                                "type": "Identifier",
+                                                "name": "msg"
+                                            }
+                                        ],
+                                        "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                                {
+                                                    "type": "ExpressionStatement",
+                                                    "expression": {
+                                                        "type": "CallExpression",
+                                                        "callee": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "Identifier",
+                                                                "name": "gs"
+                                                            },
+                                                            "property": {
+                                                                "type": "Identifier",
+                                                                "name": "warn"
+                                                            }
+                                                        },
+                                                        "arguments": [
+                                                            {
+                                                                "type": "BinaryExpression",
+                                                                "operator": "+",
+                                                                "left": {
+                                                                    "type": "BinaryExpression",
+                                                                    "operator": "+",
+                                                                    "left": {
+                                                                        "type": "BinaryExpression",
+                                                                        "operator": "+",
+                                                                        "left": {
+                                                                            "type": "Literal",
+                                                                            "value": "[",
+                                                                            "raw": "\"[\""
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "MemberExpression",
+                                                                            "computed": false,
+                                                                            "object": {
+                                                                                "type": "ThisExpression"
+                                                                            },
+                                                                            "property": {
+                                                                                "type": "Identifier",
+                                                                                "name": "type"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "Literal",
+                                                                        "value": "] ",
+                                                                        "raw": "\"] \""
+                                                                    }
+                                                                },
+                                                                "right": {
+                                                                    "type": "Identifier",
+                                                                    "name": "msg"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "generator": false,
+                                        "expression": false,
+                                        "async": false
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                },
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "_log"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "FunctionExpression",
+                                        "id": null,
+                                        "params": [
+                                            {
+                                                "type": "Identifier",
+                                                "name": "msg"
+                                            }
+                                        ],
+                                        "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                                {
+                                                    "type": "IfStatement",
+                                                    "test": {
+                                                        "type": "MemberExpression",
+                                                        "computed": false,
+                                                        "object": {
+                                                            "type": "Identifier",
+                                                            "name": "MarkdownAJAX"
+                                                        },
+                                                        "property": {
+                                                            "type": "Identifier",
+                                                            "name": "DEBUG"
+                                                        }
+                                                    },
+                                                    "consequent": {
+                                                        "type": "BlockStatement",
+                                                        "body": [
+                                                            {
+                                                                "type": "ExpressionStatement",
+                                                                "expression": {
+                                                                    "type": "CallExpression",
+                                                                    "callee": {
+                                                                        "type": "MemberExpression",
+                                                                        "computed": false,
+                                                                        "object": {
+                                                                            "type": "Identifier",
+                                                                            "name": "gs"
+                                                                        },
+                                                                        "property": {
+                                                                            "type": "Identifier",
+                                                                            "name": "info"
+                                                                        }
+                                                                    },
+                                                                    "arguments": [
+                                                                        {
+                                                                            "type": "BinaryExpression",
+                                                                            "operator": "+",
+                                                                            "left": {
+                                                                                "type": "BinaryExpression",
+                                                                                "operator": "+",
+                                                                                "left": {
+                                                                                    "type": "BinaryExpression",
+                                                                                    "operator": "+",
+                                                                                    "left": {
+                                                                                        "type": "Literal",
+                                                                                        "value": "[",
+                                                                                        "raw": "\"[\""
+                                                                                    },
+                                                                                    "right": {
+                                                                                        "type": "MemberExpression",
+                                                                                        "computed": false,
+                                                                                        "object": {
+                                                                                            "type": "ThisExpression"
+                                                                                        },
+                                                                                        "property": {
+                                                                                            "type": "Identifier",
+                                                                                            "name": "type"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "Literal",
+                                                                                    "value": "] ",
+                                                                                    "raw": "\"] \""
+                                                                                }
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "Identifier",
+                                                                                "name": "msg"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    "alternate": null
+                                                }
+                                            ]
+                                        },
+                                        "generator": false,
+                                        "expression": false,
+                                        "async": false
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                },
+                                {
+                                    "type": "Property",
+                                    "key": {
+                                        "type": "Identifier",
+                                        "name": "type"
+                                    },
+                                    "computed": false,
+                                    "value": {
+                                        "type": "Literal",
+                                        "value": "MarkdownAJAX",
+                                        "raw": "\"MarkdownAJAX\""
+                                    },
+                                    "kind": "init",
+                                    "method": false,
+                                    "shorthand": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "sourceType": "script"
+}</abstract_syntax_tree>
+        <added_manually>false</added_manually>
+        <api_markdown>## MarkdownAJAX
+
+### `MarkdownAJAX = Class.create()`
+
+ * **Alias:** MarkdownAJAX
+
+### `MarkdownAJAX.DEBUG = true`
+
+### `startRefreshSourceAction: function()`
+
+startRefreshSourceAction
+
+### `createPDFAttachment: function()`
+
+createPDFAttachment
+
+**Returns**
+ `string` — 
+
+
+### `_logError: function(msg)`
+
+Adds an error message to the system log.
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `msg`  |  `string`  |  Message to add to system log. | 
+
+
+### `_logWarning: function(msg)`
+
+Adds a warning message to the system log.
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `msg`  |  `string`  |  Message to add to the system log. | 
+
+
+### `_log: function(msg)`
+
+Adds a message to the system log if MarkdownAJAX.DEBUG is true.
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `msg`  |  `String`  |  Message to add to the system log. | 
+
+</api_markdown>
+        <html/>
+        <markdown_document display_value="KB0010043 v0.01">31bb13674f322300ecf18c318110c77e</markdown_document>
+        <markdown_link/>
+        <order/>
+        <project_code_document_version/>
+        <remote>false</remote>
+        <remote_json/>
+        <remote_source_id/>
+        <show_html>false</show_html>
+        <show_markdown>false</show_markdown>
+        <source_description/>
+        <source_id>faf77ddd4f23e700ecf18c318110c7a9</source_id>
+        <source_key/>
+        <source_name/>
+        <source_script_field>script</source_script_field>
+        <source_table>sys_script_include</source_table>
+        <source_text/>
+        <source_type>Document</source_type>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2019-03-04 19:25:21</sys_created_on>
+        <sys_id>30d25be04f40b700ecf18c318110c707</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-03-04 19:25:21</sys_updated_on>
+    </x_58056_md_docs_markdown_source>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:32:42</sys_created_on>
+        <sys_id>07355dd22fe7991448dca1fef699b65d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_07355dd22fe7991448dca1fef699b65d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:32:42</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>

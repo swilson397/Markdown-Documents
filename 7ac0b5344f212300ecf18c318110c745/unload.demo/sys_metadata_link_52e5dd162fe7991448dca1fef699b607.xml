@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>b941a144db331010d0cb5385ca961918</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="x_58056_md_docs_markdown_source"&gt;
+    &lt;x_58056_md_docs_markdown_source action="INSERT_OR_UPDATE"&gt;
+        &lt;abstract_syntax_tree&gt;[object Object]&lt;/abstract_syntax_tree&gt;
+        &lt;added_manually&gt;false&lt;/added_manually&gt;
+        &lt;api_markdown&gt;## &amp;lt;a name="awsauthorization"&amp;gt;&amp;lt;/a&amp;gt;AWSAuthorization
+ 
+### Type: `Script Include`
+### Class: `AWSAuthorization`
+### Constructor
+#### `AWSAuthorization(targetURL, method, region, service, accessKeyID, secretAccessKey, contentType, body)`
+
+**Parameters**
+
+*   `targetURL` _*_
+ 
+*   `method` _*_
+ 
+*   `region` _*_
+ 
+*   `service` _*_
+ 
+*   `accessKeyID` _*_
+ 
+*   `secretAccessKey` _*_
+ 
+*   `contentType` _*_
+ 
+*   `body` _*_
+ 
+### Static Properties
+#### `AWSAuthorization.test()`
+
+---
+
+### Methods
+#### `getAccessID()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getAllQueryParameters()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getAuthorization()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getBody()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getContentType()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getDate()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getHash()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getHeaders()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getHeadersObject()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getHost()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getMethod()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getPath()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getPort()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getProtocol()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getQueryParameter(name)`
+
+**Parameters**
+
+*   `name` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `getQueryString()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getRegion()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getSecretAccessKeyID()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getService()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getSignedHeaders()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getTargetURL()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `getURL()`
+
+**Returns**
+
+*   `*`
+
+---
+#### `initialize(targetURL, method, region, service, accessKeyID, secretAccessKey, contentType, body)`
+
+**Parameters**
+
+*   `targetURL` _*_
+ 
+*   `method` _*_
+ 
+*   `region` _*_
+ 
+*   `service` _*_
+ 
+*   `accessKeyID` _*_
+ 
+*   `secretAccessKey` _*_
+ 
+*   `contentType` _*_
+ 
+*   `body` _*_
+
+---
+#### `setAccessID(accessID)`
+
+**Parameters**
+
+*   `accessID` _*_
+
+---
+#### `setBody(body)`
+
+**Parameters**
+
+*   `body` _*_
+
+---
+#### `setContentType(contentType)`
+
+**Parameters**
+
+*   `contentType` _*_
+
+---
+#### `setDate(date)`
+
+**Parameters**
+
+*   `date` _*_
+
+---
+#### `setHash(hash)`
+
+**Parameters**
+
+*   `hash` _*_
+
+---
+#### `setHeader(name, value)`
+
+**Parameters**
+
+*   `name` _*_
+ 
+*   `value` _*_
+
+---
+#### `setHost(host)`
+
+**Parameters**
+
+*   `host` _*_
+
+---
+#### `setMethod(method)`
+
+**Parameters**
+
+*   `method` _*_
+
+---
+#### `setPath(path)`
+
+**Parameters**
+
+*   `path` _*_
+
+---
+#### `setPort(port)`
+
+**Parameters**
+
+*   `port` _*_
+
+---
+#### `setProtocol(protocol)`
+
+**Parameters**
+
+*   `protocol` _*_
+
+---
+#### `setQueryParameter(name, value)`
+
+**Parameters**
+
+*   `name` _*_
+ 
+*   `value` _*_
+
+---
+#### `setQueryString(query)`
+
+**Parameters**
+
+*   `query` _*_
+
+---
+#### `setRegion(region)`
+
+**Parameters**
+
+*   `region` _*_
+
+---
+#### `setSecretAccessKeyID(yourSecretAccessKeyID)`
+
+**Parameters**
+
+*   `yourSecretAccessKeyID` _*_
+
+---
+#### `setService(service)`
+
+**Parameters**
+
+*   `service` _*_
+
+---
+#### `setTargetURL(targetURL)`
+
+**Parameters**
+
+*   `targetURL` _*_
+
+---
+#### `setURL(url)`
+
+**Parameters**
+
+*   `url` _*_
+
+---
+#### `_getHostParts(host)`
+
+**Parameters**
+
+*   `host` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_getSignature(secretAccessKeyID, date_sub, region, service, stringToSign)`
+
+**Parameters**
+
+*   `secretAccessKeyID` _*_
+ 
+*   `date_sub` _*_
+ 
+*   `region` _*_
+ 
+*   `service` _*_
+ 
+*   `stringToSign` _*_
+
+**Returns**
+
+*   `*`
+
+---
+#### `_trimAll(header)`
+
+**Parameters**
+
+*   `header` _*_
+
+**Returns**
+
+*   `*`
+
+---
+### Anonymous Functions
+#### `(a, b)`
+
+**Parameters**
+
+*   `a` _*_
+ 
+*   `b` _*_
+
+**Returns**
+
+*   `*`
+
+---
+&lt;/api_markdown&gt;
+        &lt;html&gt;&lt;![CDATA[&lt;p&gt;&lt;link href="7d34f4344feb6700ecf18c318110c729.cssdbx" rel="stylesheet" type="text/css" /&gt;&lt;/p&gt;
+&lt;div class="content"&gt;
+&lt;h2&gt;&lt;a name="awsauthorization"&gt;&lt;/a&gt;AWSAuthorization&lt;/h2&gt;
+&lt;h3&gt;Type: &lt;code&gt;Script Include&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Class: &lt;code&gt;AWSAuthorization&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;Constructor&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;AWSAuthorization(targetURL, method, region, service, accessKeyID, secretAccessKey, contentType, body)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;targetURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;method&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;region&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;accessKeyID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;secretAccessKey&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;contentType&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;body&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;h3&gt;Static Properties&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;AWSAuthorization.test()&lt;/code&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Methods&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;getAccessID()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getAllQueryParameters()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getAuthorization()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getBody()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getContentType()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getDate()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getHash()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getHeaders()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getHeadersObject()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getHost()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getMethod()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getPath()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getPort()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getProtocol()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getQueryParameter(name)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;name&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getQueryString()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getRegion()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getSecretAccessKeyID()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getService()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getSignedHeaders()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getTargetURL()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;getURL()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;initialize(targetURL, method, region, service, accessKeyID, secretAccessKey, contentType, body)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;targetURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;method&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;region&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;accessKeyID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;secretAccessKey&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;contentType&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;body&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setAccessID(accessID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;accessID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setBody(body)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;body&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setContentType(contentType)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;contentType&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setDate(date)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;date&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setHash(hash)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;hash&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setHeader(name, value)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;name&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;value&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setHost(host)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;host&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setMethod(method)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;method&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setPath(path)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;path&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setPort(port)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;port&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setProtocol(protocol)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;protocol&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setQueryParameter(name, value)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;name&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;value&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setQueryString(query)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;query&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setRegion(region)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;region&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setSecretAccessKeyID(yourSecretAccessKeyID)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;yourSecretAccessKeyID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setService(service)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;service&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setTargetURL(targetURL)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;targetURL&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;setURL(url)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;url&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_getHostParts(host)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;host&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_getSignature(secretAccessKeyID, date_sub, region, service, stringToSign)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;secretAccessKeyID&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;date_sub&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;region&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;stringToSign&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;&lt;code&gt;_trimAll(header)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;header&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Anonymous Functions&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;(a, b)&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;a&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;li&gt;
+&lt;p&gt;&lt;code&gt;b&lt;/code&gt; &lt;em&gt;*&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Returns&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;hr /&gt;&lt;/div&gt;]]&gt;&lt;/html&gt;
+        &lt;markdown_document/&gt;
+        &lt;markdown_link&gt;awsauthorization&lt;/markdown_link&gt;
+        &lt;order&gt;100&lt;/order&gt;
+        &lt;project_code_document_version display_value="PCDV0001008"&gt;52f74641db1af300d0cb5385ca9619ca&lt;/project_code_document_version&gt;
+        &lt;remote&gt;true&lt;/remote&gt;
+        &lt;remote_json/&gt;
+        &lt;remote_source_id&gt;18f91be6dbbc9050768670adbf9619c2&lt;/remote_source_id&gt;
+        &lt;show_html&gt;true&lt;/show_html&gt;
+        &lt;show_markdown&gt;false&lt;/show_markdown&gt;
+        &lt;source_description/&gt;
+        &lt;source_id/&gt;
+        &lt;source_key&gt;d4f473a1dbb0d810768670adbf961970&lt;/source_key&gt;
+        &lt;source_name&gt;AWSAuthorization&lt;/source_name&gt;
+        &lt;source_script_field&gt;script&lt;/source_script_field&gt;
+        &lt;source_table&gt;sys_script_include&lt;/source_table&gt;
+        &lt;source_text/&gt;
+        &lt;source_type&gt;Document&lt;/source_type&gt;
+        &lt;sys_created_by&gt;system&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2020-10-07 00:10:05&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;b941a144db331010d0cb5385ca961918&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2020-10-07 00:14:40&lt;/sys_updated_on&gt;
+    &lt;/x_58056_md_docs_markdown_source&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-05 21:35:39</sys_created_on>
+        <sys_id>52e5dd162fe7991448dca1fef699b607</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AWSAuthorization</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_metadata_link_52e5dd162fe7991448dca1fef699b607</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-12-05 21:35:39</sys_updated_on>
+        <tablename>x_58056_md_docs_markdown_source</tablename>
+    </sys_metadata_link>
+</record_update>
