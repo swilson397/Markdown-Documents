@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Markdown Source" max_length="40" name="x_58056_md_docs_markdown_source" sizeclass="173" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Abstract Syntax Tree" max_length="100000000" name="abstract_syntax_tree" type="json"/>
+        <element default="true" label="Added manually" max_length="40" name="added_manually" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Markdown text" max_length="10000" name="api_markdown" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="HTML" max_length="400000" name="html" type="html"/>
+        <element label="Markdown document" mandatory="true" max_length="32" name="markdown_document" reference="x_58056_md_docs_markdown_document" reference_floats="true" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Markdown link" max_length="100" name="markdown_link" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element label="Project code document version" mandatory="true" max_length="32" name="project_code_document_version" reference="x_58056_md_docs_code_documentation" type="reference"/>
+        <element label="Remote" max_length="40" name="remote" type="boolean"/>
+        <element label="Remote JSON" max_length="4000" name="remote_json" type="json"/>
+        <element label="Remote source id" max_length="40" name="remote_source_id" type="string"/>
+        <element label="Show HTML" max_length="40" name="show_html" type="boolean"/>
+        <element label="Show Markdown" max_length="40" name="show_markdown" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Source description" max_length="4000" name="source_description" type="string"/>
+        <element dependent="source_table" dependent_on_field="source_table" label="Source id" max_length="32" name="source_id" type="document_id" use_dependent_field="true"/>
+        <element label="Source key" max_length="40" name="source_key" type="string"/>
+        <element attributes="edge_encryption_enabled=true" display="true" label="Source name" max_length="100" name="source_name" type="string"/>
+        <element attributes="types=script;script_plain" dependent="source_table" dependent_on_field="source_table" label="Source script field" max_length="80" name="source_script_field" type="field_name" use_dependent_field="true"/>
+        <element attributes="allow_public=true,includeNone=true,skip_root=false,base_start=true,tableChoicesScript=x_58056_md_docs.MarkdownSourceTables,show_table_names_on_label=true" label="Source table" max_length="80" name="source_table" type="table_name"/>
+        <element attributes="edge_encryption_enabled=true" label="Source text" max_length="10000" name="source_text" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" default="Document" label="Source type" mandatory="true" max_length="40" name="source_type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Document" sequence="0" value="Document"/>
+                <element inactive_on_update="false" label="Javascript" sequence="1" value="Javascript"/>
+                <element inactive_on_update="false" label="HTML" sequence="2" value="HTML"/>
+                <element inactive_on_update="false" label="XML" sequence="3" value="XML"/>
+                <element inactive_on_update="false" label="CSS" sequence="4" value="CSS"/>
+                <element inactive_on_update="false" label="Typescript" sequence="5" value="Typescript"/>
+                <element inactive_on_update="false" label="JSON" sequence="6" value="JSON"/>
+                <element inactive_on_update="false" label="Java" sequence="7" value="Java"/>
+                <element inactive_on_update="false" label="Text" sequence="8" value="Text"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="source_id"/>
+        </index>
+        <index name="index2">
+            <element name="markdown_document"/>
+        </index>
+        <index name="index3">
+            <element name="project_code_document_version"/>
+        </index>
+    </element>
+</database>

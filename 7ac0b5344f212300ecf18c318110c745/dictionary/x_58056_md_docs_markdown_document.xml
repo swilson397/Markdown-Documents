@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="kb_knowledge" label="Markdown Document" max_length="40" name="x_58056_md_docs_markdown_document" sizeclass="6" type="collection">
+        <element label="Custom application" max_length="32" name="custom_application" reference="sys_app" type="reference"/>
+        <element attributes="pdf_cell_type=image" label="Header image" max_length="40" name="header_image" type="user_image"/>
+        <element attributes="edge_encryption_enabled=true" label="Header text" max_length="100" name="header_text" type="string"/>
+        <element label="Markdown text" max_length="100000" name="markdown_text" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="PDF content" max_length="500000" name="pdf_content" type="string_full_utf8"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" default="Manual" label="Project type" mandatory="true" max_length="40" name="project_type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Manual" sequence="0" value="Manual"/>
+                <element inactive_on_update="false" label="Custom application" sequence="1" value="Custom application"/>
+                <element inactive_on_update="false" label="Update sets" sequence="2" value="Update sets"/>
+            </choice>
+        </element>
+        <element default="true" label="Refresh PDF attachment" max_length="40" name="refresh_pdf_attachment" type="boolean"/>
+        <element label="Source refreshed" max_length="40" name="source_refreshed" type="glide_date_time"/>
+        <element attributes="no_sort=true,slushbucket_ref_no_expand=true" label="Update sets" max_length="1024" name="update_sets" reference="sys_update_set" type="glide_list"/>
+        <index name="index">
+            <element name="custom_application"/>
+        </index>
+    </element>
+</database>

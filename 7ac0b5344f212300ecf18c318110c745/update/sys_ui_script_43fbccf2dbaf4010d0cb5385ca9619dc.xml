@@ -3,6 +3,7 @@
         <active>true</active>
         <description/>
         <global>false</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_58056_md_docs.jspdf.debug</name>
         <script><![CDATA[(function (factory) {
 	typeof define === 'function' && define.amd ? define(factory) :

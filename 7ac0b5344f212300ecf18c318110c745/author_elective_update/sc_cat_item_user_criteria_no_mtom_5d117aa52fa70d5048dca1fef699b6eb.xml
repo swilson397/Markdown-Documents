@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_no_mtom">
+    <sc_cat_item_user_criteria_no_mtom action="DELETE">
+        <sc_cat_item display_value="">dde0f2e52fa70d5048dca1fef699b6cd</sc_cat_item>
+        <sys_class_name>sc_cat_item_user_criteria_no_mtom</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-19 00:07:25</sys_created_on>
+        <sys_id>5d117aa52fa70d5048dca1fef699b6eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Submit Recipe.SNC External</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_5d117aa52fa70d5048dca1fef699b6eb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-19 00:07:25</sys_updated_on>
+        <user_criteria display_value="SNC External">66c1b50e730333009508738234f6a7c9</user_criteria>
+    </sc_cat_item_user_criteria_no_mtom>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sc_cat_item_user_criteria_no_mtom_5d117aa52fa70d5048dca1fef699b6eb</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_user_criteria_no_mtom"><sc_cat_item_user_criteria_no_mtom action="INSERT_OR_UPDATE"><sc_cat_item display_value="">dde0f2e52fa70d5048dca1fef699b6cd</sc_cat_item><sys_class_name>sc_cat_item_user_criteria_no_mtom</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-05-19 00:07:25</sys_created_on><sys_id>5d117aa52fa70d5048dca1fef699b6eb</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Submit Recipe.SNC External</sys_name><sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package><sys_policy/><sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope><sys_update_name>sc_cat_item_user_criteria_no_mtom_5d117aa52fa70d5048dca1fef699b6eb</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-05-19 00:07:25</sys_updated_on><user_criteria display_value="SNC External">66c1b50e730333009508738234f6a7c9</user_criteria></sc_cat_item_user_criteria_no_mtom></record_update>]]></payload>
+        <payload_hash>464921655</payload_hash>
+        <record_name>Submit Recipe.SNC External</record_name>
+        <reverted_from/>
+        <source>5ceb96212f11011048dca1fef699b661</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by/>
+        <sys_created_on>2022-01-27 02:13:29</sys_created_on>
+        <sys_id>9f8af2612fe70d5048dca1fef699b6dc</sys_id>
+        <sys_mod_count/>
+        <sys_recorded_at>17e994f29280000000</sys_recorded_at>
+        <sys_updated_by/>
+        <sys_updated_on/>
+        <type>Catalog Item Not Available for</type>
+        <update_guid>5f8af261cbe70d508c56639f0bcf85dc</update_guid>
+        <update_guid_history>5f8af261cbe70d508c56639f0bcf85dc:464921655</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Submit Recipe.SNC External">df8af2612fe70d5048dca1fef699b6df</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-19 00:48:46</sys_created_on>
+        <sys_db_object display_value="" name="sc_cat_item_user_criteria_no_mtom">sc_cat_item_user_criteria_no_mtom</sys_db_object>
+        <sys_id>009992faaa1a4bc9801d73ae919619e9</sys_id>
+        <sys_metadata>5d117aa52fa70d5048dca1fef699b6eb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Submit Recipe.SNC External</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sc_cat_item_user_criteria_no_mtom_5d117aa52fa70d5048dca1fef699b6eb</sys_update_name>
+        <sys_update_version display_value="sc_cat_item_user_criteria_no_mtom_5d117aa52fa70d5048dca1fef699b6eb">9f8af2612fe70d5048dca1fef699b6dc</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-19 00:48:46</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

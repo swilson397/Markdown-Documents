@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="DELETE">
+        <authentication_type>basic</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile display_value="dev46024">58ec5b25db221010d0cb5385ca9619d9</basic_auth_profile>
+        <basic_auth_user/>
+        <content/>
+        <function_name>Default GET</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>RemoteSourceCode [ Default GET ]</qualified_name>
+        <rest_endpoint>${instanceurl}/api/now/table/${tablename}</rest_endpoint>
+        <rest_message display_value="RemoteSourceCode">4fbd24b8db229010d0cb5385ca96199e</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-08 01:01:50</sys_created_on>
+        <sys_id>07bd24b8db229010d0cb5385ca9619a0</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Default GET</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_rest_message_fn_07bd24b8db229010d0cb5385ca9619a0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-10 21:45:50</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_rest_message_fn_07bd24b8db229010d0cb5385ca9619a0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn"><sys_rest_message_fn action="INSERT_OR_UPDATE"><authentication_type>basic</authentication_type><basic_auth_password/><basic_auth_profile display_value="dev46024">58ec5b25db221010d0cb5385ca9619d9</basic_auth_profile><basic_auth_user/><content/><function_name>Default GET</function_name><http_method>get</http_method><lock>false</lock><oauth2_profile/><protocol_name/><qualified_name>RemoteSourceCode [ Default GET ]</qualified_name><rest_endpoint>${instanceurl}/api/now/table/${tablename}</rest_endpoint><rest_message display_value="RemoteSourceCode">4fbd24b8db229010d0cb5385ca96199e</rest_message><sys_class_name>sys_rest_message_fn</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-08-08 01:01:50</sys_created_on><sys_id>07bd24b8db229010d0cb5385ca9619a0</sys_id><sys_mod_count>3</sys_mod_count><sys_name>Default GET</sys_name><sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package><sys_policy/><sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope><sys_update_name>sys_rest_message_fn_07bd24b8db229010d0cb5385ca9619a0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-08-10 21:45:50</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mid_server/><use_mutual_auth>false</use_mutual_auth></sys_rest_message_fn></record_update>]]></payload>
+        <payload_hash>-417027784</payload_hash>
+        <record_name>Default GET</record_name>
+        <reverted_from/>
+        <source>a2644b50dbee1010d0cb5385ca961915</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-10 21:45:50</sys_created_on>
+        <sys_id>09add365db221010d0cb5385ca9619a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>173da5637e90000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-10 21:45:50</sys_updated_on>
+        <type>HTTP Method</type>
+        <update_guid>01add3657422101037cff0d693b865a5</update_guid>
+        <update_guid_history>01add3657422101037cff0d693b865a5:-417027784,f51d97a1e0221010d2f694306bdead9f:-378375799,c6cc97a16c2210100db8ee0b2fd22112:1882551493,c3bd24b8dd229010d2008d519ec656a2:1886225080</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-09-15 00:03:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_rest_message_fn">sys_rest_message_fn</sys_db_object>
+        <sys_id>6428dddca8374de8ab0bee7bc8cd8840</sys_id>
+        <sys_metadata>07bd24b8db229010d0cb5385ca9619a0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default GET</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_rest_message_fn_07bd24b8db229010d0cb5385ca9619a0</sys_update_name>
+        <sys_update_version display_value="sys_rest_message_fn_07bd24b8db229010d0cb5385ca9619a0">09add365db221010d0cb5385ca9619a5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-15 00:03:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -3,6 +3,7 @@
         <active>true</active>
         <description/>
         <global>false</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_58056_md_docs.markdown-document</name>
         <script><![CDATA[(function(global, factory) {
     global.markdownDocument = factory(global.jQuery);

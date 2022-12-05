@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" label="Project Code Document Version" max_length="40" name="x_58056_md_docs_code_documentation" sizeclass="8" type="collection">
+        <element label="Custom application" max_length="32" name="custom_application" reference="sys_app" type="reference"/>
+        <element label="Footer HTML" max_length="65536" name="footer_html" type="html"/>
+        <element label="Header HTML" max_length="65536" name="header_html" type="html"/>
+        <element label="Version HTML" max_length="500000" name="html" type="html"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" default="Local" label="Local/Remote" max_length="40" name="local_remote" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Remote" sequence="0" value="Remote"/>
+                <element inactive_on_update="false" label="Local" sequence="1" value="Local"/>
+            </choice>
+        </element>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" mandatory="true" max_length="40" name="number" read_only="true" type="string"/>
+        <element label="PDF content" max_length="500000" name="pdf_content" type="string_full_utf8"/>
+        <element label="Project code document" mandatory="true" max_length="32" name="project_code_document" read_only="true" reference="x_58056_md_docs_project_code_document" type="reference"/>
+        <element choice="1" label="Project type" mandatory="true" max_length="40" name="project_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Manual" sequence="0" value="Manual"/>
+                <element inactive_on_update="false" label="Custom application" sequence="1" value="Custom application"/>
+                <element inactive_on_update="false" label="Update sets" sequence="2" value="Update sets"/>
+            </choice>
+        </element>
+        <element label="Remote connection" max_length="4000" name="remote_connection" type="simple_name_values"/>
+        <element attributes="no_data_replicate=true,is_legacy_password2=true" label="Remote password" max_length="255" name="remote_password" type="password2"/>
+        <element attributes="edge_encryption_enabled=true" label="Remote Source" max_length="4000" name="remote_source" type="string"/>
+        <element label="Remote sources" max_length="4000" name="remote_sources" type="simple_name_values"/>
+        <element label="Separator HTML" max_length="65536" name="separator_html" type="html"/>
+        <element attributes="edge_encryption_enabled=true" label="ServiceNow version" mandatory="true" max_length="40" name="servicenow_version" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Short description" max_length="100" name="short_description" type="string"/>
+        <element label="Source refreshed" max_length="40" name="source_refreshed" type="glide_date_time"/>
+        <element label="Update sets" max_length="1024" name="update_sets" reference="sys_update_set" type="glide_list"/>
+        <index name="index">
+            <element name="custom_application"/>
+        </index>
+        <index name="index2">
+            <element name="project_code_document"/>
+        </index>
+    </element>
+</database>

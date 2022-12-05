@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="DELETE">
+        <cleared>false</cleared>
+        <disabled>true</disabled>
+        <field>remote_application</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 23:55:52</sys_created_on>
+        <sys_id>185cc605db1af300d0cb5385ca9619b1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>remote_application</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_policy_action_185cc605db1af300d0cb5385ca9619b1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-25 23:55:52</sys_updated_on>
+        <table>x_58056_md_docs_code_documentation</table>
+        <ui_policy display_value="Show remote app">43890a81db1af300d0cb5385ca9619c8</ui_policy>
+        <visible>true</visible>
+    </sys_ui_policy_action>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_ui_policy_action_185cc605db1af300d0cb5385ca9619b1</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action"><sys_ui_policy_action action="INSERT_OR_UPDATE"><cleared>false</cleared><disabled>true</disabled><field>remote_application</field><mandatory>ignore</mandatory><sys_class_name>sys_ui_policy_action</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2019-06-25 23:55:52</sys_created_on><sys_id>185cc605db1af300d0cb5385ca9619b1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>remote_application</sys_name><sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package><sys_policy/><sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope><sys_update_name>sys_ui_policy_action_185cc605db1af300d0cb5385ca9619b1</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2019-06-25 23:55:52</sys_updated_on><table>x_58056_md_docs_code_documentation</table><ui_policy display_value="Show remote app">43890a81db1af300d0cb5385ca9619c8</ui_policy><visible>true</visible></sys_ui_policy_action></record_update>]]></payload>
+        <payload_hash>-769768172</payload_hash>
+        <record_name>remote_application</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 23:55:52</sys_created_on>
+        <sys_id>fc6c0a81db1af300d0cb5385ca9619d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16b911135ea0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-25 23:55:52</sys_updated_on>
+        <type>UI Policy Action</type>
+        <update_guid>386c0a81cd1af300960848c0c6da70d1</update_guid>
+        <update_guid_history>386c0a81cd1af300960848c0c6da70d1:-769768172</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-10 23:19:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy_action">sys_ui_policy_action</sys_db_object>
+        <sys_id>338802633a8b4dae8aaee17c10bd8311</sys_id>
+        <sys_metadata>185cc605db1af300d0cb5385ca9619b1</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>remote_application</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent display_value="">43890a81db1af300d0cb5385ca9619c8</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_action_185cc605db1af300d0cb5385ca9619b1</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_action_185cc605db1af300d0cb5385ca9619b1">fc6c0a81db1af300d0cb5385ca9619d1</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-10 23:19:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

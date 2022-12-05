@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="DELETE">
+        <category>general</category>
+        <client_script><![CDATA[var gdw = GlideDialogWindow.get();
+var sysID = gdw.getPreference("sysID");
+var instanceURL = gdw.getPreference("instanceURL");
+var userName = gdw.getPreference("userName");
+var password = gdw.getPreference("password");
+var projectType = gdw.getPreference("projectType");
+
+var ga = new GlideAjax("MarkdownAJAX");
+ga.addParam("sysparm_name", "testRemoteConnection");
+ga.addParam("sysparm_sys_id", sysID);
+ga.addParam("sysparm_instance_url", instanceURL);
+ga.addParam("sysparm_user_name", userName);
+ga.addParam("sysparm_password", password);
+
+ga.getXMLAnswer(checkConnectionResult);
+
+function checkConnectionResult(answer) {
+    var f;
+    var rc = JSON.parse(answer);
+    if (rc.status != "success") {
+        f = gdw.getPreference("connectionFail");
+        if (typeof f == "function") {
+            f(rc.msg);
+        } else {
+            alert("This should not happen!");
+            return;
+        }
+    }
+
+    getRemoteDetails();
+}
+
+function getRemoteDetails() {
+    if (projectType == "Custom application") {
+        var ga = new GlideAjax("MarkdownAJAX");
+        ga.addParam("sysparm_name", "getRemoteApplications");
+        ga.addParam("sysparm_sys_id", sysID);
+        ga.addParam("sysparm_instance_url", instanceURL);
+        ga.addParam("sysparm_user_name", userName);
+        ga.addParam("sysparm_password", password);
+        ga.getXMLAnswer(addAppOptions);
+    } else if (projectType == "Update sets") {
+        var ga = new GlideAjax("MarkdownAJAX");
+        ga.addParam("sysparm_name", "getRemoteUpdateSets");
+        ga.addParam("sysparm_sys_id", sysID);
+        ga.addParam("sysparm_instance_url", instanceURL);
+        ga.addParam("sysparm_user_name", userName);
+        ga.addParam("sysparm_password", password);
+        ga.getXMLAnswer(addUpdateSets);
+    } else {
+        cancelSelection();
+    }
+}
+
+function addAppOptions(answer) {
+    var rc = JSON.parse(answer);
+    if (rc.status == "fail") {
+        alert("An error occurred while retrieving remote applications. Error: " + rc.msg);
+        cancelSelection();
+    } else {
+        rc.apps.forEach(function(app) {
+            $("application").insert(new Element("option", { value: app.sys_id }).update(app.display));
+        }, this);
+        $("check_remote_authentication").hide();
+        $("application_div").show();
+    }
+}
+
+function addUpdateSets(answer) {
+    var rc = JSON.parse(answer);
+    if (rc.status == "fail") {
+        alert("An error occurred while retrieving remote update sets. Error: " + rc.msg);
+        cancelSelection();
+    } else {
+        var template = new Template(
+            '<tr class="list_row #{list_class}" style="" sys_id="#{sys_id}" display="#{display}">' +
+                '  <td class="list_decoration_cell col-control col-small col-center " style="white-space:nowrap;" rowspan="1">' +
+                '    <span class="input-group-checkbox">' +
+                '      <input id="select_#{sys_id}" type="checkbox" title="Select this update set" class="checkbox " />' +
+                '      <label for="select_#{sys_id}" style="" class="checkbox-label">' +
+                '        <span class="sr-only"></span>' +
+                "      </label>" +
+                "    </span>" +
+                "  </td>" +
+                '  <td class="vt" style="padding-left: 0px;">#{display}</td>' +
+                "</tr>"
+        );
+
+        rc.updateSets.forEach(function(updateSet, usIndex) {
+            var className = "list_odd";
+            if (usIndex % 2 == 0) {
+                className = "list_even";
+            }
+            $("update_sets_table").insert(
+                template.evaluate({ sys_id: updateSet.sys_id, display: updateSet.display, list_class: className })
+            );
+        }, this);
+        $("check_remote_authentication").hide();
+        $("update_sets_div").show();
+    }
+}
+
+function okDone() {
+    var appEl = $("application");
+    var sysID = appEl.getValue();
+    if (sysID == "") {
+        alert("Please select an application");
+        return false;
+    }
+    var display = appEl.selectedIndex >= 0 ? appEl.options[appEl.selectedIndex].innerHTML : undefined;
+    var f;
+    f = gdw.getPreference("fetchSuccess");
+    if (typeof f == "function") {
+        f([{ sys_id: sysID, display: display }]);
+    }
+}
+
+function okDoneUpdateSets() {
+    var updateSets = [];
+    var table = $("update_sets_table");
+    for (var i = 0; i < table.rows.length; i++) {
+        var row = table.rows[i];
+        var cb = row.cells[0];
+        var sysID = row.readAttribute("sys_id");
+        if (sysID) {
+            var checked = $("select_" + sysID).checked;
+            alert(
+                row.nodeName +
+                    " | " +
+                    sysID +
+                    " | " +
+                    row.readAttribute("display") +
+                    " checked=" +
+                    checked
+            );
+            if (checked) {
+                updateSets.push({ sys_id: row.readAttribute("sys_id"), display: row.readAttribute("display") });
+            }
+        }
+    }
+    var f;
+    f = gdw.getPreference("fetchSuccess");
+    if (typeof f == "function") {
+        f(updateSets);
+    }
+}
+
+function cancelSelection() {
+    f = gdw.getPreference("fetchCancel");
+    if (typeof f == "function") {
+        f();
+    }
+}
+]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_58056_md_docs_handle_remote_connection.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="true" 
+	xmlns:j="jelly:core" 
+	xmlns:g="glide" 
+	xmlns:j2="null" 
+	xmlns:g2="null">
+
+	<div style="margin-left: 10px; margin-right: 10px; padding-left:10px; padding-right: 10px">
+		<br/>
+	</div>
+	<div id='check_remote_authentication' style='margin-left: 20%'>
+		<img src='images/loading_anim2.gifx' />
+ Authenticating Remote Instance...
+	</div>
+	<div id="application_div" style="display:none">
+		<div>
+			<h3 style="padding-left: 0px">Select an application</h3>
+		</div>
+		<select name="application" id="application">
+			<option value="">-- None --</option>
+		</select>
+		<div style="margin-top: 50px">
+			<g:dialog_buttons_ok_cancel ok="return okDone();" cancel="return cancelSelection();" ok_type="button" cancel_type="button" ok_text="${gs.getMessage('Done')}" cancel_text="${gs.getMessage('Cancel')}"/>
+		</div>
+	</div>
+	<div id="update_sets_div" style="display:none">
+		<div>
+			<h3 style="padding-left: 0px">Select update sets</h3>
+		</div>
+		<table id="update_sets_table" name="update_sets_table" style="width: 100%">
+			<thead>
+				<tr id="hdr_sys_ui_page" class="" style="">
+					<th class=" col-control" scope="col" style="border-bottom: 2px solid #bdc0c4; vertical-align:middle; white-space:nowrap;" align="center">
+					</th>
+					<th name="category" class="text-align-left list_header_cell list_hdr" style="border-bottom: 2px solid #bdc0c4; vertical-align:middle; white-space:nowrap;" align="left">
+						<span style="white-space:nowrap">
+				Update Set Name
+						</span>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		<div style="margin-top: 50px">
+			<g:dialog_buttons_ok_cancel ok="return okDoneUpdateSets();" cancel="return cancelSelection();" ok_type="button" cancel_type="button" ok_text="${gs.getMessage('Done')}" cancel_text="${gs.getMessage('Cancel')}"/>
+		</div>
+	</div>
+</j:jelly>
+]]></html>
+        <name>handle_remote_connection</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 16:29:46</sys_created_on>
+        <sys_id>86466489dbd2f300d0cb5385ca961980</sys_id>
+        <sys_mod_count>32</sys_mod_count>
+        <sys_name>handle_remote_connection</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_page_86466489dbd2f300d0cb5385ca961980</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-01 20:07:15</sys_updated_on>
+    </sys_ui_page>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_ui_page_86466489dbd2f300d0cb5385ca961980</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[var gdw = GlideDialogWindow.get();
+var sysID = gdw.getPreference("sysID");
+var instanceURL = gdw.getPreference("instanceURL");
+var userName = gdw.getPreference("userName");
+var password = gdw.getPreference("password");
+var projectType = gdw.getPreference("projectType");
+
+var ga = new GlideAjax("MarkdownAJAX");
+ga.addParam("sysparm_name", "testRemoteConnection");
+ga.addParam("sysparm_sys_id", sysID);
+ga.addParam("sysparm_instance_url", instanceURL);
+ga.addParam("sysparm_user_name", userName);
+ga.addParam("sysparm_password", password);
+
+ga.getXMLAnswer(checkConnectionResult);
+
+function checkConnectionResult(answer) {
+    var f;
+    var rc = JSON.parse(answer);
+    if (rc.status != "success") {
+        f = gdw.getPreference("connectionFail");
+        if (typeof f == "function") {
+            f(rc.msg);
+        } else {
+            alert("This should not happen!");
+            return;
+        }
+    }
+
+    getRemoteDetails();
+}
+
+function getRemoteDetails() {
+    if (projectType == "Custom application") {
+        var ga = new GlideAjax("MarkdownAJAX");
+        ga.addParam("sysparm_name", "getRemoteApplications");
+        ga.addParam("sysparm_sys_id", sysID);
+        ga.addParam("sysparm_instance_url", instanceURL);
+        ga.addParam("sysparm_user_name", userName);
+        ga.addParam("sysparm_password", password);
+        ga.getXMLAnswer(addAppOptions);
+    } else if (projectType == "Update sets") {
+        var ga = new GlideAjax("MarkdownAJAX");
+        ga.addParam("sysparm_name", "getRemoteUpdateSets");
+        ga.addParam("sysparm_sys_id", sysID);
+        ga.addParam("sysparm_instance_url", instanceURL);
+        ga.addParam("sysparm_user_name", userName);
+        ga.addParam("sysparm_password", password);
+        ga.getXMLAnswer(addUpdateSets);
+    } else {
+        cancelSelection();
+    }
+}
+
+function addAppOptions(answer) {
+    var rc = JSON.parse(answer);
+    if (rc.status == "fail") {
+        alert("An error occurred while retrieving remote applications. Error: " + rc.msg);
+        cancelSelection();
+    } else {
+        rc.apps.forEach(function(app) {
+            $("application").insert(new Element("option", { value: app.sys_id }).update(app.display));
+        }, this);
+        $("check_remote_authentication").hide();
+        $("application_div").show();
+    }
+}
+
+function addUpdateSets(answer) {
+    var rc = JSON.parse(answer);
+    if (rc.status == "fail") {
+        alert("An error occurred while retrieving remote update sets. Error: " + rc.msg);
+        cancelSelection();
+    } else {
+        var template = new Template(
+            '&lt;tr class="list_row #{list_class}" style="" sys_id="#{sys_id}" display="#{display}"&gt;' +
+                '  &lt;td class="list_decoration_cell col-control col-small col-center " style="white-space:nowrap;" rowspan="1"&gt;' +
+                '    &lt;span class="input-group-checkbox"&gt;' +
+                '      &lt;input id="select_#{sys_id}" type="checkbox" title="Select this update set" class="checkbox " /&gt;' +
+                '      &lt;label for="select_#{sys_id}" style="" class="checkbox-label"&gt;' +
+                '        &lt;span class="sr-only"&gt;&lt;/span&gt;' +
+                "      &lt;/label&gt;" +
+                "    &lt;/span&gt;" +
+                "  &lt;/td&gt;" +
+                '  &lt;td class="vt" style="padding-left: 0px;"&gt;#{display}&lt;/td&gt;' +
+                "&lt;/tr&gt;"
+        );
+
+        rc.updateSets.forEach(function(updateSet, usIndex) {
+            var className = "list_odd";
+            if (usIndex % 2 == 0) {
+                className = "list_even";
+            }
+            $("update_sets_table").insert(
+                template.evaluate({ sys_id: updateSet.sys_id, display: updateSet.display, list_class: className })
+            );
+        }, this);
+        $("check_remote_authentication").hide();
+        $("update_sets_div").show();
+    }
+}
+
+function okDone() {
+    var appEl = $("application");
+    var sysID = appEl.getValue();
+    if (sysID == "") {
+        alert("Please select an application");
+        return false;
+    }
+    var display = appEl.selectedIndex &gt;= 0 ? appEl.options[appEl.selectedIndex].innerHTML : undefined;
+    var f;
+    f = gdw.getPreference("fetchSuccess");
+    if (typeof f == "function") {
+        f([{ sys_id: sysID, display: display }]);
+    }
+}
+
+function okDoneUpdateSets() {
+    var updateSets = [];
+    var table = $("update_sets_table");
+    for (var i = 0; i &lt; table.rows.length; i++) {
+        var row = table.rows[i];
+        var cb = row.cells[0];
+        var sysID = row.readAttribute("sys_id");
+        if (sysID) {
+            var checked = $("select_" + sysID).checked;
+            alert(
+                row.nodeName +
+                    " | " +
+                    sysID +
+                    " | " +
+                    row.readAttribute("display") +
+                    " checked=" +
+                    checked
+            );
+            if (checked) {
+                updateSets.push({ sys_id: row.readAttribute("sys_id"), display: row.readAttribute("display") });
+            }
+        }
+    }
+    var f;
+    f = gdw.getPreference("fetchSuccess");
+    if (typeof f == "function") {
+        f(updateSets);
+    }
+}
+
+function cancelSelection() {
+    f = gdw.getPreference("fetchCancel");
+    if (typeof f == "function") {
+        f();
+    }
+}
+]]&gt;&lt;/client_script&gt;&lt;description/&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint&gt;x_58056_md_docs_handle_remote_connection.do&lt;/endpoint&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;j:jelly trim="true" 
+	xmlns:j="jelly:core" 
+	xmlns:g="glide" 
+	xmlns:j2="null" 
+	xmlns:g2="null"&gt;
+
+	&lt;div style="margin-left: 10px; margin-right: 10px; padding-left:10px; padding-right: 10px"&gt;
+		&lt;br/&gt;
+	&lt;/div&gt;
+	&lt;div id='check_remote_authentication' style='margin-left: 20%'&gt;
+		&lt;img src='images/loading_anim2.gifx' /&gt;
+ Authenticating Remote Instance...
+	&lt;/div&gt;
+	&lt;div id="application_div" style="display:none"&gt;
+		&lt;div&gt;
+			&lt;h3 style="padding-left: 0px"&gt;Select an application&lt;/h3&gt;
+		&lt;/div&gt;
+		&lt;select name="application" id="application"&gt;
+			&lt;option value=""&gt;-- None --&lt;/option&gt;
+		&lt;/select&gt;
+		&lt;div style="margin-top: 50px"&gt;
+			&lt;g:dialog_buttons_ok_cancel ok="return okDone();" cancel="return cancelSelection();" ok_type="button" cancel_type="button" ok_text="${gs.getMessage('Done')}" cancel_text="${gs.getMessage('Cancel')}"/&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div id="update_sets_div" style="display:none"&gt;
+		&lt;div&gt;
+			&lt;h3 style="padding-left: 0px"&gt;Select update sets&lt;/h3&gt;
+		&lt;/div&gt;
+		&lt;table id="update_sets_table" name="update_sets_table" style="width: 100%"&gt;
+			&lt;thead&gt;
+				&lt;tr id="hdr_sys_ui_page" class="" style=""&gt;
+					&lt;th class=" col-control" scope="col" style="border-bottom: 2px solid #bdc0c4; vertical-align:middle; white-space:nowrap;" align="center"&gt;
+					&lt;/th&gt;
+					&lt;th name="category" class="text-align-left list_header_cell list_hdr" style="border-bottom: 2px solid #bdc0c4; vertical-align:middle; white-space:nowrap;" align="left"&gt;
+						&lt;span style="white-space:nowrap"&gt;
+				Update Set Name
+						&lt;/span&gt;
+					&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+		&lt;/table&gt;
+		&lt;div style="margin-top: 50px"&gt;
+			&lt;g:dialog_buttons_ok_cancel ok="return okDoneUpdateSets();" cancel="return cancelSelection();" ok_type="button" cancel_type="button" ok_text="${gs.getMessage('Done')}" cancel_text="${gs.getMessage('Cancel')}"/&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/j:jelly&gt;
+]]&gt;&lt;/html&gt;&lt;name&gt;handle_remote_connection&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-06-25 16:29:46&lt;/sys_created_on&gt;&lt;sys_id&gt;86466489dbd2f300d0cb5385ca961980&lt;/sys_id&gt;&lt;sys_mod_count&gt;32&lt;/sys_mod_count&gt;&lt;sys_name&gt;handle_remote_connection&lt;/sys_name&gt;&lt;sys_package display_value="Markdown Documents" source="x_58056_md_docs"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Markdown Documents"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_86466489dbd2f300d0cb5385ca961980&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-07-01 20:07:15&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1058239576</payload_hash>
+        <record_name>handle_remote_connection</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-01 20:07:15</sys_created_on>
+        <sys_id>a291d48fdb1e7300d0cb5385ca96196b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16baf260f7b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-01 20:07:15</sys_updated_on>
+        <type>UI Page</type>
+        <update_guid>2e91d48f061e730077b0ce1cd2c7b76a</update_guid>
+        <update_guid_history>2e91d48f061e730077b0ce1cd2c7b76a:-1058239576,b07df7bee11e73001e3f890092cb1178:695638085,e43d737ef85e7300f566d0883bf26cbe:-325493346,f08b737e0d5e73000f3c5e2b6da993ba:2032886266,bd09e7bea71e7300254b51d4a224f773:834210883,11a23e923b5633002e14b974f7875700:-826521727,1b32fa92cc563300541484526d305fbd:-1060279265,674f26d2b1563300b2dbe10e4aca050a:-1584603676,419eea920756330038325cc8f38bf6fa:-1054074521,8471783d54167700c5544157e913d6c5:1185489853,c121f87d81d27700ed25ab3763a8ef1d:-300855051,c4cfe8b911167700b8a88c8990472e6d:989965266,369ee8b95d1677007ac75a8828bb9469:581768402,1acda0b9651677004825e8bd1944a091:-695142404,42bb6035f6167700ae41eb25d1101e94:706493071,805b60358d167700fec7db53c0d9749d:1626360073,f1c3e0b97ad27700659d9b9429356cc8:962147578,dc53a8b994d27700586acc0f0164aa54:-1314975668,d8236cb126167700797bbba6571f91cb:-1681120941,5a136cb1de167700af9e4d12386f45c7:-1499063902,f2cbd87defd277005f0e0b468cbe0917:-234700737,e59bda8d391af300a231810d7adcc0be:900081975,aa89de4d351af300bf5a4d5a2c49ba9c:1476306499,9e38d6c9131af300dc324a4071d82b8c:-1248351951,4a18da896f1af30003df3826d8ba9d9a:-1156344049,3b46d6c91f1af30010392c3575e83489:-482340000,a42738052816f300d3321b4d5afe5d33:-1457653441,f8d67c455616f3002a78810da4dcc2fc:-833441027,82443805ac16f300d33137d2618a7310:-2085771899,159ea0cdf5d2f30032805c01746ff1c3:-1243505878,5ff66c890fd2f300d260e0c1535c7a79:8810696,b866a48937d2f300a68e481b90b8d0dc:-1365295971,0246648965d2f3009d991b203af70882:1316917909</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-06 23:47:10</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_page">sys_ui_page</sys_db_object>
+        <sys_id>4e08d4ae020e4b8ab11a18a06f798e51</sys_id>
+        <sys_metadata>86466489dbd2f300d0cb5385ca961980</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>handle_remote_connection</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_ui_page_86466489dbd2f300d0cb5385ca961980</sys_update_name>
+        <sys_update_version display_value="sys_ui_page_86466489dbd2f300d0cb5385ca961980">a291d48fdb1e7300d0cb5385ca96196b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-06 23:47:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

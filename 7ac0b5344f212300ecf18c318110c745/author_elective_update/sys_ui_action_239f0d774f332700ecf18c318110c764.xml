@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="DELETE">
+        <action_name>refresh_sources</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2/>
+        <comments/>
+        <condition>new MarkdownVersioning().canChange(current) &amp;&amp; (current.project_type == "Custom application" ||  current.project_type == "Update sets")</condition>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Reload Markdown Source</name>
+        <onclick>refreshSources()</onclick>
+        <order>150</order>
+        <script><![CDATA[function refreshSources() {
+	alert("Pop up dialog box with list of existing source records. Check ones to refesh");
+	return;
+	/*
+	var ga = new GlideAjax('x_58056_md_docs.MarkdownAJAX'); 
+	ga.addParam('sysparm_name', 'startRefreshSourceAction');
+	ga.addParam('sysparm_doc_id', g_form.getUniqueValue());
+	ga.addParam('sysparm_project_type', g_form.getValue("project_type"));
+	ga.addParam('sysparm_custom_app_id', g_form.getValue("custom_application"));
+	ga.addParam('sysparm_update_sets', g_form.getValue("update_sets"));
+	ga.getXMLAnswer(alertUserOnCompletion);
+	*/
+}
+
+function alertUserOnCompletion(answer) {
+	g_form.addInfoMessage('Markdown Source refresh request submitted.');
+}
+]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-03-02 01:56:40</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>239f0d774f332700ecf18c318110c764</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Reload Markdown Source</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_action_239f0d774f332700ecf18c318110c764</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-02 22:07:08</sys_updated_on>
+        <table>x_58056_md_docs_markdown_document</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_ui_action_239f0d774f332700ecf18c318110c764</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_action"&gt;&lt;sys_ui_action action="INSERT_OR_UPDATE"&gt;&lt;action_name&gt;refresh_sources&lt;/action_name&gt;&lt;active&gt;true&lt;/active&gt;&lt;client&gt;true&lt;/client&gt;&lt;client_script_v2/&gt;&lt;comments/&gt;&lt;condition&gt;new MarkdownVersioning().canChange(current) &amp;amp;&amp;amp; (current.project_type == "Custom application" ||  current.project_type == "Update sets")&lt;/condition&gt;&lt;form_action&gt;true&lt;/form_action&gt;&lt;form_button&gt;false&lt;/form_button&gt;&lt;form_button_v2&gt;false&lt;/form_button_v2&gt;&lt;form_context_menu&gt;false&lt;/form_context_menu&gt;&lt;form_link&gt;true&lt;/form_link&gt;&lt;form_menu_button_v2&gt;false&lt;/form_menu_button_v2&gt;&lt;form_style/&gt;&lt;hint/&gt;&lt;isolate_script&gt;false&lt;/isolate_script&gt;&lt;list_action&gt;false&lt;/list_action&gt;&lt;list_banner_button&gt;false&lt;/list_banner_button&gt;&lt;list_button&gt;false&lt;/list_button&gt;&lt;list_choice&gt;false&lt;/list_choice&gt;&lt;list_context_menu&gt;false&lt;/list_context_menu&gt;&lt;list_link&gt;false&lt;/list_link&gt;&lt;list_save_with_form_button&gt;false&lt;/list_save_with_form_button&gt;&lt;list_style/&gt;&lt;name&gt;Reload Markdown Source&lt;/name&gt;&lt;onclick&gt;refreshSources()&lt;/onclick&gt;&lt;order&gt;150&lt;/order&gt;&lt;script&gt;&lt;![CDATA[function refreshSources() {
+	alert("Pop up dialog box with list of existing source records. Check ones to refesh");
+	return;
+	/*
+	var ga = new GlideAjax('x_58056_md_docs.MarkdownAJAX'); 
+	ga.addParam('sysparm_name', 'startRefreshSourceAction');
+	ga.addParam('sysparm_doc_id', g_form.getUniqueValue());
+	ga.addParam('sysparm_project_type', g_form.getValue("project_type"));
+	ga.addParam('sysparm_custom_app_id', g_form.getValue("custom_application"));
+	ga.addParam('sysparm_update_sets', g_form.getValue("update_sets"));
+	ga.getXMLAnswer(alertUserOnCompletion);
+	*/
+}
+
+function alertUserOnCompletion(answer) {
+	g_form.addInfoMessage('Markdown Source refresh request submitted.');
+}
+]]&gt;&lt;/script&gt;&lt;show_insert&gt;false&lt;/show_insert&gt;&lt;show_multiple_update&gt;false&lt;/show_multiple_update&gt;&lt;show_query&gt;false&lt;/show_query&gt;&lt;show_update&gt;true&lt;/show_update&gt;&lt;sys_class_name&gt;sys_ui_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-03-02 01:56:40&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;239f0d774f332700ecf18c318110c764&lt;/sys_id&gt;&lt;sys_mod_count&gt;15&lt;/sys_mod_count&gt;&lt;sys_name&gt;Reload Markdown Source&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Markdown Documents" source="x_58056_md_docs"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Markdown Documents"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_action_239f0d774f332700ecf18c318110c764&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-07-02 22:07:08&lt;/sys_updated_on&gt;&lt;table&gt;x_58056_md_docs_markdown_document&lt;/table&gt;&lt;ui11_compatible&gt;true&lt;/ui11_compatible&gt;&lt;ui16_compatible&gt;false&lt;/ui16_compatible&gt;&lt;/sys_ui_action&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>2133237809</payload_hash>
+        <record_name>Reload Markdown Source</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-02 22:07:08</sys_created_on>
+        <sys_id>2ca6f95fdb5eb300d0cb5385ca9619f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16bb4ba2e330000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-02 22:07:08</sys_updated_on>
+        <type>UI Action</type>
+        <update_guid>a4a6f95f825eb300eab28df3a749fef2</update_guid>
+        <update_guid_history>a4a6f95f825eb300eab28df3a749fef2:2133237809,cba31446805133002f87e4adfe114284:950403591,3c931482e8513300c4eef50b64be009c:-1374850970,0276791d6a917300d9f79e124e27995c:1489767726,bad2f95da251730043f702eaf2f9f828:-515898202,fe61e95d1251730005a33a83aabf14de:-1938586290,5c1462279c4d730052f77f1c3f98c182:-1853470956,99836ee3ea4d7300d8f6a857ba7c793d:1294364025,af63eae3ca4d7300170d4e9a2eb32e58:1511303678,9b9a43e81c00b700455b380cbd2154d8:-449609017,7d4acfa82300b7001c74fd4e2804948d:382666302,efc9c7209d00b700041df12e7fc31dd3:1774006849,15399af342f327001b2ded382ac6fd69:-1147614157,0657d2b3f5f327001257c2acdf9e32ac:-1602999088,cf10993bd933270064eb2765bbe28b8a:-127895357,eb9f0d77fc3327001216996f3f1b0665:-2044031404</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-02 22:08:02</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_action">sys_ui_action</sys_db_object>
+        <sys_id>0b5ba32fd32549849f828250847035a1</sys_id>
+        <sys_metadata>239f0d774f332700ecf18c318110c764</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Reload Markdown Source</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent display_value="Markdown Document">3dd2b5384f212300ecf18c318110c7a9</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_ui_action_239f0d774f332700ecf18c318110c764</sys_update_name>
+        <sys_update_version display_value="sys_ui_action_239f0d774f332700ecf18c318110c764">2ca6f95fdb5eb300d0cb5385ca9619f2</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-02 22:08:02</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

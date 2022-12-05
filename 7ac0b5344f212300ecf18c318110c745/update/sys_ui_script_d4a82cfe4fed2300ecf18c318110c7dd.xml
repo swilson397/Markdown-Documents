@@ -3,6 +3,7 @@
         <active>true</active>
         <description/>
         <global>false</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
         <name>x_58056_md_docs.simplemde_min</name>
         <script>/**&#13;
  * simplemde v1.11.2&#13;

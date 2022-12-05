@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item">
+    <io_set_item action="DELETE">
+        <order>100</order>
+        <sc_cat_item display_value="Submit Recipe">dde0f2e52fa70d5048dca1fef699b6cd</sc_cat_item>
+        <sys_class_name>io_set_item</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-19 00:08:08</sys_created_on>
+        <sys_id>f3317ae52fa70d5048dca1fef699b663</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>recipes_vs.Submit Recipe</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>io_set_item_f3317ae52fa70d5048dca1fef699b663</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-19 00:08:08</sys_updated_on>
+        <variable_set display_value="recipes_vs">91607aa52fa70d5048dca1fef699b6b1</variable_set>
+    </io_set_item>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>io_set_item_f3317ae52fa70d5048dca1fef699b663</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item"><io_set_item action="INSERT_OR_UPDATE"><order>100</order><sc_cat_item display_value="Submit Recipe">dde0f2e52fa70d5048dca1fef699b6cd</sc_cat_item><sys_class_name>io_set_item</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-05-19 00:08:08</sys_created_on><sys_id>f3317ae52fa70d5048dca1fef699b663</sys_id><sys_mod_count>1</sys_mod_count><sys_name>recipes_vs.Submit Recipe</sys_name><sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package><sys_policy/><sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope><sys_update_name>io_set_item_f3317ae52fa70d5048dca1fef699b663</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-05-19 00:08:08</sys_updated_on><variable_set display_value="recipes_vs">91607aa52fa70d5048dca1fef699b6b1</variable_set></io_set_item></record_update>]]></payload>
+        <payload_hash>-777290675</payload_hash>
+        <record_name>recipes_vs.Submit Recipe</record_name>
+        <reverted_from/>
+        <source>a2644b50dbee1010d0cb5385ca961915</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-19 00:08:08</sys_created_on>
+        <sys_id>8c417ae52fa70d5048dca1fef699b669</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>180d9a4a8420000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-19 00:08:08</sys_updated_on>
+        <type>Catalog Variable Set</type>
+        <update_guid>84417ae53ba70d50591583b34a125469</update_guid>
+        <update_guid_history>84417ae53ba70d50591583b34a125469:-777290675</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="recipes_vs.Submit Recipe">538af2612fe70d5048dca1fef699b6ec</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-05-19 00:48:47</sys_created_on>
+        <sys_db_object display_value="" name="io_set_item">io_set_item</sys_db_object>
+        <sys_id>1de3c339a24f4f0587d0b0c2befa34d9</sys_id>
+        <sys_metadata>f3317ae52fa70d5048dca1fef699b663</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>recipes_vs.Submit Recipe</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>io_set_item_f3317ae52fa70d5048dca1fef699b663</sys_update_name>
+        <sys_update_version display_value="io_set_item_f3317ae52fa70d5048dca1fef699b663">8c417ae52fa70d5048dca1fef699b669</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-05-19 00:48:47</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

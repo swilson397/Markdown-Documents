@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>local_remote</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Remote instance</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	if (newValue === '') {
+		return;
+	}
+	
+	if (newValue == "Remote") {
+		var url = g_form.getValue("remote_instance_url");
+		if (url == null || url.length == 0) {
+			g_form.setValue("remote_instance_url", "https://instance.service-now.com");
+		}
+	} else {
+		g_form.setValue("remote_instance_url", "");
+	}
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 06:00:50</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>15569238db5eb300d0cb5385ca96193e</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Remote instance</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_client_15569238db5eb300d0cb5385ca96193e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-25 17:19:18</sys_updated_on>
+        <table>x_58056_md_docs_code_documentation</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_script_client_15569238db5eb300d0cb5385ca96193e</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;local_remote&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Remote instance&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	if (newValue === '') {
+		return;
+	}
+	
+	if (newValue == "Remote") {
+		var url = g_form.getValue("remote_instance_url");
+		if (url == null || url.length == 0) {
+			g_form.setValue("remote_instance_url", "https://instance.service-now.com");
+		}
+	} else {
+		g_form.setValue("remote_instance_url", "");
+	}
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-06-25 06:00:50&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;15569238db5eb300d0cb5385ca96193e&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;Remote instance&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Markdown Documents" source="x_58056_md_docs"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Markdown Documents"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_15569238db5eb300d0cb5385ca96193e&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-06-25 17:19:18&lt;/sys_updated_on&gt;&lt;table&gt;x_58056_md_docs_code_documentation&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>217544039</payload_hash>
+        <record_name>Remote instance</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 17:19:18</sys_created_on>
+        <sys_id>6b91f481db16f300d0cb5385ca9619b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16b8fa623a90000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-25 17:19:18</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>e391f4814e16f300ae2796cfab4c4bb5</update_guid>
+        <update_guid_history>e391f4814e16f300ae2796cfab4c4bb5:217544039,272a14417bd2f30057d75108c84b2a2f:1044899508,d7d71678495eb3008205975312deb4a5:217544039,bef61e382d5eb300079b9b48f3b3aab4:1953032553,59561e38d25eb3009d724cf4bea7e2fc:11945392</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-10 23:27:28</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>176ebca8658345428610f870a06988e4</sys_id>
+        <sys_metadata>15569238db5eb300d0cb5385ca96193e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Remote instance</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent display_value="Project Code Document Version">889376c6dbed7300d0cb5385ca9619f9</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_script_client_15569238db5eb300d0cb5385ca96193e</sys_update_name>
+        <sys_update_version display_value="sys_script_client_15569238db5eb300d0cb5385ca96193e">6b91f481db16f300d0cb5385ca9619b5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-10 23:27:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

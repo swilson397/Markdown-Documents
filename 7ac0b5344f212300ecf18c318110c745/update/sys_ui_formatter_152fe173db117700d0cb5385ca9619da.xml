@@ -4,6 +4,7 @@
         <angular_module/>
         <formatter>markdown_editor</formatter>
         <name>markdown_editor</name>
+        <seismic_component/>
         <sys_class_name>sys_ui_formatter</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-05-15 17:48:36</sys_created_on>

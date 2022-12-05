@@ -21,6 +21,7 @@
         <entitlement_script/>
         <features/>
         <flow_designer_flow/>
+        <fulfillment_automation_level>unspecified</fulfillment_automation_level>
         <group/>
         <hide_sp>false</hide_sp>
         <icon/>
@@ -78,6 +79,7 @@
         <sys_update_name>pc_hardware_cat_item_e53001cf4fb3a300ecf18c318110c7ef</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2020-11-04 19:00:22</sys_updated_on>
+        <taxonomy_topic/>
         <template/>
         <template_manager_roles/>
         <type>item</type>

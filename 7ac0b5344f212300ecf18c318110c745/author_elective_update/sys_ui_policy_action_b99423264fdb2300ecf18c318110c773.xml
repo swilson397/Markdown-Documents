@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="DELETE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>source_name</field>
+        <mandatory>false</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-01 19:04:03</sys_created_on>
+        <sys_id>b99423264fdb2300ecf18c318110c773</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>source_name</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_ui_policy_action_b99423264fdb2300ecf18c318110c773</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-01 19:04:03</sys_updated_on>
+        <table>x_58056_md_docs_markdown_source</table>
+        <ui_policy display_value="Document type">699f43e64f9b2300ecf18c318110c727</ui_policy>
+        <visible>false</visible>
+    </sys_ui_policy_action>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_ui_policy_action_b99423264fdb2300ecf18c318110c773</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action"><sys_ui_policy_action action="INSERT_OR_UPDATE"><cleared>false</cleared><disabled>ignore</disabled><field>source_name</field><mandatory>false</mandatory><sys_class_name>sys_ui_policy_action</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2019-02-01 19:04:03</sys_created_on><sys_id>b99423264fdb2300ecf18c318110c773</sys_id><sys_mod_count>0</sys_mod_count><sys_name>source_name</sys_name><sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package><sys_policy/><sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope><sys_update_name>sys_ui_policy_action_b99423264fdb2300ecf18c318110c773</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2019-02-01 19:04:03</sys_updated_on><table>x_58056_md_docs_markdown_source</table><ui_policy display_value="Document type">699f43e64f9b2300ecf18c318110c727</ui_policy><visible>false</visible></sys_ui_policy_action></record_update>]]></payload>
+        <payload_hash>-534462746</payload_hash>
+        <record_name>source_name</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-02-01 19:04:03</sys_created_on>
+        <sys_id>9aa4a7e24fdb2300ecf18c318110c745</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>168aa724ad30000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-02-01 19:04:03</sys_updated_on>
+        <type>UI Policy Action</type>
+        <update_guid>d2a4a7e222db23004f49dcd1d2d33145</update_guid>
+        <update_guid_history>d2a4a7e222db23004f49dcd1d2d33145:-534462746</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-03 22:30:32</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy_action">sys_ui_policy_action</sys_db_object>
+        <sys_id>0394ac490d4244d0853054c1d658a900</sys_id>
+        <sys_metadata>b99423264fdb2300ecf18c318110c773</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>source_name</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent display_value="Local Document ">699f43e64f9b2300ecf18c318110c727</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_action_b99423264fdb2300ecf18c318110c773</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_action_b99423264fdb2300ecf18c318110c773">9aa4a7e24fdb2300ecf18c318110c745</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-03 22:30:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

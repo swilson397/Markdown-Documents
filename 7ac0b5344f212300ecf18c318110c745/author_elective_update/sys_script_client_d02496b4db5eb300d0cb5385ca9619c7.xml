@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>sys_created_on</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Remote instance connection</name>
+        <order/>
+        <script><![CDATA[var gFormAlreadySubmitted = false;
+var _dialog = null;
+var projectType = null;
+
+function onSubmit() {
+    if (gFormAlreadySubmitted || g_form.getValue("local_remote") != "Remote") {
+        return true;
+    }
+
+	projectType = g_form.getValue("project_type");
+	
+	if (g_form.getValue("local_remote") == "Remote") {
+		if (projectType == "Custom Application") {
+			g_form.setValue("remote_update_sets", "");
+		} else if (projectType == "Update Sets") {
+			g_form.setValue("remote_application", "");
+		}
+	}
+	
+    var checkConnection =
+        (projectType == "Custom application" && g_form.getValue("remote_application") == "") ||
+        (projectType == "Update sets" && g_form.getValue("remote_update_sets") == "");
+
+    if (checkConnection) {
+        testRemoteConnection();
+        return false;
+    }
+
+    return true;
+}
+
+function testRemoteConnection() {
+    _dialog = new GlideModal("x_58056_md_docs_handle_remote_connection");
+    _dialog.setTitle(new GwtMessage().getMessage("Remote Instance Connection"));
+    _dialog.setPreference("sysID", g_form.getUniqueValue());
+    _dialog.setPreference("instanceURL", g_form.getValue("remote_instance_url"));
+    _dialog.setPreference("userName", g_form.getValue("remote_username"));
+    _dialog.setPreference("password", g_form.getValue("remote_password"));
+    _dialog.setPreference("projectType", projectType);
+    _dialog.setPreference("connectionFail", connectionFail.bind(this));
+    _dialog.setPreference("fetchSuccess", fetchSuccess.bind(this));
+    _dialog.setPreference("fetchCancel", fetchCancel.bind(this));
+
+    _dialog.render();
+}
+
+function connectionFail(msg) {
+	g_form.clearMessages();
+	_dialog.destroy();
+	g_form.addErrorMessage(msg);
+}
+
+function fetchSuccess(remoteDetails) {
+    _dialog.destroy();
+
+    g_form.setValue("remote_json", JSON.stringify(remoteDetails));
+    if (projectType == "Custom application") {
+        g_form.setValue("remote_application", remoteDetails[0].display);
+        g_form.setValue("remote_update_sets", "");
+    } else {
+        var updSets = [];
+        remoteDetails.forEach(function(remoteDetail) {
+            updSets.push(remoteDetail.display);
+        }, this);
+        g_form.setValue("remote_update_sets", updSets.join(","));
+        g_form.setValue("remote_application", "");
+    }
+    submitForm();
+}
+
+function fetchCancel() {
+    _dialog.destroy();
+}
+
+function submitForm() {
+    gFormAlreadySubmitted = true;
+    gsftSubmit(undefined, undefined, g_form.getActionName());
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-25 05:52:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d02496b4db5eb300d0cb5385ca9619c7</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>Remote instance connection</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_update_name>sys_script_client_d02496b4db5eb300d0cb5385ca9619c7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-04 23:16:00</sys_updated_on>
+        <table>x_58056_md_docs_code_documentation</table>
+        <type>onSubmit</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</application>
+        <file_path/>
+        <instance_id>2570b4f36f4fb1006626a9cc5d3ee464</instance_id>
+        <instance_name>dev12292</instance_name>
+        <name>sys_script_client_d02496b4db5eb300d0cb5385ca9619c7</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;sys_created_on&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Remote instance connection&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[var gFormAlreadySubmitted = false;
+var _dialog = null;
+var projectType = null;
+
+function onSubmit() {
+    if (gFormAlreadySubmitted || g_form.getValue("local_remote") != "Remote") {
+        return true;
+    }
+
+	projectType = g_form.getValue("project_type");
+	
+	if (g_form.getValue("local_remote") == "Remote") {
+		if (projectType == "Custom Application") {
+			g_form.setValue("remote_update_sets", "");
+		} else if (projectType == "Update Sets") {
+			g_form.setValue("remote_application", "");
+		}
+	}
+	
+    var checkConnection =
+        (projectType == "Custom application" &amp;&amp; g_form.getValue("remote_application") == "") ||
+        (projectType == "Update sets" &amp;&amp; g_form.getValue("remote_update_sets") == "");
+
+    if (checkConnection) {
+        testRemoteConnection();
+        return false;
+    }
+
+    return true;
+}
+
+function testRemoteConnection() {
+    _dialog = new GlideModal("x_58056_md_docs_handle_remote_connection");
+    _dialog.setTitle(new GwtMessage().getMessage("Remote Instance Connection"));
+    _dialog.setPreference("sysID", g_form.getUniqueValue());
+    _dialog.setPreference("instanceURL", g_form.getValue("remote_instance_url"));
+    _dialog.setPreference("userName", g_form.getValue("remote_username"));
+    _dialog.setPreference("password", g_form.getValue("remote_password"));
+    _dialog.setPreference("projectType", projectType);
+    _dialog.setPreference("connectionFail", connectionFail.bind(this));
+    _dialog.setPreference("fetchSuccess", fetchSuccess.bind(this));
+    _dialog.setPreference("fetchCancel", fetchCancel.bind(this));
+
+    _dialog.render();
+}
+
+function connectionFail(msg) {
+	g_form.clearMessages();
+	_dialog.destroy();
+	g_form.addErrorMessage(msg);
+}
+
+function fetchSuccess(remoteDetails) {
+    _dialog.destroy();
+
+    g_form.setValue("remote_json", JSON.stringify(remoteDetails));
+    if (projectType == "Custom application") {
+        g_form.setValue("remote_application", remoteDetails[0].display);
+        g_form.setValue("remote_update_sets", "");
+    } else {
+        var updSets = [];
+        remoteDetails.forEach(function(remoteDetail) {
+            updSets.push(remoteDetail.display);
+        }, this);
+        g_form.setValue("remote_update_sets", updSets.join(","));
+        g_form.setValue("remote_application", "");
+    }
+    submitForm();
+}
+
+function fetchCancel() {
+    _dialog.destroy();
+}
+
+function submitForm() {
+    gFormAlreadySubmitted = true;
+    gsftSubmit(undefined, undefined, g_form.getActionName());
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-06-25 05:52:33&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;d02496b4db5eb300d0cb5385ca9619c7&lt;/sys_id&gt;&lt;sys_mod_count&gt;20&lt;/sys_mod_count&gt;&lt;sys_name&gt;Remote instance connection&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Markdown Documents" source="x_58056_md_docs"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Markdown Documents"&gt;7ac0b5344f212300ecf18c318110c745&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_d02496b4db5eb300d0cb5385ca9619c7&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-07-04 23:16:00&lt;/sys_updated_on&gt;&lt;table&gt;x_58056_md_docs_code_documentation&lt;/table&gt;&lt;type&gt;onSubmit&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-2085705518</payload_hash>
+        <record_name>Remote instance connection</record_name>
+        <reverted_from/>
+        <source>76c079344f212300ecf18c318110c71a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-04 23:16:00</sys_created_on>
+        <sys_id>68991488dba27300d0cb5385ca961939</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16bbf45f09c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-04 23:16:00</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>e0991488fba273004b601b5a3113b039</update_guid>
+        <update_guid_history>e0991488fba273004b601b5a3113b039:-2085705518,ee0850881aa2730054bad38f268e3171:-1969231982,33f81e4dcb1af300d3879bd564777e42:464230211,efa89ec9a11af300d339327d3cdb3ca4:142845749,0943da49781af3002aaee1b56ecb29ba:1092729373,4492d609321af3001d2e02d8c6e137b3:-614294829,65fc4245851af300f6a74531b4382528:-970429870,4b52fc41e116f300cfa5247db18d61d3:126853740,8d813081ea16f300c06aedd1c68eb527:-1174656022,b141bc41b016f300a77587bfc51d200e:862953256,ed0174013116f3008c667785c862556c:-144906077,bec0b4016c16f30032a5535d34139b1b:1719544009,02bea4014a16f300b347d55aefc9a718:-424812357,00be6401b916f3002c88a2526e9a3569:1680493582,912a5041c0d2f300a2d3f05a8c7eb48b:-830628260,5939daf8c95eb30075fafc456aab3572:2100610539,61575e38b25eb30068182aaf44971f04:1445190800,97175e38b95eb300015039132c090b00:-1710242665,53465ef4d35eb300d3f7974ab00bc9b8:11945392,b4b59238835eb3006b915d5cb9908a0f:750746819,3b64d6b4345eb300fb1d8a3349ed5812:295443362</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-10 23:27:48</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>32965080b14b478ea69472fb0b1c1631</sys_id>
+        <sys_metadata>d02496b4db5eb300d0cb5385ca9619c7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Remote instance connection</sys_name>
+        <sys_package display_value="Markdown Documents" source="x_58056_md_docs">7ac0b5344f212300ecf18c318110c745</sys_package>
+        <sys_parent display_value="Project Code Document Version">889376c6dbed7300d0cb5385ca9619f9</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Markdown Documents">7ac0b5344f212300ecf18c318110c745</sys_scope>
+        <sys_scope_delete display_value="">8cdb1019e5f24c009e920aeaef359000</sys_scope_delete>
+        <sys_update_name>sys_script_client_d02496b4db5eb300d0cb5385ca9619c7</sys_update_name>
+        <sys_update_version display_value="sys_script_client_d02496b4db5eb300d0cb5385ca9619c7">68991488dba27300d0cb5385ca961939</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-10 23:27:48</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
